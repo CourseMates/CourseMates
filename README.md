@@ -20,4 +20,4 @@ __Documents__:
 __Wiki__:
 * [Home](https://github.com/CourseMates/CourseMates/wiki)
 * [Inception](https://github.com/CourseMates/CourseMates/wiki/Inception)
-* [SRS](https://github.com/CourseMates/CourseMates/wiki/SRS)
+* [SRS](https://github.com/CourseMates/CourseMates/wiki/CourseMates---SRS)
