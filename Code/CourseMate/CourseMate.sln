@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseMatesWS", "CourseMatesWS\CourseMatesWS.csproj", "{3D2E9CB8-23FD-4EEE-BEAB-A19EBD37F099}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseMate.Web", "CourseMate.Web\CourseMate.Web.csproj", "{65E378A5-5852-4ED5-BAE1-52DA1FFD57E2}"
