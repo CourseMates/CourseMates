@@ -1,7 +1,7 @@
 CourseMates
 ===========
 
-<p style="image align: left"><img src="https://github.com/CourseMates/CourseMates/blob/master/Images/CourseMate.gif?raw=true"/></p>
+<p style="image align: left"><img src="https://github.com/CourseMates/CourseMates/blob/master/Images/Logo.png?raw=true"/></p>
 
 * Students file sharing and collaboration.
 * Notes sharing.
