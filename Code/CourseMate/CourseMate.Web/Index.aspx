@@ -12,9 +12,40 @@
     <form id="form1" runat="server">
     <div>
         <ext:ResourceManager ID="ResourceManager1" runat="server" />
+
+         <ext:Viewport ID="Viewport1" runat="server" Frame="false">
+            <LayoutConfig>
+                <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+            </LayoutConfig>
+            <Items>
+                <ext:Panel ID="Panel1" runat="server" Height="600" Frame="false" Width="800">
+                    <TopBar>
+                        <ext:Toolbar runat="server" ID="tbLogin" Border="false" >
+                            <Items>
+                                <ext:ToolbarFill />
+                                <ext:Button runat="server" ID="btnOpenRegister" Text="Register" Icon="Pencil">
+                                    <Listeners>
+                                        <Click Handler="#{winRegister}.show();" />
+                                    </Listeners>
+                                </ext:Button>
+                                <ext:Button runat="server" ID="btnOpenLogin" Text="Login" Icon="Lock">
+                                    <Listeners>
+                                        <Click Handler="#{loggInWin}.show();" />
+                                    </Listeners>
+                                </ext:Button>
+                                
+                            </Items>
+                        </ext:Toolbar>
+                    </TopBar>
+                    <Items>
+                        <ext:Image Align="Middle" runat="server" ImageUrl="Images/Logo.png" />
+                    </Items>
+                </ext:Panel>
+            </Items>
+        </ext:Viewport>
         
-        <ext:Window ID="loggInWin" runat="server" Closable="false" Resizable="false" Height="180" Icon="Lock" 
-            Title="Login" Draggable="false" Width="300" Modal="true" BodyPadding="5" Layout="FitLayout">
+        <ext:Window ID="loggInWin" runat="server" Closable="true" Resizable="false" Height="180" Icon="Lock"  
+            Title="Login" Width="300" BodyPadding="5" Layout="FitLayout" Hidden="true" >
             <Items>
                 <ext:FormPanel runat="server" Frame="true" Border="false" >
                 <Items>
@@ -24,11 +55,6 @@
                         AllowBlank="false" BlankText="Your password is required." Margin="5"/>
                 </Items>
                 <Buttons>
-                    <ext:Button ID="btnRegister" runat="server" Text="Register" Icon="Pencil">
-                        <Listeners>
-                            <Click Handler="#{winRegister}.show();" />
-                        </Listeners>
-                    </ext:Button>
                     <ext:Button ID="btnLogIn" runat="server" Text="Login" Icon="Accept" Disabled="true">
                         <DirectEvents>
                             <Click OnEvent="Login_Click">
@@ -44,7 +70,7 @@
             </Items>
         </ext:Window>
         <ext:Window ID="winRegister" runat="server" Closable="true" Resizable="false" Height="310" Icon="Pencil"  
-            Title="Register" Width="300" Modal="true" BodyPadding="5" Layout="FitLayout" Hidden="true">
+            Title="Register" Width="300" BodyPadding="5" Layout="FitLayout" Hidden="true">
             <Items>
                 <ext:FormPanel ID="FormPanel1" runat="server" Frame="true" Border="false" >
                     <Items>
