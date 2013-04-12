@@ -64,6 +64,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\Utilitys.cs" />
     <Compile Include="CourseMates.svc.cs">
       <DependentUpon>CourseMates.svc</DependentUpon>
     </Compile>
@@ -73,8 +74,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="BLL\" />
-    <Folder Include="Utilitis\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">

@@ -12,6 +12,7 @@ namespace CourseMatesWS
     {
         public string GetData(int value)
         {
+            BLL.Utilitys.SendMail("ben.ohana1@gmail.com", "Test Mail", "test test test....");
             return string.Format("You entered: {0}", value);
         }
     }
