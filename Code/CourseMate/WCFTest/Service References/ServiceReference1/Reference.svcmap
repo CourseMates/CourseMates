@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a4922afc-7ead-410b-b4c6-84be864db0fd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8090/cmws/CourseMates.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CourseMates.xsd" MetadataType="Schema" ID="6b57ff99-20c6-4e73-b1c8-bbdfaf8d321e" SourceId="1" SourceUrl="http://localhost:8090/cmws/CourseMates.svc?xsd=xsd1" />
+    <MetadataFile FileName="CourseMates.wsdl" MetadataType="Wsdl" ID="ad1d7318-35fb-4220-bf03-e61d6c65c39c" SourceId="1" SourceUrl="http://localhost:8090/cmws/CourseMates.svc?wsdl" />
+    <MetadataFile FileName="CourseMates1.xsd" MetadataType="Schema" ID="0449b442-f938-4d5b-84ca-b00c045ca51e" SourceId="1" SourceUrl="http://localhost:8090/cmws/CourseMates.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

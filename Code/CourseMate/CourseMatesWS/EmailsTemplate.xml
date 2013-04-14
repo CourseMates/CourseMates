@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<EmailsTemplates>
+  <Email id="Verify">
+    <title>Wellcom To CourseMates</title>
+    <subTitle>Your Action Is Required</subTitle>
+    <content>Wellcom to CourseMates,<![CDATA[<br>]]> please click <![CDATA[<a href="{0}">link</a>]]> for verifing your email.</content>
+  </Email>
+  <Email id="ApproveRequest">
+    <title>Request Approval</title>
+    <subTitle>Your Action Is Required</subTitle>
+    <content><![CDATA[You are designed to approve student in {0} course.<br> Please go to management window to do so.]]></content>
+  </Email>
+  <Email id="QAndA">
+    <title>Q &amp; A</title>
+    <subTitle></subTitle>
+    <content><![CDATA[Question:<br>{0}<br>{1}]]></content>
+  </Email>
+  <Email id="FileUpdate">
+    <title>File Updated</title>
+    <subTitle></subTitle>
+    <content>A file updated in {0} course.</content>
+  </Email>
+  <Email id="NewFile">
+    <title>A New File Added</title>
+    <subTitle></subTitle>
+    <content>A new file uploaded to {0} course.</content>
+  </Email>
+  <Email id="Invitation">
+    <title>Invitation</title>
+    <subTitle>Your Action Is Required</subTitle>
+    <content>
+      <![CDATA[You are invited to join course: {0} <br>Go to <a href="{1}">link</a> and start sharing...]]>
+    </content>
+  </Email>
+  <Template>
+    <![CDATA[
+    <div><div style="display:table-cell; vertical-align:middle; text-align:center"><img alt="Logo" src="cid:logo"  height="200px"/></div><div style="margin-left:30px"><h1 style="font-size:xx-large">{0}</h1></div><div style="margin-left:50px"><div style="font-style:italic; font-size:x-large; color:Red;"><u>{1}</u></div></div><div style="margin-left:50px; margin-top:10px">{2}</div><div style="margin-top:50px;text-align:right">&copy; This mail genarated by the system, don&#39;t replay.</div></div>]]>
+  </Template>
+</EmailsTemplates>
+

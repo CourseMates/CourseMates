@@ -61,9 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CourseMates.svc" />
+    <Content Include="EmailsTemplate.xml" />
+    <Content Include="Images\Logo.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\Enums.cs" />
     <Compile Include="BLL\Utilitys.cs" />
     <Compile Include="CourseMates.svc.cs">
       <DependentUpon>CourseMates.svc</DependentUpon>
@@ -96,7 +99,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49539</DevelopmentServerPort>
+          <DevelopmentServerPort>50368</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
