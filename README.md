@@ -10,7 +10,7 @@ CourseMates
 __By__:
 * Ohana Ben
 * Yehezkel Eliran 
-* Zhitomirsky Dima
+* Zhitomirsky Ofir
 * Pikali Hadar
 
 __Documents__:
