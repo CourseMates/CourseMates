@@ -20,7 +20,7 @@ namespace CourseMatesWS.BLL
                 const string fromPassword = "P@ssw0rd";
                 string mailFrom = "ben.ohana1@gmail.com";
                 string smtpStr = "smtp.gmail.com";
-                string body = GetEmailByType(content);
+                string body = GetEmailTamplateByType(content);
 
                 AlternateView view = AlternateView.CreateAlternateViewFromString(body, null, "text/html");
                 LinkedResource img = new LinkedResource(@"C:\Users\Ben\Documents\GitHub\CourseMates\Code\CourseMate\CourseMatesWS\Images\Logo.png", "image/jpg");
@@ -52,7 +52,7 @@ namespace CourseMatesWS.BLL
             }
         }
 
-        private static string GetEmailByType(EmailType type)
+        private static string GetEmailTamplateByType(EmailType type)
         {
             try
             {
