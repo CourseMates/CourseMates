@@ -21,3 +21,4 @@ __Wiki__:
 * [Home](https://github.com/CourseMates/CourseMates/wiki)
 * [Inception](https://github.com/CourseMates/CourseMates/wiki/Inception)
 * [SRS](https://github.com/CourseMates/CourseMates/wiki/SRS)
+* [SDS](https://github.com/CourseMates/CourseMates/wiki/SDS)
