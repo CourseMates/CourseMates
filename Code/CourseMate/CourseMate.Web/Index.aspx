@@ -13,12 +13,15 @@
     <div>
         <ext:ResourceManager ID="ResourceManager1" runat="server" />
 
-         <ext:Viewport ID="Viewport1" runat="server" Frame="false">
+         <ext:Viewport ID="Viewport1" runat="server" Frame="false" >
             <LayoutConfig>
-                <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                <ext:FitLayoutConfig />
             </LayoutConfig>
             <Items>
-                <ext:Panel ID="Panel1" runat="server" Height="600" Frame="false" Width="800">
+                <ext:Panel ID="Panel1" runat="server" Frame="false">
+                    <LayoutConfig>
+                        <ext:HBoxLayoutConfig Align="Top" Pack="Center" />
+                    </LayoutConfig>
                     <TopBar>
                         <ext:Toolbar runat="server" ID="tbLogin" Border="false" >
                             <Items>
@@ -38,7 +41,7 @@
                         </ext:Toolbar>
                     </TopBar>
                     <Items>
-                        <ext:Image Align="Middle" runat="server" ImageUrl="Images/Logo.png" />
+                        <ext:Image Align="Middle" runat="server" ImageUrl="Images/wellcom.png" Height="575" Width="700" />
                     </Items>
                 </ext:Panel>
             </Items>

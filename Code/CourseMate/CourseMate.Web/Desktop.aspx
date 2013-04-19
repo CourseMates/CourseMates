@@ -7,12 +7,20 @@
 <head runat="server">
     <script src="JS/Jquery-1.7.js" type="text/javascript"></script>
     <title></title>
+    <style type="text/css">
+        .ux-wallpaper {
+            background-color:White;
+            background-image:url(Images/Logo.png);
+            background-position:center;
+            background-repeat:no-repeat;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
             <ext:ResourceManager ID="ResourceManager1" runat="server" />
-            <ext:Desktop ID="MyDesktop" runat="server">
+            <ext:Desktop ID="MyDesktop" runat="server" >
             </ext:Desktop>
         </div>
     </form>

@@ -71,8 +71,12 @@
   <ItemGroup>
     <Content Include="Desktop.aspx" />
     <Content Include="Images\Logo.png" />
+    <Content Include="Images\text1.png" />
+    <Content Include="Images\wellcom.png" />
     <Content Include="JS\Jquery-1.7.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Index.aspx" />
   </ItemGroup>
   <ItemGroup>
