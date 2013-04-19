@@ -13,8 +13,12 @@ namespace CourseMatesWS
     {
         public string GetData(int value)
         {
+            Array t = Enum.GetValues(typeof(EmailType));
+            foreach (EmailType item in t)
+            {
+                BLL.Utilitys.SendMail("ben.ohana1@gmail.com", item.ToString(), Utilitys.GetEmailTamplateByType(item));    
+            }
             
-            BLL.Utilitys.SendMail("ben.ohana1@gmail.com;eliranyehezkel@gmail.com", "CourseMates", EmailType.Verify);
             return string.Format("You entered: {0}", value);
         }
     }
