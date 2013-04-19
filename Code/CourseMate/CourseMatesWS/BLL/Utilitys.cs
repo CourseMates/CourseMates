@@ -7,20 +7,20 @@ using System.Security;
 using System.Web;
 using System.Xml;
 using System.IO;
+using System.Threading;
 
 
 namespace CourseMatesWS.BLL
 {
     public class Utilitys
     {
-        public static void SendMail(string to, string subject, EmailType content)
+        public static void SendMail(string to, string subject, string body)
         {
             try
             {
-                const string fromPassword = "P@ssw0rd";
-                string mailFrom = "ben.ohana1@gmail.com";
+                const string fromPassword = "jcese123@";
+                string mailFrom = "coursemates1@gmail.com";
                 string smtpStr = "smtp.gmail.com";
-                string body = GetEmailTamplateByType(content);
 
                 AlternateView view = AlternateView.CreateAlternateViewFromString(body, null, "text/html");
                 LinkedResource img = new LinkedResource(@"C:\Users\Ben\Documents\GitHub\CourseMates\Code\CourseMate\CourseMatesWS\Images\Logo.png", "image/jpg");
@@ -29,7 +29,7 @@ namespace CourseMatesWS.BLL
                 view.LinkedResources.Add(img);
 
                 MailMessage mail = new MailMessage();
-                mail.From = new MailAddress(mailFrom);
+                mail.From = new MailAddress(mailFrom,"CourseMates");
                 string[] toList = to.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string tos in toList)
                 {
@@ -52,26 +52,16 @@ namespace CourseMatesWS.BLL
             }
         }
 
-        private static string GetEmailTamplateByType(EmailType type)
+        public static string GetEmailTamplateByType(EmailType type)
         {
             try
             {
                 XmlDocument doc = new XmlDocument();
                 doc.Load(@"C:\Users\Ben\Documents\GitHub\CourseMates\Code\CourseMate\CourseMatesWS\EmailsTemplate.xml");
-                string template = doc.GetElementsByTagName("Template")[0].InnerText;
-                string title, subTitle, content;
-                title = subTitle = content = string.Empty;
-                foreach (XmlNode node in doc.GetElementsByTagName("Email"))
-                {
-                    if (node.Attributes[0].Name == "id" && node.Attributes[0].Value == type.ToString())
-                    {
+                string mainTemplate = doc.GetElementsByTagName("MainTemplate")[0].InnerText;
+                string content = doc.GetElementsByTagName(type.ToString())[0].InnerText;
 
-                        title = node.ChildNodes[0].InnerText;
-                        subTitle = node.ChildNodes[1].InnerText;
-                        content = node.ChildNodes[2].InnerText;
-                    }
-                }
-                return string.Format(template, title, subTitle, content);
+                return string.Format(mainTemplate, content);
             }
             catch (Exception e)
             {

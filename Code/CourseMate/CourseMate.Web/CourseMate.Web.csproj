@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Desktop.aspx" />
+    <Content Include="HTMLPage1.htm" />
     <Content Include="Images\Logo.png" />
     <Content Include="Images\text1.png" />
     <Content Include="Images\wellcom.png" />
