@@ -21,6 +21,20 @@
         <div>
             <ext:ResourceManager ID="ResourceManager1" runat="server" />
             <ext:Desktop ID="MyDesktop" runat="server" >
+                <StartMenu Title="Menu" Height="300" Icon="Application">
+                    <ToolConfig>
+                        <ext:Toolbar runat="server" Width="100">
+                            <Items>
+                                <ext:Button ID="Button3" runat="server" Text="New Course" Icon="Add" TextAlign="Left" />
+                                <ext:ToolbarFill />
+                                <ext:ToolbarSeparator />
+                                <ext:Button ID="Button1" runat="server" Text="Settings" Icon="Cog" TextAlign="Left" />
+                                <ext:Button ID="Button2" runat="server" Text="Logout" Icon="Key" TextAlign="Left" />
+                            </Items>
+                        </ext:Toolbar>
+                    </ToolConfig>
+                </StartMenu>
+                
             </ext:Desktop>
         </div>
     </form>

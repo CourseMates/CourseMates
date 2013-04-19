@@ -36,7 +36,6 @@
                                         <Click Handler="#{loggInWin}.show();" />
                                     </Listeners>
                                 </ext:Button>
-                                
                             </Items>
                         </ext:Toolbar>
                     </TopBar>
