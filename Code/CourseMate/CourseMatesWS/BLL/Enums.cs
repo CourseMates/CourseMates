@@ -9,4 +9,8 @@ namespace CourseMatesWS.BLL
     {
         Verify, NewFile, FileUpdate, QAndA, ApproveRequest, Invitation
     }
+    public enum FileType
+    {
+        Word, Excel, PowerPoint, Image, PDF, Text
+    }
 }

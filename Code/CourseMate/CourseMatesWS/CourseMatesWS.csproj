@@ -69,6 +69,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Enums.cs" />
+    <Compile Include="BLL\Objects\Course.cs" />
+    <Compile Include="BLL\Objects\File.cs" />
+    <Compile Include="BLL\Objects\FourmItem.cs" />
+    <Compile Include="BLL\Objects\User.cs" />
     <Compile Include="BLL\Utilitys.cs" />
     <Compile Include="CourseMates.svc.cs">
       <DependentUpon>CourseMates.svc</DependentUpon>
