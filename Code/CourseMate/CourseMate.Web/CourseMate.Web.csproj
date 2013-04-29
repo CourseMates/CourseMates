@@ -70,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Desktop.aspx" />
-    <Content Include="HTMLPage1.htm" />
+    <Content Include="TestPage.html" />
     <Content Include="Images\Logo.png" />
     <Content Include="Images\start.png" />
     <Content Include="Images\text1.png" />
@@ -82,6 +82,7 @@
     <Content Include="Index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\Utilitys.cs" />
     <Compile Include="Desktop.aspx.cs">
       <DependentUpon>Desktop.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

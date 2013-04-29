@@ -34,7 +34,7 @@ namespace CourseMatesWS
         [OperationContract]
         int CreateNewCourse(string sessionId, string courseName, int ownerId);
         [OperationContract]
-        bool SendInvitations(string sessionId, int courseId, List<string> usersEmails);
+        bool SendInvitations(string sessionId, int courseId, List<int> usersId);
         [OperationContract]
         bool RequestJoinCourse(string sessionId, int courseId, int userId);
         [OperationContract]
