@@ -2,6 +2,8 @@ CourseMates
 ===========
 
 <p style="image align: left"><img src="https://github.com/CourseMates/CourseMates/blob/master/Images/Logo.png?raw=true"/></p>
+[User Guide](https://github.com/CourseMates/CourseMates/wiki/User-Guide)
+[Developers Guide](https://github.com/CourseMates/CourseMates/wiki/Developers-Guide)
 
 * Students file sharing and collaboration.
 * Notes sharing.
