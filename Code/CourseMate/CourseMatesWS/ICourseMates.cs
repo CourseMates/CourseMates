@@ -42,14 +42,14 @@ namespace CourseMatesWS
         [OperationContract]
         bool DeleteCourse(string sessionId, int courseId, int ownerId);
 
-        [OperationContract]
-        bool AddNewFile(string sessionId, string fileName, FileType type, string logicalPath, Stream file);
-        [OperationContract]
-        Stream GetFile(string sessionId, int fileId);
+        //[OperationContract]
+        //bool AddNewFile(string sessionId, string fileName, FileType type, string logicalPath, Stream file);
+        //[OperationContract]
+        //Stream GetFile(string sessionId, int fileId);
         [OperationContract]
         bool RateFile(string sessionId, int fileId, int rateing);
-        [OperationContract]
-        bool UpdateFile(string sessionId, int fileId, Stream updatedFile, FileType type);
+        //[OperationContract]
+        //bool UpdateFile(string sessionId, int fileId, Stream updatedFile, FileType type);
         [OperationContract]
         bool DeleteFile(string sessionId, int fileId, int ownerId);
 

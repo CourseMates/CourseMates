@@ -1,22 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <EmailsTemplates>
   <Verify>
-    Verify
+    <![CDATA[
+    Hi {0},<br /><br />
+    <p style="margin-top:-10px;margin-left:20px; font-size:medium; margin-bottom:80px; line-height:150%">
+      Welcome to CourseMates, the best wed site for sharing and managing your courses.<br />
+      please click on the <a href="{1}">link</a> for verifying your email.<br />
+    </p>
+    ]]>
   </Verify>
   <ApproveRequest>
-    ApproveRequest
+    <![CDATA[
+    <div style="font-size:large; color:Red; font-style:italic; font-weight:bold">Your Action Is Required</div><br />
+    Hi {0},<br /><br />
+    <p style="margin-top:-10px;margin-left:20px; font-size:medium; margin-bottom:80px; line-height:150%">
+      You are designated as an approver of the following access request submitted by {1} for the course {2}.<br />
+      Please go to the course page and submit your decision to approve or deny this request.<br />
+    </p>
+    ]]>
   </ApproveRequest>
   <QAndA>
-    QAndA
+    <![CDATA[
+    Hi {0},<br /><br />
+    <p style="margin-top:-10px;margin-left:20px; font-size:medium; line-height:150%">
+        A new post was submited by {1} on course {2}:<br />
+    </p>
+    <div style="font-size:larger;margin-left:20px;">{3}</div>
+    <div style="font-size:medium;margin-left:40px;margin-top:10px;">{4}</div>
+    ]]>
   </QAndA>
   <FileUpdate>
-    FileUpdate
+    <![CDATA[
+    Hi {0},<br /><br />
+    <p style="margin-top:-10px;margin-left:20px; font-size:medium; margin-bottom:80px; line-height:150%">
+        A file was 
+        updated by {1} on course {2}:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;<b><u>File Name:</b></u> {3}.<br />
+    </p>
+    ]]>
   </FileUpdate>
   <NewFile>
-    NewFile
+    <![CDATA[
+    Hi {0},<br /><br />
+    <p style="margin-top:-10px;margin-left:20px; font-size:medium; margin-bottom:80px; line-height:150%">
+        A new file was submited by {1} on course {2}:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;<b><u>File Name:</b></u> {3}.<br />
+    </p>
+    ]]>
   </NewFile>
   <Invitation>
-    Invitation
+    <![CDATA[
+    <div style="font-size:large; color:Red; font-style:italic; font-weight:bold">Your Action Is Required</div><br />
+    Hi {0},<br /><br />
+    <p style="margin-top:-10px;margin-left:20px; font-size:medium; margin-bottom:80px; line-height:150%">
+        You have invited join {1} course.<br />
+        Please follow the link below and start get notifications and updates.<br />
+        <a href="{2}">Join the course.</a>
+    </p>
+    ]]>
   </Invitation>
   <MainTemplate>
     <![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -50,7 +91,7 @@
                                                 <table border="0" cellpadding="20" cellspacing="0" width="100%">
                                                     <tr>
                                                         <td valign="top">
-                                                            <div>
+                                                            <div style="text-align:left; font-size:larger">
                                                                 {0}
                                                             </div>
 				                                        </td>

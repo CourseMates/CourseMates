@@ -20,7 +20,7 @@ namespace CourseMatesWS.BLL
                 string smtpStr = "smtp.gmail.com";
 
                 AlternateView view = AlternateView.CreateAlternateViewFromString(body, null, "text/html");
-                LinkedResource img = new LinkedResource(@"C:\Users\Ben\Documents\GitHub\CourseMates\Code\CourseMate\CourseMatesWS\Images\Logo.png", "image/jpg");
+                LinkedResource img = new LinkedResource(@"C:\Users\bohana\Documents\GitHub\CourseMates\Code\CourseMate\CourseMatesWS\Images\Logo.png", "image/jpg");
                 img.ContentId = "logo";
                 img.TransferEncoding = System.Net.Mime.TransferEncoding.Base64;
                 view.LinkedResources.Add(img);
@@ -54,7 +54,7 @@ namespace CourseMatesWS.BLL
             try
             {
                 XmlDocument doc = new XmlDocument();
-                doc.Load(@"C:\Users\Ben\Documents\GitHub\CourseMates\Code\CourseMate\CourseMatesWS\EmailsTemplate.xml");
+                doc.Load(@"C:\Users\bohana\Documents\GitHub\CourseMates\Code\CourseMate\CourseMatesWS\EmailsTemplate.xml");
                 string mainTemplate = doc.GetElementsByTagName("MainTemplate")[0].InnerText;
                 string content = doc.GetElementsByTagName(type.ToString())[0].InnerText;
 
@@ -89,7 +89,7 @@ namespace CourseMatesWS.BLL
             foreach (User user in sendTo)
             {
                 string template = GetEmailTamplateByType(EmailType.NewFile);
-                template = string.Format(template, user.UserName, file.Owner.UserName, file.FileName, courseName);
+                template = string.Format(template, user.UserName, file.Owner.UserName, courseName, file.FileName);
                 SendMail(user.Email, "New File Added to " + courseName, template);
             }
         }
@@ -99,15 +99,15 @@ namespace CourseMatesWS.BLL
             foreach (User user in sendTo)
             {
                 string template = GetEmailTamplateByType(EmailType.FileUpdate);
-                template = string.Format(template, user.UserName, file.Owner.UserName, file.FileName, courseName);
+                template = string.Format(template, user.UserName, file.Owner.UserName, courseName, file.FileName);
                 SendMail(user.Email, "File Updated on " + courseName, template);
             }
         }
 
-        public static void SendApproveRequest(User courseOwner, string courseName)
+        public static void SendApproveRequest(User courseOwner, string courseName, User requestBy)
         {
             string template = GetEmailTamplateByType(EmailType.ApproveRequest);
-            template = string.Format(template, courseOwner.UserName, courseName);
+            template = string.Format(template, courseOwner.UserName,requestBy.UserName, courseName);
             SendMail(courseOwner.Email, "Your Action Is Required", template);
         }
 
@@ -115,8 +115,8 @@ namespace CourseMatesWS.BLL
         {
             foreach (User user in sendTo)
             {
-                string template = GetEmailTamplateByType(EmailType.Invitation);
-                template = string.Format(template, user.UserName, courseName, fi.Title, fi.Owner.UserName);
+                string template = GetEmailTamplateByType(EmailType.QAndA);
+                template = string.Format(template, user.UserName, fi.Owner.UserName, courseName, fi.Title, fi.Content);
                 SendMail(user.Email, "Fourm update at " + courseName, template);
             }
         }

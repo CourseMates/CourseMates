@@ -17,6 +17,5 @@ namespace CourseMatesWS.BLL
     public class Utilitys
     {
         
-        
     }
 }

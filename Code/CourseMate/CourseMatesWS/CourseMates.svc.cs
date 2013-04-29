@@ -23,7 +23,43 @@ namespace CourseMatesWS
         /// <returns></returns>
         public SessionObj LogIn(string userName, string password)
         {
-            return CMDal.GetNewSession(userName, password);
+            string link = "http://www.google.com";
+            User u1 = new User() 
+            { 
+                UserName="Benoh1",
+                Email = "ben.ohana1@gmail.com",
+            };
+            User u2 = new User()
+            {
+                UserName = "Bohana",
+                Email = "ben.ohana1@gmail.com",
+            };
+            Course c1 = new Course()
+            {
+                CourseName = "Sofware Engeneering",
+                CourseAdmin = u1,
+            };
+            FourmItem fi = new FourmItem()
+            {
+                Title = "I Need Help....",
+                Content = "i need the answer to question nubmer 3 in the latest ex.....please help me.....",
+                Owner = u2
+            };
+            FileItem f = new FileItem()
+            {
+                FileName="Last Year Notes.PDF",
+                Owner = u1,
+                Type = FileType.PDF
+            };
+
+            NotificationUtilitys.SendAddNewFileNotification(new List<User> { u1 }, f, c1.CourseName);
+            NotificationUtilitys.SendApproveRequest(u1, c1.CourseName, u2);
+            NotificationUtilitys.SendCourseInvitaions(new List<User> { u2 }, c1.CourseName, link);
+            NotificationUtilitys.SendQandANotification(new List<User> { u1 }, fi, c1.CourseName);
+            NotificationUtilitys.SendUpdateFileNotification(new List<User> { u2 }, f, c1.CourseName);
+            NotificationUtilitys.SendVerifyMail(u2, link);
+
+            return null;// CMDal.GetNewSession(userName, password);
         }
         /// <summary>
         /// 
@@ -159,10 +195,10 @@ namespace CourseMatesWS
         /// <param name="logicalPath"></param>
         /// <param name="file"></param>
         /// <returns></returns>
-        public bool AddNewFile(string sessionId, string fileName, FileType type, string logicalPath, Stream file)
-        {
-            throw new NotImplementedException();
-        }
+        //public bool AddNewFile(string sessionId, string fileName, FileType type, string logicalPath, Stream file)
+        //{
+        //    throw new NotImplementedException();
+        //}
         /// <summary>
         /// 
         /// </summary>
@@ -171,6 +207,7 @@ namespace CourseMatesWS
         /// <returns></returns>
         public Stream GetFile(string sessionId, int fileId)
         {
+
             throw new NotImplementedException();
         }
         /// <summary>
@@ -192,10 +229,11 @@ namespace CourseMatesWS
         /// <param name="updatedFile"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public bool UpdateFile(string sessionId, int fileId, Stream updatedFile, FileType type)
-        {
-            throw new NotImplementedException();
-        }
+        //public bool UpdateFile(string sessionId, int fileId, Stream updatedFile, FileType type)
+        //{
+    
+        //    throw new NotImplementedException();
+        //}
         /// <summary>
         /// 
         /// </summary>
