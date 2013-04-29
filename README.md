@@ -25,4 +25,4 @@ __Wiki__:
 
 __Milestone__:
 * [Iter0 - ZFR](https://github.com/CourseMates/CourseMates/wiki/Iter0---ZRF)
-* [Iter0 - TDD](https://github.com/CourseMates/CourseMates/wiki/Iter1---TDD)
+* [Iter1 - TDD](https://github.com/CourseMates/CourseMates/wiki/Iter1---TDD)
