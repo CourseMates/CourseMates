@@ -22,3 +22,9 @@ __Wiki__:
 * [Inception](https://github.com/CourseMates/CourseMates/wiki/Inception)
 * [SRS](https://github.com/CourseMates/CourseMates/wiki/SRS)
 * [SDS](https://github.com/CourseMates/CourseMates/wiki/SDS)
+* [User Guide](https://github.com/CourseMates/CourseMates/wiki/User-Guide)
+* [Developers Guide](https://github.com/CourseMates/CourseMates/wiki/Developers-Guide)
+
+__Milestone__:
+* [Iter0 - ZFR](https://github.com/CourseMates/CourseMates/wiki/Iter0---ZRF)
+* [Iter1 - MVP](https://github.com/CourseMates/CourseMates/wiki/Iter1-MVP)
