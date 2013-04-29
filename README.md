@@ -22,3 +22,6 @@ __Wiki__:
 * [Inception](https://github.com/CourseMates/CourseMates/wiki/Inception)
 * [SRS](https://github.com/CourseMates/CourseMates/wiki/SRS)
 * [SDS](https://github.com/CourseMates/CourseMates/wiki/SDS)
+
+__Milestone__:
+* [Iter0 - ZFR](https://github.com/CourseMates/CourseMates/wiki/Iter0---ZRF)
