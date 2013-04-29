@@ -8,7 +8,7 @@ using System.Web;
 using System.Xml;
 using System.IO;
 using System.Threading;
-using CourseMatesWS.BLL.Objects;
+using CourseMatesWS.DAL.Objects;
 using CourseMatesWS.DAL;
 
 
@@ -31,11 +31,11 @@ namespace CourseMatesWS.BLL
                 view.LinkedResources.Add(img);
 
                 MailMessage mail = new MailMessage();
-                mail.From = new MailAddress(mailFrom,"CourseMates");
+                mail.From = new MailAddress(mailFrom, "CourseMates");
                 string[] toList = to.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string tos in toList)
                 {
-                    mail.To.Add(new MailAddress(tos));   
+                    mail.To.Add(new MailAddress(tos));
                 }
 
                 mail.AlternateViews.Add(view);
@@ -50,7 +50,7 @@ namespace CourseMatesWS.BLL
             }
             catch (Exception)
             {
-                
+
             }
         }
 
@@ -65,9 +65,9 @@ namespace CourseMatesWS.BLL
 
                 return string.Format(mainTemplate, content);
             }
-            catch (Exception )
+            catch (Exception)
             {
-                
+
             }
             return string.Empty;
         }    

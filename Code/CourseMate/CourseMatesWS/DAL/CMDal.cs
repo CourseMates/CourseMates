@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Configuration;
-using CourseMatesWS.BLL.Objects;
+using CourseMatesWS.DAL.Objects;
 using System.Data;
 using CourseMatesWS.BLL;
 

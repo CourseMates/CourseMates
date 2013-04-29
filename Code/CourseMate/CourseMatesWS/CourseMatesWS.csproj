@@ -69,11 +69,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Enums.cs" />
-    <Compile Include="BLL\Objects\Course.cs" />
-    <Compile Include="BLL\Objects\FileItem.cs" />
-    <Compile Include="BLL\Objects\FourmItem.cs" />
-    <Compile Include="BLL\Objects\SessionObj.cs" />
-    <Compile Include="BLL\Objects\User.cs" />
+    <Compile Include="BLL\NotificationUtilitys.cs" />
+    <Compile Include="DAL\Objects\Course.cs" />
+    <Compile Include="DAL\Objects\FileItem.cs" />
+    <Compile Include="DAL\Objects\FourmItem.cs" />
+    <Compile Include="DAL\Objects\SessionObj.cs" />
+    <Compile Include="DAL\Objects\User.cs" />
     <Compile Include="BLL\Utilitys.cs" />
     <Compile Include="CourseMates.svc.cs">
       <DependentUpon>CourseMates.svc</DependentUpon>

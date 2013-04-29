@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Runtime.Serialization;
 
-namespace CourseMatesWS.BLL.Objects
+namespace CourseMatesWS.DAL.Objects
 {
     [DataContract]
     public class FourmItem : IComparable

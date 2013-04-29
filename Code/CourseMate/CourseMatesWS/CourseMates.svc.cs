@@ -6,7 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using CourseMatesWS.BLL;
-using CourseMatesWS.BLL.Objects;
+using CourseMatesWS.DAL.Objects;
 using System.IO;
 using CourseMatesWS.DAL;
 

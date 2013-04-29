@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using CourseMatesWS.BLL.Objects;
+using CourseMatesWS.DAL.Objects;
 using CourseMatesWS.BLL;
 using System.IO;
 
@@ -21,7 +21,7 @@ namespace CourseMatesWS
         [OperationContract]
         List<Course> GetCoursesByUserID(string sessionId, int id);
         [OperationContract]
-        List<BLL.Objects.FileItem> GetFilesByCourseID(string sessionId, int id);
+        List<FileItem> GetFilesByCourseID(string sessionId, int id);
         [OperationContract]
         List<FourmItem> GetFourmItemByCourseID(string sessionId, int id);
         [OperationContract]
