@@ -27,4 +27,4 @@ __Wiki__:
 
 __Milestone__:
 * [Iter0 - ZFR](https://github.com/CourseMates/CourseMates/wiki/Iter0---ZRF)
-* [Iter1 - MVP](https://github.com/CourseMates/CourseMates/wiki/Iter1---MVP)
+* [Iter1 - MVP](https://github.com/CourseMates/CourseMates/wiki/Iter1-MVP)
