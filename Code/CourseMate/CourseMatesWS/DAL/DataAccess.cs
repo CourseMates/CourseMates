@@ -56,7 +56,7 @@ namespace CourseMatesWS.DAL
                 executeQryDsAdapter.Fill(executeQryDataSet);
             }
 
-            catch (Exception exception)
+            catch (Exception)
             {
             }
             finally
@@ -114,7 +114,7 @@ namespace CourseMatesWS.DAL
                 var fillParameters = dataAdapter.GetFillParameters();
                 return dTable;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
 
 
@@ -147,7 +147,7 @@ namespace CourseMatesWS.DAL
             {
                 rowsEffected = sqlCmd.ExecuteNonQuery();
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 transaction.Rollback();
                 dsConn.Close();

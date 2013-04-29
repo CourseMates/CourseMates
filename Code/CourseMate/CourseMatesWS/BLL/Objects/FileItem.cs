@@ -7,26 +7,26 @@ using System.Runtime.Serialization;
 namespace CourseMatesWS.BLL.Objects
 {
     [DataContract]
-    public class Course : IComparable
+    public class FileItem :IComparable
     {
         [DataMember]
         public int ID { get; set; }
         [DataMember]
-        public string CourseName { get; set; }
+        public string FileName { get; set; }
         [DataMember]
-        public List<FourmItem> FourmItems { get; set; }
+        public FileType Type { get; set; }
         [DataMember]
-        public List<User> Participants { get; set; }
+        public int Rate { get; set; }
         [DataMember]
-        public List<FileItem> Files { get; set; }
+        public string LogicalPath { get; set; }
         [DataMember]
-        public User CourseAdmin { get; set; }
+        public User Owner { get; set; }
 
         public int CompareTo(object obj)
         {
-            Course c = obj as Course;
+            FileItem f = obj as FileItem;
 
-            return this.ID.CompareTo(c.ID);
+            return this.ID.CompareTo(f.ID);
         }
     }
 }

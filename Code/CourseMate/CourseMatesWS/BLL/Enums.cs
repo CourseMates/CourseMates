@@ -11,6 +11,6 @@ namespace CourseMatesWS.BLL
     }
     public enum FileType
     {
-        Word, Excel, PowerPoint, Image, PDF, Text
+        Unknown = 0, Word = 1, Excel = 2, PowerPoint = 3, Image = 4, PDF = 5, Text = 6
     }
 }

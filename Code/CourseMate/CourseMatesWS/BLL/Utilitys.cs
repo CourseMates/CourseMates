@@ -8,6 +8,8 @@ using System.Web;
 using System.Xml;
 using System.IO;
 using System.Threading;
+using CourseMatesWS.BLL.Objects;
+using CourseMatesWS.DAL;
 
 
 namespace CourseMatesWS.BLL
@@ -46,7 +48,7 @@ namespace CourseMatesWS.BLL
                 smtp.Send(mail);
                 smtp.Dispose();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 
             }
@@ -63,7 +65,7 @@ namespace CourseMatesWS.BLL
 
                 return string.Format(mainTemplate, content);
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 
             }

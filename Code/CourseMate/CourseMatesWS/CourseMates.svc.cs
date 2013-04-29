@@ -6,20 +6,238 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using CourseMatesWS.BLL;
+using CourseMatesWS.BLL.Objects;
+using System.IO;
+using CourseMatesWS.DAL;
 
 namespace CourseMatesWS
 {
     public class CourseMates : ICourseMates
     {
-        public string GetData(int value)
+        #region Done
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public SessionObj LogIn(string userName, string password)
         {
-            Array t = Enum.GetValues(typeof(EmailType));
-            foreach (EmailType item in t)
-            {
-                BLL.Utilitys.SendMail("ben.ohana1@gmail.com", item.ToString(), Utilitys.GetEmailTamplateByType(item));    
-            }
-            
-            return string.Format("You entered: {0}", value);
+            return CMDal.GetNewSession(userName, password);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="newUser"></param>
+        /// <returns></returns>
+        public int Register(User newUser)
+        {
+            return CMDal.CreateNewUser(newUser);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<FileItem> GetFilesByCourseID(string sessionId, int id)
+        {
+            return CMDal.GetFilesByCourseID(sessionId, id);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<FourmItem> GetFourmItemByCourseID(string sessionId, int id)
+        {
+            return CMDal.GetFourmItemByCourseID(sessionId, id);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<Course> GetCoursesByUserID(string sessionId, int id)
+        {
+            return CMDal.GetCoursesByUserID(sessionId, id);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="searchStr"></param>
+        /// <returns></returns>
+        public List<User> GetUsers(string sessionId, string searchStr)
+        {
+            return CMDal.GetUsers(sessionId, searchStr);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="searchStr"></param>
+        /// <returns></returns>
+        public List<Course> GetCourses(string sessionId, string searchStr)
+        {
+            return CMDal.GetCourses(sessionId, searchStr);
+        }
+        #endregion 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="course"></param>
+        /// <returns></returns>
+        public bool UpdateCourse(string sessionId, Course course)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="courseName"></param>
+        /// <param name="ownerId"></param>
+        /// <returns></returns>
+        public int CreateNewCourse(string sessionId, string courseName, int ownerId)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="courseId"></param>
+        /// <param name="usersEmails"></param>
+        /// <returns></returns>
+        public bool SendInvitations(string sessionId, int courseId, List<int> usersId)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="courseId"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public bool RequestJoinCourse(string sessionId, int courseId, int userId)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="toApprove"></param>
+        /// <param name="isApprove"></param>
+        /// <returns></returns>
+        public bool ApproveRequest(string sessionId, int toApprove, bool isApprove)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="courseId"></param>
+        /// <param name="ownerId"></param>
+        /// <returns></returns>
+        public bool DeleteCourse(string sessionId, int courseId, int ownerId)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="fileName"></param>
+        /// <param name="type"></param>
+        /// <param name="logicalPath"></param>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        public bool AddNewFile(string sessionId, string fileName, FileType type, string logicalPath, Stream file)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        public Stream GetFile(string sessionId, int fileId)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="fileId"></param>
+        /// <param name="rateing"></param>
+        /// <returns></returns>
+        public bool RateFile(string sessionId, int fileId, int rateing)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="fileId"></param>
+        /// <param name="updatedFile"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public bool UpdateFile(string sessionId, int fileId, Stream updatedFile, FileType type)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="fileId"></param>
+        /// <param name="ownerId"></param>
+        /// <returns></returns>
+        public bool DeleteFile(string sessionId, int fileId, int ownerId)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public bool SubmitFourmItem(string sessionId, FourmItem item)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="fourmItemId"></param>
+        /// <param name="rateing"></param>
+        /// <returns></returns>
+        public bool RateFourmItem(string sessionId, int fourmItemId, int rateing)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="fourmItemId"></param>
+        /// <param name="ownerId"></param>
+        /// <returns></returns>
+        public bool DeleteFourmItem(string sessionId, int fourmItemId, int ownerId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
