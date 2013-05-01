@@ -2,7 +2,7 @@
 <EmailsTemplates>
   <Verify>
     <![CDATA[
-    Hi {0},<br /><br />
+    Hi <i>{0}</i>,<br /><br />
     <p style="margin-top:-10px;margin-left:20px; font-size:medium; margin-bottom:80px; line-height:150%">
       Welcome to CourseMates, the best wed site for sharing and managing your courses.<br />
       please click on the <a href="{1}">link</a> for verifying your email.<br />
@@ -12,48 +12,48 @@
   <ApproveRequest>
     <![CDATA[
     <div style="font-size:large; color:Red; font-style:italic; font-weight:bold">Your Action Is Required</div><br />
-    Hi {0},<br /><br />
+    Hi <i>{0}</i>,<br /><br />
     <p style="margin-top:-10px;margin-left:20px; font-size:medium; margin-bottom:80px; line-height:150%">
-      You are designated as an approver of the following access request submitted by {1} for the course {2}.<br />
+      You are designated as an approver of the following access request submitted by <i>{1}</i> for the course <i>{2}</i>.<br />
       Please go to the course page and submit your decision to approve or deny this request.<br />
     </p>
     ]]>
   </ApproveRequest>
   <QAndA>
     <![CDATA[
-    Hi {0},<br /><br />
+    Hi <i>{0}</i>,<br /><br />
     <p style="margin-top:-10px;margin-left:20px; font-size:medium; line-height:150%">
-        A new post was submited by {1} on course {2}:<br />
+        A new post was submited by <i>{1}</i> on course <i>{2}</i>:<br />
     </p>
-    <div style="font-size:larger;margin-left:20px;">{3}</div>
-    <div style="font-size:medium;margin-left:40px;margin-top:10px;">{4}</div>
+    <div style="font-size:larger;margin-left:20px;"><i>{3}</i></div>
+    <div style="font-size:medium;margin-left:40px;margin-top:10px;"><i>{4}</i></div>
     ]]>
   </QAndA>
   <FileUpdate>
     <![CDATA[
-    Hi {0},<br /><br />
+    Hi <i>{0}</i>,<br /><br />
     <p style="margin-top:-10px;margin-left:20px; font-size:medium; margin-bottom:80px; line-height:150%">
         A file was 
-        updated by {1} on course {2}:<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;<b><u>File Name:</b></u> {3}.<br />
+        updated by <i>{1}</i> on course <i>{2}</i>:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;<b><u>File Name:</b></u> <i>"{3}"</i>.<br />
     </p>
     ]]>
   </FileUpdate>
   <NewFile>
     <![CDATA[
-    Hi {0},<br /><br />
+    Hi <i>{0}</i>,<br /><br />
     <p style="margin-top:-10px;margin-left:20px; font-size:medium; margin-bottom:80px; line-height:150%">
-        A new file was submited by {1} on course {2}:<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;<b><u>File Name:</b></u> {3}.<br />
+        A new file was submited by <i>{1}</i> on course <i>{2}</i>:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;<b><u>File Name:</b></u> <i>"{3}"</i><br />
     </p>
     ]]>
   </NewFile>
   <Invitation>
     <![CDATA[
     <div style="font-size:large; color:Red; font-style:italic; font-weight:bold">Your Action Is Required</div><br />
-    Hi {0},<br /><br />
+    Hi <i>{0}</i>,<br /><br />
     <p style="margin-top:-10px;margin-left:20px; font-size:medium; margin-bottom:80px; line-height:150%">
-        You have invited join {1} course.<br />
+        You have invited join <i>{1}</i> course.<br />
         Please follow the link below and start get notifications and updates.<br />
         <a href="{2}">Join the course.</a>
     </p>
@@ -85,16 +85,16 @@
                             </tr>
                         	<tr>
                             	<td align="center" valign="top">
-                                	<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody">
+                                	<table border="0" cellpadding="0" cellspacing="0" width="650" id="templateBody">
                                     	<tr>
                                             <td valign="top">
                                                 <table border="0" cellpadding="20" cellspacing="0" width="100%">
                                                     <tr>
                                                         <td valign="top">
-                                                            <div style="text-align:left; font-size:larger">
+                                                            <div style="text-align:left; font-size:larger; line-height:150%">
                                                                 {0}
                                                             </div>
-				                                        </td>
+				                                                 </td>
                                                     </tr>
                                                 </table>
                                             </td>
@@ -104,7 +104,7 @@
                             </tr>
                         	<tr>
                             	<td align="center" valign="top">
-                                	<table border="0" cellpadding="10" cellspacing="0" width="600" id="templateFooter">
+                                	<table border="0" cellpadding="10" cellspacing="0" width="650" id="templateFooter">
                                     	<tr>
                                         	<td valign="top" align="right" class="footerContent">
                                                 © This mail genarated by the system, please do not replay.
@@ -122,5 +122,14 @@
     </body>
 </html>]]>
   </MainTemplate>
+  <ResetPassword>
+    <![CDATA[
+    <div style="font-size:large; color:Red; font-style:italic; font-weight:bold">Your Action Is Required</div><br />
+    Hi <i>{0}</i>,<br /><br />
+    <p style="margin-top:-100px;margin-left:20px; font-size:medium; margin-bottom:80px;">
+        In order to reset your password please click <a href="{1}">here.</a>
+    </p>
+    ]]>
+  </ResetPassword>
 </EmailsTemplates>
 

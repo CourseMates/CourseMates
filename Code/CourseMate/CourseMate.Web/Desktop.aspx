@@ -21,7 +21,6 @@
         <div>
             <ext:ResourceManager ID="ResourceManager1" runat="server" />
             <ext:Desktop ID="MyDesktop" runat="server" >
-                
                 <StartMenu Title="Menu" Height="300" Icon="Application">
                     <ToolConfig>
                         <ext:Toolbar runat="server" Width="100">

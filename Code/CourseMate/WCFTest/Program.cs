@@ -11,7 +11,7 @@ namespace WCFTest
         static void Main(string[] args)
         {
             ServiceReference1.CourseMatesClient cm = new ServiceReference1.CourseMatesClient();
-            Console.WriteLine(cm.LogIn("",""));
+            Console.WriteLine(cm.GetUrl());
             Console.ReadLine();
         }
     }
