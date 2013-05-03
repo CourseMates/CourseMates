@@ -15,6 +15,8 @@ namespace CourseMatesWS
     public interface ICourseMates
     {
         [OperationContract]
-        string GetUrl();
+        string Login(string userName, string password);
+        [OperationContract]
+        SQLStatus Register(User user, out int userId, out string sessionId);
     }
 }

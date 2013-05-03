@@ -15,17 +15,18 @@ namespace CourseMatesWS
 {
     public class CourseMates : ICourseMates
     {
-
-        public string GetUrl()
+        public string Login(string userName, string password)
         {
-            User u = new User()
-            {
-                ID=5,
-                Email = "ben.ohana1@gmail.com",
-                UserName="benoh"
-            };
-            return Utilitys.GetUniqueEmail(LinkType.EmailVerify,u);
+            return CMDal.LogIn(userName, password);
+        }
 
+        public SQLStatus Register(User user, out int userId, out string sessionId)
+        {
+            sessionId = string.Empty;
+            SQLStatus status = CMDal.RegisterNewUser(user, out userId);
+            if (status == SQLStatus.Succeeded)
+                sessionId = CMDal.GetNewSession(userId);
+            return status;    
         }
     }
 }

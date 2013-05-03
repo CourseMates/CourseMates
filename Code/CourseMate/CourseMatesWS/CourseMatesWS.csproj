@@ -73,7 +73,6 @@
     <Compile Include="DAL\Objects\Course.cs" />
     <Compile Include="DAL\Objects\FileItem.cs" />
     <Compile Include="DAL\Objects\FourmItem.cs" />
-    <Compile Include="DAL\Objects\SessionObj.cs" />
     <Compile Include="DAL\Objects\User.cs" />
     <Compile Include="BLL\Utilitys.cs" />
     <Compile Include="CourseMates.svc.cs">

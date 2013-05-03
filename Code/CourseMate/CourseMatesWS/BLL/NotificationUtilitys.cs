@@ -21,7 +21,7 @@ namespace CourseMatesWS.BLL
         /// <param name="to">Emails sperated with ';' that the mail will send to.</param>
         /// <param name="subject">The subject of the email.</param>
         /// <param name="body">The HTML content of the email.</param>
-        private static void SendMail(string to, string subject, string body)
+        public static void SendMail(string to, string subject, string body)
         {
             try
             {
