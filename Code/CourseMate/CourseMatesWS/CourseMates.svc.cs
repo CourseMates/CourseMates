@@ -24,7 +24,7 @@ namespace CourseMatesWS
                 Email = "ben.ohana1@gmail.com",
                 UserName="benoh"
             };
-            return Utilitys.GetUniqueEmail(LinkType.EmailVerify, u);
+            return Utilitys.GetUniqueEmail(LinkType.EmailVerify,u);
 
         }
     }

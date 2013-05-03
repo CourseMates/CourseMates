@@ -70,6 +70,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Desktop.aspx" />
+    <Content Include="EmailVerify.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="Images\error.png" />
+    <Content Include="JoinCourse.aspx" />
+    <Content Include="ResetPassword.aspx" />
     <Content Include="TestPage.html" />
     <Content Include="Images\Logo.png" />
     <Content Include="Images\start.png" />
@@ -90,6 +95,27 @@
     <Compile Include="Desktop.aspx.designer.cs">
       <DependentUpon>Desktop.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EmailVerify.aspx.cs">
+      <DependentUpon>EmailVerify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmailVerify.aspx.designer.cs">
+      <DependentUpon>EmailVerify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JoinCourse.aspx.cs">
+      <DependentUpon>JoinCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JoinCourse.aspx.designer.cs">
+      <DependentUpon>JoinCourse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -97,6 +123,13 @@
     </Compile>
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
