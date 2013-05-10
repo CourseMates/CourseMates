@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseMatesWS", "CourseMatesWS\CourseMatesWS.csproj", "{3D2E9CB8-23FD-4EEE-BEAB-A19EBD37F099}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseMate.Web", "CourseMate.Web\CourseMate.Web.csproj", "{65E378A5-5852-4ED5-BAE1-52DA1FFD57E2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3D2E9CB8-23FD-4EEE-BEAB-A19EBD37F099} = {3D2E9CB8-23FD-4EEE-BEAB-A19EBD37F099}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFTest", "WCFTest\WCFTest.csproj", "{BD13D0E7-2EFD-49FC-AF97-C8528414E7D0}"
 	ProjectSection(ProjectDependencies) = postProject

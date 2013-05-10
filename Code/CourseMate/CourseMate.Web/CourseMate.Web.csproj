@@ -50,6 +50,8 @@
       <HintPath>DLLs\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -74,6 +76,7 @@
     <Content Include="Error.aspx" />
     <Content Include="Images\error.png" />
     <Content Include="JoinCourse.aspx" />
+    <Content Include="JS\Main.js" />
     <Content Include="ResetPassword.aspx" />
     <Content Include="TestPage.html" />
     <Content Include="Images\Logo.png" />
@@ -81,6 +84,10 @@
     <Content Include="Images\text1.png" />
     <Content Include="Images\wellcom.png" />
     <Content Include="JS\Jquery-1.7.js" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -124,6 +131,11 @@
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="ResetPassword.aspx.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -131,8 +143,33 @@
     <Compile Include="ResetPassword.aspx.designer.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Web References\CMwcf\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Web References\CMwcf\CourseMates.wsdl" />
+    <None Include="Web References\CMwcf\CourseMates.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\CMwcf\CourseMates0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\CMwcf\CourseMates1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\CMwcf\CourseMates2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\CMwcf\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\CMwcf\SQLStatus.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -143,7 +180,22 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:50368/CourseMates.svc%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\CMwcf\</RelPath>
+      <UpdateFromURL>http://localhost:50368/CourseMates.svc%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CourseMate_Web_CMwcf_CourseMates</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

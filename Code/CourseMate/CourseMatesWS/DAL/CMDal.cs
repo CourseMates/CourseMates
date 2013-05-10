@@ -93,9 +93,9 @@ namespace CourseMatesWS.DAL
             }
         }
 
-        public static string LogIn(string userName, string password)
+        public static string LogIn(string userName, string password, out int id)
         {
-            int id = GetUserID(userName, password);
+            id = GetUserID(userName, password);
             if (id > 0)
             {
                 InsertNewAction(id, (int)LinkType.EmailVerify);

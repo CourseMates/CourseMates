@@ -5,11 +5,47 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Ext.Net;
+using CourseMate.Web.CMwcf;
+using CourseMate.Web;
 
 namespace CourseMate.Web
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        public string SessionID
+        {
+            get 
+            { 
+                if(Session["SessionID"] != null)
+                    return Session["SessionID"].ToString();
+                return string.Empty;
+            }
+            set 
+            { 
+                Session["SessionID"] = value; 
+            }
+        }
+
+        public int UserID
+        {
+            get 
+            {
+                if (Session["UserID"] != null)
+                {
+                    int x;
+                    if (int.TryParse(Session["UserID"].ToString(), out x))
+                    {
+                        return x;
+                    }
+                }
+                return -1;
+            }
+            set 
+            {
+                Session["UserID"] = value; 
+            }
+        }
+                
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -17,25 +53,78 @@ namespace CourseMate.Web
 
         protected void Login_Click(object sender, DirectEventArgs e)
         {
-            if (txtUsername.Text == "benoh" && txtPassword.Text == "P@ssw0rd")
+            CourseMates cm = new CourseMates();
+            bool x;
+            int id;
+            string session = cm.Login(txtUsername.Text, BLL.Utilitys.GetMd5Hash(txtPassword.Text), out id, out x);
+            
+            if (!string.IsNullOrEmpty(session))
             {
+                SessionID = session;
+                UserID = id;
                 Response.Redirect("Desktop.aspx");
             }
             else
             {
-                Ext.Net.MessageBox msg = new MessageBox();
-                msg.Show(new MessageBoxConfig()
-                {
-                    Title="Login Error",
-                    Message="User or password dont exist.",
-                    Icon= MessageBox.Icon.ERROR,
-                    Buttons = MessageBox.Button.OK
-                });
+                ShowMessage("Login Error", "User or password dont exist.", MessageBox.Icon.ERROR, MessageBox.Button.OK);
                 txtPassword.Text = "";
                 txtUsername.Text = "";
-                loggInWin.Close();
-
             }
+        }
+
+        protected void Register_Click(object sender, DirectEventArgs e)
+        {
+            CourseMates cm = new CourseMates();
+            User user = new User()
+            {
+                FirstName = txtRFName.Text,
+                LastName = txtRLName.Text,
+                Email = txtREmail.Text,
+                Password = BLL.Utilitys.GetMd5Hash(txtRPassword.Text),
+                UserName = txtRUsername.Text,
+                GCMId = string.Empty,
+            };
+            SQLStatus status;
+            string session;
+            int id;
+            bool x;
+            bool y;
+
+            cm.Register(user, out status, out x, out id, out y, out session);
+
+            switch (status)
+            {
+                case SQLStatus.Succeeded:
+                    SessionID = session;
+                    UserID = id;
+                    ShowMessage("Create New User", "", MessageBox.Icon.NONE, MessageBox.Button.OK);
+                    Response.Redirect("Desktop.aspx");
+                    break;
+                case SQLStatus.Failed:
+                    ShowMessage("Create New User", "Unknown error, please try later", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+                    break;
+                case SQLStatus.UserExists:
+                    ShowMessage("Create New User", "The user name is alredy exist", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+                    break;
+                case SQLStatus.EmailExists:
+                    ShowMessage("Create New User", "The email address is alredy exist", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        private void ShowMessage(string title, string msg, MessageBox.Icon icon, MessageBox.Button btn)
+        {
+            Ext.Net.MessageBox msgbox = new MessageBox();
+            msgbox.Show(new MessageBoxConfig()
+            {
+                Title = title,
+                Message = msg,
+                Icon = icon,
+                Buttons = btn
+            });
         }
     }
 }

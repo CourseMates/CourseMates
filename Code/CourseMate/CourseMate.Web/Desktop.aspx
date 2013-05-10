@@ -6,8 +6,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <script src="JS/Jquery-1.7.js" type="text/javascript"></script>
-    <title></title>
-    <style type="text/css">
+    <title>My Courses</title>
+    <style type="text/css" title="My Courses">
         .ux-wallpaper {
             background-color:White !important;
             background-image:url(Images/Logo.png) !important;
@@ -29,7 +29,13 @@
                                 <ext:ToolbarFill />
                                 <ext:ToolbarSeparator />
                                 <ext:Button ID="Button1" runat="server" Text="Settings" Icon="Cog" TextAlign="Left" />
-                                <ext:Button ID="Button2" runat="server" Text="Logout" Icon="Key" TextAlign="Left" />
+                                <ext:Button ID="Button2" runat="server" Text="Logout" Icon="Key" TextAlign="Left">
+                                    <DirectEvents>
+                                        <Click OnEvent="Logout_Click">
+                                            <EventMask ShowMask="true" Msg="Login out..." />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
                             </Items>
                         </ext:Toolbar>
                     </ToolConfig>

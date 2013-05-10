@@ -6,7 +6,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <script src="JS/Jquery-1.7.js" type="text/javascript"></script>
-    <title></title>
+    <script src="JS/Main.js" type="text/javascript"></script>
+    <title>CourseMates</title>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -47,14 +48,14 @@
         </ext:Viewport>
         
         <ext:Window ID="loggInWin" runat="server" Closable="true" Resizable="false" Height="180" Icon="Lock"  
-            Title="Login" Width="300" BodyPadding="5" Layout="FitLayout" Hidden="true" >
+            Title="Login" Width="350" BodyPadding="5" Layout="FitLayout" Hidden="true" >
             <Items>
                 <ext:FormPanel runat="server" Frame="true" Border="false" >
                 <Items>
                     <ext:TextField ID="txtUsername" runat="server" FieldLabel="User Name" AllowBlank="false"
-                        BlankText="Your username is required." Margin="5"/>
+                        BlankText="Your username is required." Margin="5" MsgTarget="Side" AnchorHorizontal="100%"/>
                     <ext:TextField ID="txtPassword" runat="server" InputType="Password" FieldLabel="Password" 
-                        AllowBlank="false" BlankText="Your password is required." Margin="5"/>
+                        AllowBlank="false" BlankText="Your password is required." Margin="5" MsgTarget="Side" AnchorHorizontal="100%"/>
                 </Items>
                 <Buttons>
                     <ext:Button ID="btnLogIn" runat="server" Text="Login" Icon="Accept" Disabled="true">
@@ -72,35 +73,43 @@
             </Items>
         </ext:Window>
         <ext:Window ID="winRegister" runat="server" Closable="true" Resizable="false" Height="310" Icon="Pencil"  
-            Title="Register" Width="300" BodyPadding="5" Layout="FitLayout" Hidden="true">
+            Title="Register" Width="350" BodyPadding="5" Layout="FitLayout" Hidden="true">
             <Items>
-                <ext:FormPanel ID="FormPanel1" runat="server" Frame="true" Border="false" >
+                <ext:FormPanel ID="pnlRegister" runat="server" Frame="true" Border="false" >
                     <Items>
-                        <ext:TextField ID="txtFName" runat="server" FieldLabel="First Name" AllowBlank="false"
-                            BlankText="First name is required." Margin="5"/>
-                        <ext:TextField ID="txtLName" runat="server" FieldLabel="Last Name" AllowBlank="false"
-                            BlankText="Last name is required." Margin="5"/>
-                        <ext:TextField ID="txtUser" runat="server" FieldLabel="User Name" AllowBlank="false"
-                            BlankText="Uset name is required." Margin="5"/>
-                        <ext:TextField ID="txtEmail" runat="server" InputType="Email" FieldLabel="Email" 
-                            AllowBlank="false" BlankText="Email is required." Margin="5"/>
-                        <ext:TextField ID="txtPass" runat="server" InputType="Password" FieldLabel="Password" 
-                            AllowBlank="false" BlankText="Password is required." Margin="5"/>
-                        <ext:TextField ID="txtCPass" runat="server" InputType="Password" FieldLabel="Confirm Password" 
-                            AllowBlank="false" BlankText="Confirm password is required." Margin="5"/>
+                        <ext:TextField ID="txtRFName" runat="server" FieldLabel="First Name" AllowBlank="false"
+                            BlankText="First name is required." Margin="5" MsgTarget="Side" AnchorHorizontal="100%" />
+                        <ext:TextField ID="txtRLName" runat="server" FieldLabel="Last Name" AllowBlank="false"
+                            BlankText="Last name is required." Margin="5" MsgTarget="Side" AnchorHorizontal="100%"/>
+                        <ext:TextField ID="txtRUsername" runat="server" FieldLabel="User Name" AllowBlank="false"
+                            BlankText="Uset name is required." Margin="5" MsgTarget="Side" AnchorHorizontal="100%"/>
+                        <ext:TextField ID="txtREmail" runat="server" InputType="Email" FieldLabel="Email" Vtype="email"
+                            AllowBlank="false" BlankText="Email is required." Margin="5" MsgTarget="Side" AnchorHorizontal="100%"/>
+                        <ext:TextField ID="txtRPassword" runat="server" InputType="Password" FieldLabel="Password"  MsgTarget="Side" AnchorHorizontal="100%" 
+                            AllowBlank="false" BlankText="Password is required." Margin="5" MinLength="8" MinLengthText="Password must be 8 character long"/>
+                        <ext:TextField ID="txtRCPassword" runat="server" InputType="Password" FieldLabel="Confirm Password" 
+                            AllowBlank="false" BlankText="Confirm password is required." Margin="5" Vtype="password"  MsgTarget="Side" AnchorHorizontal="100%">
+                            <CustomConfig>
+                                <ext:ConfigItem Name="initialPassField" Value="txtRPassword" Mode="Value" />
+                            </CustomConfig>      
+                        </ext:TextField>
                     </Items>
                     <Buttons>
-                        
                         <ext:Button ID="Button2" runat="server" Text="Cancel" Icon="Delete">
                             <Listeners>
                                 <Click Handler="#{winRegister}.hide();" />
                             </Listeners>
                         </ext:Button>
-                        <ext:Button ID="Button1" runat="server" Text="Ok" Icon="Accept" Disabled="true">
+                        <ext:Button ID="btnRegisterOk" runat="server" Text="Ok" Icon="Accept" Disabled="true">
+                            <DirectEvents>
+                                <Click OnEvent="Register_Click" >
+                                    <EventMask ShowMask="true" Msg="Create New User..." />
+                                </Click>
+                            </DirectEvents>
                         </ext:Button>
                     </Buttons>
                     <Listeners>
-                        <ValidityChange Handler="#{btnLogIn}.setDisabled(!valid);" />
+                        <ValidityChange Handler="#{btnRegisterOk}.setDisabled(!valid);" />
                     </Listeners>
                     </ext:FormPanel>
             </Items>

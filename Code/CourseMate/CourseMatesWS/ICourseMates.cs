@@ -15,7 +15,7 @@ namespace CourseMatesWS
     public interface ICourseMates
     {
         [OperationContract]
-        string Login(string userName, string password);
+        string Login(string userName, string password, out int id);
         [OperationContract]
         SQLStatus Register(User user, out int userId, out string sessionId);
     }

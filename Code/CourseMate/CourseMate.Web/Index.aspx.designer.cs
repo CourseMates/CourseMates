@@ -121,67 +121,67 @@ namespace CourseMate.Web {
         protected global::Ext.Net.Window winRegister;
         
         /// <summary>
-        /// FormPanel1 control.
+        /// pnlRegister control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel FormPanel1;
+        protected global::Ext.Net.FormPanel pnlRegister;
         
         /// <summary>
-        /// txtFName control.
+        /// txtRFName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField txtFName;
+        protected global::Ext.Net.TextField txtRFName;
         
         /// <summary>
-        /// txtLName control.
+        /// txtRLName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField txtLName;
+        protected global::Ext.Net.TextField txtRLName;
         
         /// <summary>
-        /// txtUser control.
+        /// txtRUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField txtUser;
+        protected global::Ext.Net.TextField txtRUsername;
         
         /// <summary>
-        /// txtEmail control.
+        /// txtREmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField txtEmail;
+        protected global::Ext.Net.TextField txtREmail;
         
         /// <summary>
-        /// txtPass control.
+        /// txtRPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField txtPass;
+        protected global::Ext.Net.TextField txtRPassword;
         
         /// <summary>
-        /// txtCPass control.
+        /// txtRCPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField txtCPass;
+        protected global::Ext.Net.TextField txtRCPassword;
         
         /// <summary>
         /// Button2 control.
@@ -193,12 +193,12 @@ namespace CourseMate.Web {
         protected global::Ext.Net.Button Button2;
         
         /// <summary>
-        /// Button1 control.
+        /// btnRegisterOk control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button Button1;
+        protected global::Ext.Net.Button btnRegisterOk;
     }
 }

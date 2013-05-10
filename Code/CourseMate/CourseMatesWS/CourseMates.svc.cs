@@ -15,9 +15,9 @@ namespace CourseMatesWS
 {
     public class CourseMates : ICourseMates
     {
-        public string Login(string userName, string password)
+        public string Login(string userName, string password, out int id)
         {
-            return CMDal.LogIn(userName, password);
+            return CMDal.LogIn(userName, password, out id);
         }
 
         public SQLStatus Register(User user, out int userId, out string sessionId)
