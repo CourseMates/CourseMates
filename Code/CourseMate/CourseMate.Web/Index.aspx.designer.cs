@@ -130,13 +130,13 @@ namespace CourseMate.Web {
         protected global::Ext.Net.Window winForgetPass;
         
         /// <summary>
-        /// FormPanel1 control.
+        /// pnlRestorPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel FormPanel1;
+        protected global::Ext.Net.FormPanel pnlRestorPass;
         
         /// <summary>
         /// txtFPEmail control.
@@ -146,6 +146,15 @@ namespace CourseMate.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField txtFPEmail;
+        
+        /// <summary>
+        /// btnPassReset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button btnPassReset;
         
         /// <summary>
         /// winRegister control.

@@ -112,6 +112,18 @@ namespace CourseMate.Web
 
         }
 
+        protected void SendEmail_Click(object sender, DirectEventArgs e)
+        {
+            if (new CourseMatesClient().SendRestorePassword(txtFPEmail.Text))
+            {
+                ShowMessage("Forget Password", "A Restore email was send your email. ", MessageBox.Icon.INFO, MessageBox.Button.OK);
+            }
+            else
+            {
+                ShowMessage("Forget Password", "Email don't exsit.", MessageBox.Icon.WARNING, MessageBox.Button.OK);
+            }
+        }
+
         private void ShowMessage(string title, string msg, MessageBox.Icon icon, MessageBox.Button btn)
         {
             Ext.Net.MessageBox msgbox = new MessageBox();

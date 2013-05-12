@@ -83,15 +83,23 @@
         <ext:Window ID="winForgetPass" runat="server" Closable="true" Resizable="false" Height="130" Icon="LockBreak"  
             Title="Login" Width="300" BodyPadding="5" Layout="FitLayout" Hidden="true" >
             <Items>
-                <ext:FormPanel ID="FormPanel1" runat="server" Frame="true" Border="false" ButtonAlign="Center">
+                <ext:FormPanel ID="pnlRestorPass" runat="server" Frame="true" Border="false" ButtonAlign="Center">
                     <Items>
-                        <ext:TextField ID="txtFPEmail" runat="server" FieldLabel="Email" AllowBlank="false" Vtype="email"
+                        <ext:TextField ID="txtFPEmail" runat="server" FieldLabel="Email" AllowBlank="false"
                             BlankText="Email is required." Margin="5" LabelWidth="50" MsgTarget="Side" AnchorHorizontal="100%"/>
                     </Items>
                     <Buttons>
-                        <ext:Button runat="server" Text="Send" Icon="EmailGo">
+                        <ext:Button runat="server" ID="btnPassReset" Text="Send" Icon="EmailGo" Disabled="true">
+                            <DirectEvents>
+                                <Click OnEvent="SendEmail_Click">
+                                    <EventMask ShowMask="true" Msg="Sending Email..." Target="CustomTarget" CustomTarget="pnlRestorPass" />
+                                </Click>
+                            </DirectEvents>
                         </ext:Button>
                     </Buttons>
+                    <Listeners>
+                        <ValidityChange Handler="#{btnPassReset}.setDisabled(!valid);" />
+                    </Listeners>
                 </ext:FormPanel>
             </Items>
         </ext:Window>
@@ -127,7 +135,7 @@
                         <ext:Button ID="btnRegisterOk" runat="server" Text="Ok" Icon="Accept" Disabled="true">
                             <DirectEvents>
                                 <Click OnEvent="Register_Click" >
-                                    <EventMask ShowMask="true" Msg="Create New User..." />
+                                    <EventMask ShowMask="true" Msg="Create New User..." Target="CustomTarget" CustomTarget="pnlRegister" /> />
                                 </Click>
                             </DirectEvents>
                         </ext:Button>

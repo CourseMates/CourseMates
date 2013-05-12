@@ -6,6 +6,7 @@ using System.Configuration;
 using CourseMatesWS.DAL.Objects;
 using System.Data;
 using CourseMatesWS.BLL;
+using System.Text;
 
 namespace CourseMatesWS.DAL
 {
@@ -99,6 +100,7 @@ namespace CourseMatesWS.DAL
             if (id > 0)
             {
                 InsertNewAction(id, (int)LinkType.EmailVerify);
+                NotificationUtilitys.SendVerifyMail(GetUserBy("Id", id));
                 return GetNewSession(id);
             }
 
@@ -138,7 +140,7 @@ namespace CourseMatesWS.DAL
             }
         }
 
-        private static bool InsertNewAction(int userId, int actionId)
+        public static bool InsertNewAction(int userId, int actionId)
         {
             try
             {
@@ -152,6 +154,40 @@ namespace CourseMatesWS.DAL
             {
                 return false;
             }
+        }
+
+        public static User GetUserBy(params object[] parameters)
+        {
+            StringBuilder query = new StringBuilder("SELECT * FROM tblUser");
+            if (parameters.Length < 2)
+                return null;
+
+            query.Append(" WHERE ");
+
+            for (int i = 0; i < parameters.Length-1; i++)
+            {
+                query.Append(parameters[i] + "='" + parameters[i + 1]+"'");
+            }
+
+            DataTable table = new DataAccess(ConnectionString).ExecuteQueryDS(query.ToString());
+            if (table == null || table.Rows.Count == 0)
+                return null;
+
+            int id;
+            ParseCellDataToInt(table.Rows[0]["Id"], out id);
+
+            User toReturn = new User()
+            {
+                ID=id,
+                Email =ParseCellDataToString(table.Rows[0]["Email"]),
+                FirstName=ParseCellDataToString(table.Rows[0]["FirstName"]),
+                LastName = ParseCellDataToString(table.Rows[0]["LastName"]),
+                UserName = ParseCellDataToString(table.Rows[0]["UserName"]),
+                GCMId = ParseCellDataToString(table.Rows[0]["GCMId"]),
+                Password = ParseCellDataToString(table.Rows[0]["Password"])
+            };
+
+            return toReturn;
         }
     }
 }

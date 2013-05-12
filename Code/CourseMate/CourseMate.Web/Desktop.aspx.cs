@@ -48,13 +48,11 @@ namespace CourseMate.Web
         {
             if (string.IsNullOrEmpty(SessionID))
             {
-                Response.Redirect("Error.aspx");
+                //Response.Redirect("Error.aspx");
             }
             else
             {
-
             }
-
         }
 
         protected void Logout_Click(object sender, DirectEventArgs e)
@@ -62,6 +60,10 @@ namespace CourseMate.Web
             SessionID = string.Empty;
             UserID = -1;
             Response.Redirect("Index.aspx");
+        }
+
+        protected void AddNewCourse_Click(object sender, DirectEventArgs e)
+        {
         }
     }
 }

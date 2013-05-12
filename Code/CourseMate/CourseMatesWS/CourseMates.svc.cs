@@ -28,5 +28,17 @@ namespace CourseMatesWS
                 sessionId = CMDal.GetNewSession(userId);
             return status;    
         }
+
+        public bool SendRestorePassword(string toSend)
+        {
+            User user = CMDal.GetUserBy("Email", toSend);
+            if (user == null)
+            {
+                return false;
+            }
+            CMDal.InsertNewAction(user.ID, (int)LinkType.ResetPassword);
+            NotificationUtilitys.SendResetPasswordEmail(user);
+            return true;
+        }
     }
 }

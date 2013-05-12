@@ -75,6 +75,14 @@
     <Content Include="EmailVerify.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Images\error.png" />
+    <Content Include="Images\FolderIcons\beige.png" />
+    <Content Include="Images\FolderIcons\black.png" />
+    <Content Include="Images\FolderIcons\blue.png" />
+    <Content Include="Images\FolderIcons\green.png" />
+    <Content Include="Images\FolderIcons\lila.png" />
+    <Content Include="Images\FolderIcons\orange.png" />
+    <Content Include="Images\FolderIcons\pink.png" />
+    <Content Include="Images\FolderIcons\white.png" />
     <Content Include="JoinCourse.aspx" />
     <Content Include="JS\Main.js" />
     <Content Include="ResetPassword.aspx" />

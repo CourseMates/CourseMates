@@ -14,6 +14,38 @@
             background-position:center !important;
             background-repeat:no-repeat !important;
         }
+        .x-beige-folder
+        {
+            background-image:url("Images/FolderIcons/beige.png");
+        }
+        .x-black-folder
+        {
+            background-image:url("Images/FolderIcons/black.png");
+        }
+        .x-blue-folder
+        {
+            background-image:url("Images/FolderIcons/blue.png");
+        }
+        .x-green-folder
+        {
+            background-image:url("Images/FolderIcons/green.png");
+        }
+        .x-lila-folder
+        {
+            background-image:url("Images/FolderIcons/lila.png");
+        }
+        .x-orange-folder
+        {
+            background-image:url("Images/FolderIcons/orange.png");
+        }
+        .x-pink-folder
+        {
+            background-image:url("Images/FolderIcons/pink.png");
+        }
+        .x-white-folder
+        {
+            background-image:url("Images/FolderIcons/white.png");
+        }
     </style>
 </head>
 <body>
@@ -25,14 +57,18 @@
                     <ToolConfig>
                         <ext:Toolbar runat="server" Width="100">
                             <Items>
-                                <ext:Button ID="Button3" runat="server" Text="New Course" Icon="Add" TextAlign="Left" />
+                                <ext:Button ID="Button3" runat="server" Text="New Course" Icon="Add" TextAlign="Left">
+                                    <Listeners>
+                                        <Click Handler="#{winAddNEwCourse}.show();" />
+                                    </Listeners>
+                                </ext:Button>    
                                 <ext:ToolbarFill />
                                 <ext:ToolbarSeparator />
                                 <ext:Button ID="Button1" runat="server" Text="Settings" Icon="Cog" TextAlign="Left" />
                                 <ext:Button ID="Button2" runat="server" Text="Logout" Icon="Key" TextAlign="Left">
                                     <DirectEvents>
                                         <Click OnEvent="Logout_Click">
-                                            <EventMask ShowMask="true" Msg="Login out..." />
+                                            <EventMask ShowMask="true" Msg="Login out..." MinDelay="1500" />
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
@@ -55,6 +91,41 @@
                     </QuickStart>
                 </TaskBar>
             </ext:Desktop>
+
+            <ext:Window runat="server" ID="winAddNEwCourse" Icon="BookOpen" Title="Create New Course" Resizable="false" Draggable="true"
+                Width="350" Hidden="false" CloseAction="Hide" HideMode="Offsets" Closable="true" Height="200">
+                <Items>
+                    <ext:FormPanel runat="server" ID="pnlAddNewCourse" Frame="true" Border="false">
+                        <Items>
+                            <ext:TextArea runat="server" ID="txtCourseName" AllowBlank="false" FieldLabel="Course Name"
+                            BlankText="Course name is required." Margin="5" MsgTarget="Side" AnchorHorizontal="100%" />
+                            <ext:ComboBox runat="server" ID="cmbFolderColor" Editable="false" FieldLabel="Folder Color" AnchorHorizontal="100%">
+                                <Items>
+                                    <ext:ListItem Text="Black" Value=".x-black-folder" />
+                                </Items>
+                                <BeforeLabelTextTpl runat="server">
+                                    <Html>
+                                        <img src="Images/FolderIcons/{Text}.png" width="20" aling="left" />
+                                    </Html>
+                                </BeforeLabelTextTpl>
+                            </ext:ComboBox>
+                        </Items>
+                        <Buttons>
+                            <ext:Button runat="server" Text="Cancel" Icon="Cancel">
+                                <Listeners>
+                                    <Click Handler="#{winAddNEwCourse}.hide();" />
+                                </Listeners>
+                            </ext:Button>
+                            <ext:Button  runat="server" Text="Add" Icon="BookAdd">
+                                <DirectEvents>
+                                    <Click OnEvent="AddNewCourse_Click" />
+                                </DirectEvents>
+                            </ext:Button>
+                        </Buttons>
+                    </ext:FormPanel>
+                </Items>    
+            </ext:Window>
+
             <ext:Window runat="server" ID="winHelp" Icon="Help" Title="Help" Resizable="false" Draggable="true"
                 Width="900" Height="550" Closable="true" HideMode="Offsets" CloseAction="Hide" Hidden="true"> 
                 <LayoutConfig>

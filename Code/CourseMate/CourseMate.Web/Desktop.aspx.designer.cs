@@ -67,6 +67,42 @@ namespace CourseMate.Web {
         protected global::Ext.Net.Button Button2;
         
         /// <summary>
+        /// winAddNEwCourse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window winAddNEwCourse;
+        
+        /// <summary>
+        /// pnlAddNewCourse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FormPanel pnlAddNewCourse;
+        
+        /// <summary>
+        /// txtCourseName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextArea txtCourseName;
+        
+        /// <summary>
+        /// cmbFolderColor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox cmbFolderColor;
+        
+        /// <summary>
         /// winHelp control.
         /// </summary>
         /// <remarks>
