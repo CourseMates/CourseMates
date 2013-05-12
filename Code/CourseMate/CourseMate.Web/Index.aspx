@@ -47,31 +47,55 @@
             </Items>
         </ext:Viewport>
         
-        <ext:Window ID="loggInWin" runat="server" Closable="true" Resizable="false" Height="180" Icon="Lock"  
+        <ext:Window ID="loggInWin" runat="server" Closable="true" Resizable="false" Height="150" Icon="Lock"  
             Title="Login" Width="350" BodyPadding="5" Layout="FitLayout" Hidden="true" >
             <Items>
                 <ext:FormPanel runat="server" Frame="true" Border="false" >
-                <Items>
-                    <ext:TextField ID="txtUsername" runat="server" FieldLabel="User Name" AllowBlank="false"
-                        BlankText="Your username is required." Margin="5" MsgTarget="Side" AnchorHorizontal="100%"/>
-                    <ext:TextField ID="txtPassword" runat="server" InputType="Password" FieldLabel="Password" 
-                        AllowBlank="false" BlankText="Your password is required." Margin="5" MsgTarget="Side" AnchorHorizontal="100%"/>
-                </Items>
-                <Buttons>
-                    <ext:Button ID="btnLogIn" runat="server" Text="Login" Icon="Accept" Disabled="true">
-                        <DirectEvents>
-                            <Click OnEvent="Login_Click">
-                                <EventMask ShowMask="true" Msg="Verifying..." />
-                            </Click>
-                        </DirectEvents>
-                    </ext:Button>
-                </Buttons>
-                <Listeners>
-                    <ValidityChange Handler="#{btnLogIn}.setDisabled(!valid);" />
-                </Listeners>
+                    <Items>
+                        <ext:TextField ID="txtUsername" runat="server" FieldLabel="User Name" AllowBlank="false"
+                            BlankText="Your username is required." Margin="5" MsgTarget="Side" AnchorHorizontal="100%"/>
+                        <ext:TextField ID="txtPassword" runat="server" InputType="Password" FieldLabel="Password" 
+                            AllowBlank="false" BlankText="Your password is required." Margin="5" MsgTarget="Side" AnchorHorizontal="100%"/>
+                        
+                    </Items>
+                    <Buttons>
+                        <ext:LinkButton ID="LinkButton1" runat="server"  Text="Forget Password?">
+                            <Listeners>
+                                <Click Handler="#{winForgetPass}.show();" />
+                            </Listeners>
+                        </ext:LinkButton>
+                        <ext:Button ID="btnLogIn" runat="server" Text="Login" Icon="Accept" Disabled="true">
+                            <DirectEvents>
+                                <Click OnEvent="Login_Click">
+                                    <EventMask ShowMask="true" Msg="Verifying..." />
+                                </Click>
+                            </DirectEvents>
+                        </ext:Button>
+                    </Buttons>
+                    <Listeners>
+                        <ValidityChange Handler="#{btnLogIn}.setDisabled(!valid);" />
+                    </Listeners>
+                </ext:FormPanel>
+            </Items>
+            
+        </ext:Window>
+
+        <ext:Window ID="winForgetPass" runat="server" Closable="true" Resizable="false" Height="130" Icon="LockBreak"  
+            Title="Login" Width="300" BodyPadding="5" Layout="FitLayout" Hidden="true" >
+            <Items>
+                <ext:FormPanel ID="FormPanel1" runat="server" Frame="true" Border="false" ButtonAlign="Center">
+                    <Items>
+                        <ext:TextField ID="txtFPEmail" runat="server" FieldLabel="Email" AllowBlank="false" Vtype="email"
+                            BlankText="Email is required." Margin="5" LabelWidth="50" MsgTarget="Side" AnchorHorizontal="100%"/>
+                    </Items>
+                    <Buttons>
+                        <ext:Button runat="server" Text="Send" Icon="EmailGo">
+                        </ext:Button>
+                    </Buttons>
                 </ext:FormPanel>
             </Items>
         </ext:Window>
+
         <ext:Window ID="winRegister" runat="server" Closable="true" Resizable="false" Height="310" Icon="Pencil"  
             Title="Register" Width="350" BodyPadding="5" Layout="FitLayout" Hidden="true">
             <Items>
