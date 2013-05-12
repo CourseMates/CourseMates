@@ -53,10 +53,9 @@ namespace CourseMate.Web
 
         protected void Login_Click(object sender, DirectEventArgs e)
         {
-            CourseMates cm = new CourseMates();
-            bool x;
+            CourseMatesClient cm = new CourseMatesClient();
             int id;
-            string session = cm.Login(txtUsername.Text, BLL.Utilitys.GetMd5Hash(txtPassword.Text), out id, out x);
+            string session = cm.Login(out id, txtUsername.Text, BLL.Utilitys.GetMd5Hash(txtPassword.Text));
             
             if (!string.IsNullOrEmpty(session))
             {
@@ -74,7 +73,7 @@ namespace CourseMate.Web
 
         protected void Register_Click(object sender, DirectEventArgs e)
         {
-            CourseMates cm = new CourseMates();
+            CourseMatesClient cm = new CourseMatesClient();
             User user = new User()
             {
                 FirstName = txtRFName.Text,
@@ -84,13 +83,11 @@ namespace CourseMate.Web
                 UserName = txtRUsername.Text,
                 GCMId = string.Empty,
             };
-            SQLStatus status;
+            
             string session;
             int id;
-            bool x;
-            bool y;
 
-            cm.Register(user, out status, out x, out id, out y, out session);
+            SQLStatus status = cm.Register(out id, out session, user);
 
             switch (status)
             {

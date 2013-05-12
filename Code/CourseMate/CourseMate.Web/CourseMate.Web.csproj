@@ -78,6 +78,16 @@
     <Content Include="JoinCourse.aspx" />
     <Content Include="JS\Main.js" />
     <Content Include="ResetPassword.aspx" />
+    <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.SQLStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CMwcf\CourseMates.disco" />
+    <None Include="Service References\CMwcf\configuration91.svcinfo" />
+    <None Include="Service References\CMwcf\configuration.svcinfo" />
+    <None Include="Service References\CMwcf\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="TestPage.html" />
     <Content Include="Images\Logo.png" />
     <Content Include="Images\start.png" />
@@ -143,32 +153,25 @@
     <Compile Include="ResetPassword.aspx.designer.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Web References\CMwcf\Reference.cs">
+    <Compile Include="Service References\CMwcf\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Web References\CMwcf\CourseMates.wsdl" />
-    <None Include="Web References\CMwcf\CourseMates.xsd">
+    <None Include="Service References\CMwcf\CourseMates.wsdl" />
+    <None Include="Service References\CMwcf\CourseMates.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Web References\CMwcf\CourseMates0.xsd">
+    <None Include="Service References\CMwcf\CourseMates1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Web References\CMwcf\CourseMates1.xsd">
+    <None Include="Service References\CMwcf\CourseMates2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Web References\CMwcf\CourseMates2.xsd">
+    <None Include="Service References\CMwcf\CourseMates3.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Web References\CMwcf\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\CMwcf\SQLStatus.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -184,17 +187,7 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:50368/CourseMates.svc%3fwsdl">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\CMwcf\</RelPath>
-      <UpdateFromURL>http://localhost:50368/CourseMates.svc%3fwsdl</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>CourseMate_Web_CMwcf_CourseMates</CachedSettingsPropName>
-    </WebReferenceUrl>
+    <WCFMetadataStorage Include="Service References\CMwcf\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
