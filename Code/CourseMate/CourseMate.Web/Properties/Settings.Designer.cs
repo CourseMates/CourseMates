@@ -22,15 +22,5 @@ namespace CourseMate.Web.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:50368/CourseMates.svc")]
-        public string CourseMate_Web_CMwcf_CourseMates {
-            get {
-                return ((string)(this["CourseMate_Web_CMwcf_CourseMates"]));
-            }
-        }
     }
 }
