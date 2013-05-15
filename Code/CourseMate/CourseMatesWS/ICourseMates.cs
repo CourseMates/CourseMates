@@ -20,5 +20,9 @@ namespace CourseMatesWS
         SQLStatus Register(User user, out int userId, out string sessionId);
         [OperationContract]
         bool SendRestorePassword(string toSend);
+        [OperationContract]
+        int CreateNewCourse(string sessionId, int userId, string courseName, string iconCls);
+        [OperationContract]
+        List<Course> GetCourseByUserId(string sessionId, int userId);
     }
 }

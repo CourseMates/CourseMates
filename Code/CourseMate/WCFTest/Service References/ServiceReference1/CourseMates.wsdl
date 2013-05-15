@@ -20,6 +20,24 @@
   <wsdl:message name="ICourseMates_Register_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterResponse" />
   </wsdl:message>
+  <wsdl:message name="ICourseMates_SendRestorePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendRestorePassword" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_SendRestorePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendRestorePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_CreateNewCourse_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewCourse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_CreateNewCourse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetCourseByUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseByUserId" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetCourseByUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseByUserIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICourseMates">
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/Login" message="tns:ICourseMates_Login_InputMessage" />
@@ -28,6 +46,18 @@
     <wsdl:operation name="Register">
       <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/Register" message="tns:ICourseMates_Register_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/RegisterResponse" message="tns:ICourseMates_Register_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendRestorePassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/SendRestorePassword" message="tns:ICourseMates_SendRestorePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/SendRestorePasswordResponse" message="tns:ICourseMates_SendRestorePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewCourse">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/CreateNewCourse" message="tns:ICourseMates_CreateNewCourse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/CreateNewCourseResponse" message="tns:ICourseMates_CreateNewCourse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseByUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetCourseByUserId" message="tns:ICourseMates_GetCourseByUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetCourseByUserIdResponse" message="tns:ICourseMates_GetCourseByUserId_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICourseMates" type="tns:ICourseMates">
@@ -43,6 +73,33 @@
     </wsdl:operation>
     <wsdl:operation name="Register">
       <soap:operation soapAction="http://tempuri.org/ICourseMates/Register" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendRestorePassword">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/SendRestorePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewCourse">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/CreateNewCourse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseByUserId">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/GetCourseByUserId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

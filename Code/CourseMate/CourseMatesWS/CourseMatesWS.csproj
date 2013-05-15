@@ -64,6 +64,7 @@
     <Content Include="EmailsTemplate.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Images\addc.png" />
     <Content Include="Images\Logo.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

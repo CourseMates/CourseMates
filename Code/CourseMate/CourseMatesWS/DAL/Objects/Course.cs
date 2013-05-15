@@ -14,6 +14,8 @@ namespace CourseMatesWS.DAL.Objects
         [DataMember]
         public string CourseName { get; set; }
         [DataMember]
+        public string IconClass { get; set; }
+        [DataMember]
         public List<FourmItem> FourmItems { get; set; }
         [DataMember]
         public List<User> Participants { get; set; }

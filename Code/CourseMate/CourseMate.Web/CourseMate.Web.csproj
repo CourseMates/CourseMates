@@ -74,6 +74,7 @@
     <Content Include="Desktop.aspx" />
     <Content Include="EmailVerify.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="Images\addc.png" />
     <Content Include="Images\error.png" />
     <Content Include="Images\FolderIcons\beige.png" />
     <Content Include="Images\FolderIcons\black.png" />
@@ -86,6 +87,9 @@
     <Content Include="JoinCourse.aspx" />
     <Content Include="JS\Main.js" />
     <Content Include="ResetPassword.aspx" />
+    <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.Course.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.SQLStatus.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

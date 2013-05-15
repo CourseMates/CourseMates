@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL" />
   <xs:complexType name="User">
     <xs:sequence>
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
@@ -12,4 +13,62 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="ArrayOfCourse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Course" nillable="true" type="tns:Course" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCourse" nillable="true" type="tns:ArrayOfCourse" />
+  <xs:complexType name="Course">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CourseAdmin" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="CourseName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Files" nillable="true" type="tns:ArrayOfFileItem" />
+      <xs:element minOccurs="0" name="FourmItems" nillable="true" type="tns:ArrayOfFourmItem" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IconClass" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Participants" nillable="true" type="tns:ArrayOfUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Course" nillable="true" type="tns:Course" />
+  <xs:complexType name="ArrayOfFileItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FileItem" nillable="true" type="tns:FileItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFileItem" nillable="true" type="tns:ArrayOfFileItem" />
+  <xs:complexType name="FileItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="LogicalPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Owner" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="Rate" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL" minOccurs="0" name="Type" type="q1:FileType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileItem" nillable="true" type="tns:FileItem" />
+  <xs:complexType name="ArrayOfFourmItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FourmItem" nillable="true" type="tns:FourmItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFourmItem" nillable="true" type="tns:ArrayOfFourmItem" />
+  <xs:complexType name="FourmItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Owner" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="PerentId" type="xs:int" />
+      <xs:element minOccurs="0" name="Rate" type="xs:int" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FourmItem" nillable="true" type="tns:FourmItem" />
+  <xs:complexType name="ArrayOfUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
 </xs:schema>

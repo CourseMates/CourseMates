@@ -55,6 +55,21 @@ namespace CourseMatesWS.DAL
                 return ft;
             return FileType.Unknown;
         }
+        private static bool ParseCellDataToBool(object toConvert, out bool isAdmin)
+        {
+            isAdmin = false;
+            if (toConvert == null)
+                return false;
+
+            bool x;
+            if (bool.TryParse(toConvert.ToString(), out x))
+            {
+                isAdmin = x;
+            }
+            else
+                return false;
+            return true;
+        }
         #endregion
 
         private static int GetUserID(string userName, string password)
@@ -100,7 +115,6 @@ namespace CourseMatesWS.DAL
             if (id > 0)
             {
                 InsertNewAction(id, (int)LinkType.EmailVerify);
-                NotificationUtilitys.SendVerifyMail(GetUserBy("Id", id));
                 return GetNewSession(id);
             }
 
@@ -189,5 +203,77 @@ namespace CourseMatesWS.DAL
 
             return toReturn;
         }
+
+        public static int CreateNewCourse(string sessionId, int userId, string courseName, string iconCls)
+        {
+            try
+            {
+                DataTable table = new DataAccess(ConnectionString).ExecuteQuerySP("SP_CreateNewCourse",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@CourseName", courseName,
+                        "@IconClass", iconCls);
+
+                if (table == null || table.Rows.Count == 0)
+                    return -1;
+                int x;
+                ParseCellDataToInt(table.Rows[0]["Result"], out x);
+                return x;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
+        public static List<Course> GetCourseByUserId(string sessionId, int userId)
+        {
+            List<Course> toReturn = new List<Course>();
+
+            try
+            {
+                DataTable table = new DataAccess(ConnectionString).ExecuteQuerySP("SP_ReturnCouresebyUserID",
+                        "@SessionID", sessionId,
+                        "@UserID", userId);
+
+                if(table == null || table.Rows.Count == 0)
+                    return toReturn;
+
+                foreach (DataRow row in table.Rows)
+                {
+                    string courseName, iconCls;
+                    int courseId;
+                    bool isAdmin;
+                    User courseAdmin = null;
+
+                    courseName = ParseCellDataToString(row["Name"]);
+                    iconCls = ParseCellDataToString(row["iconClass"]);
+                    ParseCellDataToInt(row["Id"], out courseId);
+                    ParseCellDataToBool(row["IsAdmin"], out isAdmin);
+
+                    if (isAdmin)
+                        courseAdmin = GetUserBy("Id", userId);
+
+                    toReturn.Add(new Course()
+                        {
+                            CourseName = courseName,
+                            IconClass = iconCls,
+                            ID = courseId,
+                            Files = null,
+                            Participants = null,
+                            FourmItems = null,
+                            CourseAdmin = courseAdmin
+                        });
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+            return toReturn;
+        }
+
+        
     }
 }

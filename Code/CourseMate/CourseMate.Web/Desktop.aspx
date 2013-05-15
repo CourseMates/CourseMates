@@ -41,117 +41,139 @@
         .x-pink-folder
         {
             background-image:url("Images/FolderIcons/pink.png");
+            width:48px;
+            height:48px;
         }
         .x-white-folder
         {
             background-image:url("Images/FolderIcons/white.png");
         }
+        .x-folder-text
+        {
+            color:Black;
+        }
+        .x-add-course-icon
+        {
+            background-image:url("Images/addc.png");
+        }
     </style>
 </head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-            <ext:ResourceManager ID="ResourceManager1" runat="server" />
-            <ext:Desktop ID="MyDesktop" runat="server" >
-                <StartMenu Title="Menu" Height="300" Icon="Application">
-                    <ToolConfig>
-                        <ext:Toolbar runat="server" Width="100">
-                            <Items>
-                                <ext:Button ID="Button3" runat="server" Text="New Course" Icon="Add" TextAlign="Left">
-                                    <Listeners>
-                                        <Click Handler="#{winAddNEwCourse}.show();" />
-                                    </Listeners>
-                                </ext:Button>    
-                                <ext:ToolbarFill />
-                                <ext:ToolbarSeparator />
-                                <ext:Button ID="Button1" runat="server" Text="Settings" Icon="Cog" TextAlign="Left" />
-                                <ext:Button ID="Button2" runat="server" Text="Logout" Icon="Key" TextAlign="Left">
-                                    <DirectEvents>
-                                        <Click OnEvent="Logout_Click">
-                                            <EventMask ShowMask="true" Msg="Login out..." MinDelay="1500" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
-                            </Items>
-                        </ext:Toolbar>
-                    </ToolConfig>
-                </StartMenu>
-                <TaskBar TrayWidth="80">
-                    <QuickStart>
-                        <ext:Toolbar runat="server">
-                            <Items>
-                                <ext:Button runat="server" Icon="Help">
-                                    <QTipCfg Text="Help" />
-                                    <Listeners>
-                                        <Click Handler="#{winHelp}.show();" />
-                                    </Listeners>
-                                </ext:Button>
-                            </Items>
-                        </ext:Toolbar>
-                    </QuickStart>
-                </TaskBar>
-            </ext:Desktop>
-
-            <ext:Window runat="server" ID="winAddNEwCourse" Icon="BookOpen" Title="Create New Course" Resizable="false" Draggable="true"
-                Width="350" Hidden="false" CloseAction="Hide" HideMode="Offsets" Closable="true" Height="200">
-                <Items>
-                    <ext:FormPanel runat="server" ID="pnlAddNewCourse" Frame="true" Border="false">
+<body> 
+    <form runat="server">
+        <ext:ResourceManager ID="ResourceManager1" runat="server" />
+        <ext:Desktop ID="MyDesktop" runat="server"> 
+            <Modules>
+                <ext:DesktopModule ModuleID="mdlNewCourse" AutoRun="false">
+                    <Window>
+                    <ext:Window runat="server" ID="winAddNewCourse" Icon="BookOpen" Title="Create New Course" Resizable="false" Draggable="true"
+                        Width="350" Hidden="true" CloseAction="Destroy" Closable="true" Height="150" Layout="FitLayout">
                         <Items>
-                            <ext:TextArea runat="server" ID="txtCourseName" AllowBlank="false" FieldLabel="Course Name"
-                            BlankText="Course name is required." Margin="5" MsgTarget="Side" AnchorHorizontal="100%" />
-                            <ext:ComboBox runat="server" ID="cmbFolderColor" Editable="false" FieldLabel="Folder Color" AnchorHorizontal="100%">
+                            <ext:FormPanel runat="server" ID="pnlAddNewCourse" Frame="true" Border="false">
                                 <Items>
-                                    <ext:ListItem Text="Black" Value=".x-black-folder" />
+                                    <ext:TextField runat="server" ID="txtCourseName" AllowBlank="false" FieldLabel="Course Name"
+                                    BlankText="Course name is required." Margin="5" MsgTarget="Side" AnchorHorizontal="100%" />
+                                    <ext:ComboBox runat="server" ID="cmbFolderColor" Editable="false" FieldLabel="Folder Color" 
+                                    AnchorHorizontal="100%" Margin="5" DisplayField="text" ValueField="iconCls" AllowBlank="false">
+                                        <Store>
+                                            <ext:Store ID="Store1" runat="server">
+                                                <Model>
+                                                    <ext:Model ID="Model1" runat="server">
+                                                        <Fields>
+                                                            <ext:ModelField Name="text" />
+                                                            <ext:ModelField Name="iconCls" />
+                                                        </Fields>
+                                                    </ext:Model>
+                                                </Model>            
+                                            </ext:Store>
+                                        </Store>
+                                        <ListConfig>
+                                            <ItemTpl ID="ItemTpl1" runat="server">
+                                                <Html>
+                                                    <img src="Images/FolderIcons/{text}.png" width="20" style="text-align:center"> {text}</img>
+                                                </Html>
+                                            </ItemTpl>
+                                        </ListConfig>
+                                    </ext:ComboBox>
                                 </Items>
-                                <BeforeLabelTextTpl runat="server">
-                                    <Html>
-                                        <img src="Images/FolderIcons/{Text}.png" width="20" aling="left" />
-                                    </Html>
-                                </BeforeLabelTextTpl>
-                            </ext:ComboBox>
-                        </Items>
-                        <Buttons>
-                            <ext:Button runat="server" Text="Cancel" Icon="Cancel">
                                 <Listeners>
-                                    <Click Handler="#{winAddNEwCourse}.hide();" />
+                                    <ValidityChange Handler="#{btnAddNewCourse}.setDisabled(!valid);" />
+                                </Listeners>
+                                <Buttons>
+                                    <ext:Button ID="Button4" runat="server" Text="Cancel" Icon="Cancel">
+                                        <Listeners>
+                                            <Click Handler="#{winAddNEwCourse}.hide();" />
+                                        </Listeners>
+                                    </ext:Button>
+                                    <ext:Button ID="btnAddNewCourse" runat="server" Text="Add" Icon="BookAdd" Disabled="true">
+                                        <DirectEvents>
+                                            <Click OnEvent="AddNewCourse_Click" />
+                                        </DirectEvents>
+                                    </ext:Button>
+                                </Buttons>
+                            </ext:FormPanel>
+                        </Items>    
+                    </ext:Window>
+                </Window>
+                    <Launcher Text="New Course" Icon="Add" />
+                </ext:DesktopModule>
+            </Modules>
+            <StartMenu Title="Menu" Height="300" Icon="Application">
+            <ToolConfig>
+                <ext:Toolbar runat="server" Width="100">
+                    <Items>
+                        <ext:ToolbarFill />
+                        <ext:ToolbarSeparator />
+                        <ext:Button ID="Button2" runat="server" Text="Logout" Icon="Key" TextAlign="Left">
+                            <DirectEvents>
+                                <Click OnEvent="Logout_Click">
+                                    <EventMask ShowMask="true" Msg="Login out..." MinDelay="1500" />
+                                </Click>
+                            </DirectEvents>
+                        </ext:Button>
+                    </Items>
+                </ext:Toolbar>
+            </ToolConfig>
+        </StartMenu>
+            <TaskBar TrayWidth="80">
+                <QuickStart>
+                    <ext:Toolbar runat="server">
+                        <Items>
+                            <ext:Button runat="server" Icon="Help">
+                                <QTipCfg Text="Help" />
+                                <Listeners>
+                                    <Click Handler="#{winHelp}.show();" />
                                 </Listeners>
                             </ext:Button>
-                            <ext:Button  runat="server" Text="Add" Icon="BookAdd">
-                                <DirectEvents>
-                                    <Click OnEvent="AddNewCourse_Click" />
-                                </DirectEvents>
-                            </ext:Button>
-                        </Buttons>
-                    </ext:FormPanel>
-                </Items>    
-            </ext:Window>
-
-            <ext:Window runat="server" ID="winHelp" Icon="Help" Title="Help" Resizable="false" Draggable="true"
-                Width="900" Height="550" Closable="true" HideMode="Offsets" CloseAction="Hide" Hidden="true"> 
-                <LayoutConfig>
-                    <ext:BorderLayoutConfig />
-                </LayoutConfig>
-                <Items>
-
-                    <ext:MenuPanel ID="MenuPanel1" runat="server" Width="200" Region="West" Collapsed="false" Collapsible="true" Title="Help Topics">
-                        <Menu ID="Menu1" runat="server">
-                            <Items>
-                                <ext:MenuItem Text="New Course" Icon="Camera"></ext:MenuItem>
-                                <ext:MenuItem Text="Invite Users" Icon="Camera"></ext:MenuItem>
-                                <ext:MenuItem Text="Add New File" Icon="Camera"></ext:MenuItem>
-                                <ext:MenuItem Text="Ask/Answer Question" Icon="Camera"></ext:MenuItem>
-                                <ext:MenuItem Text="Rate File" Icon="Camera"></ext:MenuItem>
-                            </Items>
-                        </Menu>
-                    </ext:MenuPanel>
-                    <ext:Panel ID="Panel1" runat="server" Frame="true" Region="Center" Layout="FitLayout">  
-                        <Items>
-                            <ext:FlashComponent runat="server" />
                         </Items>
-                    </ext:Panel>    
-                </Items>
-            </ext:Window>
-        </div>
+                    </ext:Toolbar>
+                </QuickStart>
+            </TaskBar>
+        </ext:Desktop>
+        <ext:Window runat="server" ID="winHelp" Icon="Help" Title="Help" Resizable="false" Draggable="true"
+            Width="900" Height="550" Closable="true" HideMode="Offsets" CloseAction="Hide" Hidden="true"> 
+            <LayoutConfig>
+                <ext:BorderLayoutConfig />
+            </LayoutConfig>
+            <Items>
+
+                <ext:MenuPanel ID="MenuPanel1" runat="server" Width="200" Region="West" Collapsed="false" Collapsible="true" Title="Help Topics">
+                    <Menu ID="Menu1" runat="server">
+                        <Items>
+                            <ext:MenuItem Text="New Course" Icon="Camera"></ext:MenuItem>
+                            <ext:MenuItem Text="Invite Users" Icon="Camera"></ext:MenuItem>
+                            <ext:MenuItem Text="Add New File" Icon="Camera"></ext:MenuItem>
+                            <ext:MenuItem Text="Ask/Answer Question" Icon="Camera"></ext:MenuItem>
+                            <ext:MenuItem Text="Rate File" Icon="Camera"></ext:MenuItem>
+                        </Items>
+                    </Menu>
+                </ext:MenuPanel>
+                <ext:Panel ID="Panel1" runat="server" Frame="true" Region="Center" Layout="FitLayout">  
+                    <Items>
+                        <ext:FlashComponent runat="server" />
+                    </Items>
+                </ext:Panel>    
+            </Items>
+        </ext:Window>
     </form>
 </body>
 </html>

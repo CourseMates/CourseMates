@@ -40,5 +40,16 @@ namespace CourseMatesWS
             NotificationUtilitys.SendResetPasswordEmail(user);
             return true;
         }
+
+        public int CreateNewCourse(string sessionId, int userId, string courseName, string iconCls)
+        {
+            return CMDal.CreateNewCourse(sessionId, userId, courseName, iconCls);
+        }
+
+
+        public List<Course> GetCourseByUserId(string sessionId,int userId)
+        {
+            return CMDal.GetCourseByUserId(sessionId, userId);
+        }
     }
 }
