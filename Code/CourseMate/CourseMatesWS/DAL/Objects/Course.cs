@@ -22,7 +22,9 @@ namespace CourseMatesWS.DAL.Objects
         [DataMember]
         public List<FileItem> Files { get; set; }
         [DataMember]
-        public User CourseAdmin { get; set; }
+        public bool IsAdmin { get; set; }
+        [DataMember]
+        public int CourseAdminID { get; set; }
 
         public int CompareTo(object obj)
         {

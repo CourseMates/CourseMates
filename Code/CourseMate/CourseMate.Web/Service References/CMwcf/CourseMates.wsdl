@@ -38,6 +38,12 @@
   <wsdl:message name="ICourseMates_GetCourseByUserId_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCourseByUserIdResponse" />
   </wsdl:message>
+  <wsdl:message name="ICourseMates_TestRest_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestRest" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_TestRest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestRestResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICourseMates">
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/Login" message="tns:ICourseMates_Login_InputMessage" />
@@ -59,8 +65,12 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetCourseByUserId" message="tns:ICourseMates_GetCourseByUserId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetCourseByUserIdResponse" message="tns:ICourseMates_GetCourseByUserId_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="TestRest">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/TestRest" message="tns:ICourseMates_TestRest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/TestRestResponse" message="tns:ICourseMates_TestRest_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="BasicHttpBinding_ICourseMates" type="tns:ICourseMates">
+  <wsdl:binding name="soap" type="tns:ICourseMates">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="Login">
       <soap:operation soapAction="http://tempuri.org/ICourseMates/Login" style="document" />
@@ -107,10 +117,19 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TestRest">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/TestRest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="CourseMates">
-    <wsdl:port name="BasicHttpBinding_ICourseMates" binding="tns:BasicHttpBinding_ICourseMates">
-      <soap:address location="http://localhost:50368/CourseMates.svc" />
+    <wsdl:port name="soap" binding="tns:soap">
+      <soap:address location="http://localhost:50368/CourseMates.svc/soap" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

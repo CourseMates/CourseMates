@@ -262,7 +262,8 @@ namespace CourseMatesWS.DAL
                             Files = null,
                             Participants = null,
                             FourmItems = null,
-                            CourseAdmin = courseAdmin
+                            IsAdmin = courseAdmin != null,
+                            CourseAdminID = courseAdmin == null ? -1 : courseAdmin.ID
                         });
                 }
             }

@@ -15,14 +15,21 @@ namespace CourseMatesWS
     public interface ICourseMates
     {
         [OperationContract]
+        [WebInvoke(ResponseFormat= WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, 
+            RequestFormat= WebMessageFormat.Json,UriTemplate="/login/{userName}/{password}", Method="GET" )]
         string Login(string userName, string password, out int id);
         [OperationContract]
+        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
         SQLStatus Register(User user, out int userId, out string sessionId);
         [OperationContract]
+        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
         bool SendRestorePassword(string toSend);
         [OperationContract]
+        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
         int CreateNewCourse(string sessionId, int userId, string courseName, string iconCls);
         [OperationContract]
-        List<Course> GetCourseByUserId(string sessionId, int userId);
+        [WebInvoke(ResponseFormat = WebMessageFormat.Json, 
+            RequestFormat = WebMessageFormat.Json, UriTemplate = "/GetCourseByUserId/{sessionId}/{userId}", Method = "GET")]
+        List<Course> GetCourseByUserId(string sessionId, string userId);
     }
 }

@@ -68,7 +68,7 @@ namespace CourseMate.Web
             };
             Store1.DataBind();
 
-            Course[] allCourses = new CourseMatesClient().GetCourseByUserId(SessionID, UserID);
+            Course[] allCourses = new CourseMatesClient().GetCourseByUserId(SessionID, UserID.ToString());
 
             foreach (Course course in allCourses)
             {

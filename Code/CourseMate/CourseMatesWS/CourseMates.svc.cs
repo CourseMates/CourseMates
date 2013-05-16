@@ -46,10 +46,11 @@ namespace CourseMatesWS
             return CMDal.CreateNewCourse(sessionId, userId, courseName, iconCls);
         }
 
-
-        public List<Course> GetCourseByUserId(string sessionId,int userId)
+        public List<Course> GetCourseByUserId(string sessionId,string userId)
         {
-            return CMDal.GetCourseByUserId(sessionId, userId);
+            int x;
+            int.TryParse(userId, out x);
+            return CMDal.GetCourseByUserId(sessionId, x);
         }
     }
 }
