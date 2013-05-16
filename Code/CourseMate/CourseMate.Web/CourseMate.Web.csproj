@@ -71,6 +71,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CourseWindow.ascx" />
     <Content Include="Desktop.aspx" />
     <Content Include="EmailVerify.aspx" />
     <Content Include="Error.aspx" />
@@ -100,7 +101,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="TestPage.html" />
     <Content Include="Images\Logo.png" />
     <Content Include="Images\start.png" />
     <Content Include="Images\text1.png" />
@@ -110,6 +110,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Test.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -117,6 +118,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Utilitys.cs" />
+    <Compile Include="CourseWindow.ascx.cs">
+      <DependentUpon>CourseWindow.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CourseWindow.ascx.designer.cs">
+      <DependentUpon>CourseWindow.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Desktop.aspx.cs">
       <DependentUpon>Desktop.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -169,6 +177,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
