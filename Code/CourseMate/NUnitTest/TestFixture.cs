@@ -41,19 +41,59 @@ namespace NUnitTest
             #endregion
 
             #region Test Add File
-            FileItem fi1 = GetNewFile(false, -1);
 
-            Assert.IsTrue(fs.AddFileToRoot(fi1));
+            //When matched ParentId
+                //test if AddFileToRoot method returns true  
+                FileItem fi1 = GetNewFile(false, -1);
+                Assert.IsTrue(fs.AddFileToRoot(fi1));
+                //test if AddFileToRoot method added file to root 
+                Assert.IsTrue(fs.IsItemExist(fi1));
+
+                //test if AddFileByPerantID method added file to file 
+                FileItem fi2 = GetNewFile(false, -1);
+                fi1.PerantID = fi2.ID;
+                Assert.IsFalse(fs.AddFileByPerantID(fi1)); // Should fail , no check if adding to file (NOT A FOLDER)
+
+                //test if AddFileByPerantID method added folder to folder 
+                FileItem fo1 = GetNewFolder(false, -1);
+                fo1.PerantID = fi.ID;
+                Assert.IsTrue(fs.AddFileByPerantID(fo1));
+
+                //test tries to add NULL object to a file
+                FileItem nullfile = null;
+                Assert.IsFalse(fs.AddFileByPerantID(nullfile));
+
+                //test tries to add NULL object to a root 
+                Assert.IsFalse(fs.AddFileToRoot(nullfile));
+
+                //test tries to add again file that already exist
+                Assert.IsFalse(fs.AddFileByPerantID(fo1));
+
+                //test tries to add again folder that already exist
+                Assert.IsFalse(fs.AddFileByPerantID(fo1));
+            
+            //with different ParentId
+                //test if AddFileToRoot method returns true  
+                FileItem fi2_diff = GetNewFile(false, -1);
+                fi2_diff.PerantID = 100;
+                Assert.IsFalse(fs.AddFileToRoot(fi2_diff)); //TODO should fail
+                //test if AddFileToRoot method added file to root 
+                Assert.IsFalse(fs.IsItemExist(fi2_diff));   //TODO should fail
+                
+
+
+            //test if AddFileToRoot method added file to root 
             Assert.IsTrue(fs.IsItemExist(fi1));
+
+            //test
+           // Assert.IsTrue(
+
             #endregion
 
             #region Test Remove File
 
             #endregion
 
-            #region Test file structure
-            
-	        #endregion
         }
 
         #region Genarate moace items
