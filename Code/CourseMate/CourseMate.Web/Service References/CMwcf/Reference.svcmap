@@ -48,6 +48,7 @@
     <MetadataFile FileName="CourseMates.xsd" MetadataType="Schema" ID="1362a57b-ec28-40a2-8596-94106348e283" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd1" />
     <MetadataFile FileName="CourseMates.wsdl" MetadataType="Wsdl" ID="cdcbdf36-8956-4cdb-8e07-72b558d854af" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?wsdl" />
     <MetadataFile FileName="CourseMates.disco" MetadataType="Disco" ID="69edb447-be9a-46e7-8465-b95f4a3df8c9" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?disco" />
+    <MetadataFile FileName="CourseMates4.xsd" MetadataType="Schema" ID="634231cb-1b2e-45a1-ac79-9c2bbd4de11d" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd4" />
     <MetadataFile FileName="CourseMates1.xsd" MetadataType="Schema" ID="ee20eba7-1730-4cf1-a7a6-79ed46ba0819" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd2" />
     <MetadataFile FileName="CourseMates2.xsd" MetadataType="Schema" ID="cb9beeaf-9e91-44a0-8069-7b7fc6eca68a" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd3" />
     <MetadataFile FileName="CourseMates3.xsd" MetadataType="Schema" ID="f816e5de-7292-4257-b39c-97e8d7a88fa6" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd0" />

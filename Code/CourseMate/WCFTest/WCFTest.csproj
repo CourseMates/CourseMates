@@ -77,6 +77,9 @@
     <None Include="Service References\ServiceReference1\CourseMates11.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceReference1\CourseMates22.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceReference1\CourseMates4.xsd">
       <SubType>Designer</SubType>
     </None>

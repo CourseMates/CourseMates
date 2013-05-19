@@ -126,8 +126,9 @@ namespace CourseMatesWS.BLL
             {
                 if (user != null)
                 {
+                    User owner = CMDal.GetUserBy("Id", file.OwnerId);
                     string template = GetEmailTamplateByType(EmailType.NewFile);
-                    template = string.Format(template, user.UserName, file.Owner.UserName, courseName, file.FileName);
+                    template = string.Format(template, user.UserName, owner.UserName, courseName, file.FileName);
                     SendMail(user.Email, "New File Added to " + courseName, template); 
                 }
             }
@@ -146,8 +147,9 @@ namespace CourseMatesWS.BLL
             {
                 if (user != null)
                 {
+                    User owner = CMDal.GetUserBy("Id", file.OwnerId);
                     string template = GetEmailTamplateByType(EmailType.FileUpdate);
-                    template = string.Format(template, user.UserName, file.Owner.UserName, courseName, file.FileName);
+                    template = string.Format(template, user.UserName, owner.UserName, courseName, file.FileName);
                     SendMail(user.Email, "File Updated on " + courseName, template); 
                 }
             }

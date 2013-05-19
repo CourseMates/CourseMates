@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL" />
   <xs:complexType name="User">
     <xs:sequence>
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
@@ -21,12 +20,13 @@
   <xs:element name="ArrayOfCourse" nillable="true" type="tns:ArrayOfCourse" />
   <xs:complexType name="Course">
     <xs:sequence>
-      <xs:element minOccurs="0" name="CourseAdmin" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="CourseAdminID" type="xs:int" />
       <xs:element minOccurs="0" name="CourseName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Files" nillable="true" type="tns:ArrayOfFileItem" />
       <xs:element minOccurs="0" name="FourmItems" nillable="true" type="tns:ArrayOfFourmItem" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="IconClass" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsAdmin" type="xs:boolean" />
       <xs:element minOccurs="0" name="Participants" nillable="true" type="tns:ArrayOfUser" />
     </xs:sequence>
   </xs:complexType>
@@ -44,10 +44,19 @@
       <xs:element minOccurs="0" name="LogicalPath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Owner" nillable="true" type="tns:User" />
       <xs:element minOccurs="0" name="Rate" type="xs:int" />
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL" minOccurs="0" name="Type" type="q1:FileType" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="tns:FileType" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="FileItem" nillable="true" type="tns:FileItem" />
+  <xs:complexType name="FileType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Exstention" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IconClass" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileType" nillable="true" type="tns:FileType" />
   <xs:complexType name="ArrayOfFourmItem">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="FourmItem" nillable="true" type="tns:FourmItem" />

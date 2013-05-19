@@ -77,6 +77,18 @@
     <Content Include="Error.aspx" />
     <Content Include="Images\addc.png" />
     <Content Include="Images\error.png" />
+    <Content Include="Images\FileType\bmp.png" />
+    <Content Include="Images\FileType\doc.png" />
+    <Content Include="Images\FileType\docx.png" />
+    <Content Include="Images\FileType\folder.png" />
+    <Content Include="Images\FileType\gif.png" />
+    <Content Include="Images\FileType\jpg.png" />
+    <Content Include="Images\FileType\pdf.png" />
+    <Content Include="Images\FileType\png.png" />
+    <Content Include="Images\FileType\ppt.png" />
+    <Content Include="Images\FileType\pptx.png" />
+    <Content Include="Images\FileType\xls.png" />
+    <Content Include="Images\FileType\xlsx.png" />
     <Content Include="Images\FolderIcons\beige.png" />
     <Content Include="Images\FolderIcons\black.png" />
     <Content Include="Images\FolderIcons\blue.png" />
@@ -97,6 +109,9 @@
     <None Include="Service References\CMwcf\CourseMates.disco" />
     <None Include="Service References\CMwcf\configuration91.svcinfo" />
     <None Include="Service References\CMwcf\configuration.svcinfo" />
+    <None Include="Service References\CMwcf\CourseMates4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\CMwcf\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

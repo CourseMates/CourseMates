@@ -15,21 +15,35 @@ namespace CourseMatesWS
     public interface ICourseMates
     {
         [OperationContract]
-        [WebInvoke(ResponseFormat= WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, 
-            RequestFormat= WebMessageFormat.Json,UriTemplate="/login/{userName}/{password}", Method="GET" )]
+        
         string Login(string userName, string password, out int id);
         [OperationContract]
-        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
         SQLStatus Register(User user, out int userId, out string sessionId);
         [OperationContract]
-        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
         bool SendRestorePassword(string toSend);
         [OperationContract]
-        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
         int CreateNewCourse(string sessionId, int userId, string courseName, string iconCls);
         [OperationContract]
-        [WebInvoke(ResponseFormat = WebMessageFormat.Json, 
-            RequestFormat = WebMessageFormat.Json, UriTemplate = "/GetCourseByUserId/{sessionId}/{userId}", Method = "GET")]
         List<Course> GetCourseByUserId(string sessionId, string userId);
+        [OperationContract]
+        void UploadFile(UploadFileMsg msg);
+    }
+    [MessageContract]
+    public class UploadFileMsg
+    {
+        [MessageHeader]
+        public string SessionId { get; set; }
+        [MessageHeader]
+        public int UserId { get; set; }
+        [MessageHeader]
+        public int CourseId { get; set; }
+        [MessageHeader]
+        public string FileName { get; set; }
+        [MessageHeader]
+        public int ParentId { get; set; }
+        [MessageHeader]
+        public int TypeId { get; set; }
+        [MessageBodyMember]
+        public Stream FileStream;
     }
 }

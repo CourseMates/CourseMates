@@ -9,16 +9,4 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="SQLStatus" nillable="true" type="tns:SQLStatus" />
-  <xs:simpleType name="FileType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Unknown" />
-      <xs:enumeration value="Word" />
-      <xs:enumeration value="Excel" />
-      <xs:enumeration value="PowerPoint" />
-      <xs:enumeration value="Image" />
-      <xs:enumeration value="PDF" />
-      <xs:enumeration value="Text" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="FileType" nillable="true" type="tns:FileType" />
 </xs:schema>

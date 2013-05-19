@@ -75,6 +75,8 @@
     <Compile Include="BLL\NotificationUtilitys.cs" />
     <Compile Include="DAL\Objects\Course.cs" />
     <Compile Include="DAL\Objects\FileItem.cs" />
+    <Compile Include="DAL\Objects\FileStructure.cs" />
+    <Compile Include="DAL\Objects\FileType.cs" />
     <Compile Include="DAL\Objects\FourmItem.cs" />
     <Compile Include="DAL\Objects\User.cs" />
     <Compile Include="BLL\Utilitys.cs" />
@@ -83,6 +85,7 @@
     </Compile>
     <Compile Include="DAL\CMDal.cs" />
     <Compile Include="DAL\StringBuilber.cs" />
+    <Compile Include="IAndroidRest.cs" />
     <Compile Include="ICourseMates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DAL\DataAccess.cs" />

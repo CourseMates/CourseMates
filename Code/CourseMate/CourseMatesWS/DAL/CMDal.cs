@@ -45,16 +45,6 @@ namespace CourseMatesWS.DAL
                 return t;
             return null;
         }
-        private static FileType ParseCellDataToFileType(object toConvert)
-        {
-            if (toConvert == null)
-                return FileType.Unknown;
-
-            FileType ft;
-            if (Enum.TryParse(toConvert.ToString(), out ft))
-                return ft;
-            return FileType.Unknown;
-        }
         private static bool ParseCellDataToBool(object toConvert, out bool isAdmin)
         {
             isAdmin = false;
@@ -274,7 +264,5 @@ namespace CourseMatesWS.DAL
 
             return toReturn;
         }
-
-        
     }
 }

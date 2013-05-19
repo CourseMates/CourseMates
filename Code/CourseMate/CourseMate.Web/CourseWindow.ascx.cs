@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Ext.Net;
 
 namespace CourseMate.Web
 {
@@ -61,5 +62,14 @@ namespace CourseMate.Web
             //};
             //Store1.DataBind();
         }
+        
+        protected void UploadClick(object sender, DirectEventArgs e)
+        {
+            if (this.FileUploadField1.HasFile)
+            {
+                new CourseMate.Web.CMwcf.CourseMatesClient().UploadFile(1, "newfile.pdf", 0, "123", 1, 1, FileUploadField1.FileContent);
+            }
+        }
+
     }
 }
