@@ -39,9 +39,8 @@ namespace NUnitTest
             //test for null file item
             Assert.Throws<NullReferenceException>(() => { new FileStructure(null); }, "Root can't be null");
             #endregion
-
             #region Test Add File
-
+            System.Console.WriteLine("hi adar");
             //When matched ParentId
                 //test if AddFileToRoot method returns true  
                 FileItem fi1 = GetNewFile(false, -1);
@@ -80,20 +79,57 @@ namespace NUnitTest
                 //test if AddFileToRoot method added file to root 
                 Assert.IsFalse(fs.IsItemExist(fi2_diff));   //TODO should fail
                 
-
-
             //test if AddFileToRoot method added file to root 
             Assert.IsTrue(fs.IsItemExist(fi1));
-
-            //test
-           // Assert.IsTrue(
-
             #endregion
-
             #region Test Remove File
 
-            #endregion
+            //Creating new root and new filestructe object for clean test.
+            FileItem t3root = new FileItem
+            {
+                FileName = "Root",
+                ID = 0,
+                IsFolder = true,
+                OwnerId = 1,
+                PerantID = -1,
+                Rate = 0,
+                SubItems = new List<FileItem>(),
+                Type = t
+            };
+            FileStructure fs_t3 = new FileStructure(t3root);
 
+
+            //test if we try to delete some file from empty root
+            Assert.IsFalse(fs_t3.RemoveFile(10, 10));
+
+            //test if removefile removes file
+            //adding new file for future removal 
+            FileItem t3_fi1 = GetNewFile(false, -1);
+            //remove with different ownerID
+            Assert.IsFalse(fs_t3.RemoveFile(t3_fi1.ID,10));
+            //remove with mathed ownerID
+            Assert.IsTrue(fs_t3.RemoveFile(t3_fi1.ID,1));
+            
+            //adding new folder 
+            FileItem fol1 = GetNewFolder(false, -1);
+            fs_t3.AddFileToRoot(fol1);
+
+            //test try to remove a folder with differnt user ID
+            Assert.IsFalse(fs_t3.RemoveFile(fol1.ID, 10));
+
+            //test try to remove a folder with matched user ID
+            Assert.IsFalse(fs_t3.RemoveFile(fol1.ID, 1));
+
+            //adding new folder 
+            FileItem fol2 = GetNewFolder(false, -1);
+            fs_t3.AddFileToRoot(fol2);
+            //adding new file for future removal 
+            FileItem t3_fi2 = GetNewFile(false, -1);
+            t3_fi2.PerantID=fol2.ID;
+            fs_t3.AddFileByPerantID(t3_fi2);
+            //test try to remove non empty folder 
+            Assert.IsFalse(fs_t3.RemoveFile(fol2.ID, 1));
+            #endregion
         }
 
         #region Genarate moace items
@@ -155,4 +191,3 @@ namespace NUnitTest
         #endregion
     }
 }
-
