@@ -70,10 +70,12 @@ namespace CourseMatesWS.DAL.Objects
 
         private bool AddFile(FileItem toAdd, FileItem current)
         {
-            if (current == null)
+            if (current == null || toAdd == null)
                 return false;
             if (current.ID == toAdd.PerantID)
             {
+                if (!current.IsFolder)
+                    return false;
                 current.SubItems.Add(toAdd);
                 return true;
             }
