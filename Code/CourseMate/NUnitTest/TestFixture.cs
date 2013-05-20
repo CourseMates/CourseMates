@@ -40,7 +40,6 @@ namespace NUnitTest
             Assert.Throws<NullReferenceException>(() => { new FileStructure(null); }, "Root can't be null");
             #endregion
             #region Test Add File
-            System.Console.WriteLine("hi adar");
             //When matched ParentId
                 //test if AddFileToRoot method returns true  
                 FileItem fi1 = GetNewFile(false, -1);
