@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Xml;
 using CourseMatesWS.DAL.Objects;
 using System.Net;
+using CourseMatesWS.DAL;
 
 namespace CourseMatesWS.BLL
 {
@@ -125,8 +126,9 @@ namespace CourseMatesWS.BLL
             {
                 if (user != null)
                 {
+                    User owner = CMDal.GetUserBy("Id", file.OwnerId);
                     string template = GetEmailTamplateByType(EmailType.NewFile);
-                    template = string.Format(template, user.UserName, file.Owner.UserName, courseName, file.FileName);
+                    template = string.Format(template, user.UserName, owner.UserName, courseName, file.FileName);
                     SendMail(user.Email, "New File Added to " + courseName, template); 
                 }
             }
@@ -145,8 +147,9 @@ namespace CourseMatesWS.BLL
             {
                 if (user != null)
                 {
+                    User owner = CMDal.GetUserBy("Id", file.OwnerId);
                     string template = GetEmailTamplateByType(EmailType.FileUpdate);
-                    template = string.Format(template, user.UserName, file.Owner.UserName, courseName, file.FileName);
+                    template = string.Format(template, user.UserName, owner.UserName, courseName, file.FileName);
                     SendMail(user.Email, "File Updated on " + courseName, template); 
                 }
             }
@@ -160,9 +163,10 @@ namespace CourseMatesWS.BLL
         {
             if (course == null || requestBy == null)
                 return;
+            User user = CMDal.GetUserBy("Id", course.CourseAdminID);
             string template = GetEmailTamplateByType(EmailType.ApproveRequest);
-            template = string.Format(template, course.CourseAdmin.UserName,requestBy.UserName, course.CourseName);
-            SendMail(course.CourseAdmin.Email, "Your Action Is Required", template);
+            template = string.Format(template, user.UserName,requestBy.UserName, course.CourseName);
+            SendMail(user.Email, "Your Action Is Required", template);
         }
         /// <summary>
         /// Send email notification when new fourm item submited.

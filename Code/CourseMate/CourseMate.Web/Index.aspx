@@ -135,7 +135,7 @@
                         <ext:Button ID="btnRegisterOk" runat="server" Text="Ok" Icon="Accept" Disabled="true">
                             <DirectEvents>
                                 <Click OnEvent="Register_Click" >
-                                    <EventMask ShowMask="true" Msg="Create New User..." Target="CustomTarget" CustomTarget="pnlRegister" /> />
+                                    <EventMask ShowMask="true" Msg="Create New User..." Target="CustomTarget" CustomTarget="pnlRegister" />
                                 </Click>
                             </DirectEvents>
                         </ext:Button>

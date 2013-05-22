@@ -71,10 +71,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CourseWindow.ascx" />
     <Content Include="Desktop.aspx" />
     <Content Include="EmailVerify.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="Images\addc.png" />
     <Content Include="Images\error.png" />
+    <Content Include="Images\FileType\bmp.png" />
+    <Content Include="Images\FileType\doc.png" />
+    <Content Include="Images\FileType\docx.png" />
+    <Content Include="Images\FileType\folder.png" />
+    <Content Include="Images\FileType\gif.png" />
+    <Content Include="Images\FileType\jpg.png" />
+    <Content Include="Images\FileType\pdf.png" />
+    <Content Include="Images\FileType\png.png" />
+    <Content Include="Images\FileType\ppt.png" />
+    <Content Include="Images\FileType\pptx.png" />
+    <Content Include="Images\FileType\xls.png" />
+    <Content Include="Images\FileType\xlsx.png" />
     <Content Include="Images\FolderIcons\beige.png" />
     <Content Include="Images\FolderIcons\black.png" />
     <Content Include="Images\FolderIcons\blue.png" />
@@ -86,17 +100,22 @@
     <Content Include="JoinCourse.aspx" />
     <Content Include="JS\Main.js" />
     <Content Include="ResetPassword.aspx" />
+    <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.Course.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.SQLStatus.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CMwcf\CourseMates.disco" />
     <None Include="Service References\CMwcf\configuration91.svcinfo" />
     <None Include="Service References\CMwcf\configuration.svcinfo" />
+    <None Include="Service References\CMwcf\CourseMates4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\CMwcf\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="TestPage.html" />
     <Content Include="Images\Logo.png" />
     <Content Include="Images\start.png" />
     <Content Include="Images\text1.png" />
@@ -106,6 +125,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Test.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -113,6 +133,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Utilitys.cs" />
+    <Compile Include="CourseWindow.ascx.cs">
+      <DependentUpon>CourseWindow.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CourseWindow.ascx.designer.cs">
+      <DependentUpon>CourseWindow.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Desktop.aspx.cs">
       <DependentUpon>Desktop.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -165,6 +192,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

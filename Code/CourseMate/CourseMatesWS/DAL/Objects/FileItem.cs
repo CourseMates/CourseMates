@@ -19,9 +19,13 @@ namespace CourseMatesWS.DAL.Objects
         [DataMember]
         public int Rate { get; set; }
         [DataMember]
-        public string LogicalPath { get; set; }
+        public int OwnerId { get; set; }
         [DataMember]
-        public User Owner { get; set; }
+        public bool IsFolder { get; set; }
+        [DataMember]
+        public int PerantID { get; set; }
+        [DataMember]
+        public List<FileItem> SubItems { get; set; }
 
         public int CompareTo(object obj)
         {

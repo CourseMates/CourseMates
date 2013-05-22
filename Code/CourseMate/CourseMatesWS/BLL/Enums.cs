@@ -10,9 +10,21 @@ namespace CourseMatesWS.BLL
     {
         Verify, NewFile, FileUpdate, QAndA, ApproveRequest, Invitation, ResetPassword
     }
-    public enum FileType
+    public enum FileTypeE
     {
-        Unknown = 0, Word = 1, Excel = 2, PowerPoint = 3, Image = 4, PDF = 5, Text = 6
+        Unknown = 0,
+        Folder = 1,
+        Word2003 = 2,
+        Word2007 = 3,
+        Excel2003 = 4,
+        Excel2007 = 5,
+        PowerPoint2003 = 6,
+        PowerPoint2007 = 7,
+        AcrobatReader = 8,
+        JPG = 9,
+        PNG = 10,
+        GIF = 11,
+        BMP = 12
     }
     public enum LinkType
     {

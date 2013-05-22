@@ -14,13 +14,17 @@ namespace CourseMatesWS.DAL.Objects
         [DataMember]
         public string CourseName { get; set; }
         [DataMember]
+        public string IconClass { get; set; }
+        [DataMember]
         public List<FourmItem> FourmItems { get; set; }
         [DataMember]
         public List<User> Participants { get; set; }
         [DataMember]
         public List<FileItem> Files { get; set; }
         [DataMember]
-        public User CourseAdmin { get; set; }
+        public bool IsAdmin { get; set; }
+        [DataMember]
+        public int CourseAdminID { get; set; }
 
         public int CompareTo(object obj)
         {
