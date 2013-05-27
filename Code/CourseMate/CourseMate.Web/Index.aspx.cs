@@ -61,7 +61,7 @@ namespace CourseMate.Web
             {
                 SessionID = session;
                 UserID = id;
-                Response.Redirect("Desktop.aspx");
+                X.Redirect("Desktop.aspx");
             }
             else
             {

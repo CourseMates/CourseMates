@@ -21,11 +21,15 @@ namespace CourseMatesWS.DAL.Objects
         [DataMember]
         public int OwnerId { get; set; }
         [DataMember]
+        public string OwnerName { get; set; }
+        [DataMember]
         public bool IsFolder { get; set; }
         [DataMember]
         public int PerantID { get; set; }
         [DataMember]
         public List<FileItem> SubItems { get; set; }
+        [DataMember]
+        public DateTime LastModify { get; set; }
 
         public int CompareTo(object obj)
         {

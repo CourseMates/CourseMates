@@ -344,13 +344,25 @@ namespace CourseMate.Web.CMwcf {
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LogicalPathField;
+        private bool IsFolderField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CourseMate.Web.CMwcf.User OwnerField;
+        private System.DateTime LastModifyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OwnerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OwnerNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PerantIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int RateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CourseMate.Web.CMwcf.FileItem[] SubItemsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CourseMate.Web.CMwcf.FileType TypeField;
@@ -392,27 +404,66 @@ namespace CourseMate.Web.CMwcf {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LogicalPath {
+        public bool IsFolder {
             get {
-                return this.LogicalPathField;
+                return this.IsFolderField;
             }
             set {
-                if ((object.ReferenceEquals(this.LogicalPathField, value) != true)) {
-                    this.LogicalPathField = value;
-                    this.RaisePropertyChanged("LogicalPath");
+                if ((this.IsFolderField.Equals(value) != true)) {
+                    this.IsFolderField = value;
+                    this.RaisePropertyChanged("IsFolder");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CourseMate.Web.CMwcf.User Owner {
+        public System.DateTime LastModify {
             get {
-                return this.OwnerField;
+                return this.LastModifyField;
             }
             set {
-                if ((object.ReferenceEquals(this.OwnerField, value) != true)) {
-                    this.OwnerField = value;
-                    this.RaisePropertyChanged("Owner");
+                if ((this.LastModifyField.Equals(value) != true)) {
+                    this.LastModifyField = value;
+                    this.RaisePropertyChanged("LastModify");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OwnerId {
+            get {
+                return this.OwnerIdField;
+            }
+            set {
+                if ((this.OwnerIdField.Equals(value) != true)) {
+                    this.OwnerIdField = value;
+                    this.RaisePropertyChanged("OwnerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string OwnerName {
+            get {
+                return this.OwnerNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OwnerNameField, value) != true)) {
+                    this.OwnerNameField = value;
+                    this.RaisePropertyChanged("OwnerName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PerantID {
+            get {
+                return this.PerantIDField;
+            }
+            set {
+                if ((this.PerantIDField.Equals(value) != true)) {
+                    this.PerantIDField = value;
+                    this.RaisePropertyChanged("PerantID");
                 }
             }
         }
@@ -426,6 +477,19 @@ namespace CourseMate.Web.CMwcf {
                 if ((this.RateField.Equals(value) != true)) {
                     this.RateField = value;
                     this.RaisePropertyChanged("Rate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CourseMate.Web.CMwcf.FileItem[] SubItems {
+            get {
+                return this.SubItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SubItemsField, value) != true)) {
+                    this.SubItemsField = value;
+                    this.RaisePropertyChanged("SubItems");
                 }
             }
         }
@@ -671,6 +735,51 @@ namespace CourseMate.Web.CMwcf {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FileStructure", Namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects")]
+    [System.SerializableAttribute()]
+    public partial class FileStructure : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CourseMate.Web.CMwcf.FileItem RootFolderField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CourseMate.Web.CMwcf.FileItem RootFolder {
+            get {
+                return this.RootFolderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RootFolderField, value) != true)) {
+                    this.RootFolderField = value;
+                    this.RaisePropertyChanged("RootFolder");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CMwcf.ICourseMates")]
     public interface ICourseMates {
@@ -693,6 +802,9 @@ namespace CourseMate.Web.CMwcf {
         // CODEGEN: Generating message contract since the operation UploadFile is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/UploadFile", ReplyAction="http://tempuri.org/ICourseMates/UploadFileResponse")]
         CourseMate.Web.CMwcf.UploadFileResponse UploadFile(CourseMate.Web.CMwcf.UploadFileMsg request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/GetCourseFiles", ReplyAction="http://tempuri.org/ICourseMates/GetCourseFilesResponse")]
+        CourseMate.Web.CMwcf.FileStructure GetCourseFiles(int courseId);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -809,14 +921,21 @@ namespace CourseMate.Web.CMwcf {
             inValue.FileStream = FileStream;
             CourseMate.Web.CMwcf.UploadFileResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).UploadFile(inValue);
         }
+        
+        public CourseMate.Web.CMwcf.FileStructure GetCourseFiles(int courseId) {
+            return base.Channel.GetCourseFiles(courseId);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CMwcf.IAndroidRest")]
     public interface IAndroidRest {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAndroidRest/DoWork", ReplyAction="http://tempuri.org/IAndroidRest/DoWorkResponse")]
-        void DoWork();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAndroidRest/LoginREST", ReplyAction="http://tempuri.org/IAndroidRest/LoginRESTResponse")]
+        string LoginREST(out int id, string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAndroidRest/GetCourseByUserIdREST", ReplyAction="http://tempuri.org/IAndroidRest/GetCourseByUserIdRESTResponse")]
+        CourseMate.Web.CMwcf.Course[] GetCourseByUserIdREST(string sessionId, string userId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -846,8 +965,12 @@ namespace CourseMate.Web.CMwcf {
                 base(binding, remoteAddress) {
         }
         
-        public void DoWork() {
-            base.Channel.DoWork();
+        public string LoginREST(out int id, string userName, string password) {
+            return base.Channel.LoginREST(out id, userName, password);
+        }
+        
+        public CourseMate.Web.CMwcf.Course[] GetCourseByUserIdREST(string sessionId, string userId) {
+            return base.Channel.GetCourseByUserIdREST(sessionId, userId);
         }
     }
 }

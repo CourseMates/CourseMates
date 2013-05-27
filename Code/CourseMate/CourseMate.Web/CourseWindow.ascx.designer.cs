@@ -13,13 +13,13 @@ namespace CourseMate.Web {
     public partial class CourseWindow {
         
         /// <summary>
-        /// ResourceManager1 control.
+        /// dmp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ResourceManager ResourceManager1;
+        protected global::Ext.Net.DesktopModuleProxy dmp;
         
         /// <summary>
         /// winCourse control.
@@ -209,59 +209,5 @@ namespace CourseMate.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Panel Panel5;
-        
-        /// <summary>
-        /// Window1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Window Window1;
-        
-        /// <summary>
-        /// FormPanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.FormPanel FormPanel1;
-        
-        /// <summary>
-        /// Name control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField Name;
-        
-        /// <summary>
-        /// FileUploadField1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.FileUploadField FileUploadField1;
-        
-        /// <summary>
-        /// Button8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button Button8;
-        
-        /// <summary>
-        /// Button9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button Button9;
     }
 }

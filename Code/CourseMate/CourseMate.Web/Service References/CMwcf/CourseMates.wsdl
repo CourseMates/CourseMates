@@ -51,11 +51,23 @@
     <wsdl:part name="UserId" element="tns:UserId" />
   </wsdl:message>
   <wsdl:message name="ICourseMates_UploadFile_OutputMessage" />
-  <wsdl:message name="IAndroidRest_DoWork_InputMessage">
-    <wsdl:part name="parameters" element="tns:DoWork" />
+  <wsdl:message name="ICourseMates_GetCourseFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseFiles" />
   </wsdl:message>
-  <wsdl:message name="IAndroidRest_DoWork_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DoWorkResponse" />
+  <wsdl:message name="ICourseMates_GetCourseFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAndroidRest_LoginREST_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginREST" />
+  </wsdl:message>
+  <wsdl:message name="IAndroidRest_LoginREST_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginRESTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAndroidRest_GetCourseByUserIdREST_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseByUserIdREST" />
+  </wsdl:message>
+  <wsdl:message name="IAndroidRest_GetCourseByUserIdREST_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseByUserIdRESTResponse" />
   </wsdl:message>
   <wsdl:portType name="ICourseMates">
     <wsdl:operation name="Login">
@@ -82,11 +94,19 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/UploadFile" name="UploadFileMsg" message="tns:UploadFileMsg" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/UploadFileResponse" message="tns:ICourseMates_UploadFile_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetCourseFiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetCourseFiles" message="tns:ICourseMates_GetCourseFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetCourseFilesResponse" message="tns:ICourseMates_GetCourseFiles_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IAndroidRest">
-    <wsdl:operation name="DoWork">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAndroidRest/DoWork" message="tns:IAndroidRest_DoWork_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAndroidRest/DoWorkResponse" message="tns:IAndroidRest_DoWork_OutputMessage" />
+    <wsdl:operation name="LoginREST">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAndroidRest/LoginREST" message="tns:IAndroidRest_LoginREST_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAndroidRest/LoginRESTResponse" message="tns:IAndroidRest_LoginREST_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseByUserIdREST">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAndroidRest/GetCourseByUserIdREST" message="tns:IAndroidRest_GetCourseByUserIdREST_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAndroidRest/GetCourseByUserIdRESTResponse" message="tns:IAndroidRest_GetCourseByUserIdREST_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="soap" type="tns:ICourseMates">
@@ -145,6 +165,15 @@
         <soap:header message="tns:UploadFileMsg_Headers" part="SessionId" use="literal" />
         <soap:header message="tns:UploadFileMsg_Headers" part="TypeId" use="literal" />
         <soap:header message="tns:UploadFileMsg_Headers" part="UserId" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseFiles">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/GetCourseFiles" style="document" />
+      <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>

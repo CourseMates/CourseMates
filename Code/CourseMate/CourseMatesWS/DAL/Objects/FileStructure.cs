@@ -44,26 +44,23 @@ namespace CourseMatesWS.DAL.Objects
             return RemoveFile(RootFolder, id, userId);
         }
 
-        public bool IsItemExist(FileItem toFind)
+        public bool IsItemExist(int id)
         {
-            return IsItemExist(RootFolder, toFind);
+            return IsItemExist(RootFolder, id);
         }
 
-        private bool IsItemExist(FileItem item, FileItem toFind)
+        private bool IsItemExist(FileItem item, int toFind)
         {
             if (item == null || item.SubItems == null)
                 return false;
-            if (!item.SubItems.Contains(toFind))
-            {
-                foreach (FileItem i in RootFolder.SubItems)
-                {
-                    if (IsItemExist(i, toFind))
-                        return true;
-                }
-            }
-            else
-            {
+            if (item.ID == toFind)
                 return true;
+            foreach (FileItem i in item.SubItems)
+            {
+                if (i.ID == toFind)
+                    return true;
+                else if (IsItemExist(i, toFind))
+                    return true;
             }
             return false;
         }
@@ -74,7 +71,7 @@ namespace CourseMatesWS.DAL.Objects
                 return false;
             if (current.ID == toAdd.PerantID)
             {
-                if (!current.IsFolder)
+                if (!current.IsFolder || current.SubItems.Contains(toAdd))
                     return false;
                 current.SubItems.Add(toAdd);
                 return true;

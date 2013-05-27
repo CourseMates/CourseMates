@@ -97,10 +97,14 @@
     <Content Include="Images\FolderIcons\orange.png" />
     <Content Include="Images\FolderIcons\pink.png" />
     <Content Include="Images\FolderIcons\white.png" />
+    <Content Include="Images\goback.png" />
     <Content Include="JoinCourse.aspx" />
     <Content Include="JS\Main.js" />
     <Content Include="ResetPassword.aspx" />
     <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.Course.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.FileStructure.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.SQLStatus.datasource">

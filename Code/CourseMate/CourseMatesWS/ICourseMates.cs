@@ -27,6 +27,8 @@ namespace CourseMatesWS
         List<Course> GetCourseByUserId(string sessionId, string userId);
         [OperationContract]
         void UploadFile(UploadFileMsg msg);
+        [OperationContract]
+        FileStructure GetCourseFiles(int courseId);
     }
     [MessageContract]
     public class UploadFileMsg

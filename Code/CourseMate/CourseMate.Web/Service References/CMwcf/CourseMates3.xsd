@@ -94,14 +94,49 @@
   <xs:element name="SessionId" nillable="true" type="xs:string" />
   <xs:element name="TypeId" type="xs:int" />
   <xs:element name="UserId" type="xs:int" />
-  <xs:element name="DoWork">
+  <xs:element name="GetCourseFiles">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="courseId" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="DoWorkResponse">
+  <xs:element name="GetCourseFilesResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" minOccurs="0" name="GetCourseFilesResult" nillable="true" type="q5:FileStructure" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginREST">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginRESTResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LoginRESTResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCourseByUserIdREST">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCourseByUserIdRESTResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" minOccurs="0" name="GetCourseByUserIdRESTResult" nillable="true" type="q6:ArrayOfCourse" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>
