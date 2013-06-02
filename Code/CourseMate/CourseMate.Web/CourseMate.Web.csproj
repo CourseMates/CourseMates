@@ -76,6 +76,7 @@
     <Content Include="EmailVerify.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Images\addc.png" />
+    <Content Include="Images\AdminUser.png" />
     <Content Include="Images\error.png" />
     <Content Include="Images\FileType\bmp.png" />
     <Content Include="Images\FileType\doc.png" />
@@ -87,6 +88,7 @@
     <Content Include="Images\FileType\png.png" />
     <Content Include="Images\FileType\ppt.png" />
     <Content Include="Images\FileType\pptx.png" />
+    <Content Include="Images\FileType\txt.png" />
     <Content Include="Images\FileType\xls.png" />
     <Content Include="Images\FileType\xlsx.png" />
     <Content Include="Images\FolderIcons\beige.png" />
@@ -98,28 +100,10 @@
     <Content Include="Images\FolderIcons\pink.png" />
     <Content Include="Images\FolderIcons\white.png" />
     <Content Include="Images\goback.png" />
+    <Content Include="Images\user.png" />
     <Content Include="JoinCourse.aspx" />
     <Content Include="JS\Main.js" />
     <Content Include="ResetPassword.aspx" />
-    <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.Course.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.FileStructure.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.SQLStatus.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CMwcf\CourseMates.disco" />
-    <None Include="Service References\CMwcf\configuration91.svcinfo" />
-    <None Include="Service References\CMwcf\configuration.svcinfo" />
-    <None Include="Service References\CMwcf\CourseMates4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CMwcf\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Images\Logo.png" />
     <Content Include="Images\start.png" />
     <Content Include="Images\text1.png" />
@@ -128,6 +112,28 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.Course.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.DeleteStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.FileStructure.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.SQLStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CMwcf\CourseMates.disco" />
+    <None Include="Service References\CMwcf\configuration91.svcinfo" />
+    <None Include="Service References\CMwcf\configuration.svcinfo" />
+    <None Include="Service References\CMwcf\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Test.aspx" />
     <Content Include="Web.config">
@@ -217,6 +223,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\CMwcf\CourseMates3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CMwcf\CourseMates4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Web.Debug.config">

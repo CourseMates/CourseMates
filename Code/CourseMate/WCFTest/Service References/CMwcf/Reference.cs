@@ -8,8 +8,748 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CourseMate.Web.CMwcf {
+namespace WCFTest.CMwcf {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects")]
+    [System.SerializableAttribute()]
+    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FirstNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GCMIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LastNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FirstName {
+            get {
+                return this.FirstNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
+                    this.FirstNameField = value;
+                    this.RaisePropertyChanged("FirstName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GCMId {
+            get {
+                return this.GCMIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GCMIdField, value) != true)) {
+                    this.GCMIdField = value;
+                    this.RaisePropertyChanged("GCMId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LastName {
+            get {
+                return this.LastNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LastNameField, value) != true)) {
+                    this.LastNameField = value;
+                    this.RaisePropertyChanged("LastName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SQLStatus", Namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL")]
+    public enum SQLStatus : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Succeeded = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Failed = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        UserExists = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EmailExists = 3,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Course", Namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects")]
+    [System.SerializableAttribute()]
+    public partial class Course : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CourseAdminIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CourseNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WCFTest.CMwcf.FileItem[] FilesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WCFTest.CMwcf.FourmItem[] FourmItemsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IconClassField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsAdminField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WCFTest.CMwcf.User[] ParticipantsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CourseAdminID {
+            get {
+                return this.CourseAdminIDField;
+            }
+            set {
+                if ((this.CourseAdminIDField.Equals(value) != true)) {
+                    this.CourseAdminIDField = value;
+                    this.RaisePropertyChanged("CourseAdminID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CourseName {
+            get {
+                return this.CourseNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CourseNameField, value) != true)) {
+                    this.CourseNameField = value;
+                    this.RaisePropertyChanged("CourseName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WCFTest.CMwcf.FileItem[] Files {
+            get {
+                return this.FilesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FilesField, value) != true)) {
+                    this.FilesField = value;
+                    this.RaisePropertyChanged("Files");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WCFTest.CMwcf.FourmItem[] FourmItems {
+            get {
+                return this.FourmItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FourmItemsField, value) != true)) {
+                    this.FourmItemsField = value;
+                    this.RaisePropertyChanged("FourmItems");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IconClass {
+            get {
+                return this.IconClassField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IconClassField, value) != true)) {
+                    this.IconClassField = value;
+                    this.RaisePropertyChanged("IconClass");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsAdmin {
+            get {
+                return this.IsAdminField;
+            }
+            set {
+                if ((this.IsAdminField.Equals(value) != true)) {
+                    this.IsAdminField = value;
+                    this.RaisePropertyChanged("IsAdmin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WCFTest.CMwcf.User[] Participants {
+            get {
+                return this.ParticipantsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ParticipantsField, value) != true)) {
+                    this.ParticipantsField = value;
+                    this.RaisePropertyChanged("Participants");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FileItem", Namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects")]
+    [System.SerializableAttribute()]
+    public partial class FileItem : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsFolderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime LastModifyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OwnerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OwnerNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PerantIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SizeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WCFTest.CMwcf.FileItem[] SubItemsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WCFTest.CMwcf.FileType TypeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName {
+            get {
+                return this.FileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
+                    this.FileNameField = value;
+                    this.RaisePropertyChanged("FileName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsFolder {
+            get {
+                return this.IsFolderField;
+            }
+            set {
+                if ((this.IsFolderField.Equals(value) != true)) {
+                    this.IsFolderField = value;
+                    this.RaisePropertyChanged("IsFolder");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime LastModify {
+            get {
+                return this.LastModifyField;
+            }
+            set {
+                if ((this.LastModifyField.Equals(value) != true)) {
+                    this.LastModifyField = value;
+                    this.RaisePropertyChanged("LastModify");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OwnerId {
+            get {
+                return this.OwnerIdField;
+            }
+            set {
+                if ((this.OwnerIdField.Equals(value) != true)) {
+                    this.OwnerIdField = value;
+                    this.RaisePropertyChanged("OwnerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string OwnerName {
+            get {
+                return this.OwnerNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OwnerNameField, value) != true)) {
+                    this.OwnerNameField = value;
+                    this.RaisePropertyChanged("OwnerName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PerantID {
+            get {
+                return this.PerantIDField;
+            }
+            set {
+                if ((this.PerantIDField.Equals(value) != true)) {
+                    this.PerantIDField = value;
+                    this.RaisePropertyChanged("PerantID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Rate {
+            get {
+                return this.RateField;
+            }
+            set {
+                if ((this.RateField.Equals(value) != true)) {
+                    this.RateField = value;
+                    this.RaisePropertyChanged("Rate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Size {
+            get {
+                return this.SizeField;
+            }
+            set {
+                if ((this.SizeField.Equals(value) != true)) {
+                    this.SizeField = value;
+                    this.RaisePropertyChanged("Size");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WCFTest.CMwcf.FileItem[] SubItems {
+            get {
+                return this.SubItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SubItemsField, value) != true)) {
+                    this.SubItemsField = value;
+                    this.RaisePropertyChanged("SubItems");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WCFTest.CMwcf.FileType Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FourmItem", Namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects")]
+    [System.SerializableAttribute()]
+    public partial class FourmItem : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WCFTest.CMwcf.User OwnerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PerentIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TitleField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Content {
+            get {
+                return this.ContentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContentField, value) != true)) {
+                    this.ContentField = value;
+                    this.RaisePropertyChanged("Content");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WCFTest.CMwcf.User Owner {
+            get {
+                return this.OwnerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OwnerField, value) != true)) {
+                    this.OwnerField = value;
+                    this.RaisePropertyChanged("Owner");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PerentId {
+            get {
+                return this.PerentIdField;
+            }
+            set {
+                if ((this.PerentIdField.Equals(value) != true)) {
+                    this.PerentIdField = value;
+                    this.RaisePropertyChanged("PerentId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Rate {
+            get {
+                return this.RateField;
+            }
+            set {
+                if ((this.RateField.Equals(value) != true)) {
+                    this.RateField = value;
+                    this.RaisePropertyChanged("Rate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Title {
+            get {
+                return this.TitleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TitleField, value) != true)) {
+                    this.TitleField = value;
+                    this.RaisePropertyChanged("Title");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FileType", Namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects")]
+    [System.SerializableAttribute()]
+    public partial class FileType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ExtensionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImageUrlField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Extension {
+            get {
+                return this.ExtensionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ExtensionField, value) != true)) {
+                    this.ExtensionField = value;
+                    this.RaisePropertyChanged("Extension");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImageUrl {
+            get {
+                return this.ImageUrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImageUrlField, value) != true)) {
+                    this.ImageUrlField = value;
+                    this.RaisePropertyChanged("ImageUrl");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CMwcf.ICourseMates")]
@@ -18,52 +758,47 @@ namespace CourseMate.Web.CMwcf {
         // CODEGEN: Parameter 'LoginResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/Login", ReplyAction="http://tempuri.org/ICourseMates/LoginResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CourseMate.Web.CMwcf.LoginResponse Login(CourseMate.Web.CMwcf.LoginRequest request);
+        WCFTest.CMwcf.LoginResponse Login(WCFTest.CMwcf.LoginRequest request);
         
         // CODEGEN: Parameter 'user' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/Register", ReplyAction="http://tempuri.org/ICourseMates/RegisterResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CourseMate.Web.CMwcf.RegisterResponse Register(CourseMate.Web.CMwcf.RegisterRequest request);
+        WCFTest.CMwcf.RegisterResponse Register(WCFTest.CMwcf.RegisterRequest request);
         
         // CODEGEN: Parameter 'toSend' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/SendRestorePassword", ReplyAction="http://tempuri.org/ICourseMates/SendRestorePasswordResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CourseMate.Web.CMwcf.SendRestorePasswordResponse SendRestorePassword(CourseMate.Web.CMwcf.SendRestorePasswordRequest request);
+        WCFTest.CMwcf.SendRestorePasswordResponse SendRestorePassword(WCFTest.CMwcf.SendRestorePasswordRequest request);
         
         // CODEGEN: Parameter 'sessionId' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/CreateNewCourse", ReplyAction="http://tempuri.org/ICourseMates/CreateNewCourseResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CourseMate.Web.CMwcf.CreateNewCourseResponse CreateNewCourse(CourseMate.Web.CMwcf.CreateNewCourseRequest request);
+        WCFTest.CMwcf.CreateNewCourseResponse CreateNewCourse(WCFTest.CMwcf.CreateNewCourseRequest request);
         
         // CODEGEN: Parameter 'GetCoursesByUserIdResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlArrayAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/GetCoursesByUserId", ReplyAction="http://tempuri.org/ICourseMates/GetCoursesByUserIdResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CourseMate.Web.CMwcf.GetCoursesByUserIdResponse GetCoursesByUserId(CourseMate.Web.CMwcf.GetCoursesByUserIdRequest request);
+        WCFTest.CMwcf.GetCoursesByUserIdResponse GetCoursesByUserId(WCFTest.CMwcf.GetCoursesByUserIdRequest request);
         
         // CODEGEN: Generating message contract since the operation UploadFile is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/UploadFile", ReplyAction="http://tempuri.org/ICourseMates/UploadFileResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CourseMate.Web.CMwcf.UploadFileResponse UploadFile(CourseMate.Web.CMwcf.UploadFileMsg request);
+        WCFTest.CMwcf.UploadFileResponse UploadFile(WCFTest.CMwcf.UploadFileMsg request);
         
         // CODEGEN: Parameter 'GetCourseFilesResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/GetCourseFiles", ReplyAction="http://tempuri.org/ICourseMates/GetCourseFilesResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CourseMate.Web.CMwcf.GetCourseFilesResponse GetCourseFiles(CourseMate.Web.CMwcf.GetCourseFilesRequest request);
+        WCFTest.CMwcf.GetCourseFilesResponse GetCourseFiles(WCFTest.CMwcf.GetCourseFilesRequest request);
         
         // CODEGEN: Parameter 'sessionId' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/DeleteFile", ReplyAction="http://tempuri.org/ICourseMates/DeleteFileResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CourseMate.Web.CMwcf.DeleteFileResponse DeleteFile(CourseMate.Web.CMwcf.DeleteFileRequest request);
+        WCFTest.CMwcf.DeleteFileResponse DeleteFile(WCFTest.CMwcf.DeleteFileRequest request);
         
-        // CODEGEN: Generating message contract since the wrapper name (DownloadRequestMsg) of message DownloadRequestMsg does not match the default value (GetFile)
+        // CODEGEN: Parameter 'sessionId' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/GetFile", ReplyAction="http://tempuri.org/ICourseMates/GetFileResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CourseMate.Web.CMwcf.RemoteFileInfoMsg GetFile(CourseMate.Web.CMwcf.DownloadRequestMsg request);
-        
-        // CODEGEN: Parameter 'GetCoursePartisipantResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlArrayAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/GetCoursePartisipant", ReplyAction="http://tempuri.org/ICourseMates/GetCoursePartisipantResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CourseMate.Web.CMwcf.GetCoursePartisipantResponse GetCoursePartisipant(CourseMate.Web.CMwcf.GetCoursePartisipantRequest request);
+        WCFTest.CMwcf.GetFileResponse GetFile(WCFTest.CMwcf.GetFileRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -974,12 +1709,12 @@ namespace CourseMate.Web.CMwcf {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public CourseMate.Web.CMwcf.User user;
+        public WCFTest.CMwcf.WCFTest.CMwcf.User user;
         
         public RegisterRequest() {
         }
         
-        public RegisterRequest(CourseMate.Web.CMwcf.User user) {
+        public RegisterRequest(WCFTest.CMwcf.WCFTest.CMwcf.User user) {
             this.user = user;
         }
     }
@@ -991,7 +1726,7 @@ namespace CourseMate.Web.CMwcf {
     public partial class RegisterResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public CourseMate.Web.CMwcf.SQLStatus RegisterResult;
+        public WCFTest.CMwcf.WCFTest.CMwcf.SQLStatus RegisterResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public int userId;
@@ -1003,7 +1738,7 @@ namespace CourseMate.Web.CMwcf {
         public RegisterResponse() {
         }
         
-        public RegisterResponse(CourseMate.Web.CMwcf.SQLStatus RegisterResult, int userId, string sessionId) {
+        public RegisterResponse(WCFTest.CMwcf.WCFTest.CMwcf.SQLStatus RegisterResult, int userId, string sessionId) {
             this.RegisterResult = RegisterResult;
             this.userId = userId;
             this.sessionId = sessionId;
@@ -1126,12 +1861,12 @@ namespace CourseMate.Web.CMwcf {
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
         [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects")]
-        public CourseMate.Web.CMwcf.Course[] GetCoursesByUserIdResult;
+        public WCFTest.CMwcf.WCFTest.CMwcf.Course[] GetCoursesByUserIdResult;
         
         public GetCoursesByUserIdResponse() {
         }
         
-        public GetCoursesByUserIdResponse(CourseMate.Web.CMwcf.Course[] GetCoursesByUserIdResult) {
+        public GetCoursesByUserIdResponse(WCFTest.CMwcf.WCFTest.CMwcf.Course[] GetCoursesByUserIdResult) {
             this.GetCoursesByUserIdResult = GetCoursesByUserIdResult;
         }
     }
@@ -1212,7 +1947,7 @@ namespace CourseMate.Web.CMwcf {
         public int Size;
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public CourseMate.Web.CMwcf.FileTypeE TypeId;
+        public WCFTest.CMwcf.FileTypeE TypeId;
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
         public int UserId;
@@ -1223,7 +1958,7 @@ namespace CourseMate.Web.CMwcf {
         public UploadFileMsg() {
         }
         
-        public UploadFileMsg(int CourseId, string FileName, bool IsFolder, int ParentId, string SessionId, int Size, CourseMate.Web.CMwcf.FileTypeE TypeId, int UserId, System.IO.Stream FileStream) {
+        public UploadFileMsg(int CourseId, string FileName, bool IsFolder, int ParentId, string SessionId, int Size, WCFTest.CMwcf.FileTypeE TypeId, int UserId, System.IO.Stream FileStream) {
             this.CourseId = CourseId;
             this.FileName = FileName;
             this.IsFolder = IsFolder;
@@ -1280,33 +2015,14 @@ namespace CourseMate.Web.CMwcf {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public CourseMate.Web.CMwcf.FileStructure GetCourseFilesResult;
+        public WCFTest.CMwcf.FileStructure GetCourseFilesResult;
         
         public GetCourseFilesResponse() {
         }
         
-        public GetCourseFilesResponse(CourseMate.Web.CMwcf.FileStructure GetCourseFilesResult) {
+        public GetCourseFilesResponse(WCFTest.CMwcf.FileStructure GetCourseFilesResult) {
             this.GetCourseFilesResult = GetCourseFilesResult;
         }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL")]
-    public enum DeleteStatus {
-        
-        /// <remarks/>
-        Success,
-        
-        /// <remarks/>
-        Failed,
-        
-        /// <remarks/>
-        Authorized,
-        
-        /// <remarks/>
-        FullFolder,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1323,15 +2039,15 @@ namespace CourseMate.Web.CMwcf {
         public int userId;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
-        public int fileId;
+        public int fiileId;
         
         public DeleteFileRequest() {
         }
         
-        public DeleteFileRequest(string sessionId, int userId, int fileId) {
+        public DeleteFileRequest(string sessionId, int userId, int fiileId) {
             this.sessionId = sessionId;
             this.userId = userId;
-            this.fileId = fileId;
+            this.fiileId = fiileId;
         }
     }
     
@@ -1342,12 +2058,12 @@ namespace CourseMate.Web.CMwcf {
     public partial class DeleteFileResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public CourseMate.Web.CMwcf.DeleteStatus DeleteFileResult;
+        public bool DeleteFileResult;
         
         public DeleteFileResponse() {
         }
         
-        public DeleteFileResponse(CourseMate.Web.CMwcf.DeleteStatus DeleteFileResult) {
+        public DeleteFileResponse(bool DeleteFileResult) {
             this.DeleteFileResult = DeleteFileResult;
         }
     }
@@ -1355,60 +2071,8 @@ namespace CourseMate.Web.CMwcf {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="DownloadRequestMsg", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class DownloadRequestMsg {
-        
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public int FileId;
-        
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string SessionId;
-        
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public int UserId;
-        
-        public DownloadRequestMsg() {
-        }
-        
-        public DownloadRequestMsg(int FileId, string SessionId, int UserId) {
-            this.FileId = FileId;
-            this.SessionId = SessionId;
-            this.UserId = UserId;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="RemoteFileInfoMsg", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class RemoteFileInfoMsg {
-        
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string FileName;
-        
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public int Size;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public System.IO.Stream FileStream;
-        
-        public RemoteFileInfoMsg() {
-        }
-        
-        public RemoteFileInfoMsg(string FileName, int Size, System.IO.Stream FileStream) {
-            this.FileName = FileName;
-            this.Size = Size;
-            this.FileStream = FileStream;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetCoursePartisipant", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class GetCoursePartisipantRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetFile", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetFileRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
@@ -1418,44 +2082,42 @@ namespace CourseMate.Web.CMwcf {
         public int userId;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
-        public int courseId;
+        public int fileId;
         
-        public GetCoursePartisipantRequest() {
+        public GetFileRequest() {
         }
         
-        public GetCoursePartisipantRequest(string sessionId, int userId, int courseId) {
+        public GetFileRequest(string sessionId, int userId, int fileId) {
             this.sessionId = sessionId;
             this.userId = userId;
-            this.courseId = courseId;
+            this.fileId = fileId;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetCoursePartisipantResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class GetCoursePartisipantResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetFileResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetFileResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
-        [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects")]
-        public CourseMate.Web.CMwcf.User[] GetCoursePartisipantResult;
+        public System.IO.Stream GetFileResult;
         
-        public GetCoursePartisipantResponse() {
+        public GetFileResponse() {
         }
         
-        public GetCoursePartisipantResponse(CourseMate.Web.CMwcf.User[] GetCoursePartisipantResult) {
-            this.GetCoursePartisipantResult = GetCoursePartisipantResult;
+        public GetFileResponse(System.IO.Stream GetFileResult) {
+            this.GetFileResult = GetFileResult;
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ICourseMatesChannel : CourseMate.Web.CMwcf.ICourseMates, System.ServiceModel.IClientChannel {
+    public interface ICourseMatesChannel : WCFTest.CMwcf.ICourseMates, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class CourseMatesClient : System.ServiceModel.ClientBase<CourseMate.Web.CMwcf.ICourseMates>, CourseMate.Web.CMwcf.ICourseMates {
+    public partial class CourseMatesClient : System.ServiceModel.ClientBase<WCFTest.CMwcf.ICourseMates>, WCFTest.CMwcf.ICourseMates {
         
         public CourseMatesClient() {
         }
@@ -1477,80 +2139,80 @@ namespace CourseMate.Web.CMwcf {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        CourseMate.Web.CMwcf.LoginResponse CourseMate.Web.CMwcf.ICourseMates.Login(CourseMate.Web.CMwcf.LoginRequest request) {
+        WCFTest.CMwcf.LoginResponse WCFTest.CMwcf.ICourseMates.Login(WCFTest.CMwcf.LoginRequest request) {
             return base.Channel.Login(request);
         }
         
         public string Login(string userName, string password, out int id) {
-            CourseMate.Web.CMwcf.LoginRequest inValue = new CourseMate.Web.CMwcf.LoginRequest();
+            WCFTest.CMwcf.LoginRequest inValue = new WCFTest.CMwcf.LoginRequest();
             inValue.userName = userName;
             inValue.password = password;
-            CourseMate.Web.CMwcf.LoginResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).Login(inValue);
+            WCFTest.CMwcf.LoginResponse retVal = ((WCFTest.CMwcf.ICourseMates)(this)).Login(inValue);
             id = retVal.id;
             return retVal.LoginResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        CourseMate.Web.CMwcf.RegisterResponse CourseMate.Web.CMwcf.ICourseMates.Register(CourseMate.Web.CMwcf.RegisterRequest request) {
+        WCFTest.CMwcf.RegisterResponse WCFTest.CMwcf.ICourseMates.Register(WCFTest.CMwcf.RegisterRequest request) {
             return base.Channel.Register(request);
         }
         
-        public CourseMate.Web.CMwcf.SQLStatus Register(CourseMate.Web.CMwcf.User user, out int userId, out string sessionId) {
-            CourseMate.Web.CMwcf.RegisterRequest inValue = new CourseMate.Web.CMwcf.RegisterRequest();
+        public WCFTest.CMwcf.WCFTest.CMwcf.SQLStatus Register(WCFTest.CMwcf.WCFTest.CMwcf.User user, out int userId, out string sessionId) {
+            WCFTest.CMwcf.RegisterRequest inValue = new WCFTest.CMwcf.RegisterRequest();
             inValue.user = user;
-            CourseMate.Web.CMwcf.RegisterResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).Register(inValue);
+            WCFTest.CMwcf.RegisterResponse retVal = ((WCFTest.CMwcf.ICourseMates)(this)).Register(inValue);
             userId = retVal.userId;
             sessionId = retVal.sessionId;
             return retVal.RegisterResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        CourseMate.Web.CMwcf.SendRestorePasswordResponse CourseMate.Web.CMwcf.ICourseMates.SendRestorePassword(CourseMate.Web.CMwcf.SendRestorePasswordRequest request) {
+        WCFTest.CMwcf.SendRestorePasswordResponse WCFTest.CMwcf.ICourseMates.SendRestorePassword(WCFTest.CMwcf.SendRestorePasswordRequest request) {
             return base.Channel.SendRestorePassword(request);
         }
         
         public bool SendRestorePassword(string toSend) {
-            CourseMate.Web.CMwcf.SendRestorePasswordRequest inValue = new CourseMate.Web.CMwcf.SendRestorePasswordRequest();
+            WCFTest.CMwcf.SendRestorePasswordRequest inValue = new WCFTest.CMwcf.SendRestorePasswordRequest();
             inValue.toSend = toSend;
-            CourseMate.Web.CMwcf.SendRestorePasswordResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).SendRestorePassword(inValue);
+            WCFTest.CMwcf.SendRestorePasswordResponse retVal = ((WCFTest.CMwcf.ICourseMates)(this)).SendRestorePassword(inValue);
             return retVal.SendRestorePasswordResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        CourseMate.Web.CMwcf.CreateNewCourseResponse CourseMate.Web.CMwcf.ICourseMates.CreateNewCourse(CourseMate.Web.CMwcf.CreateNewCourseRequest request) {
+        WCFTest.CMwcf.CreateNewCourseResponse WCFTest.CMwcf.ICourseMates.CreateNewCourse(WCFTest.CMwcf.CreateNewCourseRequest request) {
             return base.Channel.CreateNewCourse(request);
         }
         
         public int CreateNewCourse(string sessionId, int userId, string courseName, string iconCls) {
-            CourseMate.Web.CMwcf.CreateNewCourseRequest inValue = new CourseMate.Web.CMwcf.CreateNewCourseRequest();
+            WCFTest.CMwcf.CreateNewCourseRequest inValue = new WCFTest.CMwcf.CreateNewCourseRequest();
             inValue.sessionId = sessionId;
             inValue.userId = userId;
             inValue.courseName = courseName;
             inValue.iconCls = iconCls;
-            CourseMate.Web.CMwcf.CreateNewCourseResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).CreateNewCourse(inValue);
+            WCFTest.CMwcf.CreateNewCourseResponse retVal = ((WCFTest.CMwcf.ICourseMates)(this)).CreateNewCourse(inValue);
             return retVal.CreateNewCourseResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        CourseMate.Web.CMwcf.GetCoursesByUserIdResponse CourseMate.Web.CMwcf.ICourseMates.GetCoursesByUserId(CourseMate.Web.CMwcf.GetCoursesByUserIdRequest request) {
+        WCFTest.CMwcf.GetCoursesByUserIdResponse WCFTest.CMwcf.ICourseMates.GetCoursesByUserId(WCFTest.CMwcf.GetCoursesByUserIdRequest request) {
             return base.Channel.GetCoursesByUserId(request);
         }
         
-        public CourseMate.Web.CMwcf.Course[] GetCoursesByUserId(string sessionId, string userId) {
-            CourseMate.Web.CMwcf.GetCoursesByUserIdRequest inValue = new CourseMate.Web.CMwcf.GetCoursesByUserIdRequest();
+        public WCFTest.CMwcf.WCFTest.CMwcf.Course[] GetCoursesByUserId(string sessionId, string userId) {
+            WCFTest.CMwcf.GetCoursesByUserIdRequest inValue = new WCFTest.CMwcf.GetCoursesByUserIdRequest();
             inValue.sessionId = sessionId;
             inValue.userId = userId;
-            CourseMate.Web.CMwcf.GetCoursesByUserIdResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).GetCoursesByUserId(inValue);
+            WCFTest.CMwcf.GetCoursesByUserIdResponse retVal = ((WCFTest.CMwcf.ICourseMates)(this)).GetCoursesByUserId(inValue);
             return retVal.GetCoursesByUserIdResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        CourseMate.Web.CMwcf.UploadFileResponse CourseMate.Web.CMwcf.ICourseMates.UploadFile(CourseMate.Web.CMwcf.UploadFileMsg request) {
+        WCFTest.CMwcf.UploadFileResponse WCFTest.CMwcf.ICourseMates.UploadFile(WCFTest.CMwcf.UploadFileMsg request) {
             return base.Channel.UploadFile(request);
         }
         
-        public void UploadFile(int CourseId, string FileName, bool IsFolder, int ParentId, string SessionId, int Size, CourseMate.Web.CMwcf.FileTypeE TypeId, int UserId, System.IO.Stream FileStream) {
-            CourseMate.Web.CMwcf.UploadFileMsg inValue = new CourseMate.Web.CMwcf.UploadFileMsg();
+        public void UploadFile(int CourseId, string FileName, bool IsFolder, int ParentId, string SessionId, int Size, WCFTest.CMwcf.FileTypeE TypeId, int UserId, System.IO.Stream FileStream) {
+            WCFTest.CMwcf.UploadFileMsg inValue = new WCFTest.CMwcf.UploadFileMsg();
             inValue.CourseId = CourseId;
             inValue.FileName = FileName;
             inValue.IsFolder = IsFolder;
@@ -1560,65 +2222,103 @@ namespace CourseMate.Web.CMwcf {
             inValue.TypeId = TypeId;
             inValue.UserId = UserId;
             inValue.FileStream = FileStream;
-            CourseMate.Web.CMwcf.UploadFileResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).UploadFile(inValue);
+            WCFTest.CMwcf.UploadFileResponse retVal = ((WCFTest.CMwcf.ICourseMates)(this)).UploadFile(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        CourseMate.Web.CMwcf.GetCourseFilesResponse CourseMate.Web.CMwcf.ICourseMates.GetCourseFiles(CourseMate.Web.CMwcf.GetCourseFilesRequest request) {
+        WCFTest.CMwcf.GetCourseFilesResponse WCFTest.CMwcf.ICourseMates.GetCourseFiles(WCFTest.CMwcf.GetCourseFilesRequest request) {
             return base.Channel.GetCourseFiles(request);
         }
         
-        public CourseMate.Web.CMwcf.FileStructure GetCourseFiles(string sessionId, int userId, int courseId) {
-            CourseMate.Web.CMwcf.GetCourseFilesRequest inValue = new CourseMate.Web.CMwcf.GetCourseFilesRequest();
+        public WCFTest.CMwcf.FileStructure GetCourseFiles(string sessionId, int userId, int courseId) {
+            WCFTest.CMwcf.GetCourseFilesRequest inValue = new WCFTest.CMwcf.GetCourseFilesRequest();
             inValue.sessionId = sessionId;
             inValue.userId = userId;
             inValue.courseId = courseId;
-            CourseMate.Web.CMwcf.GetCourseFilesResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).GetCourseFiles(inValue);
+            WCFTest.CMwcf.GetCourseFilesResponse retVal = ((WCFTest.CMwcf.ICourseMates)(this)).GetCourseFiles(inValue);
             return retVal.GetCourseFilesResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        CourseMate.Web.CMwcf.DeleteFileResponse CourseMate.Web.CMwcf.ICourseMates.DeleteFile(CourseMate.Web.CMwcf.DeleteFileRequest request) {
+        WCFTest.CMwcf.DeleteFileResponse WCFTest.CMwcf.ICourseMates.DeleteFile(WCFTest.CMwcf.DeleteFileRequest request) {
             return base.Channel.DeleteFile(request);
         }
         
-        public CourseMate.Web.CMwcf.DeleteStatus DeleteFile(string sessionId, int userId, int fileId) {
-            CourseMate.Web.CMwcf.DeleteFileRequest inValue = new CourseMate.Web.CMwcf.DeleteFileRequest();
+        public bool DeleteFile(string sessionId, int userId, int fiileId) {
+            WCFTest.CMwcf.DeleteFileRequest inValue = new WCFTest.CMwcf.DeleteFileRequest();
             inValue.sessionId = sessionId;
             inValue.userId = userId;
-            inValue.fileId = fileId;
-            CourseMate.Web.CMwcf.DeleteFileResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).DeleteFile(inValue);
+            inValue.fiileId = fiileId;
+            WCFTest.CMwcf.DeleteFileResponse retVal = ((WCFTest.CMwcf.ICourseMates)(this)).DeleteFile(inValue);
             return retVal.DeleteFileResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        CourseMate.Web.CMwcf.RemoteFileInfoMsg CourseMate.Web.CMwcf.ICourseMates.GetFile(CourseMate.Web.CMwcf.DownloadRequestMsg request) {
+        WCFTest.CMwcf.GetFileResponse WCFTest.CMwcf.ICourseMates.GetFile(WCFTest.CMwcf.GetFileRequest request) {
             return base.Channel.GetFile(request);
         }
         
-        public string GetFile(int FileId, string SessionId, int UserId, out int Size, out System.IO.Stream FileStream) {
-            CourseMate.Web.CMwcf.DownloadRequestMsg inValue = new CourseMate.Web.CMwcf.DownloadRequestMsg();
-            inValue.FileId = FileId;
-            inValue.SessionId = SessionId;
-            inValue.UserId = UserId;
-            CourseMate.Web.CMwcf.RemoteFileInfoMsg retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).GetFile(inValue);
-            Size = retVal.Size;
-            FileStream = retVal.FileStream;
-            return retVal.FileName;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        CourseMate.Web.CMwcf.GetCoursePartisipantResponse CourseMate.Web.CMwcf.ICourseMates.GetCoursePartisipant(CourseMate.Web.CMwcf.GetCoursePartisipantRequest request) {
-            return base.Channel.GetCoursePartisipant(request);
-        }
-        
-        public CourseMate.Web.CMwcf.User[] GetCoursePartisipant(string sessionId, int userId, int courseId) {
-            CourseMate.Web.CMwcf.GetCoursePartisipantRequest inValue = new CourseMate.Web.CMwcf.GetCoursePartisipantRequest();
+        public System.IO.Stream GetFile(string sessionId, int userId, int fileId) {
+            WCFTest.CMwcf.GetFileRequest inValue = new WCFTest.CMwcf.GetFileRequest();
             inValue.sessionId = sessionId;
             inValue.userId = userId;
-            inValue.courseId = courseId;
-            CourseMate.Web.CMwcf.GetCoursePartisipantResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).GetCoursePartisipant(inValue);
-            return retVal.GetCoursePartisipantResult;
+            inValue.fileId = fileId;
+            WCFTest.CMwcf.GetFileResponse retVal = ((WCFTest.CMwcf.ICourseMates)(this)).GetFile(inValue);
+            return retVal.GetFileResult;
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CMwcf.IAndroidRest")]
+    public interface IAndroidRest {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAndroidRest/LoginREST", ReplyAction="http://tempuri.org/IAndroidRest/LoginRESTResponse")]
+        string LoginREST(out int id, string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAndroidRest/GetCourseByUserIdREST", ReplyAction="http://tempuri.org/IAndroidRest/GetCourseByUserIdRESTResponse")]
+        WCFTest.CMwcf.Course[] GetCourseByUserIdREST(string sessionId, string userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAndroidRest/RegisterREST", ReplyAction="http://tempuri.org/IAndroidRest/RegisterRESTResponse")]
+        bool RegisterREST(out int userId, out string sessionId, WCFTest.CMwcf.User stream);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IAndroidRestChannel : WCFTest.CMwcf.IAndroidRest, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AndroidRestClient : System.ServiceModel.ClientBase<WCFTest.CMwcf.IAndroidRest>, WCFTest.CMwcf.IAndroidRest {
+        
+        public AndroidRestClient() {
+        }
+        
+        public AndroidRestClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public AndroidRestClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public AndroidRestClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public AndroidRestClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public string LoginREST(out int id, string userName, string password) {
+            return base.Channel.LoginREST(out id, userName, password);
+        }
+        
+        public WCFTest.CMwcf.Course[] GetCourseByUserIdREST(string sessionId, string userId) {
+            return base.Channel.GetCourseByUserIdREST(sessionId, userId);
+        }
+        
+        public bool RegisterREST(out int userId, out string sessionId, WCFTest.CMwcf.User stream) {
+            return base.Channel.RegisterREST(out userId, out sessionId, stream);
         }
     }
 }

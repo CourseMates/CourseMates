@@ -55,7 +55,7 @@ namespace CourseMate.Web
         {
             CourseMatesClient cm = new CourseMatesClient();
             int id;
-            string session = cm.Login(out id, txtUsername.Text, BLL.Utilitys.GetMd5Hash(txtPassword.Text));
+            string session = cm.Login(txtUsername.Text, BLL.Utilitys.GetMd5Hash(txtPassword.Text), out id);
             
             if (!string.IsNullOrEmpty(session))
             {
@@ -67,7 +67,6 @@ namespace CourseMate.Web
             {
                 ShowMessage("Login Error", "User or password dont exist.", MessageBox.Icon.ERROR, MessageBox.Button.OK);
                 txtPassword.Text = "";
-                txtUsername.Text = "";
             }
         }
 
@@ -87,7 +86,7 @@ namespace CourseMate.Web
             string session;
             int id;
 
-            SQLStatus status = cm.Register(out id, out session, user);
+            SQLStatus status = cm.Register(user, out id, out session);
 
             switch (status)
             {

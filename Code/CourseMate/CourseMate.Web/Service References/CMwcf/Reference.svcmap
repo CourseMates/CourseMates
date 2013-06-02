@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7a9dfb2b-4a5b-409f-8e35-b51eea9ce0b1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="084d9512-25a9-4b3a-ab07-3b661928a1d4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -12,32 +12,8 @@
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
-    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
-    <ReferencedAssemblies>
-      <ReferencedAssembly AssemblyName="Ext.Net" />
-      <ReferencedAssembly AssemblyName="Ext.Net.Utilities" />
-      <ReferencedAssembly AssemblyName="Microsoft.CSharp" />
-      <ReferencedAssembly AssemblyName="mscorlib" />
-      <ReferencedAssembly AssemblyName="System" />
-      <ReferencedAssembly AssemblyName="System.ComponentModel.DataAnnotations" />
-      <ReferencedAssembly AssemblyName="System.Configuration" />
-      <ReferencedAssembly AssemblyName="System.Core" />
-      <ReferencedAssembly AssemblyName="System.Data" />
-      <ReferencedAssembly AssemblyName="System.Data.DataSetExtensions" />
-      <ReferencedAssembly AssemblyName="System.Drawing" />
-      <ReferencedAssembly AssemblyName="System.EnterpriseServices" />
-      <ReferencedAssembly AssemblyName="System.Runtime.Serialization" />
-      <ReferencedAssembly AssemblyName="System.ServiceModel" />
-      <ReferencedAssembly AssemblyName="System.Web" />
-      <ReferencedAssembly AssemblyName="System.Web.ApplicationServices" />
-      <ReferencedAssembly AssemblyName="System.Web.DynamicData" />
-      <ReferencedAssembly AssemblyName="System.Web.Entity" />
-      <ReferencedAssembly AssemblyName="System.Web.Extensions" />
-      <ReferencedAssembly AssemblyName="System.Web.Services" />
-      <ReferencedAssembly AssemblyName="System.Xml" />
-      <ReferencedAssembly AssemblyName="System.Xml.Linq" />
-      <ReferencedAssembly AssemblyName="Transformer.NET" />
-    </ReferencedAssemblies>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
     <ReferencedDataContractTypes />
     <ServiceContractMappings />
   </ClientOptions>
@@ -45,13 +21,13 @@
     <MetadataSource Address="http://localhost:50368/CourseMates.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="CourseMates.xsd" MetadataType="Schema" ID="1362a57b-ec28-40a2-8596-94106348e283" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd1" />
-    <MetadataFile FileName="CourseMates.wsdl" MetadataType="Wsdl" ID="cdcbdf36-8956-4cdb-8e07-72b558d854af" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?wsdl" />
-    <MetadataFile FileName="CourseMates.disco" MetadataType="Disco" ID="69edb447-be9a-46e7-8465-b95f4a3df8c9" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?disco" />
-    <MetadataFile FileName="CourseMates4.xsd" MetadataType="Schema" ID="634231cb-1b2e-45a1-ac79-9c2bbd4de11d" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd4" />
-    <MetadataFile FileName="CourseMates1.xsd" MetadataType="Schema" ID="ee20eba7-1730-4cf1-a7a6-79ed46ba0819" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd2" />
-    <MetadataFile FileName="CourseMates2.xsd" MetadataType="Schema" ID="cb9beeaf-9e91-44a0-8069-7b7fc6eca68a" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd3" />
-    <MetadataFile FileName="CourseMates3.xsd" MetadataType="Schema" ID="f816e5de-7292-4257-b39c-97e8d7a88fa6" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd0" />
+    <MetadataFile FileName="CourseMates.xsd" MetadataType="Schema" ID="aad838f8-0c31-4df2-a019-54db5a25c39f" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd1" />
+    <MetadataFile FileName="CourseMates.wsdl" MetadataType="Wsdl" ID="2d4278f0-5b33-4e5a-814b-9646c7d62e9c" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?wsdl" />
+    <MetadataFile FileName="CourseMates.disco" MetadataType="Disco" ID="34a4726b-47bf-49d6-8fe1-06305f206344" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?disco" />
+    <MetadataFile FileName="CourseMates1.xsd" MetadataType="Schema" ID="5ba61513-e8d7-4b66-bf97-30856350dcd1" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd4" />
+    <MetadataFile FileName="CourseMates2.xsd" MetadataType="Schema" ID="0f78ad12-bd43-4797-867a-54c917338747" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd2" />
+    <MetadataFile FileName="CourseMates3.xsd" MetadataType="Schema" ID="1d741aa8-8779-40bf-b91f-705b38945ba0" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd3" />
+    <MetadataFile FileName="CourseMates4.xsd" MetadataType="Schema" ID="028f975d-f101-4b34-84f9-2c0f82ff25d6" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

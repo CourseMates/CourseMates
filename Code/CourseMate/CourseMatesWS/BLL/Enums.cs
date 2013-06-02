@@ -10,26 +10,12 @@ namespace CourseMatesWS.BLL
     {
         Verify, NewFile, FileUpdate, QAndA, ApproveRequest, Invitation, ResetPassword
     }
-    public enum FileTypeE
-    {
-        Unknown = 0,
-        Folder = 1,
-        Word2003 = 2,
-        Word2007 = 3,
-        Excel2003 = 4,
-        Excel2007 = 5,
-        PowerPoint2003 = 6,
-        PowerPoint2007 = 7,
-        AcrobatReader = 8,
-        JPG = 9,
-        PNG = 10,
-        GIF = 11,
-        BMP = 12
-    }
+    
     public enum LinkType
     {
         ResetPassword=1, JoinCourse=2, EmailVerify=3
     }
+
     [DataContract(Name = "SQLStatus")]
     public enum SQLStatus
     {
@@ -41,5 +27,51 @@ namespace CourseMatesWS.BLL
         UserExists,
         [EnumMember]
         EmailExists
+    }
+    
+    [DataContract(Name = "FileTypeE")]
+    public enum FileTypeE
+    {
+        [EnumMember]
+        Unknown = 0,
+        [EnumMember]
+        Folder = 1,
+        [EnumMember]
+        DOC = 2,
+        [EnumMember]
+        DOCX = 3,
+        [EnumMember]
+        XLS = 4,
+        [EnumMember]
+        XLSX = 5,
+        [EnumMember]
+        PPT = 6,
+        [EnumMember]
+        PPTX = 7,
+        [EnumMember]
+        PDF = 8,
+        [EnumMember]
+        JPG = 9,
+        [EnumMember]
+        PNG = 10,
+        [EnumMember]
+        GIF = 11,
+        [EnumMember]
+        BMP = 12,
+        [EnumMember]
+        TXT = 13,
+    }
+
+    [DataContract(Name = "DeleteStatus")]
+    public enum DeleteStatus
+    {
+        [EnumMember]
+        Success = 1,
+        [EnumMember]
+        Failed = 2,
+        [EnumMember]
+        Authorized= 3,
+        [EnumMember]
+        FullFolder = 4
     }
 }

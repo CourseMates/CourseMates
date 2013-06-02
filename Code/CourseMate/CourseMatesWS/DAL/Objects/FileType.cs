@@ -14,8 +14,8 @@ namespace CourseMatesWS.DAL.Objects
         [DataMember]
         public string Description { get; set; }
         [DataMember]
-        public string IconClass { get; set; }
+        public string ImageUrl { get; set; }
         [DataMember]
-        public string Exstention { get; set; }
+        public string Extension { get; set; }
     }
 }

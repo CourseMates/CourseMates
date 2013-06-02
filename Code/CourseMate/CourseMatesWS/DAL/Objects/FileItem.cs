@@ -30,6 +30,8 @@ namespace CourseMatesWS.DAL.Objects
         public List<FileItem> SubItems { get; set; }
         [DataMember]
         public DateTime LastModify { get; set; }
+        [DataMember]
+        public int Size { get; set; }
 
         public int CompareTo(object obj)
         {

@@ -1,142 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" />
-  <xs:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL" />
-  <xs:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/Message" />
-  <xs:element name="Login">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="LoginResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="LoginResult" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="id" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Register">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" minOccurs="0" name="user" nillable="true" type="q1:User" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RegisterResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL" minOccurs="0" name="RegisterResult" type="q2:SQLStatus" />
-        <xs:element minOccurs="0" name="userId" type="xs:int" />
-        <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SendRestorePassword">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="toSend" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SendRestorePasswordResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SendRestorePasswordResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreateNewCourse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="userId" type="xs:int" />
-        <xs:element minOccurs="0" name="courseName" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="iconCls" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreateNewCourseResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CreateNewCourseResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetCourseByUserId">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetCourseByUserIdResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" minOccurs="0" name="GetCourseByUserIdResult" nillable="true" type="q3:ArrayOfCourse" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UploadFileMsg">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.microsoft.com/Message" name="FileStream" type="q4:StreamBody" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CourseId" type="xs:int" />
-  <xs:element name="FileName" nillable="true" type="xs:string" />
-  <xs:element name="ParentId" type="xs:int" />
-  <xs:element name="SessionId" nillable="true" type="xs:string" />
-  <xs:element name="TypeId" type="xs:int" />
-  <xs:element name="UserId" type="xs:int" />
-  <xs:element name="GetCourseFiles">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="courseId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetCourseFilesResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" minOccurs="0" name="GetCourseFilesResult" nillable="true" type="q5:FileStructure" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="LoginREST">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="LoginRESTResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="LoginRESTResult" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="id" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetCourseByUserIdREST">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetCourseByUserIdRESTResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" minOccurs="0" name="GetCourseByUserIdRESTResult" nillable="true" type="q6:ArrayOfCourse" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:simpleType name="SQLStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Succeeded" />
+      <xs:enumeration value="Failed" />
+      <xs:enumeration value="UserExists" />
+      <xs:enumeration value="EmailExists" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SQLStatus" nillable="true" type="tns:SQLStatus" />
+  <xs:simpleType name="FileTypeE">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Folder" />
+      <xs:enumeration value="DOC" />
+      <xs:enumeration value="DOCX" />
+      <xs:enumeration value="XLS" />
+      <xs:enumeration value="XLSX" />
+      <xs:enumeration value="PPT" />
+      <xs:enumeration value="PPTX" />
+      <xs:enumeration value="PDF" />
+      <xs:enumeration value="JPG" />
+      <xs:enumeration value="PNG" />
+      <xs:enumeration value="GIF" />
+      <xs:enumeration value="BMP" />
+      <xs:enumeration value="TXT" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="FileTypeE" nillable="true" type="tns:FileTypeE" />
+  <xs:simpleType name="DeleteStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Failed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Authorized">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="FullFolder">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DeleteStatus" nillable="true" type="tns:DeleteStatus" />
 </xs:schema>

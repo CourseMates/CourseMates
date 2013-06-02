@@ -117,43 +117,30 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="userId" type="xs:int" />
-        <xs:element minOccurs="0" name="fileId" type="xs:int" />
+        <xs:element minOccurs="0" name="fiileId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteFileResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL" minOccurs="0" name="DeleteFileResult" type="q7:DeleteStatus" />
+        <xs:element minOccurs="0" name="DeleteFileResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="DownloadRequestMsg">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FileId" type="xs:int" />
-  <xs:element name="RemoteFileInfoMsg">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.microsoft.com/Message" name="FileStream" type="q8:StreamBody" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetCoursePartisipant">
+  <xs:element name="GetFile">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="userId" type="xs:int" />
-        <xs:element minOccurs="0" name="courseId" type="xs:int" />
+        <xs:element minOccurs="0" name="fileId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetCoursePartisipantResponse">
+  <xs:element name="GetFileResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" minOccurs="0" name="GetCoursePartisipantResult" nillable="true" type="q9:ArrayOfUser" />
+        <xs:element xmlns:q7="http://schemas.microsoft.com/Message" name="GetFileResult" type="q7:StreamBody" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -184,14 +171,14 @@
   <xs:element name="GetCourseByUserIdRESTResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" minOccurs="0" name="GetCourseByUserIdRESTResult" nillable="true" type="q10:ArrayOfCourse" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" minOccurs="0" name="GetCourseByUserIdRESTResult" nillable="true" type="q8:ArrayOfCourse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RegisterREST">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" minOccurs="0" name="stream" nillable="true" type="q11:User" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" minOccurs="0" name="stream" nillable="true" type="q9:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

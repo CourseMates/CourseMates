@@ -40,6 +40,31 @@
     </script>
     <title>My Courses</title>
     <style type="text/css">
+        .search-item {
+            font          : normal 11px tahoma, arial, helvetica, sans-serif;
+            padding       : 3px 10px 3px 10px;
+            border        : 1px solid #fff;
+            border-bottom : 1px solid #eeeeee;
+            white-space   : normal;
+            color         : #555;
+        }
+        
+        .search-item h3 {
+            display     : block;
+            font        : inherit;
+            font-weight : bold;
+            color       : #222;
+            margin      :0px;
+        }
+
+        .search-item h3 span {
+            float       : right;
+            font-weight : normal;
+            margin      : 0 0 5px 5px;
+            width       : 100px;
+            display     : block;
+            clear       : none;
+        } 
         .ux-wallpaper {
             background-color:White !important;
             background-image:url(Images/Logo.png) !important;
@@ -272,29 +297,32 @@
                 </ext:MenuPanel>
                 <ext:Panel ID="Panel1" runat="server" Frame="true" Region="Center" Layout="FitLayout">  
                     <Items>
-                        <ext:FlashComponent runat="server" />
+                        <ext:FlashComponent runat="server"/>
                     </Items>
                 </ext:Panel>    
             </Items>
         </ext:Window>
-        <ext:Window ID="winCourse" runat="server" Closable="true" Resizable="true" Minimizable="true" Width="800" Height="600" Layout="FitLayout" Icon="BookOpen" Hidden="true">
+        <ext:Window ID="winCourse" runat="server" Closable="true" Resizable="false" Minimizable="true" Width="800" Height="600" Layout="FitLayout" Icon="BookOpen" Hidden="true">
             <Items>
                 <ext:TabPanel ID="TabPanel1" runat="server" Layout="FitLayout">
                     <Items>
-                        <ext:Panel ID="Panel2" runat="server" Title="Files" Frame="true" Layout="BorderLayout">
+                        <ext:Panel ID="pnlFiles" runat="server" Title="Files" Frame="true" Layout="BorderLayout">
                             <Items>
                                 <ext:Window ID="winUploadFile" runat="server" Closable="true" Icon="Add" Title="Add File" Resizable="false" Draggable="true" Minimizable="true" Width="400" Height="150" Layout="FitLayout" Hidden="true" CloseAction="Hide">
                                         <Items>
                                         <ext:FormPanel ID="FormPanel1" runat="server" Frame="true">
                                             <Items>
-                                                <ext:TextField ID="txtDisplayName" runat="server" FieldLabel="Flie Name" Margin="5"  MsgTarget="Side" AnchorHorizontal="100%" AllowBlank="false"  />
-                                                <ext:FileUploadField ID="uploadFiled" Margin="5" runat="server" EmptyText="Select File" FieldLabel="File" ButtonText="Browse..." AnchorHorizontal="100%" AllowBlank="false"/> 
+                                                <ext:TextField runat="server" Margin="5" ID="txtFolderName" FieldLabel="Folder Name" AllowBlank="false" AnchorHorizontal="100%" MsgTarget="Side" />
+                                                <ext:FileUploadField ID="uploadFiled" Margin="5" runat="server" EmptyText="Select File" FieldLabel="File" ButtonText="Browse..." AnchorHorizontal="100%" AllowBlank="false" MsgTarget="Side"/> 
                                             </Items>    
                                             <Buttons>
-                
-                                                <ext:Button ID="btnUpload" runat="server" Text="Upload" Icon="Accept" Disabled="true">
+                                                <ext:Button ID="btnUpload" runat="server" Text="Add" Icon="Accept" Disabled="true">
                                                     <DirectEvents>
-                                                        <Click OnEvent="UploadClick" Before="Ext.Msg.wait('Uploading...', 'Uploading');" />
+                                                        <Click OnEvent="UploadNewFile" Before="Ext.Msg.wait('Add new file...', 'Add File');" IsUpload="false" >
+                                                            <ExtraParams>
+                                                                <ext:Parameter Name="isFolder" Value="#{txtFolderName}.isVisible()" Mode="Raw" />
+                                                            </ExtraParams>
+                                                        </Click>
                                                     </DirectEvents>
                                                 </ext:Button>
                                                 <ext:Button ID="Button8" runat="server" Text="Cancel" Icon="Cancel">
@@ -340,27 +368,58 @@
                                     <TopBar>
                                          <ext:Toolbar ID="Toolbar2" runat="server">
                                             <Items>
-                                              <ext:Button ID="Button1" runat="server" Icon="Add" Text="Add File">
+                                                <ext:Button  ID="btnAddFolder" runat="server" Icon="FolderAdd" Text="Add Folder">
                                                     <Listeners>
-                                                    <Click Handler="#{winUploadFile}.show();" />                                
+                                                        <Click Handler="#{winUploadFile}.show(); 
+                                                                        #{txtFolderName}.setVisible(true); 
+                                                                        #{uploadFiled}.setVisible(false);
+                                                                        #{txtFolderName}.allowBlank = false; 
+                                                                        #{uploadFiled}.allowBlank = true;
+                                                                        #{txtFolderName}.validate();" />                                
                                                     </Listeners>
-                                                <ToolTips>
-                                                    <ext:ToolTip ID="ToolTip1" runat="server" Html="Simple button" />
-                                                </ToolTips>
-                                            </ext:Button>
-                                            <ext:Button ID="btnDeleteFile" runat="server" Icon="Delete" Text="Delete File">
-                                            </ext:Button>
-                                            <ext:ToolbarSeparator />
-                                            <ext:Button  ID="btnAddFolder" runat="server" Icon="FolderAdd" Text="Add Folder">
-                                            </ext:Button>
-                                            <ext:Button ID="btnDeleteFolder" runat="server" Icon="FolderDelete" Text="Delete Folder">
-                                            </ext:Button>
-                                            <ext:ToolbarSeparator />
-                                            <ext:Button ID="btnDownload" runat="server" Icon="PackageDown" Text="Download" Tooltip="Download">
-                                            </ext:Button>
-                                        </Items>
-                                    </ext:Toolbar>
-                                </TopBar>
+                                                </ext:Button>
+                                                <ext:Button ID="Button1" runat="server" Icon="Add" Text="Add File">
+                                                    <Listeners>
+                                                        <Click Handler="#{winUploadFile}.show(); 
+                                                                        #{txtFolderName}.setVisible(false); 
+                                                                        #{uploadFiled}.setVisible(true); 
+                                                                        #{txtFolderName}.allowBlank = true; 
+                                                                        #{uploadFiled}.allowBlank = false;
+                                                                        #{uploadFiled}.validate();" />                                
+                                                    </Listeners>
+                                                </ext:Button>
+                                                <ext:ToolbarSeparator />
+                                                <ext:Button ID="btnDeleteFile" runat="server" Icon="Delete" Text="Delete">
+                                                    <DirectEvents>
+                                                        <Click OnEvent="DeleteFile">
+                                                            <EventMask ShowMask="true" Msg="Deleting..." />
+                                                            <Confirmation ConfirmRequest="true" Title="Delete File" Message="This action will delete this item,<br>are you sure?" />
+                                                            <ExtraParams>
+                                                                <ext:Parameter Name="FileID" Value="#{pnlFileView}.getRowsValues({ selectedOnly : true })[0].FileID" Mode="Raw" />
+                                                            </ExtraParams>
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                                <ext:ToolbarSeparator />
+                                                <ext:Button ID="btnDownload" runat="server" Icon="PackageDown" Text="Download" Tooltip="Download">
+                                                    <DirectEvents>
+                                                        <Click OnEvent="DownloadFile" IsUpload="true">
+                                                            <ExtraParams>
+                                                                <ext:Parameter Name="FileID" Value="#{pnlFileView}.getRowsValues({ selectedOnly : true })[0].FileID" Mode="Raw" />
+                                                                <ext:Parameter Name="IsFolder" Value="#{pnlFileView}.getRowsValues({ selectedOnly : true })[0].IsFolder" Mode="Raw" />
+                                                            </ExtraParams>
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                                <ext:ToolbarFill />
+                                                <ext:Button runat="server" ID="btnReload" ToolTip="Reload" Icon="ArrowRefresh">
+                                                    <Listeners>
+                                                        <Click Handler="#{DirectMethods}.LoadFiles(-1);"/>
+                                                    </Listeners>
+                                                </ext:Button>
+                                            </Items>
+                                        </ext:Toolbar>
+                                    </TopBar>
                                     <Items>
                                         <ext:Panel runat="server" AnchorVertical="100%" Region="Center" AutoScroll="true">
                                             <Items>
@@ -373,11 +432,13 @@
                                                                         <ext:ModelField Name="FileID" Type="Int" /> 
                                                                         <ext:ModelField Name="FileName" Type="String" /> 
                                                                         <ext:ModelField Name="ImageUrl" Type="String" />
-                                                                        <ext:ModelField Name="Size" Type="Float" />
+                                                                        <ext:ModelField Name="Size" Type="String" />
                                                                         <ext:ModelField Name="LastModify" Type="Date" />
                                                                         <ext:ModelField Name="Rate" Type="Int" />
                                                                         <ext:ModelField Name="Type" Type="String" />
                                                                         <ext:ModelField Name="Owner" Type="String" />
+                                                                        <ext:ModelField Name="IsFolder" Type="Boolean" />
+                                                                        <ext:ModelField Name="OwnerID" Type="Int" />
                                                                     </Fields>
                                                                 </ext:Model>
                                                             </Model>
@@ -395,7 +456,7 @@
                                                                             <div style="width:64px;height:64px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{ImageUrl}")"></div>
                                                                         </tpl>                    
                                                                     </div>
-                                                                    <span style="text-align:center">{FileName}</span>
+                                                                    <span style="text-align:center; overflow:hidden; width:64px; text-overflow:ellipsis">{FileName}</span>
                                                                 </div>
                                                             </tpl>
                                                         </Html>
@@ -411,11 +472,21 @@
                                         <ext:Panel ID="pnlItemInfo" runat="server" AnchorVertical="100%" Height="150" Region="South" Title="Item Info" Collapsed="false" Collapsible="true" Frame="false">
                                             <CustomConfig>
                                                 <ext:ConfigItem Name="loadRecord" Value="function(file){
-                                                    this.body.hide();
-                                                    this.tpl.overwrite(App.pnlItemInfo.body, file.data);
-                                                    this.body.slideIn('t', {
-                                                        duration: 250
-                                                    });}" 
+                                                    if(file.data.FileName != 'Go Back')
+                                                    {
+                                                        if(file.data.IsFolder == false)
+                                                        {
+                                                            this.body.hide();
+                                                            this.tpl.overwrite(App.pnlItemInfo.body, file.data);
+                                                            this.body.slideIn('t', {
+                                                                duration: 250
+                                                            });
+                                                        }
+                                                        else
+                                                        {
+                                                            this.body.hide();
+                                                        }
+                                                    }}" 
                                                  Mode="Raw" />
                                             </CustomConfig>
                                             <Tpl runat="server">
@@ -438,11 +509,11 @@
                                                                     </tr>
                                                                     <tr style="height:20px;">
                                                                         <td><b>Size:</b></td>
-                                                                        <td>{Size} MB</td>
+                                                                        <td>{Size}</td>
                                                                     </tr>
                                                                     <tr style="height:20px;">
                                                                         <td><b>Last Modify:</b></td>
-                                                                        <td>{LastModify}</td>
+                                                                        <td>{LastModify:date('d/m/y h:i')}</td>
                                                                         
                                                                     </tr>
                                                                     <tr style="height:20px;">
@@ -465,14 +536,280 @@
                                             </Tpl>
                                         </ext:Panel>
                                     </Items>
-                            </ext:Panel>
+                                </ext:Panel>
                             </Items>
                         </ext:Panel>
-                        <ext:Panel ID="Panel5" runat="server" Title="Fourm">
+                        <ext:Panel ID="pnlFourm" runat="server" Title="Fourm">
+                            <Items>
+                            </Items>
                         </ext:Panel>
-                        <ext:Panel ID="Panel6" runat="server" Title="Course User">
+                        <ext:Panel ID="pnlUsers" runat="server" Title="Course User" Layout="BorderLayout">
+                            <Items>
+                                <ext:Window ID="winAddUser" runat="server" Closable="true" Icon="UserAdd" Title="Add User" Resizable="false" Draggable="true" Minimizable="true" Width="400" Height="150" Layout="FitLayout" Hidden="true" CloseAction="Hide">
+                                        <Items>
+                                        <ext:FormPanel ID="FormPanel2" runat="server" Frame="true">
+                                            <Items>
+                                                <ext:ComboBox runat="server" Margin="5" ID="cbAddUserName" FieldLabel="User Name" AllowBlank="false" AnchorHorizontal="100%" MsgTarget="Side"
+                                                              TriggerAction="Query" DisplayField="UserName" ValueField="UserName" TypeAhead="false" HideBaseTrigger="true" >
+                                                    <ListConfig LoadingText="Searching...">
+                                                        <ItemTpl runat="server">
+                                                            <Html>
+                                                                <div class="search-item">
+							                                        <b>{UserName}</b>
+						                                        </div>
+                                                            </Html>
+                                                        </ItemTpl>
+                                                    </ListConfig>
+                                                    <Store>
+                                                        <ext:Store runat="server">
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="UserName" Type="String" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                            <Proxy>
+                                                                <ext:PageProxy DirectFn="App.direct.GetAllUsers">
+                                                                    <Reader>
+                                                                        <ext:JsonReader />
+                                                                    </Reader>
+                                                                </ext:PageProxy>
+                                                            </Proxy>
+                                                        </ext:Store>
+                                                    </Store>
+                                                </ext:ComboBox>
+                                            </Items>    
+                                            <Buttons>
+                                                <ext:Button ID="Button3" runat="server" Text="Add" Icon="Accept" Disabled="true">
+                                                </ext:Button>
+                                                <ext:Button ID="Button5" runat="server" Text="Cancel" Icon="Cancel">
+                                                    <Listeners>
+                                                        <Click Handler="#{winAddUser}.hide();" />
+                                                    </Listeners>
+                                                </ext:Button>
+                                            </Buttons>    
+                                            <Listeners>
+                                                <ValidityChange Handler="#{btnUpload}.setDisabled(!valid);" />
+                                            </Listeners>
+                                        </ext:FormPanel>
+                                    </Items>
+                                </ext:Window>
+                                <ext:Panel runat="server" Region="Center">
+                                    <TopBar>
+                                        <ext:Toolbar runat="server">
+                                            <Items>
+                                                <ext:Button runat="server" Icon="UserAdd" Text="Add user">
+                                                    <Listeners>
+                                                        <Click Handler="#{winAddUser}.show();" />
+                                                    </Listeners>
+                                                </ext:Button>
+                                                <ext:Button runat="server" Icon="UserDelete" Text="Delete user">
+                                                </ext:Button>
+                                                <ext:Button runat="server" Icon="StarGold" Text="Make as admin" >
+                                                </ext:Button>
+                                                <ext:ToolbarFill />
+                                                <ext:Button runat="server" Icon="ArrowRefresh">
+                                                </ext:Button>
+                                            </Items>
+                                        </ext:Toolbar>
+                                    </TopBar>
+                                    <Items>
+                                        <ext:DataView runat="server" SingleSelect="true" ItemSelector="div.thumb-wrap" Cls="img-chooser-view" AutoScroll="true" ID="pnlUsersView" >
+                                            <Store>
+                                                <ext:Store runat="server" ID="storeUserView">
+                                                    <Model>
+                                                        <ext:Model ID="Model2" runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="UserID" Type="Int" /> 
+                                                                <ext:ModelField Name="UserName" Type="String" /> 
+                                                                <ext:ModelField Name="FirstName" Type="String" /> 
+                                                                <ext:ModelField Name="LastName" Type="String" />
+                                                                <ext:ModelField Name="Email" Type="String" />
+                                                                <ext:ModelField Name="IsAdmin" Type="Boolean" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                            <Tpl ID="Tpl1" runat="server">
+                                                <Html>
+                                                    <tpl for=".">
+                                                        <div class="thumb-wrap">
+                                                            <div class="thumb">
+                                                                <tpl if="!Ext.isIE6">
+                                                                    <tpl if="IsAdmin">
+                                                                        <img src="Images/adminuser.png" height="64px" width="64px" />
+                                                                    </tpl>
+                                                                    <tpl if="!IsAdmin">
+                                                                        <img src="Images/user.png" height="64px" width="64px" />
+                                                                    </tpl>
+                                                                </tpl>
+                                                                <tpl if="Ext.isIE6">
+                                                                    <tpl if="IsAdmin == true">
+                                                                        <div style="width:64px;height:64px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="Images/adminuser.png")"></div>
+                                                                    </tpl>
+                                                                    <tpl if="IsAdmin == False">
+                                                                        <div style="width:64px;height:64px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="Images/user.png")"></div>
+                                                                    </tpl>
+                                                                </tpl>                    
+                                                            </div>
+                                                            <span style="text-align:center; overflow:hidden; width:64px; text-overflow:ellipsis">{UserName}</span>
+                                                        </div>
+                                                    </tpl>
+                                                </Html>
+                                            </Tpl>
+                                            <Listeners>
+                                                <SelectionChange Handler="if(selections[0]){App.pnlUserDetails.loadUser(selections[0])}" />
+                                                <Refresh Handler="this.el.select('.thumb-wrap').addClsOnOver('x-view-over');" Delay="100" />
+                                            </Listeners>
+                                        </ext:DataView>
+                                    </Items>
+                                </ext:Panel>
+                                <ext:Panel runat="server" Region="East" ID="pnlUserDetails" Title="User Details" Width="180">
+                                    <CustomConfig>
+                                        <ext:ConfigItem Name="loadUser" Value="function(user){
+                                                    this.body.hide();
+                                                    this.tpl.overwrite(App.pnlUserDetails.body, user.data);
+                                                    this.body.slideIn('l', {duration: 250});
+                                            }" 
+                                            Mode="Raw" />
+                                    </CustomConfig>
+                                    <Tpl runat="server">
+                                        <Html>
+                                            <div class="details">
+                                                <tpl for=".">   
+                                                    <div style="text-align: center;">
+                                                        <tpl if="!Ext.isIE6">
+                                                                    <tpl if="IsAdmin">
+                                                                        <img src="Images/adminuser.png" height="90px" width="90px" />
+                                                                    </tpl>
+                                                                    <tpl if="!IsAdmin">
+                                                                        <img src="Images/user.png" height="90px" width="90px" />
+                                                                    </tpl>
+                                                                </tpl>
+                                                                <tpl if="Ext.isIE6">
+                                                                    <tpl if="IsAdmin">
+                                                                        <div style="width:90px;height:90px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="Images/adminuser.png")"></div>
+                                                                    </tpl>
+                                                                    <tpl if="!IsAdmin">
+                                                                        <div style="width:90px;height:90px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="Images/user.png")"></div>
+                                                                    </tpl>
+                                                                </tpl>
+                                                    </div>
+                                                    <hr />
+                                                    <div class="details-info">
+                                                        <b style="margin:15px;line-height:20px">First Name:</b></br>
+                                                        <span style="margin:25px;line-height:20px">{FirstName}</span></br>
+                                                        <b style="margin:15px;line-height:20px">Last Name:</b></br>
+                                                        <span style="margin:25px;line-height:20px">{LastName}</span></br>
+                                                        <b style="margin:15px;line-height:20px">User Name:</b></br>
+                                                        <span style="margin:25px;line-height:20px">{UserName}</span></br>
+                                                        <b style="margin:15px;line-height:20px">Email:</b></br>
+                                                        <span style="margin:25px;line-height:20px">{Email}</span></br>
+                                                    </div> 
+                                                </tpl>
+                                            </div>
+                                        </Html>
+                                    </Tpl>
+                                </ext:Panel>
+                            </Items>
                         </ext:Panel>
-                        <ext:Panel ID="Panel7" runat="server" Title="Course Settings">
+                        <ext:Panel ID="pnlSettings" runat="server" Title="Course Settings" Layout="BorderLayout">
+                            <Items>
+                                <ext:Panel runat="server" Layout="BorderLayout" Border="false" Region="Center">
+                                    <Items>
+                                        <ext:FormPanel  runat="server" Layout="FitLayout" Border="false" Region="East">
+                                            <Items>
+                                                <ext:FieldSet Title="Contact Admin" runat="server" Collapsible="false" Margin="10">
+                                                    <Items>
+                                                        <ext:DisplayField runat="server" Text="Subject:" Margin="15" />
+                                                        <ext:TextField runat="server" ID="txtCASubject" Width="300" Margin="15" AllowBlank="false" MsgTarget="Side" />
+                                                        <ext:DisplayField runat="server" Text="Message:" Margin="15" />
+                                                        <ext:TextArea runat="server" ID="taMessage" Margin="15" Width="300" Height="150" AllowBlank="false" MsgTarget="Side" />
+                                                        <ext:FieldContainer ID="FieldContainer1" runat="server" Layout="HBoxLayout" >
+                                                            <Defaults>
+                                                                <ext:Parameter Name="margins" Value="20 0 0 260" Mode="Value" />
+                                                            </Defaults>
+                                                            <Items>
+                                                                <ext:Button runat="server" Icon="EmailGo" Text="Send" ID="btnSendMsg" Disabled="true">
+                                                        
+                                                                </ext:Button>
+                                                            </Items>
+                                                        </ext:FieldContainer>
+                                                    </Items>
+                                                </ext:FieldSet>
+                                            </Items>
+                                            <Listeners>
+                                                  <ValidityChange Handler="#{btnSendMsg}.setDisabled(!valid);" />
+                                            </Listeners>
+                                        </ext:FormPanel>
+                                        <ext:FormPanel ID="Panel2" runat="server" Layout="FitLayout" Border="false" Region="Center">
+                                            <Items>
+                                                <ext:FieldSet ID="FieldSet1" Title="Course Details" runat="server" Collapsible="false" Margin="10" >
+                                                    <Items>
+                                                        <ext:TextField runat="server" FieldLabel="Course Name:" ID="txtCourseNameChange" Width="330" Margin="15" AllowBlank="false" />
+                                                        <ext:ComboBox runat="server" ID="cmbFolderColor1" Editable="false" FieldLabel="Folder Color" Margin="15" AllowBlank="false"
+                                                            Width="330" DisplayField="text" ValueField="iconCls">
+                                                            <Store>
+                                                                <ext:Store ID="storeFolderColors1" runat="server">
+                                                                    <Model>
+                                                                        <ext:Model ID="Model3" runat="server">
+                                                                            <Fields>
+                                                                                <ext:ModelField Name="text" />
+                                                                                <ext:ModelField Name="iconCls" />
+                                                                            </Fields>
+                                                                        </ext:Model>
+                                                                    </Model>            
+                                                                </ext:Store>
+                                                            </Store>
+                                                            <ListConfig>
+                                                                <ItemTpl ID="ItemTpl2" runat="server">
+                                                                    <Html>
+                                                                        <img src="Images/FolderIcons/{text}.png" width="20" style="text-align:center"> {text}</img>
+                                                                    </Html>
+                                                                </ItemTpl>
+                                                            </ListConfig>
+                                                        </ext:ComboBox>
+                                                        <ext:FieldContainer ID="fcSaveChanges" runat="server" Layout="HBoxLayout">
+                                                            <Defaults>
+                                                                <ext:Parameter Name="margins" Value="20 0 0 290" Mode="Value" />
+                                                            </Defaults>
+                                                            <Items>
+                                                                <ext:Button ID="btnSaveChanges" runat="server" Icon="Disk" Text="Save">
+                                                        
+                                                                </ext:Button>
+                                                            </Items>
+                                                        </ext:FieldContainer>
+                                                    </Items>
+                                                 </ext:FieldSet>
+                                            </Items>
+                                            <Listeners>
+                                                  <ValidityChange Handler="#{btnSaveChanges}.setDisabled(!valid);" />
+                                            </Listeners>
+                                        </ext:FormPanel>
+                                    </Items>
+                                </ext:Panel>
+                                <ext:Panel runat="server" Layout="FitLayout" Border="false" Height="150" Region="South">
+                                    <Items>
+                                        <ext:FieldSet Title="Dangerous Area" runat="server" Collapsible="false" Margin="10">
+                                            <Items>
+                                                <ext:DisplayField runat="server" Text="<b>Delete this Course</b>" StyleHtmlContent="true"/>
+                                                <ext:DisplayField ID="DisplayField1" runat="server" Text="Once you delete a course, there is no going back. (all files will be deleted)." Margin="10" />
+                                                <ext:FieldContainer runat="server" Layout="HBoxLayout">
+                                                    <Defaults>
+                                                        <ext:Parameter Name="margins" Value="20 0 0 680" Mode="Value" />
+                                                    </Defaults>
+                                                    <Items>
+                                                        <ext:Button runat="server" Icon="Delete" Text="Delete" ID="btnDeleteCourse">
+                                                        </ext:Button>
+                                                    </Items>
+                                                </ext:FieldContainer>
+                                           </Items>
+                                        </ext:FieldSet>
+                                    </Items>
+                                </ext:Panel>
+                            </Items>
                         </ext:Panel>
                     </Items>
                 </ext:TabPanel>

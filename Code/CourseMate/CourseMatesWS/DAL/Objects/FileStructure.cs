@@ -14,7 +14,7 @@ namespace CourseMatesWS.DAL.Objects
         
         public FileStructure(FileItem root)
         {
-            if (root != null && root.SubItems != null)
+            if (root != null)
             {
                 RootFolder = root;
             }
@@ -28,7 +28,8 @@ namespace CourseMatesWS.DAL.Objects
         {
             if (file == null)
                 return false;
-
+            if (RootFolder.SubItems == null)
+                RootFolder.SubItems = new List<FileItem>();
             file.PerantID = RootFolder.ID;
             RootFolder.SubItems.Add(file);
             return true;
@@ -71,16 +72,20 @@ namespace CourseMatesWS.DAL.Objects
                 return false;
             if (current.ID == toAdd.PerantID)
             {
+                if (current.IsFolder && current.SubItems == null)
+                    current.SubItems = new List<FileItem>();
                 if (!current.IsFolder || current.SubItems.Contains(toAdd))
                     return false;
                 current.SubItems.Add(toAdd);
                 return true;
             }
-
-            foreach (FileItem item in current.SubItems)
+            if (current.SubItems != null)
             {
-                if (AddFile(toAdd, item))
-                    return true;
+                foreach (FileItem item in current.SubItems)
+                {
+                    if (AddFile(toAdd, item))
+                        return true;
+                }
             }
             return false;
         }

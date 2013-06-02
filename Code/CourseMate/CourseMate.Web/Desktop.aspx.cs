@@ -6,11 +6,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Ext.Net;
 using CourseMate.Web.CMwcf;
+using System.IO;
 
 namespace CourseMate.Web
 {
     public partial class Desktop : System.Web.UI.Page
     {
+        #region Session variables
         public string SessionID
         {
             get
@@ -24,7 +26,7 @@ namespace CourseMate.Web
                 Session["SessionID"] = value;
             }
         }
-        public int CurrentCourse 
+        public int CurrentCourse
         {
             get
             {
@@ -56,6 +58,25 @@ namespace CourseMate.Web
                 Session["UserID"] = value;
             }
         }
+        public int CurrentViewLocation
+        {
+            get
+            {
+                if (Session["CurrentViewLocation"] != null)
+                {
+                    int x;
+                    if (int.TryParse(Session["CurrentViewLocation"].ToString(), out x))
+                    {
+                        return x;
+                    }
+                }
+                return -1;
+            }
+            set
+            {
+                Session["CurrentViewLocation"] = value;
+            }
+        }
         public FileStructure CourseFiles
         {
             get
@@ -82,7 +103,22 @@ namespace CourseMate.Web
                 Session["Courses"] = value;
             }
         }
-        
+        public CourseMatesClient CourseMatesWS
+        {
+            get
+            {
+                if (Session["CourseMatesWS"] != null)
+                    return Session["CourseMatesWS"] as CourseMatesClient;
+                return new CourseMatesClient();
+            }
+            set
+            {
+                Session["CourseMatesWS"] = value;
+            }
+        }
+        #endregion
+
+        #region Listiners
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -92,7 +128,7 @@ namespace CourseMate.Web
             }
             else
             {
-                this.storeFolderColors.DataSource = new object[]
+                object[] obj = new object[]
                 {
                     new object[]{"Black","x-black-folder"},
                     new object[]{"Beige","x-beige-folder"},
@@ -103,15 +139,15 @@ namespace CourseMate.Web
                     new object[]{"Pink","x-pink-folder"},
                     new object[]{"White","x-white-folder"}
                 };
+                storeFolderColors.DataSource = obj;
+                storeFolderColors1.DataSource = obj;
 
                 if (!X.IsAjaxRequest)
                 {
-                    Courses = new Dictionary<int, Course>();
-                    Course[] allCourses = new CourseMatesClient().GetCourseByUserId(SessionID, UserID.ToString());
+                    GetAllCourses();
 
-                    foreach (Course course in allCourses)
+                    foreach (Course course in Courses.Values)
                     {
-                        Courses.Add(course.ID, course);
                         DesktopModule m = new DesktopModule
                         {
                             ModuleID = "Course-" + course.ID,
@@ -128,7 +164,7 @@ namespace CourseMate.Web
                     }
                 }
             }
-            
+
         }
 
         protected void Logout_Click(object sender, DirectEventArgs e)
@@ -141,9 +177,11 @@ namespace CourseMate.Web
         protected void AddNewCourse_Click(object sender, DirectEventArgs e)
         {
             int courseId = -1;
-            courseId = new CourseMatesClient().CreateNewCourse(SessionID, UserID, txtCourseName.Text, cmbFolderColor.SelectedItem.Value);
+            courseId = CourseMatesWS.CreateNewCourse(SessionID, UserID, txtCourseName.Text, cmbFolderColor.SelectedItem.Value);
             if (courseId != -1)
             {
+                GetAllCourses();
+                CourseFiles = CourseMatesWS.GetCourseFiles(SessionID, UserID, courseId);
                 CreateNewCourseMudole(courseId, txtCourseName.Text, cmbFolderColor.SelectedItem.Value);
                 ShowMessage("Create new course", "The course has been created", MessageBox.Icon.INFO, MessageBox.Button.OK);
                 winAddNewCourse.Close();
@@ -154,12 +192,66 @@ namespace CourseMate.Web
             }
         }
 
-        protected void UploadClick(object sender, DirectEventArgs e)
+        protected void UploadNewFile(object sender, DirectEventArgs e)
         {
-            //if (this.uploadFiled.HasFile)
-            //{
-            //    new CourseMate.Web.CMwcf.CourseMatesClient().UploadFile(1, "newfile.pdf", 0, "123", 1, 1, uploadFiled.FileContent);
-            //}
+            bool isFolder;
+            string fileName = string.Empty;
+            int size = 0;
+            string status = string.Empty;
+
+            FileItem f = GetFileItem(CourseFiles.RootFolder, CurrentViewLocation);
+
+            if (f.SubItems != null)
+            {
+                foreach (var item in f.SubItems)
+                {
+                    if (item.FileName == txtFolderName.Text || item.FileName == uploadFiled.PostedFile.FileName.Split('\\').Last())
+                    {
+                        ShowMessage("Error", "An item with the same name exists,<br>rename and try again.", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+                        return;
+                    }
+                }
+            }
+            try
+            {
+                if (bool.TryParse(e.ExtraParams["isFolder"], out isFolder))
+                {
+                    if (isFolder)
+                    {
+                        fileName = txtFolderName.Text;
+                        size = 0;
+                        CourseMatesWS.UploadFile(CurrentCourse, fileName, true, CurrentViewLocation, SessionID, size, FileTypeE.Folder, UserID, Stream.Null);
+                        status = "Success";
+                        ReLoadCourseFiles(CurrentCourse);
+                    }
+                    else
+                    {
+                        fileName = uploadFiled.PostedFile.FileName.Split('\\').Last();
+                        size = uploadFiled.PostedFile.ContentLength;
+                        FileTypeE type;
+                        if (GetFileType(fileName, out type))
+                        {
+                            CourseMatesWS.UploadFile(CurrentCourse, fileName, false, CurrentViewLocation, SessionID, size, type, UserID, uploadFiled.FileContent);
+                            status = "Success";
+                            ReLoadCourseFiles(CurrentCourse);
+                        }
+                        else
+                            status = "Unsupported file type";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                status = "Failed";
+            }
+            string msg = @"<b>File Name:</b> {0}<br/>
+                           <b>Size:</b> {1}<br/>
+                           <b>Status:</b> {2}<br/>";
+            msg = string.Format(msg, fileName, GetFormatedSize(size), status);
+            X.Msg.Hide();
+            ShowMessage("Add File", msg, MessageBox.Icon.INFO, MessageBox.Button.OK);
+
+            winUploadFile.Hide();
         }
 
         protected void FileItemClick(object sender, DirectEventArgs e)
@@ -170,7 +262,222 @@ namespace CourseMate.Web
             {
                 UpdateViewPanel(fileId);
             }
-            
+
+        }
+
+        protected void DeleteFile(object sender, DirectEventArgs e)
+        {
+            int fileId;
+
+            if(int.TryParse(e.ExtraParams["FileID"], out fileId))
+            {
+                DeleteStatus status = CourseMatesWS.DeleteFile(SessionID, UserID, fileId);
+                switch (status)
+                {
+                    case DeleteStatus.Success:
+                        ReLoadCourseFiles(CurrentCourse);
+                        ShowMessage("Delete File", "Done", MessageBox.Icon.INFO, MessageBox.Button.OK);
+                        break;
+                    case DeleteStatus.Failed:
+                        ShowMessage("Delete File", "Failes", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+                        break;
+                    case DeleteStatus.Authorized:
+                        ShowMessage("Delete File", "You are not authorized deleting this item.", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+                        break;
+                    case DeleteStatus.FullFolder:
+                        ShowMessage("Delete File", "This is a full folder, can not delete.", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+                        break;
+                }
+            }
+        }
+
+        protected void DownloadFile(object sender, DirectEventArgs e)
+        {
+            int fileId;
+            bool isFolder = false;
+            bool.TryParse(e.ExtraParams["IsFolder"], out isFolder);
+            if (int.TryParse(e.ExtraParams["FileID"], out fileId))
+            {
+                string fileName;
+                int size;
+                Stream stream;
+                fileName = CourseMatesWS.GetFile(fileId, SessionID, UserID, out size, out stream);
+                if (!isFolder)
+                {
+                    Response.BufferOutput = false;
+                    byte[] buffer = new byte[6500];
+                    int bytesRead = 0;
+
+                    HttpContext.Current.Response.Clear();
+                    HttpContext.Current.Response.ClearHeaders();
+                    HttpContext.Current.Response.ContentType = "application/octet-stream";
+                    HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
+
+                    bytesRead = stream.Read(buffer, 0, buffer.Length);
+
+                    while (bytesRead > 0)
+                    {
+                        if (Response.IsClientConnected)
+                        {
+                            Response.OutputStream.Write(buffer, 0, bytesRead);
+                            Response.Flush();
+                            buffer = new byte[6500];
+                            bytesRead = stream.Read(buffer, 0, buffer.Length);
+                        }
+                        else
+                        {
+                            bytesRead = -1;
+                        }
+                    } 
+                }
+            }
+        } 
+        #endregion
+
+        #region Direct Methods
+        [DirectMethod]
+        public void UpdateViewPanel(int fileId)
+        {
+            CurrentViewLocation = fileId;
+            FileItem item = GetFileItem(CourseFiles.RootFolder, fileId);
+            if (item == null)
+                return;
+
+            if (item.IsFolder)
+            {
+                List<object> obj = new List<object>();
+                if (item.ID != CourseFiles.RootFolder.ID)
+                {
+                    obj.Add(new
+                    {
+                        FileID = item.PerantID,
+                        FileName = "Go Back",
+                        ImageUrl = @"Images\goback.png",
+                        Size = 0,
+                        LastModify = "",
+                        Rate = 0,
+                        Type = 0,
+                        Owner = "",
+                        IsFolder = false,
+                        OwnerID = 0
+                    });
+                }
+                if (item.SubItems != null)
+                {
+                    foreach (var file in item.SubItems)
+                    {
+                        obj.Add(new
+                        {
+                            FileID = file.ID,
+                            FileName = file.FileName,
+                            ImageUrl = file.Type.ImageUrl,
+                            Size = GetFormatedSize(file.Size),
+                            LastModify = file.LastModify,
+                            Rate = file.Rate,
+                            Type = file.Type.Description,
+                            Owner = file.OwnerName,
+                            IsFolder = file.IsFolder,
+                            OwnerID = file.OwnerId
+                        });
+                    }
+                }
+                storeFiles.DataSource = obj.ToArray();
+                storeFiles.DataBind();
+            }
+
+        }
+
+        [DirectMethod(ShowMask = true, CustomTarget = "winCourse")]
+        public void LoadCourseData(int courseId)
+        {
+            LoadFiles(courseId);
+            LoadUsers(courseId);
+            LoadSettings(courseId);
+        }
+
+        [DirectMethod]
+        public static object GetAllUsers()
+        {
+            return new object[]
+            {
+                new {UserName ="boby"},
+                new {UserName ="benoh"},
+                new {UserName ="eliranye"},
+                new {UserName ="avital"},
+                new {UserName ="ariel"},
+                new {UserName ="ofir"},
+                new {UserName ="hadar"}
+            };
+        }
+
+        [DirectMethod(ShowMask = true, CustomTarget = "winCourse")]
+        public void LoadSettings(int courseId)
+        {
+            winCourse.Title = Courses[courseId].CourseName;
+            txtCourseNameChange.Text = Courses[courseId].CourseName;
+            cmbFolderColor1.Value = Courses[courseId].IconClass;
+            if (!Courses[courseId].IsAdmin)
+            {
+                txtCourseNameChange.ReadOnly = true;
+                cmbFolderColor1.ReadOnly = true;
+                fcSaveChanges.Disabled = true;
+                btnDeleteCourse.Disabled = true;
+            }
+            else
+            {
+                txtCourseNameChange.ReadOnly = false;
+                cmbFolderColor1.ReadOnly = false;
+                fcSaveChanges.Disabled = false;
+                btnDeleteCourse.Disabled = false;
+            }
+        }
+
+        [DirectMethod(ShowMask = true, CustomTarget = "winCourse")]
+        public void LoadUsers(int courseId)
+        {
+            List<object> obj = new List<object>();
+
+            for (int i = 0; i < 15; i++)
+            {
+                obj.Add(new
+                {
+                    UserID = i,
+                    UserName = "user" + i,
+                    FirstName = "First" + i,
+                    LastName = "Last" + i,
+                    Email = "email" + i + "@gmail.com",
+                    IsAdmin = true
+                });
+            }
+
+            storeUserView.DataSource = obj;
+            storeUserView.DataBind();
+        }
+
+        [DirectMethod(ShowMask = true, CustomTarget = "winCourse")]
+        public void LoadFiles(int courseId)
+        {
+            if ((courseId == -1 || CurrentCourse == courseId) && CourseFiles != null)
+            {
+                UpdateViewPanel(CourseFiles.RootFolder.ID);
+                if (filesTreePanel.Root.Count > 0)
+                    filesTreePanel.Root.RemoveAt(0);
+                filesTreePanel.SetRootNode(GetFileStructure(CourseFiles.RootFolder));
+
+                return;
+            }
+            if (CurrentCourse != courseId)
+            {
+                ReLoadCourseFiles(courseId);
+            }
+        }
+        #endregion
+
+        #region Private Methods
+        private bool GetFileType(string fileName, out FileTypeE type)
+        {
+            string postFix = fileName.Split('.').Last();
+            return Enum.TryParse<FileTypeE>(postFix.ToUpper(), out type);
         }
 
         private void ShowMessage(string title, string msg, MessageBox.Icon icon, MessageBox.Button btn)
@@ -184,7 +491,7 @@ namespace CourseMate.Web
                 Buttons = btn
             });
         }
-        
+
         private void CreateNewCourseMudole(int id, string name, string iconCls)
         {
             DesktopModule m = new DesktopModule
@@ -202,20 +509,23 @@ namespace CourseMate.Web
             MyDesktop.AddModule(m);
             MyDesktop.ArrangeShortcuts();
         }
-        
-        private FileItem GetFileItem(FileItem item, int courseId)
+
+        private FileItem GetFileItem(FileItem item, int fileId)
         {
             if (item == null)
                 return null;
-            if (item.ID == courseId)
+            if (item.ID == fileId)
                 return item;
-            foreach (var file in item.SubItems)
+            if (item.SubItems != null)
             {
-                FileItem f = GetFileItem(file, courseId);
-                if (f != null)
+                foreach (var file in item.SubItems)
                 {
-                    if (f.ID == courseId)
-                        return f;
+                    FileItem f = GetFileItem(file, fileId);
+                    if (f != null)
+                    {
+                        if (f.ID == fileId)
+                            return f;
+                    }
                 }
             }
             return null;
@@ -228,75 +538,61 @@ namespace CourseMate.Web
             root.NodeID = "Node-" + fs.ID;
             root.Icon = fs.IsFolder ? Icon.Folder : Icon.Report;
 
-            if(fs.ID == CourseFiles.RootFolder.ID)
-                root.Expanded = true;
-
-            foreach (FileItem item in fs.SubItems)
+            if (fs.SubItems != null)
             {
-                Node n = GetFileStructure(item);
-                if (n.Children.Count == 0)
-                    n.Leaf = true;
-                root.Children.Add(n);
-            }
+                if (fs.ID == CourseFiles.RootFolder.ID)
+                    root.Expanded = true;
 
+                foreach (FileItem item in fs.SubItems)
+                {
+                    Node n = GetFileStructure(item);
+                    if (n.Children.Count == 0)
+                        n.Leaf = true;
+                    root.Children.Add(n);
+                }
+            }
+            else
+                root.Leaf = true;
             return root;
         }
 
-        [DirectMethod]
-        public void UpdateViewPanel(int fileId)
+        private string GetFormatedSize(int size)
         {
-            FileItem item = GetFileItem(CourseFiles.RootFolder, fileId);
-            if (item == null)
-                return;
-
-            if (item.IsFolder)
+            double s = (double)size / 1024;
+            if (s > 999)
             {
-                List<object> obj = new List<object>();
-                if (item.ID != CourseFiles.RootFolder.ID)
+                s = s / 1024;
+                if (s > 999)
                 {
-                    obj.Add(new
-                    {
-                        FileID = item.PerantID,
-                        FileName = "Go Back",
-                        ImageUrl = @"Images\goback.png"
-                    });
+                    s = s / 1024;
+                    return string.Format("{0:0.0}", s) + " GB";
                 }
-
-                foreach (var file in item.SubItems)
-                {
-                    obj.Add(new
-                    {
-                        FileID = file.ID,
-                        FileName = file.FileName,
-                        ImageUrl = file.Type.IconClass,
-                        Size = 3.4,
-                        LastModify = DateTime.Now,
-                        Rate = 5,
-                        Type = "Word 2007",
-                        Owner = "benoh"
-                    });
-                }
-                storeFiles.DataSource = obj.ToArray();
-                storeFiles.DataBind();
+                return string.Format("{0:0.0}", s) + " MB";
             }
-            
+            return string.Format("{0:0.0}", s) + " KB";
         }
-        
-        [DirectMethod(ShowMask=true, CustomTarget="winCourse")]
-        public void LoadCourseData(int courseId)
-        {
-            if (CurrentCourse != courseId)
-            {
-                CourseMatesClient client = new CourseMatesClient();
-                CourseFiles = client.GetCourseFiles(courseId);
-                UpdateViewPanel(CourseFiles.RootFolder.ID);
-                if(filesTreePanel.Root.Count >0)
-                    filesTreePanel.Root.RemoveAt(0);
-                filesTreePanel.SetRootNode(GetFileStructure(CourseFiles.RootFolder));
 
-                winCourse.Title = Courses[courseId].CourseName;
-                CurrentCourse = courseId;
+        private void GetAllCourses()
+        {
+            Courses = new Dictionary<int, Course>();
+            Course[] allCourses = CourseMatesWS.GetCoursesByUserId(SessionID, UserID.ToString());
+
+            foreach (Course course in allCourses)
+            {
+                Courses.Add(course.ID, course);
             }
         }
+
+        private void ReLoadCourseFiles(int courseId)
+        {
+            CourseFiles = CourseMatesWS.GetCourseFiles(SessionID, UserID, courseId);
+            UpdateViewPanel(CourseFiles.RootFolder.ID);
+            if (filesTreePanel.Root.Count > 0)
+                filesTreePanel.Root.RemoveAt(0);
+            filesTreePanel.SetRootNode(GetFileStructure(CourseFiles.RootFolder));
+
+            CurrentCourse = courseId;
+        } 
+        #endregion
     }
 }

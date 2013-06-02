@@ -33,11 +33,11 @@
   <wsdl:message name="ICourseMates_CreateNewCourse_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateNewCourseResponse" />
   </wsdl:message>
-  <wsdl:message name="ICourseMates_GetCourseByUserId_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetCourseByUserId" />
+  <wsdl:message name="ICourseMates_GetCoursesByUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoursesByUserId" />
   </wsdl:message>
-  <wsdl:message name="ICourseMates_GetCourseByUserId_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetCourseByUserIdResponse" />
+  <wsdl:message name="ICourseMates_GetCoursesByUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoursesByUserIdResponse" />
   </wsdl:message>
   <wsdl:message name="UploadFileMsg">
     <wsdl:part name="parameters" element="tns:UploadFileMsg" />
@@ -45,8 +45,10 @@
   <wsdl:message name="UploadFileMsg_Headers">
     <wsdl:part name="CourseId" element="tns:CourseId" />
     <wsdl:part name="FileName" element="tns:FileName" />
+    <wsdl:part name="IsFolder" element="tns:IsFolder" />
     <wsdl:part name="ParentId" element="tns:ParentId" />
     <wsdl:part name="SessionId" element="tns:SessionId" />
+    <wsdl:part name="Size" element="tns:Size" />
     <wsdl:part name="TypeId" element="tns:TypeId" />
     <wsdl:part name="UserId" element="tns:UserId" />
   </wsdl:message>
@@ -56,6 +58,33 @@
   </wsdl:message>
   <wsdl:message name="ICourseMates_GetCourseFiles_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCourseFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_DeleteFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFile" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_DeleteFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="DownloadRequestMsg">
+    <wsdl:part name="parameters" element="tns:DownloadRequestMsg" />
+  </wsdl:message>
+  <wsdl:message name="DownloadRequestMsg_Headers">
+    <wsdl:part name="FileId" element="tns:FileId" />
+    <wsdl:part name="SessionId" element="tns:SessionId" />
+    <wsdl:part name="UserId" element="tns:UserId" />
+  </wsdl:message>
+  <wsdl:message name="RemoteFileInfoMsg">
+    <wsdl:part name="parameters" element="tns:RemoteFileInfoMsg" />
+  </wsdl:message>
+  <wsdl:message name="RemoteFileInfoMsg_Headers">
+    <wsdl:part name="FileName" element="tns:FileName" />
+    <wsdl:part name="Size" element="tns:Size" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetCoursePartisipant_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoursePartisipant" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetCoursePartisipant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoursePartisipantResponse" />
   </wsdl:message>
   <wsdl:message name="IAndroidRest_LoginREST_InputMessage">
     <wsdl:part name="parameters" element="tns:LoginREST" />
@@ -68,6 +97,12 @@
   </wsdl:message>
   <wsdl:message name="IAndroidRest_GetCourseByUserIdREST_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCourseByUserIdRESTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAndroidRest_RegisterREST_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterREST" />
+  </wsdl:message>
+  <wsdl:message name="IAndroidRest_RegisterREST_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterRESTResponse" />
   </wsdl:message>
   <wsdl:portType name="ICourseMates">
     <wsdl:operation name="Login">
@@ -86,9 +121,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/CreateNewCourse" message="tns:ICourseMates_CreateNewCourse_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/CreateNewCourseResponse" message="tns:ICourseMates_CreateNewCourse_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetCourseByUserId">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetCourseByUserId" message="tns:ICourseMates_GetCourseByUserId_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetCourseByUserIdResponse" message="tns:ICourseMates_GetCourseByUserId_OutputMessage" />
+    <wsdl:operation name="GetCoursesByUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetCoursesByUserId" message="tns:ICourseMates_GetCoursesByUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetCoursesByUserIdResponse" message="tns:ICourseMates_GetCoursesByUserId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UploadFile">
       <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/UploadFile" name="UploadFileMsg" message="tns:UploadFileMsg" />
@@ -97,6 +132,18 @@
     <wsdl:operation name="GetCourseFiles">
       <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetCourseFiles" message="tns:ICourseMates_GetCourseFiles_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetCourseFilesResponse" message="tns:ICourseMates_GetCourseFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/DeleteFile" message="tns:ICourseMates_DeleteFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/DeleteFileResponse" message="tns:ICourseMates_DeleteFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetFile" name="DownloadRequestMsg" message="tns:DownloadRequestMsg" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetFileResponse" name="RemoteFileInfoMsg" message="tns:RemoteFileInfoMsg" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoursePartisipant">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetCoursePartisipant" message="tns:ICourseMates_GetCoursePartisipant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetCoursePartisipantResponse" message="tns:ICourseMates_GetCoursePartisipant_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IAndroidRest">
@@ -107,6 +154,10 @@
     <wsdl:operation name="GetCourseByUserIdREST">
       <wsdl:input wsaw:Action="http://tempuri.org/IAndroidRest/GetCourseByUserIdREST" message="tns:IAndroidRest_GetCourseByUserIdREST_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAndroidRest/GetCourseByUserIdRESTResponse" message="tns:IAndroidRest_GetCourseByUserIdREST_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterREST">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAndroidRest/RegisterREST" message="tns:IAndroidRest_RegisterREST_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAndroidRest/RegisterRESTResponse" message="tns:IAndroidRest_RegisterREST_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="soap" type="tns:ICourseMates">
@@ -147,8 +198,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetCourseByUserId">
-      <soap:operation soapAction="http://tempuri.org/ICourseMates/GetCourseByUserId" style="document" />
+    <wsdl:operation name="GetCoursesByUserId">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/GetCoursesByUserId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -161,8 +212,10 @@
       <wsdl:input name="UploadFileMsg">
         <soap:header message="tns:UploadFileMsg_Headers" part="CourseId" use="literal" />
         <soap:header message="tns:UploadFileMsg_Headers" part="FileName" use="literal" />
+        <soap:header message="tns:UploadFileMsg_Headers" part="IsFolder" use="literal" />
         <soap:header message="tns:UploadFileMsg_Headers" part="ParentId" use="literal" />
         <soap:header message="tns:UploadFileMsg_Headers" part="SessionId" use="literal" />
+        <soap:header message="tns:UploadFileMsg_Headers" part="Size" use="literal" />
         <soap:header message="tns:UploadFileMsg_Headers" part="TypeId" use="literal" />
         <soap:header message="tns:UploadFileMsg_Headers" part="UserId" use="literal" />
         <soap:body use="literal" />
@@ -173,6 +226,38 @@
     </wsdl:operation>
     <wsdl:operation name="GetCourseFiles">
       <soap:operation soapAction="http://tempuri.org/ICourseMates/GetCourseFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFile">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/DeleteFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/GetFile" style="document" />
+      <wsdl:input name="DownloadRequestMsg">
+        <soap:header message="tns:DownloadRequestMsg_Headers" part="FileId" use="literal" />
+        <soap:header message="tns:DownloadRequestMsg_Headers" part="SessionId" use="literal" />
+        <soap:header message="tns:DownloadRequestMsg_Headers" part="UserId" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RemoteFileInfoMsg">
+        <soap:header message="tns:RemoteFileInfoMsg_Headers" part="FileName" use="literal" />
+        <soap:header message="tns:RemoteFileInfoMsg_Headers" part="Size" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoursePartisipant">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/GetCoursePartisipant" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

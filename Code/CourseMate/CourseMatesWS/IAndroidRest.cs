@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.ServiceModel.Web;
 using CourseMatesWS.DAL.Objects;
+using System.IO;
 
 namespace CourseMatesWS
 {
@@ -19,5 +20,9 @@ namespace CourseMatesWS
         [OperationContract]
         [WebInvoke(ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "/GetCourseByUserId/{sessionId}/{userId}", Method = "GET")]
         List<Course> GetCourseByUserIdREST(string sessionId, string userId);
+
+        [OperationContract]
+        [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedResponse, RequestFormat = WebMessageFormat.Json, UriTemplate = "/Register", Method = "POST")]
+        bool RegisterREST(User stream, out int userId, out string sessionId);
     }
 }

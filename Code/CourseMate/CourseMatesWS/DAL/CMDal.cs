@@ -7,6 +7,7 @@ using CourseMatesWS.DAL.Objects;
 using System.Data;
 using CourseMatesWS.BLL;
 using System.Text;
+using System.IO;
 
 namespace CourseMatesWS.DAL
 {
@@ -15,6 +16,19 @@ namespace CourseMatesWS.DAL
         public static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["MainDB"].ToString();
 
         #region Parssing Methods
+        private static bool ParseCellDataToDouble(object toConvert, out double toParse)
+        {
+            toParse = -1;
+            if (toConvert == null)
+                return false;
+
+            double x;
+            if (double.TryParse(toConvert.ToString(), out x))
+                toParse = x;
+            else
+                return false;
+            return true;
+        }
         private static bool ParseCellDataToInt(object toConvert, out int toParse)
         {
             toParse = -1;
@@ -35,15 +49,15 @@ namespace CourseMatesWS.DAL
 
             return toConvert.ToString();
         }
-        private static DateTime? ParseCellDataToDateTime(object toConvert)
+        private static DateTime ParseCellDataToDateTime(object toConvert)
         {
             if (toConvert == null)
-                return null;
+                return DateTime.MinValue;
 
             DateTime t;
             if (DateTime.TryParse(toConvert.ToString(), out t))
                 return t;
-            return null;
+            return DateTime.MinValue;
         }
         private static bool ParseCellDataToBool(object toConvert, out bool isAdmin)
         {
@@ -263,6 +277,146 @@ namespace CourseMatesWS.DAL
             }
 
             return toReturn;
+        }
+
+        public static FileStructure GetCourseFiles(string sessionId, int userId, int courseId)
+        {
+            try
+            {
+                DataTable table = new DataAccess(ConnectionString).ExecuteQuerySP("SP_GetFilesByCourseID",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@courseID", courseId);
+                if (table == null || table.Rows.Count == 0)
+                    return null;
+
+                FileStructure struc = null;
+                List<FileItem> files = new List<FileItem>();
+                foreach (DataRow row in table.Rows)
+                {
+                    int id, ownerId, perantId, Rate,typeId, size;
+                    bool isFolder;
+
+                    ParseCellDataToInt(row["ID"], out id);
+                    ParseCellDataToInt(row["UserId"], out ownerId);
+                    ParseCellDataToInt(row["ParentFileID"], out perantId);
+                    ParseCellDataToInt(row["Rate"], out Rate);
+                    ParseCellDataToInt(row["TypeID"], out typeId);
+
+                    ParseCellDataToBool(row["IsFolder"], out isFolder);
+
+                    ParseCellDataToInt(row["Size"], out size);
+
+                    FileType type = new FileType
+                    {
+                        ID=typeId,
+                        Description = ParseCellDataToString(row["Type"]),
+                        Extension = ParseCellDataToString(row["Extension"]),
+                        ImageUrl = ParseCellDataToString(row["ImageUrl"])
+                    };
+
+                    FileItem item = new FileItem
+                    {
+                        FileName = ParseCellDataToString(row["FileName"]),
+                        Type = type,
+                        SubItems=null,
+                        OwnerName = ParseCellDataToString(row["UserName"]),
+                        LastModify = ParseCellDataToDateTime(row["LastModify"]),
+                        ID=id,
+                        IsFolder=isFolder,
+                        OwnerId=ownerId,
+                        PerantID=perantId,
+                        Rate=Rate,
+                        Size=size
+                    };
+
+                    files.Add(item);
+                }
+
+                struc = new FileStructure(files.Where(x => x.PerantID == -1).First());
+                files.Remove(struc.RootFolder);
+                while (files.Count != 0)
+                {
+                    if (files.Count > 0 && struc.AddFileByPerantID(files[0]))
+                        files.Remove(files[0]);
+                }
+
+                return struc;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public static void AddNewFile(string sessionId, int userId, string physicalPath, int courseId, FileItem file)
+        {
+
+            try 
+	        {	        
+		        new DataAccess(ConnectionString).ExecuteQuerySP("SP_InsertNewFileToCourse",
+                            "@UserID", userId,
+                            "@SessionID", sessionId,
+                            "@CourseID", courseId,
+                            "@PhysicalPath", physicalPath==null ? string.Empty: physicalPath,
+                            "@FileName", file.FileName,
+                            "@FileTypeID", file.Type.ID,
+                            "@parentFileID", file.PerantID,
+                            "@Size", file.Size,
+                            "@IsFolder", file.IsFolder);
+	        }
+	        catch (Exception)
+	        {
+		
+	        }
+        }
+
+        public static Stream GetFileStream(string sessionId, int userId, int fileId, out string fileName)
+        {
+            fileName = string.Empty;
+            try
+            {
+                DataTable table = new DataAccess(ConnectionString).ExecuteQuerySP("SP_GetFilePhysicalPath",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@FileID", fileId);
+                if (table == null || table.Rows.Count == 0)
+                    return null;
+
+                string physicalPath = ParseCellDataToString(table.Rows[0]["PhysicalPath"]);
+                fileName = ParseCellDataToString(table.Rows[0]["FileName"]);
+                string fullPath = ConfigurationManager.AppSettings["FilesFolder"] + physicalPath;
+                return new FileStream(fullPath, FileMode.Open, FileAccess.Read);
+            }
+            catch (Exception)
+            {
+                return Stream.Null;
+            }
+        }
+
+        public static DeleteStatus DeleteFile(string sessionId, int userId, int fileId, out string physicalFile)
+        {
+            physicalFile = string.Empty;
+            try
+            {
+                DataTable table = new DataAccess(ConnectionString).ExecuteQuerySP("SP_DeleteFile",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@FileID", fileId);
+                if (table == null || table.Rows.Count == 0)
+                    return DeleteStatus.Failed;
+
+                physicalFile = ParseCellDataToString(table.Rows[0]["PhysicalPath"]);
+                int status;
+                ParseCellDataToInt(table.Rows[0]["Result"], out status);
+
+                return (DeleteStatus)status;
+                
+            }
+            catch (Exception)
+            {
+                return DeleteStatus.Failed;
+            }
         }
     }
 }

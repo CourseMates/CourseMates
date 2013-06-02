@@ -29,12 +29,12 @@
                                 <ext:ToolbarFill />
                                 <ext:Button runat="server" ID="btnOpenRegister" Text="Register" Icon="Pencil">
                                     <Listeners>
-                                        <Click Handler="#{winRegister}.show();" />
+                                        <Click Handler="#{winRegister}.show(); #{txtRFName}.focus(false, 100);" />
                                     </Listeners>
                                 </ext:Button>
                                 <ext:Button runat="server" ID="btnOpenLogin" Text="Login" Icon="Lock">
                                     <Listeners>
-                                        <Click Handler="#{loggInWin}.show();" />
+                                        <Click Handler="#{loggInWin}.show(); #{txtUsername}.focus(false, 100);" />
                                     </Listeners>
                                 </ext:Button>
                             </Items>

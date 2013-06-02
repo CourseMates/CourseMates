@@ -24,11 +24,17 @@ namespace CourseMatesWS
         [OperationContract]
         int CreateNewCourse(string sessionId, int userId, string courseName, string iconCls);
         [OperationContract]
-        List<Course> GetCourseByUserId(string sessionId, string userId);
+        List<Course> GetCoursesByUserId(string sessionId, string userId);
         [OperationContract]
         void UploadFile(UploadFileMsg msg);
         [OperationContract]
-        FileStructure GetCourseFiles(int courseId);
+        FileStructure GetCourseFiles(string sessionId, int userId, int courseId);
+        [OperationContract]
+        DeleteStatus DeleteFile(string sessionId, int userId, int fileId);
+        [OperationContract]
+        RemoteFileInfoMsg GetFile(DownloadRequestMsg req);
+        [OperationContract]
+        List<User> GetCoursePartisipant(string sessionId, int userId, int courseId);
     }
     [MessageContract]
     public class UploadFileMsg
@@ -44,8 +50,34 @@ namespace CourseMatesWS
         [MessageHeader]
         public int ParentId { get; set; }
         [MessageHeader]
-        public int TypeId { get; set; }
+        public int Size { get; set; }
+        [MessageHeader]
+        public FileTypeE TypeId { get; set; }
+        [MessageHeader]
+        public bool IsFolder { get; set; }
         [MessageBodyMember]
         public Stream FileStream;
+    }
+
+    [MessageContract]
+    public class RemoteFileInfoMsg
+    {
+        [MessageHeader]
+        public string FileName { get; set; }
+        [MessageHeader]
+        public int Size { get; set; }
+        [MessageBodyMember]
+        public Stream FileStream;
+    }
+
+    [MessageContract]
+    public class DownloadRequestMsg
+    {
+        [MessageHeader]
+        public string SessionId { get; set; }
+        [MessageHeader]
+        public int UserId { get; set; }
+        [MessageHeader]
+        public int FileId { get; set; }
     }
 }

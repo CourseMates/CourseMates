@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="696927f7-853e-484b-b390-75d68f240cdc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:50368/CourseMates.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CourseMates.xsd" MetadataType="Schema" ID="fec31acf-dd0a-45da-8c46-1bbbb6186cd9" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd1" />
+    <MetadataFile FileName="CourseMates.wsdl" MetadataType="Wsdl" ID="27e3f3df-0953-46c5-8d4f-3e062945553b" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?wsdl" />
+    <MetadataFile FileName="CourseMates.disco" MetadataType="Disco" ID="2698ea12-f028-4cd7-9aa4-e4c263a3d753" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?disco" />
+    <MetadataFile FileName="CourseMates1.xsd" MetadataType="Schema" ID="596bdd6c-7af6-45ad-b049-2813c0d7729c" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd4" />
+    <MetadataFile FileName="CourseMates2.xsd" MetadataType="Schema" ID="5f0cc3dd-8e5c-4604-ab31-b49581d544ae" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd2" />
+    <MetadataFile FileName="CourseMates3.xsd" MetadataType="Schema" ID="7dddd7ee-8843-441d-86fa-41cde57ff0c9" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd3" />
+    <MetadataFile FileName="CourseMates4.xsd" MetadataType="Schema" ID="68f815de-c184-4a59-80c2-3b16947e8055" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

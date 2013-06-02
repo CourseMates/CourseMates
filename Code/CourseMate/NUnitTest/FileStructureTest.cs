@@ -17,8 +17,8 @@ namespace NUnitTest
             FileType t = new FileType
             {
                 ID = 1,
-                IconClass = "folder.png",
-                Exstention = null,
+                ImageUrl = "folder.png",
+                Extension = null,
                 Description = "Folder"
             };
 
@@ -47,8 +47,8 @@ namespace NUnitTest
             FileType t = new FileType
             {
                 ID = 1,
-                IconClass = "folder.png",
-                Exstention = null,
+                ImageUrl = "folder.png",
+                Extension = null,
                 Description = "Folder"
             };
 
@@ -222,8 +222,8 @@ namespace NUnitTest
             FileType t = new FileType
             {
                 ID = 1,
-                IconClass = "folder.png",
-                Exstention = null,
+                ImageUrl = "folder.png",
+                Extension = null,
                 Description = "Folder"
             };
 
@@ -287,8 +287,8 @@ namespace NUnitTest
             FileType t = new FileType
             {
                 ID = 2,
-                IconClass = "doc.png",
-                Exstention = "doc",
+                ImageUrl = "doc.png",
+                Extension = "doc",
                 Description = "Word 2003 file"
             };
 
@@ -314,8 +314,8 @@ namespace NUnitTest
             FileType t = new FileType
             {
                 ID = 1,
-                IconClass = "folder.png",
-                Exstention = null,
+                ImageUrl = "folder.png",
+                Extension = null,
                 Description = "Folder"
             };
 

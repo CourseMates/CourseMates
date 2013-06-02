@@ -41,9 +41,14 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="LogicalPath" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Owner" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="IsFolder" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastModify" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OwnerId" type="xs:int" />
+      <xs:element minOccurs="0" name="OwnerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PerantID" type="xs:int" />
       <xs:element minOccurs="0" name="Rate" type="xs:int" />
+      <xs:element minOccurs="0" name="Size" type="xs:int" />
+      <xs:element minOccurs="0" name="SubItems" nillable="true" type="tns:ArrayOfFileItem" />
       <xs:element minOccurs="0" name="Type" nillable="true" type="tns:FileType" />
     </xs:sequence>
   </xs:complexType>
@@ -51,9 +56,9 @@
   <xs:complexType name="FileType">
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Exstention" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Extension" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="IconClass" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImageUrl" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="FileType" nillable="true" type="tns:FileType" />
@@ -80,4 +85,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+  <xs:complexType name="FileStructure">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RootFolder" nillable="true" type="tns:FileItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileStructure" nillable="true" type="tns:FileStructure" />
 </xs:schema>
