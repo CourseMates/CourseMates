@@ -1,0 +1,10 @@
+<resources>
+<style name="custom_dialog" parent="@android:style/Theme.Dialog">
+    <item name="android:windowTitleStyle">@style/dialog_title_style</item>
+    
+  </style>
+
+<style name="dialog_title_style" parent="android:Widget.TextView">
+    <item name="android:background">@android:color/black</item>
+</style>
+</resources>

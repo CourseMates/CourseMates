@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CourseMatesClient</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="mycourses">My courses</string>
+    <string name="username">Username</string>
+    <string name="save_password">Save password</string>
+    <string name="register">Register</string>
+    <string name="new_course">Add a new course</string>
+    <string name="loading">Loading</string>
+	<string name="Exit">Exit</string>
+	<string name="FirstName">Enter your First Name</string>
+	<string name="LastName">Enter your Last Name</string>
+	<string name="Email">Enter your email</string>
+	<string name="confirmpassword">Confirm password</string> 
+	<string name="Registerme">Register me</string>
+	<string name="About">About</string>
+	<string name="Cancel">Cancel</string>
+	<string name="Clear">Clear</string>
+	<string name="NotificationPanel">Notification Panel</string>
+</resources>

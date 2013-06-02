@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c0c0c0" >
+
+    <Button
+        android:id="@+id/rs_button_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText_confirm"
+        android:layout_alignRight="@+id/editText_email"
+        android:layout_above="@+id/button_cancel"
+        android:layout_marginBottom="15dp"
+        android:text="@string/Registerme"/>
+   <Button
+        android:id="@+id/button_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText_confirm"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/editText_email"
+        android:layout_marginBottom="15dp"
+        android:text="@string/Cancel"/>
+
+   <EditText
+        android:id="@+id/editText_userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText_firstName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/username"
+        android:text="a" />
+   
+   
+    <EditText
+        android:id="@+id/editText_firstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText_lastName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/FirstName"
+        android:text="a" />
+
+    <EditText
+        android:id="@+id/editText_lastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText_email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/LastName"
+        android:text="a" />
+
+    <EditText
+        android:id="@+id/editText_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/Email"
+        android:inputType="textEmailAddress"
+        android:text="a@a.a" />
+
+    <EditText
+        android:id="@+id/editText_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText_confirm"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:text="12345678" />
+
+    <EditText
+        android:id="@+id/editText_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rs_button_register"
+        android:layout_alignLeft="@+id/editText_email"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/confirmpassword"
+        android:inputType="textPassword"
+        android:text="12345678" >
+
+        <requestFocus />
+    </EditText>
+
+</RelativeLayout>
