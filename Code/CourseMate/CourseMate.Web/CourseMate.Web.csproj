@@ -71,7 +71,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CourseWindow.ascx" />
     <Content Include="Desktop.aspx" />
     <Content Include="EmailVerify.aspx" />
     <Content Include="Error.aspx" />
@@ -143,13 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Utilitys.cs" />
-    <Compile Include="CourseWindow.ascx.cs">
-      <DependentUpon>CourseWindow.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CourseWindow.ascx.designer.cs">
-      <DependentUpon>CourseWindow.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Desktop.aspx.cs">
       <DependentUpon>Desktop.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
