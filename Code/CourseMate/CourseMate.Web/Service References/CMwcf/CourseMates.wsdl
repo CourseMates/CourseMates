@@ -7,6 +7,7 @@
       <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" />
       <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL" />
       <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/Message" />
+      <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ICourseMates_Login_InputMessage">
@@ -86,6 +87,42 @@
   <wsdl:message name="ICourseMates_GetCoursePartisipant_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCoursePartisipantResponse" />
   </wsdl:message>
+  <wsdl:message name="ICourseMates_UpdateCourse_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCourse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_UpdateCourse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_SetUserAsCourseAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserAsCourseAdmin" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_SetUserAsCourseAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserAsCourseAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_DeleteCourse_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCourse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_DeleteCourse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_RemoveUserFromCourse_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveUserFromCourse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_RemoveUserFromCourse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveUserFromCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetTop15Users_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTop15Users" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetTop15Users_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTop15UsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_AddUserToCourse_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserToCourse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_AddUserToCourse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserToCourseResponse" />
+  </wsdl:message>
   <wsdl:message name="IAndroidRest_LoginREST_InputMessage">
     <wsdl:part name="parameters" element="tns:LoginREST" />
   </wsdl:message>
@@ -144,6 +181,30 @@
     <wsdl:operation name="GetCoursePartisipant">
       <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetCoursePartisipant" message="tns:ICourseMates_GetCoursePartisipant_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetCoursePartisipantResponse" message="tns:ICourseMates_GetCoursePartisipant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCourse">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/UpdateCourse" message="tns:ICourseMates_UpdateCourse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/UpdateCourseResponse" message="tns:ICourseMates_UpdateCourse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAsCourseAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/SetUserAsCourseAdmin" message="tns:ICourseMates_SetUserAsCourseAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/SetUserAsCourseAdminResponse" message="tns:ICourseMates_SetUserAsCourseAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCourse">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/DeleteCourse" message="tns:ICourseMates_DeleteCourse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/DeleteCourseResponse" message="tns:ICourseMates_DeleteCourse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserFromCourse">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/RemoveUserFromCourse" message="tns:ICourseMates_RemoveUserFromCourse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/RemoveUserFromCourseResponse" message="tns:ICourseMates_RemoveUserFromCourse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTop15Users">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetTop15Users" message="tns:ICourseMates_GetTop15Users_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetTop15UsersResponse" message="tns:ICourseMates_GetTop15Users_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToCourse">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/AddUserToCourse" message="tns:ICourseMates_AddUserToCourse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/AddUserToCourseResponse" message="tns:ICourseMates_AddUserToCourse_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IAndroidRest">
@@ -258,6 +319,60 @@
     </wsdl:operation>
     <wsdl:operation name="GetCoursePartisipant">
       <soap:operation soapAction="http://tempuri.org/ICourseMates/GetCoursePartisipant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCourse">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/UpdateCourse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAsCourseAdmin">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/SetUserAsCourseAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCourse">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/DeleteCourse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserFromCourse">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/RemoveUserFromCourse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTop15Users">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/GetTop15Users" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToCourse">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/AddUserToCourse" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

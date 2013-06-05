@@ -391,13 +391,22 @@ namespace CourseMate.Web {
         protected global::Ext.Net.ComboBox cbAddUserName;
         
         /// <summary>
-        /// Button3 control.
+        /// storeUserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button Button3;
+        protected global::Ext.Net.Store storeUserName;
+        
+        /// <summary>
+        /// btnAddNewUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button btnAddNewUser;
         
         /// <summary>
         /// Button5 control.

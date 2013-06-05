@@ -64,6 +64,36 @@ namespace CourseMate.Web.CMwcf {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/GetCoursePartisipant", ReplyAction="http://tempuri.org/ICourseMates/GetCoursePartisipantResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CourseMate.Web.CMwcf.GetCoursePartisipantResponse GetCoursePartisipant(CourseMate.Web.CMwcf.GetCoursePartisipantRequest request);
+        
+        // CODEGEN: Parameter 'sessionId' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/UpdateCourse", ReplyAction="http://tempuri.org/ICourseMates/UpdateCourseResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        CourseMate.Web.CMwcf.UpdateCourseResponse UpdateCourse(CourseMate.Web.CMwcf.UpdateCourseRequest request);
+        
+        // CODEGEN: Parameter 'sessionId' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/SetUserAsCourseAdmin", ReplyAction="http://tempuri.org/ICourseMates/SetUserAsCourseAdminResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        CourseMate.Web.CMwcf.SetUserAsCourseAdminResponse SetUserAsCourseAdmin(CourseMate.Web.CMwcf.SetUserAsCourseAdminRequest request);
+        
+        // CODEGEN: Parameter 'sessionId' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/DeleteCourse", ReplyAction="http://tempuri.org/ICourseMates/DeleteCourseResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        CourseMate.Web.CMwcf.DeleteCourseResponse DeleteCourse(CourseMate.Web.CMwcf.DeleteCourseRequest request);
+        
+        // CODEGEN: Parameter 'sessionId' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/RemoveUserFromCourse", ReplyAction="http://tempuri.org/ICourseMates/RemoveUserFromCourseResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        CourseMate.Web.CMwcf.RemoveUserFromCourseResponse RemoveUserFromCourse(CourseMate.Web.CMwcf.RemoveUserFromCourseRequest request);
+        
+        // CODEGEN: Parameter 'GetTop15UsersResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlArrayAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/GetTop15Users", ReplyAction="http://tempuri.org/ICourseMates/GetTop15UsersResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        CourseMate.Web.CMwcf.GetTop15UsersResponse GetTop15Users(CourseMate.Web.CMwcf.GetTop15UsersRequest request);
+        
+        // CODEGEN: Parameter 'sessionId' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/AddUserToCourse", ReplyAction="http://tempuri.org/ICourseMates/AddUserToCourseResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        CourseMate.Web.CMwcf.AddUserToCourseResponse AddUserToCourse(CourseMate.Web.CMwcf.AddUserToCourseRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -128,6 +158,10 @@ namespace CourseMate.Web.CMwcf {
         private int idField;
         
         private bool idFieldSpecified;
+        
+        private bool isAdminField;
+        
+        private bool isAdminFieldSpecified;
         
         private string lastNameField;
         
@@ -196,7 +230,31 @@ namespace CourseMate.Web.CMwcf {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public bool IsAdmin {
+            get {
+                return this.isAdminField;
+            }
+            set {
+                this.isAdminField = value;
+                this.RaisePropertyChanged("IsAdmin");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IsAdminSpecified {
+            get {
+                return this.isAdminFieldSpecified;
+            }
+            set {
+                this.isAdminFieldSpecified = value;
+                this.RaisePropertyChanged("IsAdminSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=5)]
         public string LastName {
             get {
                 return this.lastNameField;
@@ -208,7 +266,7 @@ namespace CourseMate.Web.CMwcf {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=6)]
         public string Password {
             get {
                 return this.passwordField;
@@ -220,7 +278,7 @@ namespace CourseMate.Web.CMwcf {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=7)]
         public string UserName {
             get {
                 return this.userNameField;
@@ -1449,6 +1507,281 @@ namespace CourseMate.Web.CMwcf {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="UpdateCourse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class UpdateCourseRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string sessionId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int userId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public int courseId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string courseName;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string iconCls;
+        
+        public UpdateCourseRequest() {
+        }
+        
+        public UpdateCourseRequest(string sessionId, int userId, int courseId, string courseName, string iconCls) {
+            this.sessionId = sessionId;
+            this.userId = userId;
+            this.courseId = courseId;
+            this.courseName = courseName;
+            this.iconCls = iconCls;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="UpdateCourseResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class UpdateCourseResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool UpdateCourseResult;
+        
+        public UpdateCourseResponse() {
+        }
+        
+        public UpdateCourseResponse(bool UpdateCourseResult) {
+            this.UpdateCourseResult = UpdateCourseResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="SetUserAsCourseAdmin", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class SetUserAsCourseAdminRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string sessionId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int userId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public int courseId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
+        public int setUserId;
+        
+        public SetUserAsCourseAdminRequest() {
+        }
+        
+        public SetUserAsCourseAdminRequest(string sessionId, int userId, int courseId, int setUserId) {
+            this.sessionId = sessionId;
+            this.userId = userId;
+            this.courseId = courseId;
+            this.setUserId = setUserId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="SetUserAsCourseAdminResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class SetUserAsCourseAdminResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool SetUserAsCourseAdminResult;
+        
+        public SetUserAsCourseAdminResponse() {
+        }
+        
+        public SetUserAsCourseAdminResponse(bool SetUserAsCourseAdminResult) {
+            this.SetUserAsCourseAdminResult = SetUserAsCourseAdminResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DeleteCourse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class DeleteCourseRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string sessionId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int userId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public int courseId;
+        
+        public DeleteCourseRequest() {
+        }
+        
+        public DeleteCourseRequest(string sessionId, int userId, int courseId) {
+            this.sessionId = sessionId;
+            this.userId = userId;
+            this.courseId = courseId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DeleteCourseResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class DeleteCourseResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool DeleteCourseResult;
+        
+        public DeleteCourseResponse() {
+        }
+        
+        public DeleteCourseResponse(bool DeleteCourseResult) {
+            this.DeleteCourseResult = DeleteCourseResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="RemoveUserFromCourse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class RemoveUserFromCourseRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string sessionId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int userId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public int courseId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
+        public int deleteUserId;
+        
+        public RemoveUserFromCourseRequest() {
+        }
+        
+        public RemoveUserFromCourseRequest(string sessionId, int userId, int courseId, int deleteUserId) {
+            this.sessionId = sessionId;
+            this.userId = userId;
+            this.courseId = courseId;
+            this.deleteUserId = deleteUserId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="RemoveUserFromCourseResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class RemoveUserFromCourseResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool RemoveUserFromCourseResult;
+        
+        public RemoveUserFromCourseResponse() {
+        }
+        
+        public RemoveUserFromCourseResponse(bool RemoveUserFromCourseResult) {
+            this.RemoveUserFromCourseResult = RemoveUserFromCourseResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTop15Users", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetTop15UsersRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string search;
+        
+        public GetTop15UsersRequest() {
+        }
+        
+        public GetTop15UsersRequest(string search) {
+            this.search = search;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTop15UsersResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetTop15UsersResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays")]
+        public string[] GetTop15UsersResult;
+        
+        public GetTop15UsersResponse() {
+        }
+        
+        public GetTop15UsersResponse(string[] GetTop15UsersResult) {
+            this.GetTop15UsersResult = GetTop15UsersResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AddUserToCourse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AddUserToCourseRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string sessionId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int userId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public int courseId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string userToAdd;
+        
+        public AddUserToCourseRequest() {
+        }
+        
+        public AddUserToCourseRequest(string sessionId, int userId, int courseId, string userToAdd) {
+            this.sessionId = sessionId;
+            this.userId = userId;
+            this.courseId = courseId;
+            this.userToAdd = userToAdd;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AddUserToCourseResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AddUserToCourseResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool AddUserToCourseResult;
+        
+        public AddUserToCourseResponse() {
+        }
+        
+        public AddUserToCourseResponse(bool AddUserToCourseResult) {
+            this.AddUserToCourseResult = AddUserToCourseResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface ICourseMatesChannel : CourseMate.Web.CMwcf.ICourseMates, System.ServiceModel.IClientChannel {
     }
@@ -1619,6 +1952,93 @@ namespace CourseMate.Web.CMwcf {
             inValue.courseId = courseId;
             CourseMate.Web.CMwcf.GetCoursePartisipantResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).GetCoursePartisipant(inValue);
             return retVal.GetCoursePartisipantResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CourseMate.Web.CMwcf.UpdateCourseResponse CourseMate.Web.CMwcf.ICourseMates.UpdateCourse(CourseMate.Web.CMwcf.UpdateCourseRequest request) {
+            return base.Channel.UpdateCourse(request);
+        }
+        
+        public bool UpdateCourse(string sessionId, int userId, int courseId, string courseName, string iconCls) {
+            CourseMate.Web.CMwcf.UpdateCourseRequest inValue = new CourseMate.Web.CMwcf.UpdateCourseRequest();
+            inValue.sessionId = sessionId;
+            inValue.userId = userId;
+            inValue.courseId = courseId;
+            inValue.courseName = courseName;
+            inValue.iconCls = iconCls;
+            CourseMate.Web.CMwcf.UpdateCourseResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).UpdateCourse(inValue);
+            return retVal.UpdateCourseResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CourseMate.Web.CMwcf.SetUserAsCourseAdminResponse CourseMate.Web.CMwcf.ICourseMates.SetUserAsCourseAdmin(CourseMate.Web.CMwcf.SetUserAsCourseAdminRequest request) {
+            return base.Channel.SetUserAsCourseAdmin(request);
+        }
+        
+        public bool SetUserAsCourseAdmin(string sessionId, int userId, int courseId, int setUserId) {
+            CourseMate.Web.CMwcf.SetUserAsCourseAdminRequest inValue = new CourseMate.Web.CMwcf.SetUserAsCourseAdminRequest();
+            inValue.sessionId = sessionId;
+            inValue.userId = userId;
+            inValue.courseId = courseId;
+            inValue.setUserId = setUserId;
+            CourseMate.Web.CMwcf.SetUserAsCourseAdminResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).SetUserAsCourseAdmin(inValue);
+            return retVal.SetUserAsCourseAdminResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CourseMate.Web.CMwcf.DeleteCourseResponse CourseMate.Web.CMwcf.ICourseMates.DeleteCourse(CourseMate.Web.CMwcf.DeleteCourseRequest request) {
+            return base.Channel.DeleteCourse(request);
+        }
+        
+        public bool DeleteCourse(string sessionId, int userId, int courseId) {
+            CourseMate.Web.CMwcf.DeleteCourseRequest inValue = new CourseMate.Web.CMwcf.DeleteCourseRequest();
+            inValue.sessionId = sessionId;
+            inValue.userId = userId;
+            inValue.courseId = courseId;
+            CourseMate.Web.CMwcf.DeleteCourseResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).DeleteCourse(inValue);
+            return retVal.DeleteCourseResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CourseMate.Web.CMwcf.RemoveUserFromCourseResponse CourseMate.Web.CMwcf.ICourseMates.RemoveUserFromCourse(CourseMate.Web.CMwcf.RemoveUserFromCourseRequest request) {
+            return base.Channel.RemoveUserFromCourse(request);
+        }
+        
+        public bool RemoveUserFromCourse(string sessionId, int userId, int courseId, int deleteUserId) {
+            CourseMate.Web.CMwcf.RemoveUserFromCourseRequest inValue = new CourseMate.Web.CMwcf.RemoveUserFromCourseRequest();
+            inValue.sessionId = sessionId;
+            inValue.userId = userId;
+            inValue.courseId = courseId;
+            inValue.deleteUserId = deleteUserId;
+            CourseMate.Web.CMwcf.RemoveUserFromCourseResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).RemoveUserFromCourse(inValue);
+            return retVal.RemoveUserFromCourseResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CourseMate.Web.CMwcf.GetTop15UsersResponse CourseMate.Web.CMwcf.ICourseMates.GetTop15Users(CourseMate.Web.CMwcf.GetTop15UsersRequest request) {
+            return base.Channel.GetTop15Users(request);
+        }
+        
+        public string[] GetTop15Users(string search) {
+            CourseMate.Web.CMwcf.GetTop15UsersRequest inValue = new CourseMate.Web.CMwcf.GetTop15UsersRequest();
+            inValue.search = search;
+            CourseMate.Web.CMwcf.GetTop15UsersResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).GetTop15Users(inValue);
+            return retVal.GetTop15UsersResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CourseMate.Web.CMwcf.AddUserToCourseResponse CourseMate.Web.CMwcf.ICourseMates.AddUserToCourse(CourseMate.Web.CMwcf.AddUserToCourseRequest request) {
+            return base.Channel.AddUserToCourse(request);
+        }
+        
+        public bool AddUserToCourse(string sessionId, int userId, int courseId, string userToAdd) {
+            CourseMate.Web.CMwcf.AddUserToCourseRequest inValue = new CourseMate.Web.CMwcf.AddUserToCourseRequest();
+            inValue.sessionId = sessionId;
+            inValue.userId = userId;
+            inValue.courseId = courseId;
+            inValue.userToAdd = userToAdd;
+            CourseMate.Web.CMwcf.AddUserToCourseResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).AddUserToCourse(inValue);
+            return retVal.AddUserToCourseResult;
         }
     }
 }

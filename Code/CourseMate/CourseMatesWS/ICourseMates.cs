@@ -35,6 +35,18 @@ namespace CourseMatesWS
         RemoteFileInfoMsg GetFile(DownloadRequestMsg req);
         [OperationContract]
         List<User> GetCoursePartisipant(string sessionId, int userId, int courseId);
+        [OperationContract]
+        bool UpdateCourse(string sessionId, int userId, int courseId, string courseName, string iconCls);
+        [OperationContract]
+        bool SetUserAsCourseAdmin(string sessionId, int userId, int courseId, int setUserId);
+        [OperationContract]
+        bool DeleteCourse(string sessionId, int userId, int courseId);
+        [OperationContract]
+        bool RemoveUserFromCourse(string sessionId, int userId, int courseId, int deleteUserId);
+        [OperationContract]
+        List<string> GetTop15Users(string search);
+        [OperationContract]
+        bool AddUserToCourse(string sessionId, int userId, int courseId, string userToAdd);
     }
     [MessageContract]
     public class UploadFileMsg

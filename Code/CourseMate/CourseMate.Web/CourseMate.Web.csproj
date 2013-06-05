@@ -71,6 +71,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\MainCss.css" />
     <Content Include="Desktop.aspx" />
     <Content Include="EmailVerify.aspx" />
     <Content Include="Error.aspx" />
@@ -130,6 +131,9 @@
     <None Include="Service References\CMwcf\CourseMates.disco" />
     <None Include="Service References\CMwcf\configuration91.svcinfo" />
     <None Include="Service References\CMwcf\configuration.svcinfo" />
+    <None Include="Service References\CMwcf\CourseMates5.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\CMwcf\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
