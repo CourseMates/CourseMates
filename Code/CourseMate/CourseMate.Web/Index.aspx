@@ -42,6 +42,7 @@
                     </TopBar>
                     <Items>
                         <ext:Image Align="Middle" runat="server" ImageUrl="Images/wellcom.png" Height="575" Width="700" />
+
                     </Items>
                 </ext:Panel>
             </Items>

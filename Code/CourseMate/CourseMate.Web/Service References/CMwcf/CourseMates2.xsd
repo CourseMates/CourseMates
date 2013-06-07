@@ -24,7 +24,7 @@
       <xs:element minOccurs="0" name="CourseAdminID" type="xs:int" />
       <xs:element minOccurs="0" name="CourseName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Files" nillable="true" type="tns:ArrayOfFileItem" />
-      <xs:element minOccurs="0" name="FourmItems" nillable="true" type="tns:ArrayOfFourmItem" />
+      <xs:element minOccurs="0" name="FourmItems" nillable="true" type="tns:ArrayOfForumItem" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="IconClass" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IsAdmin" type="xs:boolean" />
@@ -63,23 +63,27 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="FileType" nillable="true" type="tns:FileType" />
-  <xs:complexType name="ArrayOfFourmItem">
+  <xs:complexType name="ArrayOfForumItem">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="FourmItem" nillable="true" type="tns:FourmItem" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ForumItem" nillable="true" type="tns:ForumItem" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfFourmItem" nillable="true" type="tns:ArrayOfFourmItem" />
-  <xs:complexType name="FourmItem">
+  <xs:element name="ArrayOfForumItem" nillable="true" type="tns:ArrayOfForumItem" />
+  <xs:complexType name="ForumItem">
     <xs:sequence>
       <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CourseId" type="xs:int" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="Owner" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="OwnerId" type="xs:int" />
+      <xs:element minOccurs="0" name="OwnerName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PerentId" type="xs:int" />
       <xs:element minOccurs="0" name="Rate" type="xs:int" />
+      <xs:element minOccurs="0" name="SubItems" nillable="true" type="tns:ArrayOfForumItem" />
+      <xs:element minOccurs="0" name="TimeAdded" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="FourmItem" nillable="true" type="tns:FourmItem" />
+  <xs:element name="ForumItem" nillable="true" type="tns:ForumItem" />
   <xs:complexType name="ArrayOfUser">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
@@ -92,4 +96,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="FileStructure" nillable="true" type="tns:FileStructure" />
+  <xs:complexType name="Forum">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllItems" nillable="true" type="tns:ArrayOfForumItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Forum" nillable="true" type="tns:Forum" />
 </xs:schema>

@@ -602,5 +602,119 @@ namespace CourseMatesWS.DAL
                 return false;
             }
         }
+
+        public static Forum GetCourseForum(string sessionId, int userId, int courseId)
+        {
+            Forum forum = new Forum();
+            try
+            {
+                DataTable table = new DataAccess(ConnectionString).ExecuteQuerySP("SP_GetCourseForum",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@CourseID", courseId);
+
+                if (table == null || table.Rows.Count == 0)
+                    return forum;
+                foreach (DataRow row in table.Rows)
+                {
+                    int id, perrentId;
+                    ParseCellDataToInt(row["Id"], out id);
+                    ParseCellDataToInt(row["RootId"], out perrentId);
+                    ForumItem fi = new ForumItem();
+                    fi.Title = ParseCellDataToString(row["Title"]);
+                    fi.Content = ParseCellDataToString(row["Content"]);
+                    fi.OwnerName = ParseCellDataToString(row["UserName"]);
+                    fi.ID = id;
+                    fi.PerentId = perrentId;
+                    fi.TimeAdded = ParseCellDataToDateTime(row["TimeAdded"]);
+                    forum.AddItemByPerantID(fi);
+                }
+                return forum;
+            }
+            catch (Exception)
+            {
+                return forum;
+            }
+        }
+
+        public static bool AddNewForumItem(string sessionId, int userId, ForumItem item)
+        {
+            try
+            {
+                int result = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_AddNewForumItem",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@CourseID", item.CourseId,
+                        "@Title", item.Title,
+                        "@Content", item.Content,
+                        "@ParentID", item.PerentId);
+
+                
+                return result > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool DeleteForumItem(string sessionId, int userId, int courseId, int itemId)
+        {
+            try
+            {
+                int result = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_DeleteForumItem",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@CourseID", courseId,
+                        "@ItemID", itemId);
+
+                return result > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool ChangeEmail(string sessionId, int userId, string oldEmail, string newEmail)
+        {
+            try
+            {
+                int result = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_ChangeEmail",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@NewEmail", newEmail,
+                        "@OldEmail", oldEmail);
+
+                return result > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool ChangePassword(string sessionId, int userId, string oldPass, string newPass)
+        {
+            try
+            {
+                int result = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_ChangePassword",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@NewPassword", newPass,
+                        "@OldPassword", oldPass);
+
+                return result > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool DeleteUser(string sessionId, int userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

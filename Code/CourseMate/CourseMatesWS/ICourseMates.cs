@@ -47,6 +47,18 @@ namespace CourseMatesWS
         List<string> GetTop15Users(string search);
         [OperationContract]
         bool AddUserToCourse(string sessionId, int userId, int courseId, string userToAdd);
+        [OperationContract]
+        Forum GetCourseForum(string sessionId, int userId, int courseId);
+        [OperationContract]
+        bool AddNewForumItem(string sessionId, int userId, ForumItem item);
+        [OperationContract]
+        bool DeleteForumItem(string sessionId, int userId, int courseId, int itemId);
+        [OperationContract]
+        bool ChangeEmail(string sessionId, int userId, string oldEmail, string newEmail);
+        [OperationContract]
+        bool ChangePassword(string sessionId, int userId, string oldPass, string newPass);
+        [OperationContract]
+        bool DeleteUser(string sessionId, int userId);
     }
     [MessageContract]
     public class UploadFileMsg

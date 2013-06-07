@@ -94,6 +94,36 @@ namespace CourseMate.Web.CMwcf {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/AddUserToCourse", ReplyAction="http://tempuri.org/ICourseMates/AddUserToCourseResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CourseMate.Web.CMwcf.AddUserToCourseResponse AddUserToCourse(CourseMate.Web.CMwcf.AddUserToCourseRequest request);
+        
+        // CODEGEN: Parameter 'GetCourseForumResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/GetCourseForum", ReplyAction="http://tempuri.org/ICourseMates/GetCourseForumResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        CourseMate.Web.CMwcf.GetCourseForumResponse GetCourseForum(CourseMate.Web.CMwcf.GetCourseForumRequest request);
+        
+        // CODEGEN: Parameter 'sessionId' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/AddNewForumItem", ReplyAction="http://tempuri.org/ICourseMates/AddNewForumItemResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        CourseMate.Web.CMwcf.AddNewForumItemResponse AddNewForumItem(CourseMate.Web.CMwcf.AddNewForumItemRequest request);
+        
+        // CODEGEN: Parameter 'sessionId' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/DeleteForumItem", ReplyAction="http://tempuri.org/ICourseMates/DeleteForumItemResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        CourseMate.Web.CMwcf.DeleteForumItemResponse DeleteForumItem(CourseMate.Web.CMwcf.DeleteForumItemRequest request);
+        
+        // CODEGEN: Parameter 'sessionId' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/ChangeEmail", ReplyAction="http://tempuri.org/ICourseMates/ChangeEmailResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        CourseMate.Web.CMwcf.ChangeEmailResponse ChangeEmail(CourseMate.Web.CMwcf.ChangeEmailRequest request);
+        
+        // CODEGEN: Parameter 'sessionId' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/ChangePassword", ReplyAction="http://tempuri.org/ICourseMates/ChangePasswordResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        CourseMate.Web.CMwcf.ChangePasswordResponse ChangePassword(CourseMate.Web.CMwcf.ChangePasswordRequest request);
+        
+        // CODEGEN: Parameter 'sessionId' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/DeleteUser", ReplyAction="http://tempuri.org/ICourseMates/DeleteUserResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        CourseMate.Web.CMwcf.DeleteUserResponse DeleteUser(CourseMate.Web.CMwcf.DeleteUserRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -286,6 +316,280 @@ namespace CourseMate.Web.CMwcf {
             set {
                 this.userNameField = value;
                 this.RaisePropertyChanged("UserName");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects")]
+    public partial class Forum : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private ForumItem[] allItemsField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true, Order=0)]
+        public ForumItem[] AllItems {
+            get {
+                return this.allItemsField;
+            }
+            set {
+                this.allItemsField = value;
+                this.RaisePropertyChanged("AllItems");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects")]
+    public partial class ForumItem : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string contentField;
+        
+        private int courseIdField;
+        
+        private bool courseIdFieldSpecified;
+        
+        private int idField;
+        
+        private bool idFieldSpecified;
+        
+        private int ownerIdField;
+        
+        private bool ownerIdFieldSpecified;
+        
+        private string ownerNameField;
+        
+        private int perentIdField;
+        
+        private bool perentIdFieldSpecified;
+        
+        private int rateField;
+        
+        private bool rateFieldSpecified;
+        
+        private ForumItem[] subItemsField;
+        
+        private System.DateTime timeAddedField;
+        
+        private bool timeAddedFieldSpecified;
+        
+        private string titleField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
+        public string Content {
+            get {
+                return this.contentField;
+            }
+            set {
+                this.contentField = value;
+                this.RaisePropertyChanged("Content");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public int CourseId {
+            get {
+                return this.courseIdField;
+            }
+            set {
+                this.courseIdField = value;
+                this.RaisePropertyChanged("CourseId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool CourseIdSpecified {
+            get {
+                return this.courseIdFieldSpecified;
+            }
+            set {
+                this.courseIdFieldSpecified = value;
+                this.RaisePropertyChanged("CourseIdSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public int ID {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+                this.RaisePropertyChanged("ID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IDSpecified {
+            get {
+                return this.idFieldSpecified;
+            }
+            set {
+                this.idFieldSpecified = value;
+                this.RaisePropertyChanged("IDSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public int OwnerId {
+            get {
+                return this.ownerIdField;
+            }
+            set {
+                this.ownerIdField = value;
+                this.RaisePropertyChanged("OwnerId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool OwnerIdSpecified {
+            get {
+                return this.ownerIdFieldSpecified;
+            }
+            set {
+                this.ownerIdFieldSpecified = value;
+                this.RaisePropertyChanged("OwnerIdSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+        public string OwnerName {
+            get {
+                return this.ownerNameField;
+            }
+            set {
+                this.ownerNameField = value;
+                this.RaisePropertyChanged("OwnerName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public int PerentId {
+            get {
+                return this.perentIdField;
+            }
+            set {
+                this.perentIdField = value;
+                this.RaisePropertyChanged("PerentId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool PerentIdSpecified {
+            get {
+                return this.perentIdFieldSpecified;
+            }
+            set {
+                this.perentIdFieldSpecified = value;
+                this.RaisePropertyChanged("PerentIdSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public int Rate {
+            get {
+                return this.rateField;
+            }
+            set {
+                this.rateField = value;
+                this.RaisePropertyChanged("Rate");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool RateSpecified {
+            get {
+                return this.rateFieldSpecified;
+            }
+            set {
+                this.rateFieldSpecified = value;
+                this.RaisePropertyChanged("RateSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true, Order=7)]
+        public ForumItem[] SubItems {
+            get {
+                return this.subItemsField;
+            }
+            set {
+                this.subItemsField = value;
+                this.RaisePropertyChanged("SubItems");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public System.DateTime TimeAdded {
+            get {
+                return this.timeAddedField;
+            }
+            set {
+                this.timeAddedField = value;
+                this.RaisePropertyChanged("TimeAdded");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool TimeAddedSpecified {
+            get {
+                return this.timeAddedFieldSpecified;
+            }
+            set {
+                this.timeAddedFieldSpecified = value;
+                this.RaisePropertyChanged("TimeAddedSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=9)]
+        public string Title {
+            get {
+                return this.titleField;
+            }
+            set {
+                this.titleField = value;
+                this.RaisePropertyChanged("Title");
             }
         }
         
@@ -695,150 +999,6 @@ namespace CourseMate.Web.CMwcf {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects")]
-    public partial class FourmItem : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private string contentField;
-        
-        private int idField;
-        
-        private bool idFieldSpecified;
-        
-        private User ownerField;
-        
-        private int perentIdField;
-        
-        private bool perentIdFieldSpecified;
-        
-        private int rateField;
-        
-        private bool rateFieldSpecified;
-        
-        private string titleField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
-        public string Content {
-            get {
-                return this.contentField;
-            }
-            set {
-                this.contentField = value;
-                this.RaisePropertyChanged("Content");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public int ID {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-                this.RaisePropertyChanged("ID");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool IDSpecified {
-            get {
-                return this.idFieldSpecified;
-            }
-            set {
-                this.idFieldSpecified = value;
-                this.RaisePropertyChanged("IDSpecified");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
-        public User Owner {
-            get {
-                return this.ownerField;
-            }
-            set {
-                this.ownerField = value;
-                this.RaisePropertyChanged("Owner");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public int PerentId {
-            get {
-                return this.perentIdField;
-            }
-            set {
-                this.perentIdField = value;
-                this.RaisePropertyChanged("PerentId");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool PerentIdSpecified {
-            get {
-                return this.perentIdFieldSpecified;
-            }
-            set {
-                this.perentIdFieldSpecified = value;
-                this.RaisePropertyChanged("PerentIdSpecified");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
-        public int Rate {
-            get {
-                return this.rateField;
-            }
-            set {
-                this.rateField = value;
-                this.RaisePropertyChanged("Rate");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool RateSpecified {
-            get {
-                return this.rateFieldSpecified;
-            }
-            set {
-                this.rateFieldSpecified = value;
-                this.RaisePropertyChanged("RateSpecified");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=5)]
-        public string Title {
-            get {
-                return this.titleField;
-            }
-            set {
-                this.titleField = value;
-                this.RaisePropertyChanged("Title");
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects")]
     public partial class Course : object, System.ComponentModel.INotifyPropertyChanged {
         
         private int courseAdminIDField;
@@ -849,7 +1009,7 @@ namespace CourseMate.Web.CMwcf {
         
         private FileItem[] filesField;
         
-        private FourmItem[] fourmItemsField;
+        private ForumItem[] fourmItemsField;
         
         private int idField;
         
@@ -913,7 +1073,7 @@ namespace CourseMate.Web.CMwcf {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true, Order=3)]
-        public FourmItem[] FourmItems {
+        public ForumItem[] FourmItems {
             get {
                 return this.fourmItemsField;
             }
@@ -1782,6 +1942,278 @@ namespace CourseMate.Web.CMwcf {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetCourseForum", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetCourseForumRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string sessionId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int userId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public int courseId;
+        
+        public GetCourseForumRequest() {
+        }
+        
+        public GetCourseForumRequest(string sessionId, int userId, int courseId) {
+            this.sessionId = sessionId;
+            this.userId = userId;
+            this.courseId = courseId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetCourseForumResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetCourseForumResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public CourseMate.Web.CMwcf.Forum GetCourseForumResult;
+        
+        public GetCourseForumResponse() {
+        }
+        
+        public GetCourseForumResponse(CourseMate.Web.CMwcf.Forum GetCourseForumResult) {
+            this.GetCourseForumResult = GetCourseForumResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AddNewForumItem", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AddNewForumItemRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string sessionId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int userId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public CourseMate.Web.CMwcf.ForumItem item;
+        
+        public AddNewForumItemRequest() {
+        }
+        
+        public AddNewForumItemRequest(string sessionId, int userId, CourseMate.Web.CMwcf.ForumItem item) {
+            this.sessionId = sessionId;
+            this.userId = userId;
+            this.item = item;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AddNewForumItemResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AddNewForumItemResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool AddNewForumItemResult;
+        
+        public AddNewForumItemResponse() {
+        }
+        
+        public AddNewForumItemResponse(bool AddNewForumItemResult) {
+            this.AddNewForumItemResult = AddNewForumItemResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DeleteForumItem", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class DeleteForumItemRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string sessionId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int userId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public int courseId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
+        public int itemId;
+        
+        public DeleteForumItemRequest() {
+        }
+        
+        public DeleteForumItemRequest(string sessionId, int userId, int courseId, int itemId) {
+            this.sessionId = sessionId;
+            this.userId = userId;
+            this.courseId = courseId;
+            this.itemId = itemId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DeleteForumItemResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class DeleteForumItemResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool DeleteForumItemResult;
+        
+        public DeleteForumItemResponse() {
+        }
+        
+        public DeleteForumItemResponse(bool DeleteForumItemResult) {
+            this.DeleteForumItemResult = DeleteForumItemResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ChangeEmail", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ChangeEmailRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string sessionId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int userId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string oldEmail;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string newEmail;
+        
+        public ChangeEmailRequest() {
+        }
+        
+        public ChangeEmailRequest(string sessionId, int userId, string oldEmail, string newEmail) {
+            this.sessionId = sessionId;
+            this.userId = userId;
+            this.oldEmail = oldEmail;
+            this.newEmail = newEmail;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ChangeEmailResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ChangeEmailResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool ChangeEmailResult;
+        
+        public ChangeEmailResponse() {
+        }
+        
+        public ChangeEmailResponse(bool ChangeEmailResult) {
+            this.ChangeEmailResult = ChangeEmailResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ChangePassword", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ChangePasswordRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string sessionId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int userId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string oldPass;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string newPass;
+        
+        public ChangePasswordRequest() {
+        }
+        
+        public ChangePasswordRequest(string sessionId, int userId, string oldPass, string newPass) {
+            this.sessionId = sessionId;
+            this.userId = userId;
+            this.oldPass = oldPass;
+            this.newPass = newPass;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ChangePasswordResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ChangePasswordResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool ChangePasswordResult;
+        
+        public ChangePasswordResponse() {
+        }
+        
+        public ChangePasswordResponse(bool ChangePasswordResult) {
+            this.ChangePasswordResult = ChangePasswordResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DeleteUser", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class DeleteUserRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string sessionId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int userId;
+        
+        public DeleteUserRequest() {
+        }
+        
+        public DeleteUserRequest(string sessionId, int userId) {
+            this.sessionId = sessionId;
+            this.userId = userId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DeleteUserResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class DeleteUserResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool DeleteUserResult;
+        
+        public DeleteUserResponse() {
+        }
+        
+        public DeleteUserResponse(bool DeleteUserResult) {
+            this.DeleteUserResult = DeleteUserResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface ICourseMatesChannel : CourseMate.Web.CMwcf.ICourseMates, System.ServiceModel.IClientChannel {
     }
@@ -2039,6 +2471,92 @@ namespace CourseMate.Web.CMwcf {
             inValue.userToAdd = userToAdd;
             CourseMate.Web.CMwcf.AddUserToCourseResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).AddUserToCourse(inValue);
             return retVal.AddUserToCourseResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CourseMate.Web.CMwcf.GetCourseForumResponse CourseMate.Web.CMwcf.ICourseMates.GetCourseForum(CourseMate.Web.CMwcf.GetCourseForumRequest request) {
+            return base.Channel.GetCourseForum(request);
+        }
+        
+        public CourseMate.Web.CMwcf.Forum GetCourseForum(string sessionId, int userId, int courseId) {
+            CourseMate.Web.CMwcf.GetCourseForumRequest inValue = new CourseMate.Web.CMwcf.GetCourseForumRequest();
+            inValue.sessionId = sessionId;
+            inValue.userId = userId;
+            inValue.courseId = courseId;
+            CourseMate.Web.CMwcf.GetCourseForumResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).GetCourseForum(inValue);
+            return retVal.GetCourseForumResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CourseMate.Web.CMwcf.AddNewForumItemResponse CourseMate.Web.CMwcf.ICourseMates.AddNewForumItem(CourseMate.Web.CMwcf.AddNewForumItemRequest request) {
+            return base.Channel.AddNewForumItem(request);
+        }
+        
+        public bool AddNewForumItem(string sessionId, int userId, CourseMate.Web.CMwcf.ForumItem item) {
+            CourseMate.Web.CMwcf.AddNewForumItemRequest inValue = new CourseMate.Web.CMwcf.AddNewForumItemRequest();
+            inValue.sessionId = sessionId;
+            inValue.userId = userId;
+            inValue.item = item;
+            CourseMate.Web.CMwcf.AddNewForumItemResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).AddNewForumItem(inValue);
+            return retVal.AddNewForumItemResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CourseMate.Web.CMwcf.DeleteForumItemResponse CourseMate.Web.CMwcf.ICourseMates.DeleteForumItem(CourseMate.Web.CMwcf.DeleteForumItemRequest request) {
+            return base.Channel.DeleteForumItem(request);
+        }
+        
+        public bool DeleteForumItem(string sessionId, int userId, int courseId, int itemId) {
+            CourseMate.Web.CMwcf.DeleteForumItemRequest inValue = new CourseMate.Web.CMwcf.DeleteForumItemRequest();
+            inValue.sessionId = sessionId;
+            inValue.userId = userId;
+            inValue.courseId = courseId;
+            inValue.itemId = itemId;
+            CourseMate.Web.CMwcf.DeleteForumItemResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).DeleteForumItem(inValue);
+            return retVal.DeleteForumItemResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CourseMate.Web.CMwcf.ChangeEmailResponse CourseMate.Web.CMwcf.ICourseMates.ChangeEmail(CourseMate.Web.CMwcf.ChangeEmailRequest request) {
+            return base.Channel.ChangeEmail(request);
+        }
+        
+        public bool ChangeEmail(string sessionId, int userId, string oldEmail, string newEmail) {
+            CourseMate.Web.CMwcf.ChangeEmailRequest inValue = new CourseMate.Web.CMwcf.ChangeEmailRequest();
+            inValue.sessionId = sessionId;
+            inValue.userId = userId;
+            inValue.oldEmail = oldEmail;
+            inValue.newEmail = newEmail;
+            CourseMate.Web.CMwcf.ChangeEmailResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).ChangeEmail(inValue);
+            return retVal.ChangeEmailResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CourseMate.Web.CMwcf.ChangePasswordResponse CourseMate.Web.CMwcf.ICourseMates.ChangePassword(CourseMate.Web.CMwcf.ChangePasswordRequest request) {
+            return base.Channel.ChangePassword(request);
+        }
+        
+        public bool ChangePassword(string sessionId, int userId, string oldPass, string newPass) {
+            CourseMate.Web.CMwcf.ChangePasswordRequest inValue = new CourseMate.Web.CMwcf.ChangePasswordRequest();
+            inValue.sessionId = sessionId;
+            inValue.userId = userId;
+            inValue.oldPass = oldPass;
+            inValue.newPass = newPass;
+            CourseMate.Web.CMwcf.ChangePasswordResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).ChangePassword(inValue);
+            return retVal.ChangePasswordResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CourseMate.Web.CMwcf.DeleteUserResponse CourseMate.Web.CMwcf.ICourseMates.DeleteUser(CourseMate.Web.CMwcf.DeleteUserRequest request) {
+            return base.Channel.DeleteUser(request);
+        }
+        
+        public bool DeleteUser(string sessionId, int userId) {
+            CourseMate.Web.CMwcf.DeleteUserRequest inValue = new CourseMate.Web.CMwcf.DeleteUserRequest();
+            inValue.sessionId = sessionId;
+            inValue.userId = userId;
+            CourseMate.Web.CMwcf.DeleteUserResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).DeleteUser(inValue);
+            return retVal.DeleteUserResult;
         }
     }
 }

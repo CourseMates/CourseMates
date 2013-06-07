@@ -174,7 +174,7 @@ namespace CourseMatesWS.BLL
         /// <param name="sendTo">The user list that will get the email.</param>
         /// <param name="fi">the FourmItem propertise</param>
         /// <param name="courseName">The course name that the FourmItem was submited.</param>
-        public static void SendQandANotification(List<User> sendTo, FourmItem fi, string courseName)
+        public static void SendQandANotification(List<User> sendTo, ForumItem fi, string courseName)
         {
             if (fi == null)
                 return;
@@ -183,7 +183,7 @@ namespace CourseMatesWS.BLL
                 if (user != null)
                 {
                     string template = GetEmailTamplateByType(EmailType.QAndA);
-                    template = string.Format(template, user.UserName, fi.Owner.UserName, courseName, fi.Title, fi.Content);
+                    template = string.Format(template, user.UserName, fi.OwnerName, courseName, fi.Title, fi.Content);
                     SendMail(user.Email, "Fourm update at " + courseName, template); 
                 }
             }

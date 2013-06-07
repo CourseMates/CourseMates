@@ -77,7 +77,8 @@
     <Compile Include="DAL\Objects\FileItem.cs" />
     <Compile Include="DAL\Objects\FileStructure.cs" />
     <Compile Include="DAL\Objects\FileType.cs" />
-    <Compile Include="DAL\Objects\FourmItem.cs" />
+    <Compile Include="DAL\Objects\Forum.cs" />
+    <Compile Include="DAL\Objects\ForumItem.cs" />
     <Compile Include="DAL\Objects\User.cs" />
     <Compile Include="BLL\Utilitys.cs" />
     <Compile Include="CourseMates.svc.cs">

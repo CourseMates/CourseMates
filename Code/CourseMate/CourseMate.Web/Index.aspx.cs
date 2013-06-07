@@ -25,7 +25,6 @@ namespace CourseMate.Web
                 Session["SessionID"] = value; 
             }
         }
-
         public int UserID
         {
             get 
@@ -48,7 +47,8 @@ namespace CourseMate.Web
                 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(UserID != -1 && !string.IsNullOrEmpty(SessionID))
+                X.Redirect("Desktop.aspx");
         }
 
         protected void Login_Click(object sender, DirectEventArgs e)
@@ -61,6 +61,7 @@ namespace CourseMate.Web
             {
                 SessionID = session;
                 UserID = id;
+                UserName = txtUsername.Text;
                 X.Redirect("Desktop.aspx");
             }
             else
@@ -115,7 +116,7 @@ namespace CourseMate.Web
         {
             if (new CourseMatesClient().SendRestorePassword(txtFPEmail.Text))
             {
-                ShowMessage("Forget Password", "A Restore email was send your email. ", MessageBox.Icon.INFO, MessageBox.Button.OK);
+                ShowMessage("Forget Password", "A Restore email was send to your email.", MessageBox.Icon.INFO, MessageBox.Button.OK);
             }
             else
             {

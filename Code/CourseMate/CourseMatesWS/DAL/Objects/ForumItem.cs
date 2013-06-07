@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace CourseMatesWS.DAL.Objects
 {
     [DataContract]
-    public class FourmItem : IComparable
+    public class ForumItem : IComparable
     {
         [DataMember]
         public int ID { get; set; }
@@ -18,15 +18,25 @@ namespace CourseMatesWS.DAL.Objects
         [DataMember]
         public int Rate { get; set; }
         [DataMember]
-        public User Owner { get; set; }
+        public string OwnerName { get; set; }
         [DataMember]
         public int PerentId { get; set; }
-
+        [DataMember]
+        public List<ForumItem> SubItems { get; set; }
+        [DataMember]
+        public int CourseId { get; set; }
+        [DataMember]
+        public DateTime TimeAdded { get; set; }
+        [DataMember]
+        public int OwnerId { get; set; }
+        
         public int CompareTo(object obj)
         {
-            FourmItem fi = obj as FourmItem;
+            ForumItem fi = obj as ForumItem;
 
             return this.ID.CompareTo(fi.ID);
         }
+
+        
     }
 }

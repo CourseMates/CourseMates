@@ -100,9 +100,11 @@
     <Content Include="Images\FolderIcons\pink.png" />
     <Content Include="Images\FolderIcons\white.png" />
     <Content Include="Images\goback.png" />
+    <Content Include="Images\post.gif" />
     <Content Include="Images\user.png" />
     <Content Include="JoinCourse.aspx" />
     <Content Include="JS\Main.js" />
+    <Content Include="JS\Moment.js" />
     <Content Include="ResetPassword.aspx" />
     <Content Include="Images\Logo.png" />
     <Content Include="Images\start.png" />
@@ -120,6 +122,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.FileStructure.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.Forum.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.SQLStatus.datasource">

@@ -154,6 +154,35 @@ namespace CourseMatesWS
         {
             return CMDal.AddUserToCourse(sessionId, userId, courseId, userToAdd);
         }
+        
+        public Forum GetCourseForum(string sessionId, int userId, int courseId)
+        {
+            return CMDal.GetCourseForum(sessionId, userId, courseId);
+        }
+        
+        public bool AddNewForumItem(string sessionId, int userId, ForumItem item)
+        {
+            return CMDal.AddNewForumItem(sessionId, userId, item);
+        }
+        public bool DeleteForumItem(string sessionId, int userId, int courseId, int itemId)
+        {
+            return CMDal.DeleteForumItem(sessionId, userId, courseId, itemId);
+        }
+        
+        public bool ChangeEmail(string sessionId, int userId, string oldEmail, string newEmail)
+        {
+            return CMDal.ChangeEmail(sessionId, userId, oldEmail, newEmail);
+        }
+
+        public bool ChangePassword(string sessionId, int userId, string oldPass, string newPass)
+        {
+            return CMDal.ChangePassword(sessionId, userId, oldPass, newPass);
+        }
+
+        public bool DeleteUser(string sessionId, int userId)
+        {
+            return CMDal.DeleteUser(sessionId, userId);
+        }
         #endregion
         #region REST
         public string LoginREST(string userName, string password, out int id)
@@ -176,5 +205,11 @@ namespace CourseMatesWS
             return false;
         }
         #endregion
+
+
+
+
+
+        
     }
 }

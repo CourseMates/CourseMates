@@ -140,3 +140,14 @@
     padding-left:20px;
     margin:10px;
 }
+.forumTitle{
+    font-size:larger;
+    font-weight:bold;
+}
+.forumContent {
+    margin:10px;
+}
+.forum-over {
+    cursor : pointer;
+    background-color : #efefef;
+}
