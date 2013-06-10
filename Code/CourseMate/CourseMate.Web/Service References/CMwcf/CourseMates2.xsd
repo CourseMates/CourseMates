@@ -47,7 +47,7 @@
       <xs:element minOccurs="0" name="OwnerId" type="xs:int" />
       <xs:element minOccurs="0" name="OwnerName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PerantID" type="xs:int" />
-      <xs:element minOccurs="0" name="Rate" type="xs:int" />
+      <xs:element minOccurs="0" name="Rate" type="xs:double" />
       <xs:element minOccurs="0" name="Size" type="xs:int" />
       <xs:element minOccurs="0" name="SubItems" nillable="true" type="tns:ArrayOfFileItem" />
       <xs:element minOccurs="0" name="Type" nillable="true" type="tns:FileType" />
@@ -77,7 +77,7 @@
       <xs:element minOccurs="0" name="OwnerId" type="xs:int" />
       <xs:element minOccurs="0" name="OwnerName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PerentId" type="xs:int" />
-      <xs:element minOccurs="0" name="Rate" type="xs:int" />
+      <xs:element minOccurs="0" name="Rate" type="xs:double" />
       <xs:element minOccurs="0" name="SubItems" nillable="true" type="tns:ArrayOfForumItem" />
       <xs:element minOccurs="0" name="TimeAdded" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />

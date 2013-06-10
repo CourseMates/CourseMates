@@ -72,7 +72,7 @@
                 <ext:DesktopModule ModuleID="mdlUserSettings" AutoRun="false">
                     <Window>
                         <ext:Window runat="server" ID="winSettings" Icon="Cog" Title="Settings" Resizable="false" Draggable="true"
-                        Width="450" Hidden="true" CloseAction="Destroy" Closable="true" Height="420" Layout="FitLayout">
+                        Width="450" Hidden="true" CloseAction="Destroy" Closable="true" Height="320" Layout="FitLayout" Maximizable="false">
                             <Items>
                                 <ext:Panel runat="server" Layout="BorderLayout" Border="false">
                                     <Items>
@@ -134,32 +134,63 @@
                                                 <ValidityChange Handler="#{btnChangePass}.setDisabled(!valid);" />
                                             </Listeners>
                                         </ext:FormPanel>
-                                        <ext:Panel runat="server" Region="South" Border="false" Layout="FitLayout">
-                                            <Items>
-                                                <ext:FieldSet runat="server" Margin="5" Title="Delete User">
-                                                    <Items>
-                                                        <ext:DisplayField ID="DisplayField2" runat="server" Text="<b><h2>Caution</b></h2>" />
-                                                        <ext:DisplayField runat="server" Text="Once you delete your account, there is no going back. Please be certain." />
-                                                        <ext:FieldContainer ID="FieldContainer4" runat="server" Layout="HBoxLayout" >
-                                                            <Defaults>
-                                                                <ext:Parameter Name="margins" Value="10 0 0 345" Mode="Value" />
-                                                            </Defaults>
-                                                            <Items>
-                                                                <ext:Button runat="server" Icon="Delete" Text="Delete">
-                                                        
-                                                                </ext:Button>
-                                                            </Items>
-                                                        </ext:FieldContainer>
-                                                    </Items>
-                                                </ext:FieldSet>
-                                            </Items>
-                                        </ext:Panel>
                                     </Items>
                                 </ext:Panel>
                             </Items>
                         </ext:Window>
                     </Window>
                     <Launcher Text="Settings" Icon="Cog" />
+                </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="mdlContactUs" AutoRun="false">
+                    <Window>
+                        <ext:Window runat="server" ID="winContactUs" Icon="Email" Title="Contact Us" Resizable="false" Draggable="true"
+                                Width="440" Hidden="true" CloseAction="Destroy" Closable="true" Height="500" Layout="FitLayout" Maximizable="false">
+                            <Items>
+                                <ext:Panel ID="Panel4" runat="server" Layout="BorderLayout" Border="false">
+                                    <Items>
+                                        <ext:Panel runat="server" Region="North" Border="false" Layout="FitLayout">
+                                            <Items>
+                                                <ext:FieldSet runat="server" Margin="5" Title="Contact details">
+                                                    <Items>
+                                                        <ext:DisplayField Margin="10" runat="server" FieldLabel="Address" Text="Sesame St 4/666', Stalingrad, MotherRussia" />
+                                                        <ext:DisplayField Margin="10" runat="server" FieldLabel="Phone" Text="1-800-SASHAISBUSY" />
+                                                        <ext:DisplayField Margin="10" runat="server" FieldLabel="Email" Text="CourseMates@gmail.com" />
+                                                        <ext:DisplayField Margin="10" runat="server" FieldLabel="Fax" Text="1-800-BEEPBEEP" />
+                                                    </Items>
+                                                </ext:FieldSet>
+                                            </Items>
+                                        </ext:Panel>
+                                        <ext:FormPanel runat="server" Region="Center" Border="false" Layout="FitLayout">
+                                            <Items>
+                                                <ext:FieldSet ID="FieldSet2" runat="server" Margin="5" Title="Email">
+                                                    <Items>
+                                                        <ext:DisplayField runat="server" Text="Subject:" Margin="10" />
+                                                        <ext:TextField runat="server" ID="txtCUSubject" Width="350" Margin="15" AllowBlank="false" MsgTarget="Side" />
+                                                        <ext:DisplayField runat="server" Text="Message:" Margin="10" />
+                                                        <ext:TextArea runat="server" ID="taCUMessage" Margin="15" Width="350" Height="130" AllowBlank="false" MsgTarget="Side" />
+                                                        <ext:FieldContainer runat="server" Layout="HBoxLayout" >
+                                                            <Defaults>
+                                                                <ext:Parameter Name="margins" Value="10 0 0 300" Mode="Value" />
+                                                            </Defaults>
+                                                            <Items>
+                                                                <ext:Button runat="server" Icon="EmailGo" Text="Send" ID="btnCUSendMsg" Disabled="true">
+                                                        
+                                                                </ext:Button>
+                                                            </Items>
+                                                        </ext:FieldContainer>
+                                                    </Items>
+                                                 </ext:FieldSet>
+                                            </Items>
+                                            <Listeners>
+                                                <ValidityChange Handler="#{btnCUSendMsg}.setDisabled(!valid);" />
+                                            </Listeners>
+                                        </ext:FormPanel>
+                                    </Items>
+                                </ext:Panel>
+                            </Items>
+                        </ext:Window>
+                    </Window>
+                    <Launcher Text="Contact Us" Icon="Email" />
                 </ext:DesktopModule>
             </Modules>
             <StartMenu Title="Menu" Height="300" Icon="Application">
@@ -331,11 +362,25 @@
                                                     </DirectEvents>
                                                 </ext:Button>
                                                 <ext:ToolbarFill />
+                                                <ext:Button runat="server" ID="btnRateFileUp" ToolTip="Reload" Icon="ThumbUp" Disabled="true">
+                                                    <Listeners>
+                                                        <Click Handler="if(#{pnlFileView}.getRowsValues({ selectedOnly : true })[0].IsFolder == false)
+                                                                            #{DirectMethods}.RateFile(#{pnlFileView}.getRowsValues({ selectedOnly : true })[0].FileID, 1);"/>
+                                                    </Listeners>
+                                                </ext:Button>
+                                                <ext:Button runat="server" ID="btnRateFileDown" ToolTip="Reload" Icon="ThumbDown" Disabled="true">
+                                                    <Listeners>
+                                                        <Click Handler="if(#{pnlFileView}.getRowsValues({ selectedOnly : true })[0].IsFolder == false)
+                                                                            #{DirectMethods}.RateFile(#{pnlFileView}.getRowsValues({ selectedOnly : true })[0].FileID, 0);"/>
+                                                    </Listeners>
+                                                </ext:Button>
+                                                <ext:ToolbarSeparator />
                                                 <ext:Button runat="server" ID="btnReload" ToolTip="Reload" Icon="ArrowRefresh">
                                                     <Listeners>
                                                         <Click Handler="#{DirectMethods}.LoadFiles(-1);"/>
                                                     </Listeners>
                                                 </ext:Button>
+                                                
                                             </Items>
                                         </ext:Toolbar>
                                     </TopBar>
@@ -353,7 +398,7 @@
                                                                         <ext:ModelField Name="ImageUrl" Type="String" />
                                                                         <ext:ModelField Name="Size" Type="String" />
                                                                         <ext:ModelField Name="LastModify" Type="String" />
-                                                                        <ext:ModelField Name="Rate" Type="Int" />
+                                                                        <ext:ModelField Name="Rate" Type="String" />
                                                                         <ext:ModelField Name="Type" Type="String" />
                                                                         <ext:ModelField Name="Owner" Type="String" />
                                                                         <ext:ModelField Name="IsFolder" Type="Boolean" />
@@ -381,7 +426,9 @@
                                                         </Html>
                                                     </Tpl>
                                                     <Listeners>
-                                                        <SelectionChange Handler="if(selections[0]){App.pnlItemInfo.loadRecord(selections[0])}" />
+                                                        <SelectionChange Handler="if(selections[0]){App.pnlItemInfo.loadRecord(selections[0])};
+                                                                                  #{btnRateFileUp}.setDisabled(false);
+                                                                                  #{btnRateFileDown}.setDisabled(false);" />
                                                         <Refresh Handler="this.el.select('.thumb-wrap').addClsOnOver('x-view-over');" Delay="100" />
                                                         <ItemDblClick Handler="#{DirectMethods}.UpdateViewPanel(this.store.getAt(index).data.FileID)" />                                                 
                                                     </Listeners>
@@ -484,6 +531,17 @@
                                             </DirectEvents>
                                         </ext:Button>
                                         <ext:ToolbarFill />
+                                        <ext:Button runat="server" ID="btnRateCommentUp" ToolTip="Reload" Icon="ThumbUp" Disabled="true">
+                                            <Listeners>
+                                                <Click Handler="#{DirectMethods}.RateComment(#{forumItemView}.getRowsValues({ selectedOnly : true })[0].ItemID, 1);"/>
+                                            </Listeners>
+                                        </ext:Button>
+                                        <ext:Button runat="server" ID="btnRateCommentDown" ToolTip="Reload" Icon="ThumbDown" Disabled="true">
+                                            <Listeners>
+                                                <Click Handler="#{DirectMethods}.RateComment(#{forumItemView}.getRowsValues({ selectedOnly : true })[0].ItemID, 0);"/>
+                                            </Listeners>
+                                        </ext:Button>
+                                        <ext:ToolbarSeparator />
                                         <ext:Button ID="Button7" runat="server" Icon="ArrowRefresh">
                                             <Listeners>
                                                     <Click Handler="#{DirectMethods}.LoadForum();" />
@@ -533,6 +591,7 @@
                                                         <ext:ModelField Name="OwnerName" Type="String" />
                                                         <ext:ModelField Name="TimeAdded" Type="String" />
                                                         <ext:ModelField Name="Level" Type="Int" />
+                                                        <ext:ModelField Name="Rate" Type="String" />
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
@@ -545,6 +604,7 @@
                                                 <p class="forumTitle"><img src="Images/post.gif" />{Title}</p>
                                                 <div style="color:gray; margin-left:15px">By: {OwnerName}</div>
                                                 <p class="forumContent">{Content}</p>
+                                                <div style="text-align:right">{Rate}</div>
                                                 <div style="color:gray;text-align:right">{TimeAdded}</div>
                                                 <hr />
                                             </div>
@@ -552,7 +612,9 @@
                                         </Html>
                                     </Tpl>
                                     <Listeners>
-                                        <SelectionChange Handler="#{btnAddComment}.setDisabled(false);" />
+                                        <SelectionChange Handler="#{btnAddComment}.setDisabled(false);
+                                                                  #{btnRateCommentUp}.setDisabled(false);
+                                                                  #{btnRateCommentDown}.setDisabled(false);" />
                                         <Refresh Handler="this.el.select('thumb-wrap').addClsOnOver('forum-over');" Delay="100" />
                                     </Listeners>
                                 </ext:DataView>

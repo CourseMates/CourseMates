@@ -121,9 +121,14 @@ namespace CourseMate.Web.CMwcf {
         CourseMate.Web.CMwcf.ChangePasswordResponse ChangePassword(CourseMate.Web.CMwcf.ChangePasswordRequest request);
         
         // CODEGEN: Parameter 'sessionId' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/DeleteUser", ReplyAction="http://tempuri.org/ICourseMates/DeleteUserResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/RateFile", ReplyAction="http://tempuri.org/ICourseMates/RateFileResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CourseMate.Web.CMwcf.DeleteUserResponse DeleteUser(CourseMate.Web.CMwcf.DeleteUserRequest request);
+        CourseMate.Web.CMwcf.RateFileResponse RateFile(CourseMate.Web.CMwcf.RateFileRequest request);
+        
+        // CODEGEN: Parameter 'sessionId' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseMates/RateForumItem", ReplyAction="http://tempuri.org/ICourseMates/RateForumItemResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        CourseMate.Web.CMwcf.RateForumItemResponse RateForumItem(CourseMate.Web.CMwcf.RateForumItemRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -389,7 +394,7 @@ namespace CourseMate.Web.CMwcf {
         
         private bool perentIdFieldSpecified;
         
-        private int rateField;
+        private double rateField;
         
         private bool rateFieldSpecified;
         
@@ -523,7 +528,7 @@ namespace CourseMate.Web.CMwcf {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=6)]
-        public int Rate {
+        public double Rate {
             get {
                 return this.rateField;
             }
@@ -667,7 +672,7 @@ namespace CourseMate.Web.CMwcf {
         
         private bool perantIDFieldSpecified;
         
-        private int rateField;
+        private double rateField;
         
         private bool rateFieldSpecified;
         
@@ -825,7 +830,7 @@ namespace CourseMate.Web.CMwcf {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=7)]
-        public int Rate {
+        public double Rate {
             get {
                 return this.rateField;
             }
@@ -2178,8 +2183,8 @@ namespace CourseMate.Web.CMwcf {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="DeleteUser", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class DeleteUserRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="RateFile", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class RateFileRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
@@ -2188,29 +2193,84 @@ namespace CourseMate.Web.CMwcf {
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public int userId;
         
-        public DeleteUserRequest() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public int fileId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
+        public int rate;
+        
+        public RateFileRequest() {
         }
         
-        public DeleteUserRequest(string sessionId, int userId) {
+        public RateFileRequest(string sessionId, int userId, int fileId, int rate) {
             this.sessionId = sessionId;
             this.userId = userId;
+            this.fileId = fileId;
+            this.rate = rate;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="DeleteUserResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class DeleteUserResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="RateFileResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class RateFileResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public bool DeleteUserResult;
+        public bool RateFileResult;
         
-        public DeleteUserResponse() {
+        public RateFileResponse() {
         }
         
-        public DeleteUserResponse(bool DeleteUserResult) {
-            this.DeleteUserResult = DeleteUserResult;
+        public RateFileResponse(bool RateFileResult) {
+            this.RateFileResult = RateFileResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="RateForumItem", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class RateForumItemRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string sessionId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int userId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public int itemId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
+        public int rate;
+        
+        public RateForumItemRequest() {
+        }
+        
+        public RateForumItemRequest(string sessionId, int userId, int itemId, int rate) {
+            this.sessionId = sessionId;
+            this.userId = userId;
+            this.itemId = itemId;
+            this.rate = rate;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="RateForumItemResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class RateForumItemResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool RateForumItemResult;
+        
+        public RateForumItemResponse() {
+        }
+        
+        public RateForumItemResponse(bool RateForumItemResult) {
+            this.RateForumItemResult = RateForumItemResult;
         }
     }
     
@@ -2547,16 +2607,33 @@ namespace CourseMate.Web.CMwcf {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        CourseMate.Web.CMwcf.DeleteUserResponse CourseMate.Web.CMwcf.ICourseMates.DeleteUser(CourseMate.Web.CMwcf.DeleteUserRequest request) {
-            return base.Channel.DeleteUser(request);
+        CourseMate.Web.CMwcf.RateFileResponse CourseMate.Web.CMwcf.ICourseMates.RateFile(CourseMate.Web.CMwcf.RateFileRequest request) {
+            return base.Channel.RateFile(request);
         }
         
-        public bool DeleteUser(string sessionId, int userId) {
-            CourseMate.Web.CMwcf.DeleteUserRequest inValue = new CourseMate.Web.CMwcf.DeleteUserRequest();
+        public bool RateFile(string sessionId, int userId, int fileId, int rate) {
+            CourseMate.Web.CMwcf.RateFileRequest inValue = new CourseMate.Web.CMwcf.RateFileRequest();
             inValue.sessionId = sessionId;
             inValue.userId = userId;
-            CourseMate.Web.CMwcf.DeleteUserResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).DeleteUser(inValue);
-            return retVal.DeleteUserResult;
+            inValue.fileId = fileId;
+            inValue.rate = rate;
+            CourseMate.Web.CMwcf.RateFileResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).RateFile(inValue);
+            return retVal.RateFileResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CourseMate.Web.CMwcf.RateForumItemResponse CourseMate.Web.CMwcf.ICourseMates.RateForumItem(CourseMate.Web.CMwcf.RateForumItemRequest request) {
+            return base.Channel.RateForumItem(request);
+        }
+        
+        public bool RateForumItem(string sessionId, int userId, int itemId, int rate) {
+            CourseMate.Web.CMwcf.RateForumItemRequest inValue = new CourseMate.Web.CMwcf.RateForumItemRequest();
+            inValue.sessionId = sessionId;
+            inValue.userId = userId;
+            inValue.itemId = itemId;
+            inValue.rate = rate;
+            CourseMate.Web.CMwcf.RateForumItemResponse retVal = ((CourseMate.Web.CMwcf.ICourseMates)(this)).RateForumItem(inValue);
+            return retVal.RateForumItemResult;
         }
     }
 }

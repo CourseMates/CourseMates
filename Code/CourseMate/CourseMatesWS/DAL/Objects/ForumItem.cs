@@ -16,7 +16,7 @@ namespace CourseMatesWS.DAL.Objects
         [DataMember]
         public string Content { get; set; }
         [DataMember]
-        public int Rate { get; set; }
+        public double Rate { get; set; }
         [DataMember]
         public string OwnerName { get; set; }
         [DataMember]

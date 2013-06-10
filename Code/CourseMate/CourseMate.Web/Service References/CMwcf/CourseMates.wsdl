@@ -153,11 +153,17 @@
   <wsdl:message name="ICourseMates_ChangePassword_OutputMessage">
     <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
   </wsdl:message>
-  <wsdl:message name="ICourseMates_DeleteUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  <wsdl:message name="ICourseMates_RateFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:RateFile" />
   </wsdl:message>
-  <wsdl:message name="ICourseMates_DeleteUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  <wsdl:message name="ICourseMates_RateFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RateFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_RateForumItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:RateForumItem" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_RateForumItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RateForumItemResponse" />
   </wsdl:message>
   <wsdl:message name="IAndroidRest_LoginREST_InputMessage">
     <wsdl:part name="parameters" element="tns:LoginREST" />
@@ -262,9 +268,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/ChangePassword" message="tns:ICourseMates_ChangePassword_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/ChangePasswordResponse" message="tns:ICourseMates_ChangePassword_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/DeleteUser" message="tns:ICourseMates_DeleteUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/DeleteUserResponse" message="tns:ICourseMates_DeleteUser_OutputMessage" />
+    <wsdl:operation name="RateFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/RateFile" message="tns:ICourseMates_RateFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/RateFileResponse" message="tns:ICourseMates_RateFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RateForumItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/RateForumItem" message="tns:ICourseMates_RateForumItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/RateForumItemResponse" message="tns:ICourseMates_RateForumItem_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IAndroidRest">
@@ -485,8 +495,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteUser">
-      <soap:operation soapAction="http://tempuri.org/ICourseMates/DeleteUser" style="document" />
+    <wsdl:operation name="RateFile">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/RateFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RateForumItem">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/RateForumItem" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -193,22 +193,58 @@ namespace CourseMate.Web {
         protected global::Ext.Net.Button btnChangePass;
         
         /// <summary>
-        /// DisplayField2 control.
+        /// winContactUs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DisplayField DisplayField2;
+        protected global::Ext.Net.Window winContactUs;
         
         /// <summary>
-        /// FieldContainer4 control.
+        /// Panel4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FieldContainer FieldContainer4;
+        protected global::Ext.Net.Panel Panel4;
+        
+        /// <summary>
+        /// FieldSet2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FieldSet FieldSet2;
+        
+        /// <summary>
+        /// txtCUSubject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField txtCUSubject;
+        
+        /// <summary>
+        /// taCUMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextArea taCUMessage;
+        
+        /// <summary>
+        /// btnCUSendMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button btnCUSendMsg;
         
         /// <summary>
         /// Button2 control.
@@ -418,6 +454,24 @@ namespace CourseMate.Web {
         protected global::Ext.Net.Button btnDownload;
         
         /// <summary>
+        /// btnRateFileUp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button btnRateFileUp;
+        
+        /// <summary>
+        /// btnRateFileDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button btnRateFileDown;
+        
+        /// <summary>
         /// btnReload control.
         /// </summary>
         /// <remarks>
@@ -497,6 +551,24 @@ namespace CourseMate.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button btnDeleteComment;
+        
+        /// <summary>
+        /// btnRateCommentUp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button btnRateCommentUp;
+        
+        /// <summary>
+        /// btnRateCommentDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button btnRateCommentDown;
         
         /// <summary>
         /// Button7 control.

@@ -178,10 +178,15 @@ namespace CourseMatesWS
         {
             return CMDal.ChangePassword(sessionId, userId, oldPass, newPass);
         }
-
-        public bool DeleteUser(string sessionId, int userId)
+        
+        public bool RateFile(string sessionId, int userId, int fileId, int rate)
         {
-            return CMDal.DeleteUser(sessionId, userId);
+            return CMDal.RateFile(sessionId, userId, fileId, rate);
+        }
+
+        public bool RateForumItem(string sessionId, int userId, int itemId, int rate)
+        {
+            return CMDal.RateForumItem(sessionId, userId, itemId, rate);
         }
         #endregion
         #region REST
@@ -205,6 +210,9 @@ namespace CourseMatesWS
             return false;
         }
         #endregion
+
+
+
 
 
 

@@ -435,7 +435,7 @@ namespace CourseMate.Web
                             ImageUrl = file.Type.ImageUrl,
                             Size = GetFormatedSize(file.Size),
                             LastModify = TimeAgo(file.LastModify),
-                            Rate = file.Rate,
+                            Rate = GetPresentege(file.Rate),
                             Type = file.Type.Description,
                             Owner = file.OwnerName,
                             IsFolder = file.IsFolder,
@@ -448,7 +448,7 @@ namespace CourseMate.Web
             }
 
         }
-
+        
         [DirectMethod(ShowMask = true, CustomTarget = "winCourse")]
         public void LoadCourseData(int courseId)
         {
@@ -604,6 +604,36 @@ namespace CourseMate.Web
             }
         }
 
+        [DirectMethod(ShowMask = true, CustomTarget = "winCourse")]
+        public void RateFile(int fileId, int rate)
+        {
+            if (CourseMatesWS.RateFile(SessionID, UserID, fileId, rate))
+            {
+                ReLoadCourseFiles(CurrentCourse);
+                btnRateFileDown.Disabled = true;
+                btnRateFileUp.Disabled = true;
+            }
+            else
+            {
+                ShowMessage("Rate File", "Error: Failed", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+            }
+        }
+        
+        [DirectMethod(ShowMask = true, CustomTarget = "winCourse")]
+        public void RateComment(int itemId, int rate)
+        {
+            if (CourseMatesWS.RateForumItem(SessionID, UserID, itemId, rate))
+            {
+                LoadForum();
+                btnRateCommentDown.Disabled = true;
+                btnRateCommentUp.Disabled = true;
+            }
+            else
+            {
+                ShowMessage("Rate Comment", "Error: Failed", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+            }
+        }
+
         [DirectMethod(ShowMask = true, CustomTarget = "winSettings")]
         public void ChangePassword()
         {
@@ -635,12 +665,6 @@ namespace CourseMate.Web
             }
         }
 
-        [DirectMethod(ShowMask = true, CustomTarget = "winSettings")]
-        public void DeleteUser()
-        {
-
-        }
-
         #endregion
 
         #region Private Methods
@@ -661,6 +685,7 @@ namespace CourseMate.Web
                     Content = item.Content,
                     OwnerName = item.OwnerName,
                     TimeAdded = TimeAgo(item.TimeAdded),
+                    Rate = GetPresentege(item.Rate),
                     Level = 50 * level
                 });
                 if (item.SubItems != null)
@@ -808,6 +833,14 @@ namespace CourseMate.Web
             if (timeSince.TotalDays < 365) return string.Format("{0} months ago", Math.Round(timeSince.TotalDays / 30));
             if (timeSince.TotalDays < 730) return "last year"; //last but not least...
             return string.Format("{0} years ago", Math.Round(timeSince.TotalDays / 365));
+        }
+
+        private string GetPresentege(double rate)
+        {
+            int pre = (int)(rate * 100);
+            if (pre <= 0)
+                return "Not rated item";
+            return string.Format("Useful by {0}% of the users", pre);
         }
         #endregion
     }

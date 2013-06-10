@@ -294,13 +294,14 @@ namespace CourseMatesWS.DAL
                 List<FileItem> files = new List<FileItem>();
                 foreach (DataRow row in table.Rows)
                 {
-                    int id, ownerId, perantId, Rate,typeId, size;
+                    int id, ownerId, perantId, rate,typeId, size,rUsers;
                     bool isFolder;
 
                     ParseCellDataToInt(row["ID"], out id);
                     ParseCellDataToInt(row["UserId"], out ownerId);
                     ParseCellDataToInt(row["ParentFileID"], out perantId);
-                    ParseCellDataToInt(row["Rate"], out Rate);
+                    ParseCellDataToInt(row["Rate"], out rate);
+                    ParseCellDataToInt(row["RatingUsers"], out rUsers);
                     ParseCellDataToInt(row["TypeID"], out typeId);
 
                     ParseCellDataToBool(row["IsFolder"], out isFolder);
@@ -326,7 +327,7 @@ namespace CourseMatesWS.DAL
                         IsFolder=isFolder,
                         OwnerId=ownerId,
                         PerantID=perantId,
-                        Rate=Rate,
+                        Rate=((double)rate/rUsers),
                         Size=size
                     };
 
@@ -617,14 +618,17 @@ namespace CourseMatesWS.DAL
                     return forum;
                 foreach (DataRow row in table.Rows)
                 {
-                    int id, perrentId;
+                    int id, perrentId, rate, rUsers;
                     ParseCellDataToInt(row["Id"], out id);
+                    ParseCellDataToInt(row["Rate"], out rate);
+                    ParseCellDataToInt(row["RatingUsers"], out rUsers);
                     ParseCellDataToInt(row["RootId"], out perrentId);
                     ForumItem fi = new ForumItem();
                     fi.Title = ParseCellDataToString(row["Title"]);
                     fi.Content = ParseCellDataToString(row["Content"]);
                     fi.OwnerName = ParseCellDataToString(row["UserName"]);
                     fi.ID = id;
+                    fi.Rate = ((double)rate / rUsers);
                     fi.PerentId = perrentId;
                     fi.TimeAdded = ParseCellDataToDateTime(row["TimeAdded"]);
                     forum.AddItemByPerantID(fi);
@@ -712,9 +716,40 @@ namespace CourseMatesWS.DAL
             }
         }
 
-        public static bool DeleteUser(string sessionId, int userId)
+        public static bool RateFile(string sessionId, int userId, int fileId, int rate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                int result = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_RateFile",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@FileID", fileId,
+                        "@Rating", rate);
+
+                return result > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool RateForumItem(string sessionId, int userId, int itemId, int rate)
+        {
+            try
+            {
+                int result = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_RateForumItem",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@ItemID", itemId,
+                        "@Rating", rate);
+
+                return result > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

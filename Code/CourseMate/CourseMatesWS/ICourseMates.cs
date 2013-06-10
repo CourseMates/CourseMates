@@ -58,7 +58,9 @@ namespace CourseMatesWS
         [OperationContract]
         bool ChangePassword(string sessionId, int userId, string oldPass, string newPass);
         [OperationContract]
-        bool DeleteUser(string sessionId, int userId);
+        bool RateFile(string sessionId, int userId, int fileId, int rate);
+        [OperationContract]
+        bool RateForumItem(string sessionId, int userId, int itemId, int rate);
     }
     [MessageContract]
     public class UploadFileMsg

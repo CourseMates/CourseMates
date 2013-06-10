@@ -17,7 +17,7 @@ namespace CourseMatesWS.DAL.Objects
         [DataMember]
         public FileType Type { get; set; }
         [DataMember]
-        public int Rate { get; set; }
+        public double Rate { get; set; }
         [DataMember]
         public int OwnerId { get; set; }
         [DataMember]
