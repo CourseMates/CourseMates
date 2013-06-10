@@ -377,7 +377,7 @@
                                                 <ext:ToolbarSeparator />
                                                 <ext:Button runat="server" ID="btnReload" ToolTip="Reload" Icon="ArrowRefresh">
                                                     <Listeners>
-                                                        <Click Handler="#{DirectMethods}.LoadFiles(-1);"/>
+                                                        <Click Handler="#{DirectMethods}.LoadFile(-1);"/>
                                                     </Listeners>
                                                 </ext:Button>
                                                 
@@ -435,7 +435,7 @@
                                                 </ext:DataView>
                                             </Items>
                                         </ext:Panel>
-                                        <ext:Panel ID="pnlItemInfo" runat="server" AnchorVertical="100%" Height="150" Region="South" Title="Item Info" Collapsed="false" Collapsible="true" Frame="false">
+                                        <ext:Panel ID="pnlItemInfo" runat="server" AnchorVertical="100%" Height="150" Region="South" Title="Item Info" Collapsed="false" Collapsible="true" Frame="false" AutoScroll="true">
                                             <CustomConfig>
                                                 <ext:ConfigItem Name="loadRecord" Value="function(file){
                                                     if(file.data.FileName != 'Go Back')
@@ -505,7 +505,7 @@
                                 </ext:Panel>
                             </Items>
                         </ext:Panel>
-                        <ext:Panel ID="pnlFourm" runat="server" AutoScroll="true" Title="Forum">
+                        <ext:Panel ID="pnlFourm" runat="server" AutoScroll="true" Title="Forum" Layout="FitLayout">
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar3" runat="server">
                                     <Items>
@@ -600,7 +600,7 @@
                                     <Tpl ID="Tpl2" runat="server">
                                         <Html>
                                         <tpl for=".">
-                                            <div class="thumb-wrap" style="margin-left:{Level}px">
+                                            <div class="thumb-wrap" style="padding-left:{Level}px;width:99%;">
                                                 <p class="forumTitle"><img src="Images/post.gif" />{Title}</p>
                                                 <div style="color:gray; margin-left:15px">By: {OwnerName}</div>
                                                 <p class="forumContent">{Content}</p>
