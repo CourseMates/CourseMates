@@ -23,6 +23,8 @@ namespace CourseMatesWS.DAL.Objects
         public string Password { get; set; }
         [DataMember]
         public string GCMId { get; set; }
+        [DataMember]
+        public bool IsAdmin { get; set; }
 
         public int CompareTo(object obj)
         {

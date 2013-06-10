@@ -1,190 +1,15 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Desktop.aspx.cs" Inherits="CourseMate.Web.Desktop" %>
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
-<%@ Register TagName="CourseWindow" TagPrefix="mod" Src="~/CourseWindow.ascx" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <script src="JS/Jquery-1.7.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        var filterTree = function (tf, e) {
-            var tree = App.filesTreePanel,
-                text = tf.getRawValue();
-
-            tree.clearFilter();
-
-            if (Ext.isEmpty(text, false)) {
-                return;
-            }
-
-            if (e.getKey() === Ext.EventObject.ESC) {
-                clearFilter();
-            } else {
-                var re = new RegExp(".*" + text + ".*", "i");
-
-                tree.filterBy(function (node) {
-                    return re.test(node.data.text);
-                });
-            }
-        };
-
-        var clearFilter = function () {
-            var field = App.TriggerField1,
-                tree = App.filesTreePanel;
-
-            field.setValue("");
-            tree.clearFilter(true);
-            tree.getView().focus();
-        };
-    </script>
+    <script src="JS/Main.js" type="text/javascript"></script>
+    <script src="JS/Moment.js" type="text/javascript"></script>
+    <link href="CSS/MainCss.css" rel="stylesheet" />
     <title>My Courses</title>
-    <style type="text/css">
-        .search-item {
-            font          : normal 11px tahoma, arial, helvetica, sans-serif;
-            padding       : 3px 10px 3px 10px;
-            border        : 1px solid #fff;
-            border-bottom : 1px solid #eeeeee;
-            white-space   : normal;
-            color         : #555;
-        }
-        
-        .search-item h3 {
-            display     : block;
-            font        : inherit;
-            font-weight : bold;
-            color       : #222;
-            margin      :0px;
-        }
-
-        .search-item h3 span {
-            float       : right;
-            font-weight : normal;
-            margin      : 0 0 5px 5px;
-            width       : 100px;
-            display     : block;
-            clear       : none;
-        } 
-        .ux-wallpaper {
-            background-color:White !important;
-            background-image:url(Images/Logo.png) !important;
-            background-position:center !important;
-            background-repeat:no-repeat !important;
-        }
-        .x-beige-folder
-        {
-            background-image:url("Images/FolderIcons/beige.png");
-        }
-        .x-black-folder
-        {
-            background-image:url("Images/FolderIcons/black.png");
-        }
-        .x-blue-folder
-        {
-            background-image:url("Images/FolderIcons/blue.png");
-        }
-        .x-green-folder
-        {
-            background-image:url("Images/FolderIcons/green.png");
-        }
-        .x-lila-folder
-        {
-            background-image:url("Images/FolderIcons/lila.png");
-        }
-        .x-orange-folder
-        {
-            background-image:url("Images/FolderIcons/orange.png");
-        }
-        .x-pink-folder
-        {
-            background-image:url("Images/FolderIcons/pink.png");
-            width:48px;
-            height:48px;
-        }
-        .x-white-folder
-        {
-            background-image:url("Images/FolderIcons/white.png");
-        }
-        .x-folder-text
-        {
-            color:Black;
-        }
-        .img-chooser-dlg .details {
-            text-align: center;
-        }
-
-        .img-chooser-dlg .details-info {
-            border-top: 1px solid #cccccc;
-            font: 11px Arial, Helvetica, sans-serif;
-            margin-top: 5px;
-            padding-top: 5px;
-            text-align: left;
-        }
-
-        .img-chooser-dlg .details-info b {
-            color: #555555;
-            display: block;
-            margin-bottom: 4px;
-            margin-left: 5px;
-        }
-
-        .img-chooser-dlg .details-info span {
-            display: block;
-            margin-bottom: 5px;
-            margin-left: 10px;
-        }
-
-        .img-chooser-view {
-            background: white;
-            font: 11px Arial, Helvetica, sans-serif;
-        }
-
-        .img-chooser-view .thumb {
-            padding: 3px;
-        }
-
-        .img-chooser-view .thumb-wrap {
-            float: left;
-            margin: 4px;
-            margin-right: 0;
-            padding: 5px;
-        }
-
-        .img-chooser-view .thumb-wrap span {
-            display: block;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .img-chooser-view .x-view-over {
-            border:1px solid #dddddd;
-            background-color: #efefef;
-            padding: 4px;
-        }
-
-        .img-chooser-view .x-item-selected {
-            background: #DFEDFF;
-            border: 1px solid #6593cf;
-            padding: 4px;
-        }
-
-        .img-chooser-view .x-item-selected .thumb {
-            background:transparent;
-        }
-
-        .img-chooser-view .x-item-selected span {
-            color:#1A4D8F;
-        }
-
-        .img-chooser-view .loading-indicator {
-            font-size:11px;
-            background-image :url(/extnet/resources/images/loading-gif/ext.axd) ;
-            background-repeat: no-repeat;
-            background-position: left;
-            padding-left:20px;
-            margin:10px;
-        }
-    </style>
 </head>
 <body> 
     <form runat="server">
@@ -244,6 +69,98 @@
                 </Window>
                     <Launcher Text="New Course" Icon="Add" />
                 </ext:DesktopModule>
+                <ext:DesktopModule ModuleID="mdlUserSettings" AutoRun="false">
+                    <Window>
+                        <ext:Window runat="server" ID="winSettings" Icon="Cog" Title="Settings" Resizable="false" Draggable="true"
+                        Width="450" Hidden="true" CloseAction="Destroy" Closable="true" Height="420" Layout="FitLayout">
+                            <Items>
+                                <ext:Panel runat="server" Layout="BorderLayout" Border="false">
+                                    <Items>
+                                        <ext:FormPanel runat="server" Region="North" Border="false" Layout="FitLayout">
+                                            <Items>
+                                                <ext:FieldSet runat="server" Margin="5" Title="Change Email">
+                                                    <Items>
+                                                        <ext:TextField runat="server" ID="txtOldEmail" AllowBlank="false" MsgTarget="Side" FieldLabel="Old Email" AnchorHorizontal="100%" Vtype="email" />
+                                                        <ext:TextField runat="server" ID="txtNewEmail" AllowBlank="false" MsgTarget="Side" FieldLabel="New Email" AnchorHorizontal="100%" Vtype="email" />
+                                                        <ext:FieldContainer ID="FieldContainer2" runat="server" Layout="HBoxLayout" >
+                                                            <Defaults>
+                                                                <ext:Parameter Name="margins" Value="10 0 0 350" Mode="Value" />
+                                                            </Defaults>
+                                                            <Items>
+                                                                <ext:Button runat="server" Icon="Disk" Text="Save" ID="btnChangeEmail" Disabled="true">
+                                                                    <Listeners>
+                                                                        <Click Handler="#{DirectMethods}.ChangeEmail();" />
+                                                                    </Listeners>
+                                                                </ext:Button>
+                                                            </Items>
+                                                        </ext:FieldContainer>
+                                                    </Items>
+                                                </ext:FieldSet>
+                                            </Items>
+                                            <Listeners>
+                                                <ValidityChange Handler="#{btnChangeEmail}.setDisabled(!valid);" />
+                                            </Listeners>
+                                        </ext:FormPanel>
+                                        <ext:FormPanel runat="server" Region="Center" Border="false" Layout="FitLayout">
+                                            <Items>
+                                                <ext:FieldSet runat="server" Margin="5" Title="Change Password">
+                                                    <Items>
+                                                        <ext:TextField ID="txtOldPassword" runat="server" InputType="Password" FieldLabel="Old Password" 
+                                                            AllowBlank="false" Vtype="password"  MsgTarget="Side" AnchorHorizontal="100%" /> 
+                                                        <ext:TextField ID="txtNewPassword" runat="server" InputType="Password" FieldLabel="New Password"  MsgTarget="Side" AnchorHorizontal="100%" 
+                                                            AllowBlank="false" MinLength="8" MinLengthText="Password must be 8 character long"/>
+                                                        <ext:TextField ID="txtCNewPassword" runat="server" InputType="Password" FieldLabel="Confirm Password" 
+                                                            AllowBlank="false"  Vtype="password"  MsgTarget="Side" AnchorHorizontal="100%">
+                                                            <CustomConfig>
+                                                                <ext:ConfigItem Name="initialPassField" Value="txtNewPassword" Mode="Value" />
+                                                            </CustomConfig>      
+                                                        </ext:TextField>
+                                                        <ext:FieldContainer ID="FieldContainer3" runat="server" Layout="HBoxLayout" >
+                                                            <Defaults>
+                                                                <ext:Parameter Name="margins" Value="10 0 0 350" Mode="Value" />
+                                                            </Defaults>
+                                                            <Items>
+                                                                <ext:Button runat="server" Icon="Disk" Text="Save" ID="btnChangePass" Disabled="true">
+                                                                    <Listeners>
+                                                                        <Click Handler="#{DirectMethods}.ChangePassword();" />
+                                                                    </Listeners>
+                                                                </ext:Button>
+                                                            </Items>
+                                                        </ext:FieldContainer>
+                                                    </Items>
+                                                </ext:FieldSet>
+                                            </Items>
+                                            <Listeners>
+                                                <ValidityChange Handler="#{btnChangePass}.setDisabled(!valid);" />
+                                            </Listeners>
+                                        </ext:FormPanel>
+                                        <ext:Panel runat="server" Region="South" Border="false" Layout="FitLayout">
+                                            <Items>
+                                                <ext:FieldSet runat="server" Margin="5" Title="Delete User">
+                                                    <Items>
+                                                        <ext:DisplayField ID="DisplayField2" runat="server" Text="<b><h2>Caution</b></h2>" />
+                                                        <ext:DisplayField runat="server" Text="Once you delete your account, there is no going back. Please be certain." />
+                                                        <ext:FieldContainer ID="FieldContainer4" runat="server" Layout="HBoxLayout" >
+                                                            <Defaults>
+                                                                <ext:Parameter Name="margins" Value="10 0 0 345" Mode="Value" />
+                                                            </Defaults>
+                                                            <Items>
+                                                                <ext:Button runat="server" Icon="Delete" Text="Delete">
+                                                        
+                                                                </ext:Button>
+                                                            </Items>
+                                                        </ext:FieldContainer>
+                                                    </Items>
+                                                </ext:FieldSet>
+                                            </Items>
+                                        </ext:Panel>
+                                    </Items>
+                                </ext:Panel>
+                            </Items>
+                        </ext:Window>
+                    </Window>
+                    <Launcher Text="Settings" Icon="Cog" />
+                </ext:DesktopModule>
             </Modules>
             <StartMenu Title="Menu" Height="300" Icon="Application">
             <ToolConfig>
@@ -287,11 +204,13 @@
                 <ext:MenuPanel ID="MenuPanel1" runat="server" Width="200" Region="West" Collapsed="false" Collapsible="true" Title="Help Topics">
                     <Menu ID="Menu1" runat="server">
                         <Items>
-                            <ext:MenuItem Text="New Course" Icon="Camera"></ext:MenuItem>
-                            <ext:MenuItem Text="Invite Users" Icon="Camera"></ext:MenuItem>
-                            <ext:MenuItem Text="Add New File" Icon="Camera"></ext:MenuItem>
-                            <ext:MenuItem Text="Ask/Answer Question" Icon="Camera"></ext:MenuItem>
-                            <ext:MenuItem Text="Rate File" Icon="Camera"></ext:MenuItem>
+                            <ext:MenuItem Text="New Course" Icon="Film"></ext:MenuItem>
+                            <ext:MenuItem Text="Invite Users" Icon="Film"></ext:MenuItem>
+                            <ext:MenuItem Text="Add New File" Icon="Film"></ext:MenuItem>
+                            <ext:MenuItem Text="Ask/Answer Question" Icon="Film"></ext:MenuItem>
+                            <ext:MenuItem Text="Rate File" Icon="Film"></ext:MenuItem>
+                            <ext:MenuItem Text="Change Password" Icon="Film"></ext:MenuItem>
+                            <ext:MenuItem Text="Change Email" Icon="Film"></ext:MenuItem>
                         </Items>
                     </Menu>
                 </ext:MenuPanel>
@@ -433,7 +352,7 @@
                                                                         <ext:ModelField Name="FileName" Type="String" /> 
                                                                         <ext:ModelField Name="ImageUrl" Type="String" />
                                                                         <ext:ModelField Name="Size" Type="String" />
-                                                                        <ext:ModelField Name="LastModify" Type="Date" />
+                                                                        <ext:ModelField Name="LastModify" Type="String" />
                                                                         <ext:ModelField Name="Rate" Type="Int" />
                                                                         <ext:ModelField Name="Type" Type="String" />
                                                                         <ext:ModelField Name="Owner" Type="String" />
@@ -513,7 +432,7 @@
                                                                     </tr>
                                                                     <tr style="height:20px;">
                                                                         <td><b>Last Modify:</b></td>
-                                                                        <td>{LastModify:date('d/m/y h:i')}</td>
+                                                                        <td>{LastModify}</td>
                                                                         
                                                                     </tr>
                                                                     <tr style="height:20px;">
@@ -539,8 +458,104 @@
                                 </ext:Panel>
                             </Items>
                         </ext:Panel>
-                        <ext:Panel ID="pnlFourm" runat="server" Title="Fourm">
+                        <ext:Panel ID="pnlFourm" runat="server" AutoScroll="true" Title="Forum">
+                            <TopBar>
+                                <ext:Toolbar ID="Toolbar3" runat="server">
+                                    <Items>
+                                        <ext:Button ID="Button3" runat="server" Icon="Add" Text="Add New">
+                                            <Listeners>
+                                                <Click Handler="#{winNewComment}.show();#{hiddenItemId}.setValue(-1);" />
+                                            </Listeners>
+                                        </ext:Button>
+                                        <ext:Button ID="btnAddComment" runat="server" Icon="CommentAdd" Text="Add Comment" Disabled="true">
+                                            <Listeners>
+                                                <Click Handler="#{winNewComment}.show();#{hiddenItemId}.setValue(#{forumItemView}.getRowsValues({ selectedOnly : true })[0].ItemID);" />
+                                            </Listeners>
+                                        </ext:Button>
+                                        <ext:Button ID="btnDeleteComment" runat="server" Icon="Delete" Text="Delete">
+                                            <DirectEvents>
+                                                <Click OnEvent="DeleteFourmItem">
+                                                    <ExtraParams>
+                                                        <ext:Parameter Name="ItemID" Value="#{forumItemView}.getRowsValues({ selectedOnly : true })[0].ItemID" Mode="Raw" />
+                                                    </ExtraParams>
+                                                    <Confirmation ConfirmRequest="true" Title="Delete Comment" Message="This action will delete this item and all his sub items<br>are you sure?" />
+                                                    <EventMask ShowMask="true" Msg="Deleting..." Target="CustomTarget" CustomTarget="winCourse" />
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                        <ext:ToolbarFill />
+                                        <ext:Button ID="Button7" runat="server" Icon="ArrowRefresh">
+                                            <Listeners>
+                                                    <Click Handler="#{DirectMethods}.LoadForum();" />
+                                            </Listeners>
+                                        </ext:Button>
+                                    </Items>
+                                </ext:Toolbar>
+                            </TopBar>
                             <Items>
+                                <ext:Window ID="winNewComment" runat="server" Closable="true" Icon="CommentAdd" Title="Add Comment" Resizable="false" Draggable="true" Minimizable="true" Width="500" Height="250" Layout="FitLayout" Hidden="true" CloseAction="Hide">
+                                        <Items>
+                                        <ext:FormPanel ID="FormPanel3" runat="server" Frame="true">
+                                            <Items>
+                                                <ext:TextField runat="server" Margin="5" ID="txtTitle" FieldLabel="Title" AllowBlank="false" AnchorHorizontal="100%" MsgTarget="Side" />
+                                                <ext:TextArea runat="server" Margin="5" ID="taContent" FieldLabel="Content" AllowBlank="false" AnchorHorizontal="100%" MsgTarget="Side"
+                                                    AutoScroll="true" Height="150" />
+                                                <ext:Hidden runat="server" ID="hiddenItemId" Name="ItemID" />
+                                            </Items>    
+                                            <Buttons>
+                                                <ext:Button ID="btnAdd" runat="server" Text="Add" Icon="CommentAdd" Disabled="true">
+                                                    <Listeners>
+                                                        <Click Handler="#{DirectMethods}.AddNewFormItem();" />
+                                                    </Listeners>
+                                                </ext:Button>
+                                                <ext:Button ID="Button9" runat="server" Text="Cancel" Icon="Cancel">
+                                                    <Listeners>
+                                                        <Click Handler="#{winNewComment}.hide();" />
+                                                    </Listeners>
+                                                </ext:Button>
+                                            </Buttons>    
+                                            <Listeners>
+                                                <ValidityChange Handler="#{btnAdd}.setDisabled(!valid);" />
+                                            </Listeners>
+                                        </ext:FormPanel>
+                                    </Items>
+                                </ext:Window>
+
+                                <ext:DataView runat="server" SingleSelect="true" ItemSelector="div.thumb-wrap" Cls="img-chooser-view" AutoScroll="true" ID="forumItemView">
+                                    <Store>
+                                        <ext:Store runat="server" ID="storeQA">
+                                            <Model>
+                                                <ext:Model ID="Model4" runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="ItemID" Type="Int" /> 
+                                                        <ext:ModelField Name="Title" Type="String" /> 
+                                                        <ext:ModelField Name="Content" Type="String" /> 
+                                                        <ext:ModelField Name="OwnerName" Type="String" />
+                                                        <ext:ModelField Name="TimeAdded" Type="String" />
+                                                        <ext:ModelField Name="Level" Type="Int" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Tpl ID="Tpl2" runat="server">
+                                        <Html>
+                                        <tpl for=".">
+                                            <div class="thumb-wrap" style="margin-left:{Level}px">
+                                                <p class="forumTitle"><img src="Images/post.gif" />{Title}</p>
+                                                <div style="color:gray; margin-left:15px">By: {OwnerName}</div>
+                                                <p class="forumContent">{Content}</p>
+                                                <div style="color:gray;text-align:right">{TimeAdded}</div>
+                                                <hr />
+                                            </div>
+                                            </tpl>
+                                        </Html>
+                                    </Tpl>
+                                    <Listeners>
+                                        <SelectionChange Handler="#{btnAddComment}.setDisabled(false);" />
+                                        <Refresh Handler="this.el.select('thumb-wrap').addClsOnOver('forum-over');" Delay="100" />
+                                    </Listeners>
+                                </ext:DataView>
                             </Items>
                         </ext:Panel>
                         <ext:Panel ID="pnlUsers" runat="server" Title="Course User" Layout="BorderLayout">
@@ -550,7 +565,8 @@
                                         <ext:FormPanel ID="FormPanel2" runat="server" Frame="true">
                                             <Items>
                                                 <ext:ComboBox runat="server" Margin="5" ID="cbAddUserName" FieldLabel="User Name" AllowBlank="false" AnchorHorizontal="100%" MsgTarget="Side"
-                                                              TriggerAction="Query" DisplayField="UserName" ValueField="UserName" TypeAhead="false" HideBaseTrigger="true" >
+                                                              TriggerAction="Query" DisplayField="UserName" ValueField="UserName" TypeAhead="false" HideBaseTrigger="true"
+                                                              MinChars="1" >
                                                     <ListConfig LoadingText="Searching...">
                                                         <ItemTpl runat="server">
                                                             <Html>
@@ -561,7 +577,10 @@
                                                         </ItemTpl>
                                                     </ListConfig>
                                                     <Store>
-                                                        <ext:Store runat="server">
+                                                        <ext:Store runat="server" ID="storeUserName">
+                                                            <Proxy>
+                                                                <ext:PageProxy DirectFn="App.direct.GetAllUsers" />
+                                                            </Proxy>
                                                             <Model>
                                                                 <ext:Model runat="server">
                                                                     <Fields>
@@ -569,19 +588,15 @@
                                                                     </Fields>
                                                                 </ext:Model>
                                                             </Model>
-                                                            <Proxy>
-                                                                <ext:PageProxy DirectFn="App.direct.GetAllUsers">
-                                                                    <Reader>
-                                                                        <ext:JsonReader />
-                                                                    </Reader>
-                                                                </ext:PageProxy>
-                                                            </Proxy>
                                                         </ext:Store>
                                                     </Store>
                                                 </ext:ComboBox>
                                             </Items>    
                                             <Buttons>
-                                                <ext:Button ID="Button3" runat="server" Text="Add" Icon="Accept" Disabled="true">
+                                                <ext:Button ID="btnAddNewUser" runat="server" Text="Add" Icon="Accept" Disabled="true">
+                                                    <Listeners>
+                                                        <Click Handler="#{DirectMethods}.AddNewUserToCourse();" />
+                                                    </Listeners>
                                                 </ext:Button>
                                                 <ext:Button ID="Button5" runat="server" Text="Cancel" Icon="Cancel">
                                                     <Listeners>
@@ -590,7 +605,7 @@
                                                 </ext:Button>
                                             </Buttons>    
                                             <Listeners>
-                                                <ValidityChange Handler="#{btnUpload}.setDisabled(!valid);" />
+                                                <ValidityChange Handler="#{btnAddNewUser}.setDisabled(!valid);" />
                                             </Listeners>
                                         </ext:FormPanel>
                                     </Items>
@@ -604,12 +619,33 @@
                                                         <Click Handler="#{winAddUser}.show();" />
                                                     </Listeners>
                                                 </ext:Button>
-                                                <ext:Button runat="server" Icon="UserDelete" Text="Delete user">
+                                                <ext:Button runat="server" Icon="UserDelete" Text="Remove user">
+                                                    <DirectEvents>
+                                                        <Click OnEvent="RemoveUserFromCourse">
+                                                            <EventMask ShowMask="true" Msg="Removing..." />
+                                                            <Confirmation ConfirmRequest="true" Title="Remove User" Message="This action will remove user from the course,<br>are you sure?" />
+                                                            <ExtraParams>
+                                                                <ext:Parameter Name="UserID" Value="#{pnlUsersView}.getRowsValues({ selectedOnly : true })[0].UserID" Mode="Raw" />
+                                                            </ExtraParams>
+                                                        </Click>
+                                                    </DirectEvents>
                                                 </ext:Button>
                                                 <ext:Button runat="server" Icon="StarGold" Text="Make as admin" >
+                                                    <DirectEvents>
+                                                        <Click OnEvent="SetUserAsAbmin">
+                                                            <EventMask ShowMask="true" Msg="Proccesing..." />
+                                                            <Confirmation ConfirmRequest="true" Title="Remove User" Message="This user will be added as admin in this course,<br>are you sure?" />
+                                                            <ExtraParams>
+                                                                <ext:Parameter Name="UserID" Value="#{pnlUsersView}.getRowsValues({ selectedOnly : true })[0].UserID" Mode="Raw" />
+                                                            </ExtraParams>
+                                                        </Click>
+                                                    </DirectEvents>
                                                 </ext:Button>
                                                 <ext:ToolbarFill />
                                                 <ext:Button runat="server" Icon="ArrowRefresh">
+                                                    <Listeners>
+                                                        <Click Handler="#{DirectMethods}.LoadUsers();" />
+                                                    </Listeners>
                                                 </ext:Button>
                                             </Items>
                                         </ext:Toolbar>
@@ -721,7 +757,7 @@
                                     <Items>
                                         <ext:FormPanel  runat="server" Layout="FitLayout" Border="false" Region="East">
                                             <Items>
-                                                <ext:FieldSet Title="Contact Admin" runat="server" Collapsible="false" Margin="10">
+                                                <ext:FieldSet Title="Add Message" runat="server" Collapsible="false" Margin="10">
                                                     <Items>
                                                         <ext:DisplayField runat="server" Text="Subject:" Margin="15" />
                                                         <ext:TextField runat="server" ID="txtCASubject" Width="300" Margin="15" AllowBlank="false" MsgTarget="Side" />
@@ -777,7 +813,9 @@
                                                             </Defaults>
                                                             <Items>
                                                                 <ext:Button ID="btnSaveChanges" runat="server" Icon="Disk" Text="Save">
-                                                        
+                                                                    <Listeners>
+                                                                        <Click Handler="#{DirectMethods}.UpdateCourse();document.location.reload(true);" />
+                                                                    </Listeners>
                                                                 </ext:Button>
                                                             </Items>
                                                         </ext:FieldContainer>
@@ -802,6 +840,11 @@
                                                     </Defaults>
                                                     <Items>
                                                         <ext:Button runat="server" Icon="Delete" Text="Delete" ID="btnDeleteCourse">
+                                                            <DirectEvents>
+                                                                <Click OnEvent="DeleteCourse" After="document.location.reload(true);">
+                                                                    <Confirmation ConfirmRequest="true" Title="Delete Course" Message="This operation can not be undo.<br>Do you want to proceed?" />
+                                                                </Click>
+                                                            </DirectEvents>
                                                         </ext:Button>
                                                     </Items>
                                                 </ext:FieldContainer>

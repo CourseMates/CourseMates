@@ -418,5 +418,303 @@ namespace CourseMatesWS.DAL
                 return DeleteStatus.Failed;
             }
         }
+
+        public static bool UpdateCourse(string sessionId, int userId, int courseId, string courseName, string iconCls)
+        {
+            try
+            {
+                int x = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_UpdateCourse",
+                        "@SessionID", sessionId,
+                        "@userID", userId,
+                        "@CourseID", courseId,
+                        "@newCourseName", courseName,
+                        "@NewIconClass", iconCls);
+
+                return x > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static List<User> GetCoursePartisipant(string sessionId, int userId, int courseId)
+        {
+            List<User> toReturn = new List<User>();
+
+            try
+            {
+                DataTable table = new DataAccess(ConnectionString).ExecuteQuerySP("SP_ReturnParticipantsByCourseID",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@CourseID", courseId);
+
+                if (table == null || table.Rows.Count == 0)
+                    return toReturn;
+                foreach (DataRow row in table.Rows)
+                {
+                    User u = new User();
+                    u.FirstName = ParseCellDataToString(row["FirstName"]);
+                    u.LastName = ParseCellDataToString(row["LastName"]);
+                    u.UserName = ParseCellDataToString(row["UserName"]);
+                    u.Email = ParseCellDataToString(row["Email"]);
+                    bool x = false;
+                    ParseCellDataToBool(row["IsAdmin"], out x);
+                    u.IsAdmin = x;
+                    int id = -1;
+                    ParseCellDataToInt(row["Id"], out id);
+                    u.ID = id;
+                    toReturn.Add(u);
+                }
+                return toReturn;
+            }
+            catch (Exception)
+            {
+                return toReturn;
+            }
+        }
+
+        public static bool SetUserAsCourseAdmin(string sessionId, int userId, int courseId, int setUserId)
+        {
+            try
+            {
+                int x = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_setUserAsAdmin",
+                        "@SessionID", sessionId,
+                        "@userID", userId,
+                        "@CourseID", courseId,
+                        "@SetUserID", setUserId);
+
+                return x > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool DeleteCourse(string sessionId, int userId, int courseId)
+        {
+            try
+            {
+                int x = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_DeleteCourse",
+                        "@SessionID", sessionId,
+                        "@userID", userId,
+                        "@CourseID", courseId);
+
+                return x > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool RemoveUserFromCourse(string sessionId, int userId, int courseId, int deleteUserId)
+        {
+            try
+            {
+                int x = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_DeleteUserFromCourse",
+                        "@SessionID", sessionId,
+                        "@userID", userId,
+                        "@CourseID", courseId,
+                        "@DelUserID", deleteUserId);
+
+                return x > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static List<string> GetAllPhysicalFiles(int courseId)
+        {
+            List<string> toReturn = new List<string>();
+            try
+            {
+                string query = @"SELECT PhysicalPath FROM tblFile 
+                                WHERE CourseId={0} AND 
+                                PhysicalPath IS NOT NULL 
+                                AND PhysicalPath<>''";
+
+                DataTable table = new DataAccess(ConnectionString).ExecuteQueryDS(string.Format(query, courseId));
+
+                if (table == null || table.Rows.Count == 0)
+                    return toReturn;
+                foreach (DataRow row in table.Rows)
+                {
+                    toReturn.Add(ParseCellDataToString(row["PhysicalPath"]));
+                }
+
+                return toReturn;
+            }
+            catch (Exception)
+            {
+                return toReturn;
+            }
+        }
+
+        public static List<string> GetTop15Users(string search)
+        {
+            List<string> toReturn = new List<string>();
+            try
+            {
+                string query = @"SELECT TOP 15 UserName FROM tblUser 
+                                WHERE UserName LIKE '{0}%'";
+
+                DataTable table = new DataAccess(ConnectionString).ExecuteQueryDS(string.Format(query, search));
+
+                if (table == null || table.Rows.Count == 0)
+                    return toReturn;
+                foreach (DataRow row in table.Rows)
+                {
+                    toReturn.Add(ParseCellDataToString(row["UserName"]));
+                }
+
+                return toReturn;
+            }
+            catch (Exception)
+            {
+                return toReturn;
+            }
+        }
+
+        public static bool AddUserToCourse(string sessionId, int userId, int courseId, string userToAdd)
+        {
+            try
+            {
+                DataTable table = new DataAccess(ConnectionString).ExecuteQuerySP("SP_AddNewUserToCourse",
+                    "@SessionID", sessionId,
+                    "@UserID", userId,
+                    "@CourseID", courseId,
+                    "@UserNameToAdd", userToAdd);
+
+                if (table == null || table.Rows.Count == 0)
+                    return false;
+                int x = -1;
+
+                ParseCellDataToInt(table.Rows[0]["Result"], out x);
+
+                return x > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static Forum GetCourseForum(string sessionId, int userId, int courseId)
+        {
+            Forum forum = new Forum();
+            try
+            {
+                DataTable table = new DataAccess(ConnectionString).ExecuteQuerySP("SP_GetCourseForum",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@CourseID", courseId);
+
+                if (table == null || table.Rows.Count == 0)
+                    return forum;
+                foreach (DataRow row in table.Rows)
+                {
+                    int id, perrentId;
+                    ParseCellDataToInt(row["Id"], out id);
+                    ParseCellDataToInt(row["RootId"], out perrentId);
+                    ForumItem fi = new ForumItem();
+                    fi.Title = ParseCellDataToString(row["Title"]);
+                    fi.Content = ParseCellDataToString(row["Content"]);
+                    fi.OwnerName = ParseCellDataToString(row["UserName"]);
+                    fi.ID = id;
+                    fi.PerentId = perrentId;
+                    fi.TimeAdded = ParseCellDataToDateTime(row["TimeAdded"]);
+                    forum.AddItemByPerantID(fi);
+                }
+                return forum;
+            }
+            catch (Exception)
+            {
+                return forum;
+            }
+        }
+
+        public static bool AddNewForumItem(string sessionId, int userId, ForumItem item)
+        {
+            try
+            {
+                int result = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_AddNewForumItem",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@CourseID", item.CourseId,
+                        "@Title", item.Title,
+                        "@Content", item.Content,
+                        "@ParentID", item.PerentId);
+
+                
+                return result > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool DeleteForumItem(string sessionId, int userId, int courseId, int itemId)
+        {
+            try
+            {
+                int result = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_DeleteForumItem",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@CourseID", courseId,
+                        "@ItemID", itemId);
+
+                return result > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool ChangeEmail(string sessionId, int userId, string oldEmail, string newEmail)
+        {
+            try
+            {
+                int result = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_ChangeEmail",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@NewEmail", newEmail,
+                        "@OldEmail", oldEmail);
+
+                return result > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool ChangePassword(string sessionId, int userId, string oldPass, string newPass)
+        {
+            try
+            {
+                int result = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_ChangePassword",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@NewPassword", newPass,
+                        "@OldPassword", oldPass);
+
+                return result > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool DeleteUser(string sessionId, int userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

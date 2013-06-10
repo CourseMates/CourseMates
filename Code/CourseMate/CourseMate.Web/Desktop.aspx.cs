@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Ext.Net;
 using CourseMate.Web.CMwcf;
 using System.IO;
+using CourseMate.Web.BLL;
 
 namespace CourseMate.Web
 {
@@ -163,6 +164,7 @@ namespace CourseMate.Web
                         MyDesktop.Modules.Add(m);
                     }
                 }
+                
             }
 
         }
@@ -291,6 +293,42 @@ namespace CourseMate.Web
             }
         }
 
+        protected void RemoveUserFromCourse(object sender, DirectEventArgs e)
+        {
+            int userId;
+
+             if (int.TryParse(e.ExtraParams["UserID"], out userId))
+            {
+                if (CourseMatesWS.RemoveUserFromCourse(SessionID, UserID, CurrentCourse, userId))
+                {
+                    LoadUsers();
+                    ShowMessage("Remove User", "Done", MessageBox.Icon.INFO, MessageBox.Button.OK);
+                }
+                else
+                {
+                    ShowMessage("Remove User", "You are not authorized deleting this user.", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+                }
+            }
+        }
+
+        protected void SetUserAsAbmin(object sender, DirectEventArgs e)
+        {
+            int userId;
+
+            if (int.TryParse(e.ExtraParams["UserID"], out userId))
+            {
+                if (CourseMatesWS.SetUserAsCourseAdmin(SessionID, UserID, CurrentCourse, userId))
+                {
+                    LoadUsers();
+                    ShowMessage("Set as Admin", "Done", MessageBox.Icon.INFO, MessageBox.Button.OK);
+                }
+                else
+                {
+                    ShowMessage("Set as Admin", "Failed", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+                }
+            }
+        }
+
         protected void DownloadFile(object sender, DirectEventArgs e)
         {
             int fileId;
@@ -331,7 +369,31 @@ namespace CourseMate.Web
                     } 
                 }
             }
-        } 
+        }
+
+        protected void DeleteCourse(object sender, DirectEventArgs e)
+        {
+            if (CourseMatesWS.DeleteCourse(SessionID, UserID, CurrentCourse))
+            {
+                Courses.Remove(CurrentCourse);
+                winCourse.Close();
+            }
+        }
+
+        protected void DeleteFourmItem(object sender, DirectEventArgs e)
+        {
+            int itemId;
+            int.TryParse(e.ExtraParams["ItemID"].ToString(), out itemId);
+
+            if (CourseMatesWS.DeleteForumItem(SessionID, UserID, CurrentCourse, itemId))
+            {
+                LoadForum();
+            }
+            else
+            {
+                ShowMessage("Delete Comment", "Failed", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+            }
+        }
         #endregion
 
         #region Direct Methods
@@ -372,7 +434,7 @@ namespace CourseMate.Web
                             FileName = file.FileName,
                             ImageUrl = file.Type.ImageUrl,
                             Size = GetFormatedSize(file.Size),
-                            LastModify = file.LastModify,
+                            LastModify = TimeAgo(file.LastModify),
                             Rate = file.Rate,
                             Type = file.Type.Description,
                             Owner = file.OwnerName,
@@ -391,32 +453,62 @@ namespace CourseMate.Web
         public void LoadCourseData(int courseId)
         {
             LoadFiles(courseId);
-            LoadUsers(courseId);
-            LoadSettings(courseId);
-        }
-
-        [DirectMethod]
-        public static object GetAllUsers()
-        {
-            return new object[]
-            {
-                new {UserName ="boby"},
-                new {UserName ="benoh"},
-                new {UserName ="eliranye"},
-                new {UserName ="avital"},
-                new {UserName ="ariel"},
-                new {UserName ="ofir"},
-                new {UserName ="hadar"}
-            };
+            LoadUsers();
+            LoadSettings();
+            LoadForum();
         }
 
         [DirectMethod(ShowMask = true, CustomTarget = "winCourse")]
-        public void LoadSettings(int courseId)
+        public void LoadForum()
         {
-            winCourse.Title = Courses[courseId].CourseName;
-            txtCourseNameChange.Text = Courses[courseId].CourseName;
-            cmbFolderColor1.Value = Courses[courseId].IconClass;
-            if (!Courses[courseId].IsAdmin)
+            if (!Courses[CurrentCourse].IsAdmin)
+            {
+                btnDeleteComment.Disabled = true;
+            }
+            else
+            {
+                btnDeleteComment.Disabled = false;
+            }
+            Forum fo = CourseMatesWS.GetCourseForum(SessionID, UserID, CurrentCourse);
+            
+            storeQA.DataSource = GetForumList(fo.AllItems.ToList() ,0);
+            storeQA.DataBind();
+        }
+        
+        [DirectMethod]
+        public object GetAllUsers()
+        {
+            string[] l = CourseMatesWS.GetTop15Users(cbAddUserName.Text);
+            List<object> obj = new List<object>();
+            foreach (string name in l)
+            {
+                obj.Add(new { UserName = name });
+            }
+            return obj;
+        }
+        [DirectMethod(ShowMask = true, CustomTarget = "winCourse")]
+        public void AddNewUserToCourse()
+        {
+            if (!CourseMatesWS.AddUserToCourse(SessionID, UserID, CurrentCourse, cbAddUserName.Value.ToString()))
+            {
+                ShowMessage("Add New User", "Failed adding user to course", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+            }
+            else
+            {
+                ShowMessage("Add New User", "User added to the course", MessageBox.Icon.INFO, MessageBox.Button.OK);
+                LoadUsers();  
+            }
+            cbAddUserName.Text = "";
+            winAddUser.Hide();
+        }
+
+        [DirectMethod(ShowMask = true, CustomTarget = "winCourse")]
+        public void LoadSettings()
+        {
+            winCourse.Title = Courses[CurrentCourse].CourseName;
+            txtCourseNameChange.Text = Courses[CurrentCourse].CourseName;
+            cmbFolderColor1.Value = Courses[CurrentCourse].IconClass;
+            if (!Courses[CurrentCourse].IsAdmin)
             {
                 txtCourseNameChange.ReadOnly = true;
                 cmbFolderColor1.ReadOnly = true;
@@ -433,20 +525,21 @@ namespace CourseMate.Web
         }
 
         [DirectMethod(ShowMask = true, CustomTarget = "winCourse")]
-        public void LoadUsers(int courseId)
+        public void LoadUsers()
         {
+            User[] users = CourseMatesWS.GetCoursePartisipant(SessionID, UserID, CurrentCourse);
             List<object> obj = new List<object>();
 
-            for (int i = 0; i < 15; i++)
+            foreach (User u in users)
             {
                 obj.Add(new
                 {
-                    UserID = i,
-                    UserName = "user" + i,
-                    FirstName = "First" + i,
-                    LastName = "Last" + i,
-                    Email = "email" + i + "@gmail.com",
-                    IsAdmin = true
+                    UserID = u.ID,
+                    UserName = u.UserName,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Email = u.Email,
+                    IsAdmin = u.IsAdmin
                 });
             }
 
@@ -471,9 +564,112 @@ namespace CourseMate.Web
                 ReLoadCourseFiles(courseId);
             }
         }
+
+        [DirectMethod(ShowMask = true, CustomTarget = "winCourse")]
+        public void UpdateCourse()
+        {
+            if (CourseMatesWS.UpdateCourse(SessionID, UserID, CurrentCourse, txtCourseNameChange.Text, cmbFolderColor1.Value.ToString()))
+            {
+                winCourse.Title = txtCourseNameChange.Text;
+                Courses[CurrentCourse].CourseName = txtCourseNameChange.Text;
+                Courses[CurrentCourse].IconClass = cmbFolderColor1.Value.ToString();
+            }
+        }
+
+        [DirectMethod(ShowMask = true, CustomTarget = "winCourse")]
+        public void AddNewFormItem()
+        {
+            ForumItem item = new ForumItem();
+            item.Title = txtTitle.Text;
+            int x;
+            int.TryParse(hiddenItemId.Value.ToString(), out x);
+            item.PerentIdSpecified = true;
+            item.PerentId = x;
+            item.CourseIdSpecified = true;
+            item.Content = taContent.Text.Replace("\r\n","<br>");
+            item.OwnerIdSpecified = true;
+            item.OwnerId = UserID;
+            item.CourseId = CurrentCourse;
+
+            if (CourseMatesWS.AddNewForumItem(SessionID, UserID, item))
+            {
+                txtTitle.Text = "";
+                taContent.Text = "";
+                winNewComment.Hide();
+                LoadForum();
+            }
+            else
+            {
+                ShowMessage("Add Comment", "Failed", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+            }
+        }
+
+        [DirectMethod(ShowMask = true, CustomTarget = "winSettings")]
+        public void ChangePassword()
+        {
+            if (CourseMatesWS.ChangePassword(SessionID, UserID, Utilitys.GetMd5Hash(txtOldPassword.Text), Utilitys.GetMd5Hash(txtNewPassword.Text)))
+            {
+                ShowMessage("Password Change", "Done", MessageBox.Icon.INFO, MessageBox.Button.OK);
+                txtNewPassword.Text = "";
+                txtOldPassword.Text = "";
+                txtCNewPassword.Text = "";
+            }
+            else
+            {
+                ShowMessage("Password Change", "Failed", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+            }
+        }
+
+        [DirectMethod(ShowMask = true, CustomTarget = "winSettings")]
+        public void ChangeEmail()
+        {
+            if (CourseMatesWS.ChangeEmail(SessionID, UserID, txtOldEmail.Text, txtNewEmail.Text))
+            {
+                ShowMessage("Email Change", "Done", MessageBox.Icon.INFO, MessageBox.Button.OK);
+                txtNewEmail.Text = "";
+                txtOldEmail.Text = "";
+            }
+            else
+            {
+                ShowMessage("Email Change", "Failed", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+            }
+        }
+
+        [DirectMethod(ShowMask = true, CustomTarget = "winSettings")]
+        public void DeleteUser()
+        {
+
+        }
+
         #endregion
 
         #region Private Methods
+        private List<object> GetForumList(List<ForumItem> items, int level)
+        {
+            if (items == null)
+            {
+                return null;
+            }
+            List<object> obj = new List<object>();
+
+            foreach (ForumItem item in items)
+            {
+                obj.Add(new
+                {
+                    ItemID = item.ID,
+                    Title = item.Title,
+                    Content = item.Content,
+                    OwnerName = item.OwnerName,
+                    TimeAdded = TimeAgo(item.TimeAdded),
+                    Level = 50 * level
+                });
+                if (item.SubItems != null)
+                    obj.AddRange(GetForumList(item.SubItems.ToList(), level + 1));
+            }
+
+            return obj;
+        }
+
         private bool GetFileType(string fileName, out FileTypeE type)
         {
             string postFix = fileName.Split('.').Last();
@@ -586,13 +782,33 @@ namespace CourseMate.Web
         private void ReLoadCourseFiles(int courseId)
         {
             CourseFiles = CourseMatesWS.GetCourseFiles(SessionID, UserID, courseId);
-            UpdateViewPanel(CourseFiles.RootFolder.ID);
+                UpdateViewPanel(CourseFiles.RootFolder.ID);
             if (filesTreePanel.Root.Count > 0)
                 filesTreePanel.Root.RemoveAt(0);
             filesTreePanel.SetRootNode(GetFileStructure(CourseFiles.RootFolder));
 
             CurrentCourse = courseId;
-        } 
+        }
+
+        public string TimeAgo(DateTime date)
+        {
+            TimeSpan timeSince = DateTime.Now.Subtract(date);
+            if (timeSince.TotalMilliseconds < 1) return "not yet";
+            if (timeSince.TotalMinutes < 1) return "just now";
+            if (timeSince.TotalMinutes < 2) return "1 minute ago";
+            if (timeSince.TotalMinutes < 60) return string.Format("{0} minutes ago", timeSince.Minutes);
+            if (timeSince.TotalMinutes < 120) return "1 hour ago";
+            if (timeSince.TotalHours < 24) return string.Format("{0} hours ago", timeSince.Hours);
+            if (timeSince.TotalDays < 2) return "yesterday";
+            if (timeSince.TotalDays < 7) return string.Format("{0} days ago", timeSince.Days);
+            if (timeSince.TotalDays < 14) return "last week";
+            if (timeSince.TotalDays < 21) return "2 weeks ago";
+            if (timeSince.TotalDays < 28) return "3 weeks ago";
+            if (timeSince.TotalDays < 60) return "last month";
+            if (timeSince.TotalDays < 365) return string.Format("{0} months ago", Math.Round(timeSince.TotalDays / 30));
+            if (timeSince.TotalDays < 730) return "last year"; //last but not least...
+            return string.Format("{0} years ago", Math.Round(timeSince.TotalDays / 365));
+        }
         #endregion
     }
 }
