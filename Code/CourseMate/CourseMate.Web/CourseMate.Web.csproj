@@ -101,9 +101,6 @@
     <Content Include="Images\FolderIcons\white.png" />
     <Content Include="Images\goback.png" />
     <Content Include="Images\post.gif" />
-    <Content Include="Images\star-half.png" />
-    <Content Include="Images\star-off.png" />
-    <Content Include="Images\star-on.png" />
     <Content Include="Images\user.png" />
     <Content Include="JoinCourse.aspx" />
     <Content Include="JS\Main.js" />
