@@ -4,12 +4,102 @@
         <name>Ext.Net.Utilities</name>
     </assembly>
     <members>
-        <member name="M:Ext.Net.Utilities.CompressionUtils.Send(System.Byte[],System.String,System.Boolean)">
+        <member name="T:Ext.Net.Utilities.JsonUtils">
             <summary>
             
             </summary>
-            <param name="instance"></param>
-            <param name="responseType"></param>
+        </member>
+        <member name="M:Ext.Net.Utilities.JsonUtils.Enquote(System.String)">
+            <summary>
+            Produce a string in double quotes with backslash sequences in all the right places.
+            </summary>
+            <param name="s">A String</param>
+            <returns>A String correctly formatted for insertion in a JSON message.</returns>
+        </member>
+        <member name="T:Ext.Net.Utilities.ReflectionUtils">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Ext.Net.Utilities.ReflectionUtils.GetDefaultValue(System.ComponentModel.PropertyDescriptor)">
+            <summary>
+            
+            </summary>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.ReflectionUtils.GetDefaultValue(System.Reflection.PropertyInfo)">
+            <summary>
+            
+            </summary>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.ReflectionUtils.IsTypeOf(System.Object,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.ReflectionUtils.IsTypeOf(System.Object,System.Type,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="type"></param>
+            <param name="shallow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.ReflectionUtils.IsTypeOf(System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="typeFullName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.ReflectionUtils.IsTypeOf(System.Object,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="typeFullName"></param>
+            <param name="shallow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.ReflectionUtils.IsInTypeOf(System.Web.UI.Control,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="control"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.ReflectionUtils.IsInTypeOf(System.Web.UI.Control,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="control"></param>
+            <param name="typeFullName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.ReflectionUtils.GetTypeOfParent(System.Web.UI.Control,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="control"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.ReflectionUtils.GetTypeOfParent(System.Web.UI.Control,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="control"></param>
+            <param name="typeFullName"></param>
+            <returns></returns>
         </member>
         <member name="T:Ext.Net.Utilities.ObjectUtils">
             <summary>
@@ -79,6 +169,65 @@
             <param name="from"></param>
             <param name="ignoreDefaultValues"></param>
             <returns></returns>
+        </member>
+        <member name="T:Ext.Net.Utilities.FileUtils">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Ext.Net.Utilities.FileUtils.ReadFile(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.FileUtils.WriteFile(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Ext.Net.Utilities.FileUtils.WriteToStart(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Ext.Net.Utilities.FileUtils.WriteToEnd(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:Ext.Net.Utilities.HtmlUtils">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Ext.Net.Utilities.HtmlUtils.StripWhitespaceChars(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="html"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.HtmlUtils.StripExtraSpaces(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="html"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.CompressionUtils.Send(System.Byte[],System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="instance"></param>
+            <param name="responseType"></param>
         </member>
         <member name="T:Ext.Net.Utilities.Inflatr.Base">
             <summary>
@@ -224,116 +373,47 @@
             
             </summary>
         </member>
-        <member name="T:Ext.Net.Utilities.ReflectionUtils">
+        <member name="T:Ext.Net.Utilities.EnumerableUtils">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Ext.Net.Utilities.ReflectionUtils.GetDefaultValue(System.ComponentModel.PropertyDescriptor)">
+        <member name="M:Ext.Net.Utilities.EnumerableUtils.Each``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
             <summary>
             
             </summary>
-            <param name="property"></param>
+            <typeparam name="T"></typeparam>
+            <param name="instance"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:Ext.Net.Utilities.ReflectionUtils.GetDefaultValue(System.Reflection.PropertyInfo)">
+        <member name="M:Ext.Net.Utilities.EnumerableUtils.Each``1(System.Int32,System.Action{System.Int32})">
             <summary>
             
             </summary>
-            <param name="property"></param>
+            <typeparam name="T"></typeparam>
+            <param name="instance"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:Ext.Net.Utilities.ReflectionUtils.IsTypeOf(System.Object,System.Type)">
-            <summary>
-            
-            </summary>
-            <param name="obj"></param>
-            <param name="type"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.ReflectionUtils.IsTypeOf(System.Object,System.Type,System.Boolean)">
-            <summary>
-            
-            </summary>
-            <param name="obj"></param>
-            <param name="type"></param>
-            <param name="shallow"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.ReflectionUtils.IsTypeOf(System.Object,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="obj"></param>
-            <param name="typeFullName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.ReflectionUtils.IsTypeOf(System.Object,System.String,System.Boolean)">
-            <summary>
-            
-            </summary>
-            <param name="obj"></param>
-            <param name="typeFullName"></param>
-            <param name="shallow"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.ReflectionUtils.IsInTypeOf(System.Web.UI.Control,System.Type)">
-            <summary>
-            
-            </summary>
-            <param name="control"></param>
-            <param name="type"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.ReflectionUtils.IsInTypeOf(System.Web.UI.Control,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="control"></param>
-            <param name="typeFullName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.ReflectionUtils.GetTypeOfParent(System.Web.UI.Control,System.Type)">
-            <summary>
-            
-            </summary>
-            <param name="control"></param>
-            <param name="type"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.ReflectionUtils.GetTypeOfParent(System.Web.UI.Control,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="control"></param>
-            <param name="typeFullName"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Ext.Net.Utilities.Inflatr.Options">
+        <member name="T:Ext.Net.Utilities.Verify">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Ext.Net.Utilities.Inflatr.Options.Clone">
+        <member name="M:Ext.Net.Utilities.Verify.IsNotNull(System.Object,System.String)">
             <summary>
-            
+            Checks if parameter is not null. Throws ArgumentNullException with name of parameter if null
             </summary>
-            <returns></returns>
+            <param name="parameter">The parameter value to check.</param>
+            <param name="parameterName">The name of the parameter.</param>
         </member>
-        <member name="P:Ext.Net.Utilities.Inflatr.Options.Wrap">
+        <member name="M:Ext.Net.Utilities.Verify.IsString(System.Object,System.String)">
             <summary>
-            
+            Checks if the value is a type of String object. Throws ArgumentException if value is not a String type object.  
             </summary>
-        </member>
-        <member name="P:Ext.Net.Utilities.Inflatr.Options.Indent">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Ext.Net.Utilities.Inflatr.Options.Level">
-            <summary>
-            
-            </summary>
+            <param name="value">The object to check.</param>
+            <param name="paramterName">The name of the parameter.</param>
         </member>
         <member name="T:Ext.Net.Utilities.Inflatr.Javascript">
             <summary>
@@ -423,139 +503,31 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Ext.Net.Utilities.Verify">
+        <member name="T:Ext.Net.Utilities.Inflatr.Options">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Ext.Net.Utilities.Verify.IsNotNull(System.Object,System.String)">
-            <summary>
-            Checks if parameter is not null. Throws ArgumentNullException with name of parameter if null
-            </summary>
-            <param name="parameter">The parameter value to check.</param>
-            <param name="parameterName">The name of the parameter.</param>
-        </member>
-        <member name="M:Ext.Net.Utilities.Verify.IsString(System.Object,System.String)">
-            <summary>
-            Checks if the value is a type of String object. Throws ArgumentException if value is not a String type object.  
-            </summary>
-            <param name="value">The object to check.</param>
-            <param name="paramterName">The name of the parameter.</param>
-        </member>
-        <member name="T:Ext.Net.Utilities.HtmlUtils">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Ext.Net.Utilities.HtmlUtils.StripWhitespaceChars(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="html"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.HtmlUtils.StripExtraSpaces(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="html"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Ext.Net.Utilities.EnumerableUtils">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Ext.Net.Utilities.EnumerableUtils.Each``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="instance"></param>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.EnumerableUtils.Each``1(System.Int32,System.Action{System.Int32})">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="instance"></param>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Ext.Net.Utilities.DateTimeUtils">
-            <summary>ssssssssssssssssssssssssssss
-            
-            </summary>
-        </member>
-        <member name="M:Ext.Net.Utilities.DateTimeUtils.ToISOString(System.DateTime)">
-            <summary>
-            Returns an ISO 8601 formatted DateTime string
-            </summary>
-            <param name="instance">The DateTime object to format</param>
-            <returns>The ISO 8601 formatted string</returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.DateTimeUtils.ToISODateString(System.DateTime)">
-            <summary>
-            Returns the Date portion only of an ISO 8601 formatted DateTime string
-            </summary>
-            <param name="instance">The DateTime object to format</param>
-            <returns>The ISO 8601 formatted string</returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.DateTimeUtils.ToISOTimeString(System.DateTime)">
-            <summary>
-            Returns the Time portion only of an ISO 8601 formatted DateTime string
-            </summary>
-            <param name="instance">The DateTime object to format</param>
-            <returns>The ISO 8601 formatted string</returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.DateTimeUtils.ConvertPHPToNet(System.String)">
-            <summary>
-            Accepts a Unix/PHP date string format and returns a valid .NET date format
-            </summary>
-            <param name="format">The PHP format string</param>
-            <returns>The format string converted to .NET DateTime format specifiers</returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.DateTimeUtils.ConvertNetToPHP(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="format"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.DateTimeUtils.ConvertNetToPHP(System.String,System.Globalization.CultureInfo)">
-            <summary>
-            Accepts a Unix/PHP date string format and returns a valid .NET date format
-            </summary>
-            <param name="format">The .NET format string</param>
-            <param name="culture"></param>
-            <returns>The format string converted to PHP format specifiers</returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.DateTimeUtils.DateNetToJs(System.DateTime)">
-            <summary>
-            Convert .NET DateTime to JavaScript object
-            </summary>
-            <param name="date">.NET DateTime</param>
-            <returns>JavaScript Date as string</returns>
-        </member>
-        <member name="M:Ext.Net.Utilities.DateTimeUtils.ClientDateTimeFormatInfo">
+        <member name="M:Ext.Net.Utilities.Inflatr.Options.Clone">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Ext.Net.Utilities.JsonUtils">
+        <member name="P:Ext.Net.Utilities.Inflatr.Options.Wrap">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Ext.Net.Utilities.JsonUtils.Enquote(System.String)">
+        <member name="P:Ext.Net.Utilities.Inflatr.Options.Indent">
             <summary>
-            Produce a string in double quotes with backslash sequences in all the right places.
+            
             </summary>
-            <param name="s">A String</param>
-            <returns>A String correctly formatted for insertion in a JSON message.</returns>
+        </member>
+        <member name="P:Ext.Net.Utilities.Inflatr.Options.Level">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Ext.Net.Utilities.StringUtils">
             <summary>
@@ -999,38 +971,66 @@
             <param name="chars"></param>
             <returns></returns>
         </member>
-        <member name="T:Ext.Net.Utilities.FileUtils">
+        <member name="T:Ext.Net.Utilities.DateTimeUtils">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Ext.Net.Utilities.FileUtils.ReadFile(System.String)">
+        <member name="M:Ext.Net.Utilities.DateTimeUtils.ToISOString(System.DateTime)">
+            <summary>
+            Returns an ISO 8601 formatted DateTime string
+            </summary>
+            <param name="instance">The DateTime object to format</param>
+            <returns>The ISO 8601 formatted string</returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.DateTimeUtils.ToISODateString(System.DateTime)">
+            <summary>
+            Returns the Date portion only of an ISO 8601 formatted DateTime string
+            </summary>
+            <param name="instance">The DateTime object to format</param>
+            <returns>The ISO 8601 formatted string</returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.DateTimeUtils.ToISOTimeString(System.DateTime)">
+            <summary>
+            Returns the Time portion only of an ISO 8601 formatted DateTime string
+            </summary>
+            <param name="instance">The DateTime object to format</param>
+            <returns>The ISO 8601 formatted string</returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.DateTimeUtils.ConvertPHPToNet(System.String)">
+            <summary>
+            Accepts a Unix/PHP date string format and returns a valid .NET date format
+            </summary>
+            <param name="format">The PHP format string</param>
+            <returns>The format string converted to .NET DateTime format specifiers</returns>
+        </member>
+        <member name="M:Ext.Net.Utilities.DateTimeUtils.ConvertNetToPHP(System.String)">
             <summary>
             
             </summary>
-            <param name="path"></param>
+            <param name="format"></param>
             <returns></returns>
         </member>
-        <member name="M:Ext.Net.Utilities.FileUtils.WriteFile(System.String,System.String)">
+        <member name="M:Ext.Net.Utilities.DateTimeUtils.ConvertNetToPHP(System.String,System.Globalization.CultureInfo)">
             <summary>
-            
+            Accepts a Unix/PHP date string format and returns a valid .NET date format
             </summary>
-            <param name="path"></param>
-            <param name="value"></param>
+            <param name="format">The .NET format string</param>
+            <param name="culture"></param>
+            <returns>The format string converted to PHP format specifiers</returns>
         </member>
-        <member name="M:Ext.Net.Utilities.FileUtils.WriteToStart(System.String,System.String)">
+        <member name="M:Ext.Net.Utilities.DateTimeUtils.DateNetToJs(System.DateTime)">
             <summary>
-            
+            Convert .NET DateTime to JavaScript object
             </summary>
-            <param name="path"></param>
-            <param name="value"></param>
+            <param name="date">.NET DateTime</param>
+            <returns>JavaScript Date as string</returns>
         </member>
-        <member name="M:Ext.Net.Utilities.FileUtils.WriteToEnd(System.String,System.String)">
+        <member name="M:Ext.Net.Utilities.DateTimeUtils.ClientDateTimeFormatInfo">
             <summary>
             
             </summary>
-            <param name="path"></param>
-            <param name="value"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="084d9512-25a9-4b3a-ab07-3b661928a1d4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1c0d2e26-1abb-4a36-b6cc-75cea76c7428" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -18,17 +18,17 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:50368/CourseMates.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://coursemate.mooo.com:8090/cmws/CourseMates.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="CourseMates.xsd" MetadataType="Schema" ID="aad838f8-0c31-4df2-a019-54db5a25c39f" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd1" />
-    <MetadataFile FileName="CourseMates.wsdl" MetadataType="Wsdl" ID="2d4278f0-5b33-4e5a-814b-9646c7d62e9c" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?wsdl" />
-    <MetadataFile FileName="CourseMates.disco" MetadataType="Disco" ID="34a4726b-47bf-49d6-8fe1-06305f206344" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?disco" />
-    <MetadataFile FileName="CourseMates1.xsd" MetadataType="Schema" ID="5ba61513-e8d7-4b66-bf97-30856350dcd1" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd4" />
-    <MetadataFile FileName="CourseMates2.xsd" MetadataType="Schema" ID="0f78ad12-bd43-4797-867a-54c917338747" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd2" />
-    <MetadataFile FileName="CourseMates5.xsd" MetadataType="Schema" ID="eb2da14b-7c52-4224-acbd-207f414d6928" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd5" />
-    <MetadataFile FileName="CourseMates3.xsd" MetadataType="Schema" ID="1d741aa8-8779-40bf-b91f-705b38945ba0" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd3" />
-    <MetadataFile FileName="CourseMates4.xsd" MetadataType="Schema" ID="028f975d-f101-4b34-84f9-2c0f82ff25d6" SourceId="1" SourceUrl="http://localhost:50368/CourseMates.svc?xsd=xsd0" />
+    <MetadataFile FileName="CourseMates.wsdl" MetadataType="Wsdl" ID="463cc6ce-9744-4380-a23e-12fc5bac1973" SourceId="1" SourceUrl="http://coursemate.mooo.com:8090/cmws/CourseMates.svc?wsdl" />
+    <MetadataFile FileName="CourseMates.xsd" MetadataType="Schema" ID="4ec251d5-3e37-4719-98be-d75a137bb2a1" SourceId="1" SourceUrl="http://coursemate.mooo.com:8090/cmws/CourseMates.svc?xsd=xsd3" />
+    <MetadataFile FileName="CourseMates1.xsd" MetadataType="Schema" ID="c74ad522-0608-4067-9971-aba7248ed553" SourceId="1" SourceUrl="http://coursemate.mooo.com:8090/cmws/CourseMates.svc?xsd=xsd2" />
+    <MetadataFile FileName="CourseMates2.xsd" MetadataType="Schema" ID="17c9c396-1646-4aea-a83c-8f92094c5ad2" SourceId="1" SourceUrl="http://coursemate.mooo.com:8090/cmws/CourseMates.svc?xsd=xsd1" />
+    <MetadataFile FileName="CourseMates3.xsd" MetadataType="Schema" ID="3cc256ab-8ab0-4dc1-984e-2d161669cf79" SourceId="1" SourceUrl="http://coursemate.mooo.com:8090/cmws/CourseMates.svc?xsd=xsd0" />
+    <MetadataFile FileName="CourseMates4.xsd" MetadataType="Schema" ID="12c607a3-8d6c-4a79-960b-1949a48b46a4" SourceId="1" SourceUrl="http://coursemate.mooo.com:8090/cmws/CourseMates.svc?xsd=xsd5" />
+    <MetadataFile FileName="CourseMates5.xsd" MetadataType="Schema" ID="98f19c4b-44f5-456c-9db9-cc38001b3a20" SourceId="1" SourceUrl="http://coursemate.mooo.com:8090/cmws/CourseMates.svc?xsd=xsd4" />
+    <MetadataFile FileName="CourseMates.disco" MetadataType="Disco" ID="cdb10684-f586-4214-a2b4-056e88c9ce6c" SourceId="1" SourceUrl="http://coursemate.mooo.com:8090/cmws/CourseMates.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
