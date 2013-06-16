@@ -20,13 +20,13 @@ namespace CourseMatesWS.BLL
     public enum SQLStatus
     {
         [EnumMember]
-        Succeeded,
+        Succeeded = 0,
         [EnumMember]
-        Failed,
+        Failed = 1,
         [EnumMember]
-        UserExists,
+        UserExists = 2,
         [EnumMember]
-        EmailExists
+        EmailExists = 3
     }
     
     [DataContract(Name = "FileTypeE")]

@@ -14,9 +14,8 @@ using System.Web.Script.Serialization;
 
 namespace CourseMatesWS
 {
-    public class CourseMates : ICourseMates, IAndroidRest
+    public class CourseMates : ICourseMates
     {
-        #region SOAP
         public string Login(string userName, string password, out int id)
         {
             return CMDal.LogIn(userName, password, out id);
@@ -164,6 +163,7 @@ namespace CourseMatesWS
         {
             return CMDal.AddNewForumItem(sessionId, userId, item);
         }
+        
         public bool DeleteForumItem(string sessionId, int userId, int courseId, int itemId)
         {
             return CMDal.DeleteForumItem(sessionId, userId, courseId, itemId);
@@ -188,36 +188,5 @@ namespace CourseMatesWS
         {
             return CMDal.RateForumItem(sessionId, userId, itemId, rate);
         }
-        #endregion
-        #region REST
-        public string LoginREST(string userName, string password, out int id)
-        {
-            return Login(userName, password, out id);
-        }
-
-        public List<Course> GetCourseByUserIdREST(string sessionId, string userId)
-        {
-            return GetCoursesByUserId(sessionId, userId);
-        }
-
-        public bool RegisterREST(User user, out int userId, out string sessionId)
-        {
-            SQLStatus status = Register(user, out userId, out sessionId);
-
-            if (status == SQLStatus.Succeeded)
-                return true;
-
-            return false;
-        }
-        #endregion
-
-
-
-
-
-
-
-
-        
     }
 }
