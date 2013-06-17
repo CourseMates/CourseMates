@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net;
 using System.Security.Cryptography;
+using WCFTester.ServiceReference1;
 
 
 namespace WCFTester
@@ -14,27 +15,11 @@ namespace WCFTester
     {
         static void Main(string[] args)
         {
-            //CourseMatesClient client = new CourseMatesClient();
-            //string session;
-            //int userId;
-            //session = client.Login("boby", GetMd5Hash("12345678"), out userId);
-
-            //int courseId = 21;
-
-
-            //using (Stream s = client.GetFile(session, userId, courseId))
-            //{
-            //    using (FileStream fileStream = System.IO.File.Create(@"C:\Users\bohana\Desktop\123.pdf"))
-            //    {
-            //        int x;
-            //        byte[] bytesInStream = new byte[65000];
-            //        do
-            //        {
-            //            x = s.Read(bytesInStream, 0, (int)bytesInStream.Length);
-            //            fileStream.Write(bytesInStream, 0, bytesInStream.Length);
-            //        } while (x > 0);
-            //    }
-            //}            
+            CourseMatesClient client = new CourseMatesClient();
+            string session;
+            int userId;
+            session = client.Login("boby", GetMd5Hash("12345678"), out userId);
+            object o =client.GetCourseFiles(session, userId, 20);          
         }
 
         public static string GetMd5Hash(string pass)

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:simpleType name="SQLStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Succeeded" />
+      <xs:enumeration value="Failed" />
+      <xs:enumeration value="UserExists" />
+      <xs:enumeration value="EmailExists" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SQLStatus" nillable="true" type="tns:SQLStatus" />
+  <xs:simpleType name="FileTypeE">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Folder" />
+      <xs:enumeration value="DOC" />
+      <xs:enumeration value="DOCX" />
+      <xs:enumeration value="XLS" />
+      <xs:enumeration value="XLSX" />
+      <xs:enumeration value="PPT" />
+      <xs:enumeration value="PPTX" />
+      <xs:enumeration value="PDF" />
+      <xs:enumeration value="JPG" />
+      <xs:enumeration value="PNG" />
+      <xs:enumeration value="GIF" />
+      <xs:enumeration value="BMP" />
+      <xs:enumeration value="TXT" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="FileTypeE" nillable="true" type="tns:FileTypeE" />
+  <xs:simpleType name="DeleteStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Failed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Authorized">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="FullFolder">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DeleteStatus" nillable="true" type="tns:DeleteStatus" />
+</xs:schema>

@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CourseMates" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" />
+      <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL" />
+      <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/Message" />
+      <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICourseMates_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_Register_InputMessage">
+    <wsdl:part name="parameters" element="tns:Register" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_Register_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_SendRestorePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendRestorePassword" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_SendRestorePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendRestorePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_CreateNewCourse_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewCourse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_CreateNewCourse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetCoursesByUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoursesByUserId" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetCoursesByUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoursesByUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileMsg">
+    <wsdl:part name="parameters" element="tns:UploadFileMsg" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileMsg_Headers">
+    <wsdl:part name="CourseId" element="tns:CourseId" />
+    <wsdl:part name="FileName" element="tns:FileName" />
+    <wsdl:part name="IsFolder" element="tns:IsFolder" />
+    <wsdl:part name="ParentId" element="tns:ParentId" />
+    <wsdl:part name="SessionId" element="tns:SessionId" />
+    <wsdl:part name="Size" element="tns:Size" />
+    <wsdl:part name="TypeId" element="tns:TypeId" />
+    <wsdl:part name="UserId" element="tns:UserId" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_UploadFile_OutputMessage" />
+  <wsdl:message name="ICourseMates_GetCourseFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseFiles" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetCourseFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_DeleteFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFile" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_DeleteFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="DownloadRequestMsg">
+    <wsdl:part name="parameters" element="tns:DownloadRequestMsg" />
+  </wsdl:message>
+  <wsdl:message name="DownloadRequestMsg_Headers">
+    <wsdl:part name="FileId" element="tns:FileId" />
+    <wsdl:part name="SessionId" element="tns:SessionId" />
+    <wsdl:part name="UserId" element="tns:UserId" />
+  </wsdl:message>
+  <wsdl:message name="RemoteFileInfoMsg">
+    <wsdl:part name="parameters" element="tns:RemoteFileInfoMsg" />
+  </wsdl:message>
+  <wsdl:message name="RemoteFileInfoMsg_Headers">
+    <wsdl:part name="FileName" element="tns:FileName" />
+    <wsdl:part name="Size" element="tns:Size" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetCoursePartisipant_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoursePartisipant" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetCoursePartisipant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoursePartisipantResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_UpdateCourse_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCourse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_UpdateCourse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_SetUserAsCourseAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserAsCourseAdmin" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_SetUserAsCourseAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserAsCourseAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_DeleteCourse_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCourse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_DeleteCourse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_RemoveUserFromCourse_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveUserFromCourse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_RemoveUserFromCourse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveUserFromCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetTop15Users_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTop15Users" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetTop15Users_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTop15UsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_AddUserToCourse_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserToCourse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_AddUserToCourse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserToCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetCourseForum_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseForum" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetCourseForum_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseForumResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_AddNewForumItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewForumItem" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_AddNewForumItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewForumItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_DeleteForumItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteForumItem" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_DeleteForumItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteForumItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_ChangeEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeEmail" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_ChangeEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_ChangePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_ChangePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_RateFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:RateFile" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_RateFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RateFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_RateForumItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:RateForumItem" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_RateForumItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RateForumItemResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICourseMates">
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/Login" message="tns:ICourseMates_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/LoginResponse" message="tns:ICourseMates_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Register">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/Register" message="tns:ICourseMates_Register_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/RegisterResponse" message="tns:ICourseMates_Register_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendRestorePassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/SendRestorePassword" message="tns:ICourseMates_SendRestorePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/SendRestorePasswordResponse" message="tns:ICourseMates_SendRestorePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewCourse">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/CreateNewCourse" message="tns:ICourseMates_CreateNewCourse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/CreateNewCourseResponse" message="tns:ICourseMates_CreateNewCourse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoursesByUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetCoursesByUserId" message="tns:ICourseMates_GetCoursesByUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetCoursesByUserIdResponse" message="tns:ICourseMates_GetCoursesByUserId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/UploadFile" name="UploadFileMsg" message="tns:UploadFileMsg" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/UploadFileResponse" message="tns:ICourseMates_UploadFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseFiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetCourseFiles" message="tns:ICourseMates_GetCourseFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetCourseFilesResponse" message="tns:ICourseMates_GetCourseFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/DeleteFile" message="tns:ICourseMates_DeleteFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/DeleteFileResponse" message="tns:ICourseMates_DeleteFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetFile" name="DownloadRequestMsg" message="tns:DownloadRequestMsg" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetFileResponse" name="RemoteFileInfoMsg" message="tns:RemoteFileInfoMsg" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoursePartisipant">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetCoursePartisipant" message="tns:ICourseMates_GetCoursePartisipant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetCoursePartisipantResponse" message="tns:ICourseMates_GetCoursePartisipant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCourse">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/UpdateCourse" message="tns:ICourseMates_UpdateCourse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/UpdateCourseResponse" message="tns:ICourseMates_UpdateCourse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAsCourseAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/SetUserAsCourseAdmin" message="tns:ICourseMates_SetUserAsCourseAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/SetUserAsCourseAdminResponse" message="tns:ICourseMates_SetUserAsCourseAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCourse">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/DeleteCourse" message="tns:ICourseMates_DeleteCourse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/DeleteCourseResponse" message="tns:ICourseMates_DeleteCourse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserFromCourse">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/RemoveUserFromCourse" message="tns:ICourseMates_RemoveUserFromCourse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/RemoveUserFromCourseResponse" message="tns:ICourseMates_RemoveUserFromCourse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTop15Users">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetTop15Users" message="tns:ICourseMates_GetTop15Users_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetTop15UsersResponse" message="tns:ICourseMates_GetTop15Users_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToCourse">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/AddUserToCourse" message="tns:ICourseMates_AddUserToCourse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/AddUserToCourseResponse" message="tns:ICourseMates_AddUserToCourse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseForum">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetCourseForum" message="tns:ICourseMates_GetCourseForum_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetCourseForumResponse" message="tns:ICourseMates_GetCourseForum_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNewForumItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/AddNewForumItem" message="tns:ICourseMates_AddNewForumItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/AddNewForumItemResponse" message="tns:ICourseMates_AddNewForumItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteForumItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/DeleteForumItem" message="tns:ICourseMates_DeleteForumItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/DeleteForumItemResponse" message="tns:ICourseMates_DeleteForumItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/ChangeEmail" message="tns:ICourseMates_ChangeEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/ChangeEmailResponse" message="tns:ICourseMates_ChangeEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/ChangePassword" message="tns:ICourseMates_ChangePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/ChangePasswordResponse" message="tns:ICourseMates_ChangePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RateFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/RateFile" message="tns:ICourseMates_RateFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/RateFileResponse" message="tns:ICourseMates_RateFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RateForumItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/RateForumItem" message="tns:ICourseMates_RateForumItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/RateForumItemResponse" message="tns:ICourseMates_RateForumItem_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="soap" type="tns:ICourseMates">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Register">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/Register" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendRestorePassword">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/SendRestorePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewCourse">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/CreateNewCourse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoursesByUserId">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/GetCoursesByUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/UploadFile" style="document" />
+      <wsdl:input name="UploadFileMsg">
+        <soap:header message="tns:UploadFileMsg_Headers" part="CourseId" use="literal" />
+        <soap:header message="tns:UploadFileMsg_Headers" part="FileName" use="literal" />
+        <soap:header message="tns:UploadFileMsg_Headers" part="IsFolder" use="literal" />
+        <soap:header message="tns:UploadFileMsg_Headers" part="ParentId" use="literal" />
+        <soap:header message="tns:UploadFileMsg_Headers" part="SessionId" use="literal" />
+        <soap:header message="tns:UploadFileMsg_Headers" part="Size" use="literal" />
+        <soap:header message="tns:UploadFileMsg_Headers" part="TypeId" use="literal" />
+        <soap:header message="tns:UploadFileMsg_Headers" part="UserId" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseFiles">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/GetCourseFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFile">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/DeleteFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/GetFile" style="document" />
+      <wsdl:input name="DownloadRequestMsg">
+        <soap:header message="tns:DownloadRequestMsg_Headers" part="FileId" use="literal" />
+        <soap:header message="tns:DownloadRequestMsg_Headers" part="SessionId" use="literal" />
+        <soap:header message="tns:DownloadRequestMsg_Headers" part="UserId" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RemoteFileInfoMsg">
+        <soap:header message="tns:RemoteFileInfoMsg_Headers" part="FileName" use="literal" />
+        <soap:header message="tns:RemoteFileInfoMsg_Headers" part="Size" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoursePartisipant">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/GetCoursePartisipant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCourse">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/UpdateCourse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAsCourseAdmin">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/SetUserAsCourseAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCourse">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/DeleteCourse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserFromCourse">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/RemoveUserFromCourse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTop15Users">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/GetTop15Users" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToCourse">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/AddUserToCourse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseForum">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/GetCourseForum" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNewForumItem">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/AddNewForumItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteForumItem">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/DeleteForumItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeEmail">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/ChangeEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RateFile">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/RateFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RateForumItem">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/RateForumItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CourseMates">
+    <wsdl:port name="soap" binding="tns:soap">
+      <soap:address location="http://localhost:50368/CourseMates.svc/soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

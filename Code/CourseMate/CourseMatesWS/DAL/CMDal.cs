@@ -327,9 +327,11 @@ namespace CourseMatesWS.DAL
                         IsFolder=isFolder,
                         OwnerId=ownerId,
                         PerantID=perantId,
-                        Rate=((double)rate/rUsers),
+                        Rate = ((double)rate / rUsers),
                         Size=size
                     };
+                    if (rate == 0 && rUsers == 0)
+                        item.Rate = -1;
 
                     files.Add(item);
                 }
