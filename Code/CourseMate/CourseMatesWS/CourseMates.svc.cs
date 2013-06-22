@@ -26,7 +26,11 @@ namespace CourseMatesWS
             sessionId = string.Empty;
             SQLStatus status = CMDal.RegisterNewUser(user, out userId);
             if (status == SQLStatus.Succeeded)
+            {
                 sessionId = CMDal.GetNewSession(userId);
+                NotificationUtilitys.SendVerifyMail(user);
+                CMDal.InsertNewAction(userId, (int)LinkType.EmailVerify);
+            }
             return status;
         }
 
@@ -187,6 +191,31 @@ namespace CourseMatesWS
         public bool RateForumItem(string sessionId, int userId, int itemId, int rate)
         {
             return CMDal.RateForumItem(sessionId, userId, itemId, rate);
+        }
+
+        public List<Notification> GetUserHistoryAndNotification(string sessionId, int userId, DateTime lastDate)
+        {
+            return CMDal.GetUserHistoryAndNotification(sessionId, userId, lastDate);
+        }
+
+        public bool AddNewNotification(string sessionId, int userId, int courseId, Notification noti)
+        {
+            return CMDal.AddNewNotification(sessionId, userId, courseId, noti);
+        }
+
+        public string GetUserSession(int userId, string uniqId, LinkType type)
+        {
+            return CMDal.GetUserToChangePassword(userId, uniqId, type);
+        }
+
+        public bool RestorePassword(string sessionId, int userId, string newPass)
+        {
+            return CMDal.RestorePassword(sessionId, userId, newPass);
+        }
+
+        public bool VerifyEmail(string sessionId, int userId)
+        {
+            return CMDal.VerifyEmail(sessionId, userId);
         }
     }
 }

@@ -10,10 +10,16 @@ namespace CourseMatesWS.BLL
     {
         Verify, NewFile, FileUpdate, QAndA, ApproveRequest, Invitation, ResetPassword
     }
-    
+
+    [DataContract(Name = "LinkType")]
     public enum LinkType
     {
-        ResetPassword=1, JoinCourse=2, EmailVerify=3
+        [EnumMember]
+        ResetPassword=1,
+        [EnumMember]
+        JoinCourse=2,
+        [EnumMember]
+        EmailVerify=3
     }
 
     [DataContract(Name = "SQLStatus")]

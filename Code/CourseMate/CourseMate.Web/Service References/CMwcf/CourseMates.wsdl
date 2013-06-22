@@ -2,12 +2,12 @@
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CourseMates" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://coursemate.mooo.com:8090/cmws/CourseMates.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://coursemate.mooo.com:8090/cmws/CourseMates.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://coursemate.mooo.com:8090/cmws/CourseMates.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" />
-      <xsd:import schemaLocation="http://coursemate.mooo.com:8090/cmws/CourseMates.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL" />
-      <xsd:import schemaLocation="http://coursemate.mooo.com:8090/cmws/CourseMates.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/Message" />
-      <xsd:import schemaLocation="http://coursemate.mooo.com:8090/cmws/CourseMates.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.DAL.Objects" />
+      <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CourseMatesWS.BLL" />
+      <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/Message" />
+      <xsd:import schemaLocation="http://localhost:50368/CourseMates.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ICourseMates_Login_InputMessage">
@@ -165,6 +165,36 @@
   <wsdl:message name="ICourseMates_RateForumItem_OutputMessage">
     <wsdl:part name="parameters" element="tns:RateForumItemResponse" />
   </wsdl:message>
+  <wsdl:message name="ICourseMates_GetUserHistoryAndNotification_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserHistoryAndNotification" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetUserHistoryAndNotification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserHistoryAndNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_AddNewNotification_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewNotification" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_AddNewNotification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetUserSession_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserSession" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_GetUserSession_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_RestorePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:RestorePassword" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_RestorePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RestorePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_VerifyEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyEmail" />
+  </wsdl:message>
+  <wsdl:message name="ICourseMates_VerifyEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyEmailResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICourseMates">
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/Login" message="tns:ICourseMates_Login_InputMessage" />
@@ -257,6 +287,26 @@
     <wsdl:operation name="RateForumItem">
       <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/RateForumItem" message="tns:ICourseMates_RateForumItem_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/RateForumItemResponse" message="tns:ICourseMates_RateForumItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserHistoryAndNotification">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetUserHistoryAndNotification" message="tns:ICourseMates_GetUserHistoryAndNotification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetUserHistoryAndNotificationResponse" message="tns:ICourseMates_GetUserHistoryAndNotification_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNewNotification">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/AddNewNotification" message="tns:ICourseMates_AddNewNotification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/AddNewNotificationResponse" message="tns:ICourseMates_AddNewNotification_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSession">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/GetUserSession" message="tns:ICourseMates_GetUserSession_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/GetUserSessionResponse" message="tns:ICourseMates_GetUserSession_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RestorePassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/RestorePassword" message="tns:ICourseMates_RestorePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/RestorePasswordResponse" message="tns:ICourseMates_RestorePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseMates/VerifyEmail" message="tns:ICourseMates_VerifyEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseMates/VerifyEmailResponse" message="tns:ICourseMates_VerifyEmail_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="soap" type="tns:ICourseMates">
@@ -481,10 +531,55 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUserHistoryAndNotification">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/GetUserHistoryAndNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNewNotification">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/AddNewNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSession">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/GetUserSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RestorePassword">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/RestorePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyEmail">
+      <soap:operation soapAction="http://tempuri.org/ICourseMates/VerifyEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="CourseMates">
     <wsdl:port name="soap" binding="tns:soap">
-      <soap:address location="http://coursemate.mooo.com:8090/cmws/CourseMates.svc/soap" />
+      <soap:address location="http://localhost:50368/CourseMates.svc/soap" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

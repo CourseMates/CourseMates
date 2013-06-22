@@ -13,7 +13,12 @@
 </head>
 <body> 
     <form runat="server">
-        <ext:ResourceManager ID="ResourceManager1" runat="server" />
+        <ext:ResourceManager ID="ResourceManager1" runat="server">
+            <Listeners>
+                <WindowResize Handler="Ext.net.Bus.publish('App.Desktop.ready');" Buffer="500" />
+            </Listeners>
+        </ext:ResourceManager>
+
         <ext:Desktop ID="MyDesktop" runat="server"> 
             <Modules>
                 <ext:DesktopModule ModuleID="mdlNewCourse" AutoRun="false">
@@ -224,6 +229,20 @@
                     </ext:Toolbar>
                 </QuickStart>
             </TaskBar>
+            <DesktopConfig ShortcutDragSelector="true">
+                <Content>
+                   <ext:DisplayField ID="dfInstruction" runat="server" Text="Move mouse to the right edge -->" FieldStyle="color:#254061;font-size:21px;" StyleSpec="position:absolute;right:30px;top:50px;"/> 
+
+                   <ext:Toolbar ID="Toolbar4" runat="server" Width="320" Floating="true" ClassicButtonStyle="true" Flat="true" Border="false" Shadow="false">                       
+                        <MessageBusListeners>
+                            <ext:MessageBusListener Name="App.Desktop.ready" Handler="this.el.anchorTo(Ext.getBody(), 'c-b', [0, -50]);" />
+                        </MessageBusListeners>
+                    </ext:Toolbar>                    
+                </Content>
+            </DesktopConfig>
+            <Listeners>
+                <Ready BroadcastOnBus="App.Desktop.ready" />
+            </Listeners>
         </ext:Desktop>
         <ext:Window runat="server" ID="winHelp" Icon="Help" Title="Help" Resizable="false" Draggable="true"
             Width="900" Height="550" Closable="true" HideMode="Offsets" CloseAction="Hide" Hidden="true"> 
@@ -235,19 +254,60 @@
                 <ext:MenuPanel ID="MenuPanel1" runat="server" Width="200" Region="West" Collapsed="false" Collapsible="true" Title="Help Topics">
                     <Menu ID="Menu1" runat="server">
                         <Items>
-                            <ext:MenuItem Text="New Course" Icon="Film"></ext:MenuItem>
-                            <ext:MenuItem Text="Invite Users" Icon="Film"></ext:MenuItem>
-                            <ext:MenuItem Text="Add New File" Icon="Film"></ext:MenuItem>
-                            <ext:MenuItem Text="Ask/Answer Question" Icon="Film"></ext:MenuItem>
-                            <ext:MenuItem Text="Rate File" Icon="Film"></ext:MenuItem>
-                            <ext:MenuItem Text="Change Password" Icon="Film"></ext:MenuItem>
-                            <ext:MenuItem Text="Change Email" Icon="Film"></ext:MenuItem>
+                            <ext:MenuItem Text="New Course" Icon="Film">
+                                <Listeners>
+                                    <Click Handler="#{DirectMethods}.ChangeMovie('Videos/NewCourse.swf');" />
+                                </Listeners>
+                            </ext:MenuItem>
+                            <ext:MenuItem Text="Invite Users" Icon="Film">
+                                <Listeners>
+                                    <Click Handler="#{DirectMethods}.ChangeMovie('Videos/AddUser.swf');" />
+                                </Listeners>
+                            </ext:MenuItem>
+                            <ext:MenuItem Text="Add New File" Icon="Film">
+                                <Listeners>
+                                    <Click Handler="#{DirectMethods}.ChangeMovie('Videos/AddFile.swf');" />
+                                </Listeners>
+                            </ext:MenuItem>
+                            <ext:MenuItem Text="Ask/Answer Question" Icon="Film">
+                                <Listeners>
+                                    <Click Handler="#{DirectMethods}.ChangeMovie('Videos/FourmItem.swf');"/>
+                                </Listeners>
+                            </ext:MenuItem>
+                            <ext:MenuItem Text="Rate File" Icon="Film">
+                                <Listeners>
+                                    <Click Handler="#{DirectMethods}.ChangeMovie('Videos/RateFile.swf');" />
+                                </Listeners>
+                            </ext:MenuItem>
+                            <ext:MenuItem Text="Change Password" Icon="Film">
+                                <Listeners>
+                                    <Click Handler="#{DirectMethods}.ChangeMovie('Videos/ChangePass.swf');" />
+                                </Listeners>
+                            </ext:MenuItem>
+                            <ext:MenuItem Text="Change Email" Icon="Film">
+                                <Listeners>
+                                    <Click Handler="#{DirectMethods}.ChangeMovie('Videos/ChangeEmail.swf');" />
+                                </Listeners>
+                            </ext:MenuItem>
                         </Items>
                     </Menu>
                 </ext:MenuPanel>
                 <ext:Panel ID="Panel1" runat="server" Frame="true" Region="Center" Layout="FitLayout">  
                     <Items>
-                        <ext:FlashComponent runat="server"/>
+                        <ext:FlashComponent runat="server" ID="fcHelpVideo" Url="Videos/NewCourse.swf">
+                            <FlashParams>
+                                <ext:Parameter Name="allowfullscreen" Value="true">
+                                </ext:Parameter>
+                                <ext:Parameter Name="allowscriptaccess" Value="always">
+                                </ext:Parameter>
+                            </FlashParams>
+                            <FlashVars>
+                                 <ext:Parameter Name="file" Value="Videos/NewCourse.swf" Encode="false">
+                                 </ext:Parameter>
+                                 <ext:Parameter Name="type" Value="video">
+                                 </ext:Parameter>
+                            </FlashVars>
+                        </ext:FlashComponent>
                     </Items>
                 </ext:Panel>    
             </Items>
@@ -414,13 +474,13 @@
                                                                 <div class="thumb-wrap">
                                                                     <div class="thumb">
                                                                         <tpl if="!Ext.isIE6">
-                                                                            <img src="{ImageUrl}" height="64px" width="64px" />
+                                                                            <img src="{ImageUrl}" alt="{FileName}" height="64px" width="64px" />
                                                                         </tpl>
                                                                         <tpl if="Ext.isIE6">
-                                                                            <div style="width:64px;height:64px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{ImageUrl}")"></div>
+                                                                            <div style="width:64px;height:64px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="{ImageUrl}");" alt="{FileName}"></div>
                                                                         </tpl>                    
                                                                     </div>
-                                                                    <span style="text-align:center; overflow:hidden; width:64px; text-overflow:ellipsis">{FileName}</span>
+                                                                    <div style="text-align:center; white-space:nowrap; overflow:hidden; width:64px; text-overflow:ellipsis">{FileName}</div>
                                                                 </div>
                                                             </tpl>
                                                         </Html>
@@ -458,8 +518,8 @@
                                             <Tpl runat="server">
                                                 <Html>
                                                     <tpl for=".">   
-                                                        <div style="display:table-row; height:auto" class="details">
-                                                            <div style="display:table-cell; width:90px; float:left; margin-top:25px">
+                                                        <div style="display:table-row; height:auto; vertical-align:middle;" class="details">
+                                                            <div style="display:table-cell; width:90px; float:left; padding-top:25px">
                                                                 <tpl if="!Ext.isIE6">
                                                                     <img src="{ImageUrl}" height="64px" width="64px" />
                                                                 </tpl>
@@ -469,28 +529,28 @@
                                                             </div>
                                                             <div style="display:table-cell; width:auto; float:right" class="details-info">
                                                                 <table width="100%">
-                                                                    <tr style="height:20px;">
+                                                                    <tr style="height:15px;">
                                                                         <td style="width:120px;"><b>File Name:</b></td>
-                                                                        <td>{FileName}</td>
+                                                                        <td><div style="white-space:nowrap; overflow:hidden; width:300px; text-overflow:ellipsis">{FileName}</div></td>
                                                                     </tr>
-                                                                    <tr style="height:20px;">
+                                                                    <tr style="height:15px;">
                                                                         <td><b>Size:</b></td>
                                                                         <td>{Size}</td>
                                                                     </tr>
-                                                                    <tr style="height:20px;">
+                                                                    <tr style="height:15px;">
                                                                         <td><b>Last Modify:</b></td>
                                                                         <td>{LastModify}</td>
                                                                         
                                                                     </tr>
-                                                                    <tr style="height:20px;">
+                                                                    <tr style="height:15px;">
                                                                         <td><b>Rate:</b></td>
                                                                         <td>{Rate}</td>
                                                                     </tr>
-                                                                    <tr style="height:20px;">
+                                                                    <tr style="height:15px;">
                                                                         <td><b>Type:</b></td>
                                                                         <td>{Type}</td>
                                                                     </tr>
-                                                                    <tr style="height:20px;">
+                                                                    <tr style="height:15px;">
                                                                         <td><b>Owner:</b></td>
                                                                         <td>{Owner}</td>
                                                                     </tr>
@@ -831,7 +891,9 @@
                                                             </Defaults>
                                                             <Items>
                                                                 <ext:Button runat="server" Icon="EmailGo" Text="Send" ID="btnSendMsg" Disabled="true">
-                                                        
+                                                                    <Listeners>
+                                                                        <Click Handler="#{DirectMethods}.SendMessage();" />
+                                                                    </Listeners>
                                                                 </ext:Button>
                                                             </Items>
                                                         </ext:FieldContainer>
@@ -920,6 +982,60 @@
                 </ext:TabPanel>
             </Items>
         </ext:Window>
+        <ext:Panel ID="Panel5" runat="server" Title="Notificaions" Frame="true" Width="250"  Floating="true" Shadow="false" Layout="FitLayout">
+            <Items>
+                <ext:DataView runat="server" SingleSelect="true" ItemSelector="div.thumb-wrap" Cls="img-chooser-view" AutoScroll="true" ID="pnlNotificationView">
+                    <Store>
+                        <ext:Store runat="server" ID="storeNotification">
+                            <Model>
+                                <ext:Model ID="Model5" runat="server">
+                                    <Fields>
+                                        <ext:ModelField Name="Subject" Type="String" /> 
+                                        <ext:ModelField Name="Content" Type="String" /> 
+                                        <ext:ModelField Name="Owner" Type="String" />
+                                        <ext:ModelField Name="CourseName" Type="String" />
+                                        <ext:ModelField Name="CreatedTime" Type="String" />
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+                        </ext:Store>
+                    </Store>
+                    <Tpl runat="server">
+                        <Html>
+                            <tpl for=".">
+                                <div class="thumb-wrap" style="width:93%;">
+                                    <div class="forumTitle">{Subject} ({CourseName})</div>
+                                    <div style="color:gray; margin-left:15px">{Owner}</div>
+                                    <div class="forumContent">{Content}</div>
+                                    <div style="color:gray;text-align:right">{CreatedTime}</div>
+                                    <hr />
+                                </div>
+                            </tpl>
+                        </Html>
+                    </Tpl>
+                </ext:DataView>
+            </Items>
+            <MessageBusListeners>
+                <ext:MessageBusListener Name="App.Desktop.ready" Fn="initSlidePanel" />
+            </MessageBusListeners>
+            <Plugins>
+                <ext:MouseDistanceSensor ID="MouseDistanceSensor1" runat="server" Opacity="false" Threshold="25">
+                    <Listeners>
+                        <Near Handler="this.component.el.alignTo(Ext.getBody(), 'tr-tr', [0, 0], true); #{dfInstruction}.setVisible(false);" />
+                        <Far Handler="this.component.el.alignTo(Ext.getBody(), 'tl-tr', [0, 0], true);" />
+                    </Listeners>
+                </ext:MouseDistanceSensor>
+            </Plugins>
+        </ext:Panel>
+        <ext:TaskManager runat="server">
+            <Tasks>
+                <ext:Task Interval="60000" TaskID="notificationTask" AutoRun="true">
+                    <DirectEvents>
+                        <Update OnEvent="CheckForNewNotification" ShowWarningOnFailure="false" />
+                    </DirectEvents>
+                </ext:Task>
+            </Tasks>
+        </ext:TaskManager>
     </form>
 </body>
 </html>

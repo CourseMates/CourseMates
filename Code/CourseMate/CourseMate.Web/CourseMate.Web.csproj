@@ -127,6 +127,9 @@
     <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.Forum.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.Notification.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\CMwcf\CourseMate.Web.CMwcf.SQLStatus.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -140,7 +143,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Test.aspx" />
+    <Content Include="Videos\AddFile.swf" />
+    <Content Include="Videos\AddUser.swf" />
+    <Content Include="Videos\ChangeEmail.swf" />
+    <Content Include="Videos\ChangePass.swf" />
+    <Content Include="Videos\ForumItem.swf" />
+    <Content Include="Videos\NewCourse.swf" />
+    <Content Include="Videos\RateFile.swf" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -201,13 +210,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Test.aspx.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test.aspx.designer.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\CMwcf\CourseMates.wsdl" />
@@ -242,6 +244,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\CMwcf\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

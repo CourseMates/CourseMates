@@ -46,7 +46,7 @@ namespace CourseMatesWS.BLL
 
         public static string GetUniqueEmail(LinkType type, User user, int courseId = -1)
         {
-            string url = "http://coursemate.mooo.com/{0}.aspx?c={1}i={2}&u={3}";
+            string url = "http://coursemate.mooo.com/{0}.aspx?c={1}&i={2}&u={3}";
             string unique = GetMd5Hash(user.Email);
             url = string.Format(url, type.ToString(), courseId, user.ID, unique);
             return url;

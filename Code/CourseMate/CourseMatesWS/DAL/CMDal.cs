@@ -164,7 +164,7 @@ namespace CourseMatesWS.DAL
             {
                 int x = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_InsertAction",
                         "@UserID", userId,
-                        "@ActioID", actionId);
+                        "@Action", actionId);
 
                 return x > 0;
             }
@@ -630,7 +630,10 @@ namespace CourseMatesWS.DAL
                     fi.Content = ParseCellDataToString(row["Content"]);
                     fi.OwnerName = ParseCellDataToString(row["UserName"]);
                     fi.ID = id;
-                    fi.Rate = ((double)rate / rUsers);
+                    if (rate == 0 && rUsers == 0)
+                        fi.Rate = -1;
+                    else
+                        fi.Rate = ((double)rate / rUsers);
                     fi.PerentId = perrentId;
                     fi.TimeAdded = ParseCellDataToDateTime(row["TimeAdded"]);
                     forum.AddItemByPerantID(fi);
@@ -745,6 +748,110 @@ namespace CourseMatesWS.DAL
                         "@UserID", userId,
                         "@ItemID", itemId,
                         "@Rating", rate);
+
+                return result > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static List<Notification> GetUserHistoryAndNotification(string sessionId, int userId, DateTime lastDate)
+        {
+
+            List<Notification> toReturn = new List<Notification>();
+            try
+            {
+                DataTable table = new DataAccess(ConnectionString).ExecuteQuerySP("SP_GetUserNotifications",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@LastNTime", lastDate);
+
+                if (table == null || table.Rows.Count == 0)
+                    return toReturn;
+                foreach (DataRow row in table.Rows)
+                {
+                    Notification n = new Notification();
+                    n.Subject = ParseCellDataToString(row["Subject"]);
+                    n.Content = ParseCellDataToString(row["Content"]);
+                    n.Owner = ParseCellDataToString(row["Owner"]);
+                    n.CourseName = ParseCellDataToString(row["CourseName"]);
+                    n.CreatedTime = ParseCellDataToDateTime(row["Time"]);
+                    
+                    toReturn.Add(n);
+                }
+                return toReturn;
+            }
+            catch (Exception)
+            {
+                return toReturn;
+            }
+        }
+
+        public static bool AddNewNotification(string session, int userId, int courseId, Notification toAdd)
+        {
+            try
+            {
+                int result = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_AddNewNotification",
+                        "@SessionID", session,
+                        "@UserID", userId,
+                        "@CourseID", courseId,
+                        "@Subject", toAdd.Subject,
+                        "@Content", toAdd.Content);
+
+                return result > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static string GetUserToChangePassword(int userId, string uniqId, LinkType type)
+        {
+            try
+            {
+                DataTable table = new DataAccess(ConnectionString).ExecuteQuerySP("SP_IsValidAction",
+                    "@UserID", userId,
+                    "@UniqID", uniqId,
+                    "@Action", (int)type);
+                
+                if (table == null || table.Rows.Count == 0)
+                    return string.Empty;
+
+                return table.Rows[0]["SessionID"].ToString();
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+        }
+
+        public static bool RestorePassword(string sessionId, int userId, string newPass)
+        {
+            try
+            {
+                int result = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_RestorePassword",
+                        "@SessionID", sessionId,
+                        "@UserID", userId,
+                        "@NewPass", newPass);
+
+                return result > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool VerifyEmail(string sessionId, int userId)
+        {
+            try
+            {
+                int result = new DataAccess(ConnectionString).ExecuteNonQuerySP("SP_VerifyEmail",
+                        "@SessionID", sessionId,
+                        "@UserID", userId);
 
                 return result > 0;
             }

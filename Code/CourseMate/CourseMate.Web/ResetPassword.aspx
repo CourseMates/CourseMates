@@ -5,6 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <script language="javascript">
+    
+    </script>
 </head>
 <body style="text-align:center; vertical-align:middle;width:80%; margin-left:10%; margin-right:10%">
     <form id="form1" runat="server" style="text-align:center; vertical-align:middle;width:80%; margin-left:10%; margin-right:10%">
@@ -29,7 +32,8 @@
                 </table>
             </div>
             <div style="margin-top:30px">
-                <asp:Button ID="btnSubmit" runat="server" Text="Submit" />
+                <asp:Button ID="btnSubmit" runat="server" Text="Submit" 
+                    onclick="ChangePasswordClick" Enabled ="false" />
             </div>
         </div>
     </form>

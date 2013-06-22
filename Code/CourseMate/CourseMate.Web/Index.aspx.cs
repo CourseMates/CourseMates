@@ -44,6 +44,19 @@ namespace CourseMate.Web
                 Session["UserID"] = value; 
             }
         }
+        public CourseMatesClient CourseMatesWS
+        {
+            get
+            {
+                if (Session["CourseMatesWS"] != null)
+                    return Session["CourseMatesWS"] as CourseMatesClient;
+                return new CourseMatesClient();
+            }
+            set
+            {
+                Session["CourseMatesWS"] = value;
+            }
+        }
                 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -53,9 +66,8 @@ namespace CourseMate.Web
 
         protected void Login_Click(object sender, DirectEventArgs e)
         {
-            CourseMatesClient cm = new CourseMatesClient();
             int id;
-            string session = cm.Login(txtUsername.Text, BLL.Utilitys.GetMd5Hash(txtPassword.Text), out id);
+            string session = CourseMatesWS.Login(txtUsername.Text, BLL.Utilitys.GetMd5Hash(txtPassword.Text), out id);
             
             if (!string.IsNullOrEmpty(session))
             {
@@ -72,7 +84,6 @@ namespace CourseMate.Web
 
         protected void Register_Click(object sender, DirectEventArgs e)
         {
-            CourseMatesClient cm = new CourseMatesClient();
             User user = new User()
             {
                 FirstName = txtRFName.Text,
@@ -86,7 +97,7 @@ namespace CourseMate.Web
             string session;
             int id;
 
-            SQLStatus status = cm.Register(user, out id, out session);
+            SQLStatus status = CourseMatesWS.Register(user, out id, out session);
 
             switch (status)
             {
@@ -113,7 +124,7 @@ namespace CourseMate.Web
 
         protected void SendEmail_Click(object sender, DirectEventArgs e)
         {
-            if (new CourseMatesClient().SendRestorePassword(txtFPEmail.Text))
+            if (CourseMatesWS.SendRestorePassword(txtFPEmail.Text))
             {
                 ShowMessage("Forget Password", "A Restore email was send to your email.", MessageBox.Icon.INFO, MessageBox.Button.OK);
             }

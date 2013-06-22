@@ -117,6 +117,19 @@ namespace CourseMate.Web
                 Session["CourseMatesWS"] = value;
             }
         }
+        public List<CMwcf.Notification> UserNotification
+        {
+            get
+            {
+                if (Session["UserNotification"] == null)
+                    UserNotification = new List<CourseMate.Web.CMwcf.Notification>();
+                return Session["UserNotification"] as List<CourseMate.Web.CMwcf.Notification>; 
+            }
+            set
+            {
+                Session["UserNotification"] = value;
+            }
+        }
         #endregion
 
         #region Listiners
@@ -163,6 +176,27 @@ namespace CourseMate.Web
 
                         MyDesktop.Modules.Add(m);
                     }
+
+                    UserNotification = new List<CMwcf.Notification>();
+                    CMwcf.Notification[] newNoti = CourseMatesWS.GetUserHistoryAndNotification(SessionID, UserID, GetLastNotificationDate());
+                    newNoti.OrderByDescending(x => x.CreatedTime);
+                    
+                    List<object> obj1 = new List<object>();
+                    foreach (var not in newNoti)
+                    {
+                        UserNotification.Add(not);
+                        obj1.Add(
+                        new
+                        {
+                            Subject = not.Subject,
+                            Content = not.Content.Replace("\r\n", "<br>"),
+                            Owner = not.Owner,
+                            CourseName = not.CourseName,
+                            CreatedTime = TimeAgo(not.CreatedTime)
+                        });
+                    }
+
+                    storeNotification.DataSource = obj1;
                 }
                 
             }
@@ -185,7 +219,6 @@ namespace CourseMate.Web
                 GetAllCourses();
                 CourseFiles = CourseMatesWS.GetCourseFiles(SessionID, UserID, courseId);
                 CreateNewCourseMudole(courseId, txtCourseName.Text, cmbFolderColor.SelectedItem.Value);
-                ShowMessage("Create new course", "The course has been created", MessageBox.Icon.INFO, MessageBox.Button.OK);
                 winAddNewCourse.Close();
             }
             else
@@ -278,7 +311,6 @@ namespace CourseMate.Web
                 {
                     case DeleteStatus.Success:
                         ReLoadCourseFiles(CurrentCourse);
-                        ShowMessage("Delete File", "Done", MessageBox.Icon.INFO, MessageBox.Button.OK);
                         break;
                     case DeleteStatus.Failed:
                         ShowMessage("Delete File", "Failes", MessageBox.Icon.ERROR, MessageBox.Button.OK);
@@ -302,7 +334,6 @@ namespace CourseMate.Web
                 if (CourseMatesWS.RemoveUserFromCourse(SessionID, UserID, CurrentCourse, userId))
                 {
                     LoadUsers();
-                    ShowMessage("Remove User", "Done", MessageBox.Icon.INFO, MessageBox.Button.OK);
                 }
                 else
                 {
@@ -320,7 +351,6 @@ namespace CourseMate.Web
                 if (CourseMatesWS.SetUserAsCourseAdmin(SessionID, UserID, CurrentCourse, userId))
                 {
                     LoadUsers();
-                    ShowMessage("Set as Admin", "Done", MessageBox.Icon.INFO, MessageBox.Button.OK);
                 }
                 else
                 {
@@ -394,9 +424,50 @@ namespace CourseMate.Web
                 ShowMessage("Delete Comment", "Failed", MessageBox.Icon.ERROR, MessageBox.Button.OK);
             }
         }
+        
+        protected void CheckForNewNotification(object sender, DirectEventArgs e)
+        {
+            CMwcf.Notification[] newNoti =  CourseMatesWS.GetUserHistoryAndNotification(SessionID, UserID, GetLastNotificationDate());
+            if (newNoti.Length > 0)
+            {
+                foreach (var notification in newNoti)
+                {
+                    ShowNotification(notification);
+                    UserNotification.Add(notification);
+                }
+
+
+                UserNotification = UserNotification.OrderByDescending(x => x.CreatedTime).ToList();
+
+                List<object> obj = new List<object>();
+                foreach (var not in UserNotification)
+                {
+                    obj.Add(
+                    new
+                    {
+                        Subject = not.Subject,
+                        Content = not.Content.Replace("\r\n","<br>"),
+                        Owner = not.Owner,
+                        CourseName = not.CourseName,
+                        CreatedTime = TimeAgo(not.CreatedTime)
+                    });
+                }
+
+                storeNotification.DataSource = obj;
+                storeNotification.DataBind();
+            }
+        }
         #endregion
 
         #region Direct Methods
+        [DirectMethod]
+        public void ChangeMovie(string url)
+        {
+            fcHelpVideo.Url = url;
+            fcHelpVideo.Render();
+            MenuPanel1.Collapse();
+        }
+
         [DirectMethod]
         public void UpdateViewPanel(int fileId)
         {
@@ -486,6 +557,7 @@ namespace CourseMate.Web
             }
             return obj;
         }
+
         [DirectMethod(ShowMask = true, CustomTarget = "winCourse")]
         public void AddNewUserToCourse()
         {
@@ -495,7 +567,6 @@ namespace CourseMate.Web
             }
             else
             {
-                ShowMessage("Add New User", "User added to the course", MessageBox.Icon.INFO, MessageBox.Button.OK);
                 LoadUsers();  
             }
             cbAddUserName.Text = "";
@@ -634,6 +705,26 @@ namespace CourseMate.Web
             }
         }
 
+        [DirectMethod(ShowMask = true, CustomTarget = "winCourse")]
+        public void SendMessage()
+        {
+            CMwcf.Notification noti = new CMwcf.Notification()
+            {
+                Subject = txtCASubject.Text,
+                Content = taMessage.Text
+            };
+
+            if (!CourseMatesWS.AddNewNotification(SessionID, UserID, CurrentCourse, noti))
+            {
+                ShowMessage("Send Message", "Error: Failed", MessageBox.Icon.ERROR, MessageBox.Button.OK);
+            }
+            else
+            {
+                txtCASubject.Text = "";
+                taContent.Text = "";
+            }
+        }
+
         [DirectMethod(ShowMask = true, CustomTarget = "winSettings")]
         public void ChangePassword()
         {
@@ -664,7 +755,6 @@ namespace CourseMate.Web
                 ShowMessage("Email Change", "Failed", MessageBox.Icon.ERROR, MessageBox.Button.OK);
             }
         }
-
         #endregion
 
         #region Private Methods
@@ -841,6 +931,34 @@ namespace CourseMate.Web
             if (pre <= 0)
                 return "Not rated item";
             return string.Format("Useful by {0}% of the users", pre);
+        }
+
+        private DateTime GetLastNotificationDate()
+        {
+            var noti = UserNotification.FirstOrDefault();
+            if (noti == null)
+            {
+                return DateTime.Now.AddDays(-7);
+            }
+            return noti.CreatedTime.AddMinutes(1);
+        }
+
+        private void ShowNotification(CMwcf.Notification noti)
+        {
+            Ext.Net.Notification.Show(new NotificationConfig
+            {
+                Title = noti.Subject + " - " + noti.Owner,
+                Html = "<div class=\"forumContent\" style=\"text-align:center;\">" + noti.Content.Replace("\r\n","<br>") + "</div>",
+                Icon = Icon.Note,
+                Height = 150,
+                Width = 250,
+                BodyStyle = "padding:10px",
+                ShowFx = new SlideIn { Anchor = AnchorPoint.Right },
+                HideFx = new SlideOut { Anchor = AnchorPoint.Right },
+                BringToFront = true,
+                ShowPin = true,
+                HideDelay = 5000,
+            });
         }
         #endregion
     }

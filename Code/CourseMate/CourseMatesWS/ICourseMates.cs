@@ -61,6 +61,16 @@ namespace CourseMatesWS
         bool RateFile(string sessionId, int userId, int fileId, int rate);
         [OperationContract]
         bool RateForumItem(string sessionId, int userId, int itemId, int rate);
+        [OperationContract]
+        List<Notification> GetUserHistoryAndNotification(string sessionId, int userId, DateTime lastDate);
+        [OperationContract]
+        bool AddNewNotification(string sessionId, int userId, int courseId, Notification noti);
+        [OperationContract]
+        string GetUserSession(int userId, string uniqId, LinkType type);
+        [OperationContract]
+        bool RestorePassword(string sessionId, int userId, string newPass);
+        [OperationContract]
+        bool VerifyEmail(string sessionId, int userId);
     }
     [MessageContract]
     public class UploadFileMsg

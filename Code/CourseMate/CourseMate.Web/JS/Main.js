@@ -27,3 +27,14 @@ var clearFilter = function () {
     tree.clearFilter(true);
     tree.getView().focus();
 };
+
+var initSlidePanel = function () {
+    this.setHeight(Ext.getBody().getHeight());
+
+    if (!this.windowListen) {
+        this.windowListen = true;
+
+        this.el.alignTo(Ext.getBody(), 'tl-tr', [0, 0]);
+        Ext.EventManager.onWindowResize(initSlidePanel, this);
+    }
+};

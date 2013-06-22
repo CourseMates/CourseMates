@@ -83,6 +83,7 @@
     <Compile Include="DAL\Objects\FileType.cs" />
     <Compile Include="DAL\Objects\Forum.cs" />
     <Compile Include="DAL\Objects\ForumItem.cs" />
+    <Compile Include="DAL\Objects\Notification.cs" />
     <Compile Include="DAL\Objects\User.cs" />
     <Compile Include="BLL\Utilitys.cs" />
     <Compile Include="CourseMates.svc.cs">
