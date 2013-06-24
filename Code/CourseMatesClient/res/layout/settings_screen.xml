@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/stroke"
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" >
+
+        <CheckBox
+            android:id="@+id/checkBox_settings_autologin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Auto login" />
+
+        <CheckBox
+            android:id="@+id/checkBox_settings_push"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Push Notifications" />
+    </LinearLayout>
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="#7D7D7D"
+             android:gravity="center_horizontal"
+             android:orientation="horizontal"
+             android:showDividers="beginning" >
+
+             <Button
+                 android:id="@+id/button_settings_save"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center_horizontal"
+                 android:layout_weight="0.5"
+                 android:gravity="center_vertical|center_horizontal"
+                 android:text="Save"
+                 android:textAlignment="gravity" />
+
+             <Button
+                 android:id="@+id/button_settings_cancel"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="0.5"
+                 android:gravity= "center" 
+                 android:text="Cancel" />
+         </LinearLayout>
+
+</LinearLayout>

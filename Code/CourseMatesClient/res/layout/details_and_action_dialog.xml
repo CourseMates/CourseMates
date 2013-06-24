@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/stroke"
+    android:gravity="center_vertical"
+    android:orientation="vertical" 
+    android:minWidth="1000dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#7D7D7D"
+        android:gravity="fill_horizontal"
+        android:orientation="horizontal" >
+
+		<TextView
+		    android:id="@+id/textView_filename_label"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="FileName:  "
+		    android:textSize="14sp" />
+
+		<TextView
+		    android:id="@+id/textView_filename"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="5dp"
+		    android:textColor="#ff0000ff"
+		    android:textSize="18sp" />
+        
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#c0c0c0"
+        android:gravity="fill_horizontal"
+        android:orientation="horizontal" >
+    		<TextView
+		    android:id="@+id/textView_filesize_label"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Size:" />
+
+		<TextView
+		    android:id="@+id/textView_filesize"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="20dp"
+		    android:layout_marginRight="15dp"
+		    android:text=""
+		    android:textColor="#ff0000ff"
+		    android:textSize="18sp" />
+		</LinearLayout>
+	 <LinearLayout 
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" 
+	    android:background="#7D7D7D">
+
+		<TextView
+		  android:id="@+id/textView_owner_label"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  android:text="Owner:" />
+		<TextView
+		    android:id="@+id/textView_owner"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textColor="#ff0000ff"
+		    android:layout_marginLeft="20dp"
+		    android:textSize="18sp"
+		    android:text="" />
+		<TextView
+	        android:id="@+id/textView_rate_lable"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="20dp"
+	        android:text="Rating:" />
+	    <TextView
+	        android:id="@+id/textView_rate"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="10dp"
+	        android:textColor="#ff0000ff"
+		    android:textSize="18sp"
+	        android:text="" />
+		<TextView
+		    android:id="@+id/textView_filetype_label"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="20dp"
+		    android:text="Type:" />
+		<TextView
+		    android:id="@+id/textView_filetype"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textColor="#ff0000ff"
+		    android:layout_marginLeft="10dp"
+		    android:textSize="18sp"
+		    android:text="" />
+        
+    </LinearLayout>
+     <LinearLayout 
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" 
+	    android:background="#c0c0c0">
+	    
+	    <TextView
+	        android:id="@+id/textView_modified_label"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Last modified" />
+	    <TextView
+	        android:id="@+id/textView_modified"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="20dp"
+	        android:textColor="#ff0000ff"
+		    android:textSize="18sp"
+	        android:text="" />
+	
+  </LinearLayout>
+  <LinearLayout 
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" 
+	    android:background="#7D7D7D">
+	    
+	  	
+	    <Button
+	        android:id="@+id/button2"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:text="Download" />
+       </LinearLayout>
+</LinearLayout>

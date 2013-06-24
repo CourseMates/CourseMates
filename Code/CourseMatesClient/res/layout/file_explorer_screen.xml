@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#7D7D7D">
+
+		    <GridView
+		        android:id="@+id/gridView_files"
+		        android:layout_width="match_parent"
+		        android:layout_height="328dp"
+		        android:layout_margin="10dip"
+		        android:background="@drawable/stroke"
+		        android:gravity="center"
+		        android:horizontalSpacing="10dp"
+		        android:numColumns="3"
+		        android:scaleType="fitXY"
+		        android:verticalSpacing="10dp" >
+		    </GridView>
+			<LinearLayout 
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" 
+			    android:background="#7D7D7D">
+			
+			    <Button
+			        android:id="@+id/button_RootFolder"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_marginLeft="5dp"
+			        android:text="@string/RootFolder"
+			        android:textSize="15sp" />
+			
+			    <Button
+			        android:id="@+id/button_Refresh"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_marginLeft="8dp"
+			        android:text="@string/Refresh"
+			        android:textSize="15sp" />
+			
+			    
+			    
+			    <Button 
+			        android:id="@+id/button_MakeDirectory"
+			        android:layout_height="wrap_content"
+			        android:layout_width="match_parent"
+			        android:layout_marginLeft="8dp"
+			        android:layout_marginRight="5dp"
+			        android:text="@string/MakeDirectory"
+			        android:textSize="13sp" />
+			
+			</LinearLayout>
+
+			<LinearLayout
+			    android:layout_width="match_parent"
+			    android:layout_height="match_parent"
+			    android:background="#7D7D7D"
+			    android:orientation="horizontal" >
+
+			    <Button
+			        android:id="@+id/button_postphoto"
+			        android:layout_width="0dp"
+			        android:layout_height="wrap_content"
+			        android:layout_marginLeft="5dp"
+			        android:layout_marginRight="5dp"
+			        android:layout_weight="0.88"
+			        android:text="@string/PostPhoto" />
+			</LinearLayout>
+    
+</LinearLayout>

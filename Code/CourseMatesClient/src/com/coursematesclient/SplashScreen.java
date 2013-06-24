@@ -28,6 +28,8 @@ public class SplashScreen extends Activity {
 		//set xml view for this activity 
 		setContentView(R.layout.splash_screen);
 		
+		
+		//clear all pending notification
 		Utils.numMessages=0;
 		Utils.msgList.clear();
 		
@@ -35,35 +37,53 @@ public class SplashScreen extends Activity {
 		//change color of progress bar
 		ProgressBar	pb =  (ProgressBar) findViewById(R.id.progressBar1);
 		pb.getIndeterminateDrawable().setColorFilter(0xff0000a0, android.graphics.PorterDuff.Mode.MULTIPLY);
-        
-       
-        
-		Handler handler = new Handler();
-		 
-        // run a thread after t seconds to start the home screen or authentication screen
-        handler.postDelayed(new Runnable() {
- 
-            @Override
-            public void run() {
- 
-                // make sure we close the splash screen so the user won't come back when it presses back key
- 
-                finish();
-                 
-                if (!mIsBackButtonPressed) {
-                   
-                	 // try to login  if the back button wasn't pressed already 
-                	
-                	finish();
-            		Intent intent = new Intent(SplashScreen.this, Authentication.class);
-                    SplashScreen.this.startActivity(intent);
-            		
-               }
-                 
-            }
- 
-        }, SPLASH_DURATION); // time in milliseconds (1 second = 1000 milliseconds) until the run() method will be called
- 
+		
+
+//		finish();
+//		Intent intent = new Intent(SplashScreen.this, SettingsActivity.class);
+//		intent.putExtra("userID",1);
+//    	intent.putExtra("sessionID", "dsdsds");
+//    	intent.putExtra("courseID", 1);
+//        SplashScreen.this.startActivity(intent);
+	
+		//getting the user data and check if autologin turned on
+		UserData ud = new UserData();
+		if(ud.getAutologin(getApplicationContext()) && Utils.isLettersAndNumber(ud.getUserName(getApplicationContext())))  {
+			
+	    	//create and execute LoginTask in background 
+    		LoginTask loginTask = new LoginTask(getApplicationContext(),this,false);
+			loginTask.execute("http://coursemate.mooo.com:8090/cmws/CourseMatesREST.svc/rest/login");
+		}
+		else 
+		{
+       //show basic splash screen
+			        
+					Handler handler = new Handler();
+					 
+			        // run a thread after t seconds to start the  authentication screen
+			        handler.postDelayed(new Runnable() {
+			 
+			            @Override
+			            public void run() {
+			 
+			                // make sure we close the splash screen so the user won't come back when it presses back key
+			 
+			                finish();
+			                 
+			                if (!mIsBackButtonPressed) {
+			                   
+			                	 // try to login  if the back button wasn't pressed already 
+			                	
+			                	finish();
+			            		Intent intent = new Intent(SplashScreen.this, Authentication.class);
+			                    SplashScreen.this.startActivity(intent);
+			            		
+			               }
+			                 
+			            }
+			 
+			        }, SPLASH_DURATION); // time in milliseconds (1 second = 1000 milliseconds) until the run() method will be called
+		}
     }
  
    
@@ -85,89 +105,6 @@ public class SplashScreen extends Activity {
 	}
 	//---------------------------------------------------------------------------------------------------//
 	
-	
-	/*
-private class LoginTask extends AsyncTask<String,Void,String> {
-		
-		
-	//---------------------------------------------------------------------------------------------------//
-		//runs in background 
-		    @Override
-		    protected String doInBackground(String... uri) {
-		    	final int timeout = 10000; //ms
-		    	HttpParams httpParams = new BasicHttpParams(); 
-				HttpConnectionParams.setConnectionTimeout(httpParams, timeout);
-		    	HttpConnectionParams.setSoTimeout(httpParams, timeout);
-		    	final HttpClient httpclient = new DefaultHttpClient(httpParams);
-		       // HttpClient httpclient = new DefaultHttpClient();
-		        HttpContext  localContext = new BasicHttpContext();
-		        HttpResponse response;
-		        String responseString = "false";
-		      //  UserData ud = new UserData();
-        		String name = "" ;//= ud.getUserName(getApplicationContext());
-        		String password ="";// = ud.getUserPassword(getApplicationContext());
-        	//	Log.i("splash_debug", uri[0]+"/" +name +"/" +password);
-        		
-        		//if there is NOT data in shared preferences ,return FALSE
-        		if( name.equals("") || password.equals("")) {
-        			// start the Authentication screen 
-					finish();
-                    Intent intent = new Intent(SplashScreen.this, Authentication.class);
-                    SplashScreen.this.startActivity(intent);
-        		}
-        	//	Log.i("splash_debug", uri[0]+"/" +name +"/" +password);
-		        HttpGet do_get = new HttpGet(uri[0]+"/" +name +"/" +password);
-		        do_get.addHeader("accept", "application/json");
-		        try {
-		            response = httpclient.execute(do_get,localContext);
-		         // Get the response entity
-		            HttpEntity entity = response.getEntity();
-		            // If response entity is not null
-		            if (entity != null) {
-		                // get entity contents and convert it to string
-		            	responseString = EntityUtils.toString(response.getEntity());
-		            }
-		        } catch (ConnectTimeoutException e) {
-		        	//Show error dialog
-					AlertDialog.Builder builder = new AlertDialog.Builder(SplashScreen.this);
-		        	builder.setMessage("Please retry later !");
-		        	builder.setTitle("No connection to server");
-		        	AlertDialog dialog = builder.create();
-		        	dialog.show();
-		        } catch (ClientProtocolException e) {
-		            e.printStackTrace();
-		        } catch (IOException e) {
-		            e.printStackTrace();
-		        } 
-		        return responseString;
-		    }
-	//---------------------------------------------------------------------------------------------------//	
-		    @Override
-		    protected void onPostExecute(String result) {
-		        super.onPostExecute(result);
-		     //   Log.i("splash_debug - onPostExecute", result);
-		        try {
-					JSONObject jsonResponse = new JSONObject(new String(result));
-					Gson gson =  new Gson();
-					LoginEntity login = gson.fromJson(jsonResponse.toString(),LoginEntity.class);
-					
-					   if(login.getAuthorized()) {
-						   	finish();
-				        	Intent intent = new Intent(SplashScreen.this, Home.class);
-				        	SplashScreen.this.startActivity(intent);
-					   }
-					   else {
-						   // start the Authentication screen 
-							finish();
-		                    Intent intent = new Intent(SplashScreen.this, Authentication.class);
-		                    SplashScreen.this.startActivity(intent);
-					   }
-		        } catch (JSONException e) {
-//		        	 Log.i("splash_debug - onPostExecute", "error");
-				}
-		        
-		    }
-	 //---------------------------------------------------------------------------------------------------//	
-	}*/
+
 	
 }

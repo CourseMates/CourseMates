@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/debug_but_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register to GCM" />
+
+    <Button
+        android:id="@+id/debug_but_unregister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Unregister from GCM" />
+
+    <EditText
+        android:id="@+id/debug_editTextID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/debug_but_copy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Copy RegID to clipboard" />
+
+    <Button
+        android:id="@+id/debug_but_push"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show PushNotification Appereance" />
+
+</LinearLayout>

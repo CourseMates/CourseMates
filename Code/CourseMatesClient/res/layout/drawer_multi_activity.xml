@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+     <FrameLayout
+        android:id="@+id/global_main_content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    
+			     <FrameLayout
+			        android:id="@+id/global_content_frame"
+			        android:layout_width="match_parent"
+			        android:layout_height="match_parent" >
+			        
+			    </FrameLayout>
+			    
+			    
+			    <!-- The navigation drawer -->
+			    <ListView android:id="@+id/globalleft_drawer"
+			        android:layout_width="240dp"
+			        android:layout_height="match_parent"
+			        android:layout_gravity="start"
+			        android:choiceMode="singleChoice"
+			        android:divider="@android:color/transparent"
+			        android:dividerHeight="0dp"
+			        android:background="#404040"/>
+    </FrameLayout>
+
+</LinearLayout>

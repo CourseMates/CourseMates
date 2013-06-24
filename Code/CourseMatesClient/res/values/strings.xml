@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CourseMatesClient</string>
+    <string name="action_settings">BACK</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="mycourses">My courses</string>
+    <string name="username">Username</string>
+    <string name="save_password">Save password</string>
+    <string name="register">Register</string>
+    <string name="new_course">Add a new course</string>
+    <string name="loading">Loading</string>
+	<string name="Exit">Exit</string>
+	<string name="FirstName">Enter your First Name</string>
+	<string name="LastName">Enter your Last Name</string>
+	<string name="Email">Enter your email</string>
+	<string name="confirmpassword">Confirm password</string> 
+	<string name="Registerme">Register me</string>
+	<string name="About">About</string>
+	<string name="Cancel">Cancel</string>
+	<string name="Clear">Clear</string>
+	<string name="NotificationPanel">Notification Panel</string>  
+	<string name="autologin">Autologin</string>
+	<string name="RootFolder">Root Folder</string>
+	<string name="Refresh">Refresh</string>
+	<string name="MakeDirectory">Make Directory</string>
+	<string name="PostPhoto">Post Photo</string>
+	<string-array name="fileEplorerDrawerOptions">
+        <item >Forum</item>
+        <item >Weekly Notifications</item>
+        <item >Participants</item>
+        <item >Settings</item>
+        <item >Logout</item>
+        <item >About </item>
+    </string-array>
+    <string-array name="CoursesDrawerOptions">
+        <item >Refresh</item>
+        <item >Weekly Notifications</item>
+        <item >Settings</item>
+        <item >Logout</item>
+        <item >About </item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+</resources>

@@ -13,6 +13,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -56,7 +59,7 @@ public class Registaration extends Activity {
 						 EditText etConfirmPassword =(EditText) findViewById(R.id.editText_confirm);
 						 EditText userName =(EditText) findViewById(R.id.editText_userName);
 						 
-						 if(!Utils.isLettersOnly(userName.getText().toString()) )
+						 if(!Utils.isLettersAndNumber(userName.getText().toString()) )
 								Utils.showMyDialog(context, "Ooops", "Not valid user name", true);
 							else
 						if(!Utils.isLettersOnly(etFirstname.getText().toString()) )
@@ -76,7 +79,8 @@ public class Registaration extends Activity {
 							else {
 						
 						RegisterTask task = new RegisterTask();
-						task.execute("http://79.181.54.22:8090/CM_restfullWS/rest/course_service/register");
+//						task.execute("http://79.181.54.22:8090/CM_restfullWS/rest/course_service/register");
+						task.execute("http://coursemate.mooo.com:8090/cmws/CourseMatesREST.svc/rest/Register");
 							}
 					}
 				});
@@ -164,7 +168,7 @@ public class Registaration extends Activity {
 					try {
 					//jsonObj ="" {"id":"10","name":"Dimaasasa"}"";
 					//String str = "{\"id\":\"10\",\"name\":\"Dima\"}";
-					
+					EditText etUsername = (EditText) findViewById(R.id.editText_userName);
 					EditText etFirstname = (EditText) findViewById(R.id.editText_firstName);
 					EditText etLastname =(EditText) findViewById(R.id.editText_lastName);
 					EditText etEmail =(EditText) findViewById(R.id.editText_email);
@@ -174,12 +178,17 @@ public class Registaration extends Activity {
 					
 					
 					//create json representation string for registration data 
-					String str = "{\"FirstName\":\""+etFirstname.getText().toString()+"\"," +
+					String str = "{" +
+							"\"ID\":\""+"-1"+"\"," +
+							"\"FirstName\":\""+etFirstname.getText().toString()+"\"," +
 							"\"LastName\":\""+ etLastname.getText().toString()+ "\"," +
+							"\"UserName\":\""+etUsername.getText().toString()+"\"," +
 							"\"Email\":\""+ etEmail.getText().toString()+ "\"," +
-							"\"Password\":\""+md5password + "\"" +
+							"\"Password\":\""+md5password + "\","+
+							"\"GCMId\":\""+Utils.GCMregisterIfNotRegistered(context) + "\","+
+							"\"IsAdmin\":\""+"false" + "\""+
 							"}";
-					
+
 					//debug
 					Log.i("json representation string",str);
 					
@@ -216,15 +225,54 @@ public class Registaration extends Activity {
 			    protected void onPostExecute(String result) {
 			        super.onPostExecute(result);
 			        
+			        Log.i("registration screen :: onPost ::", result);
 			        //dismiss the dialog
 			        if (dialog.isShowing()) {
 			            dialog.dismiss();
 			         }
-			        
-			Log.i("registration screen :: onPost ::", result);
+			       
+			        //CM server integration
+	        		JSONObject jsonobj;
+					try {
+								jsonobj = new JSONObject(result);
+								
+								//Boolean successRegistration = jsonobj.getBoolean("RegisterRESTResult");
+								String successRegistrationStr = jsonobj.getString("RegisterRESTResult");
+								Log.i("registration screen :: onPost :: successRegistrationStr", successRegistrationStr);
+								Boolean successRegistration = Boolean.valueOf(successRegistrationStr);
+								
+							        if(successRegistration) {
+							        		
+							        		//get data from json
+									        int userID = jsonobj.getInt("userId");
+									        String sessionID = jsonobj.getString("sessionId");
+									        
+									        //close activity
+									        finish();
+											//create object that operate with user's data ,stored locally.
+											UserData ud = new UserData();
+											//Enable push notification
+										   	ud.setPushnotification(context, true);
+										   	//Register for GCM server 
+											Utils.GCMregisterIfNotRegistered(context);
+											
+											EditText etUsername = (EditText) findViewById(R.id.editText_userName);
+											EditText etPassword =(EditText) findViewById(R.id.editText_password);
+											ud.saveUserAuthenticationData(getApplicationContext(), etUsername.getText().toString(), etPassword.getText().toString() ,true,true);
+											ud.setAutologin(getApplicationContext(), true);
+								        	Intent intent = new Intent(Registaration.this, Courses.class);
+											intent.putExtra("userID", userID);
+											intent.putExtra("sessionID", sessionID);
+								        	startActivity(intent);
+							        } else
+							        	//Show error dialog
+							        	Utils.showMyDialog(context," Ooops","Regisration failed", true);
+					    } catch (JSONException e) {
+							e.printStackTrace();
+						}
+					
 			    }
-			 	
-		}
+	}//end of regtask
 		//---------------------------------------------------------------------------------------------------//
-	}
+}
 
