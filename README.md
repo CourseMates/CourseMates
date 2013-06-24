@@ -26,5 +26,7 @@ __Wiki__:
 * [Developers Guide](https://github.com/CourseMates/CourseMates/wiki/Developers-Guide)
 
 __Milestone__:
-* [Iter0 - ZFR](https://github.com/CourseMates/CourseMates/wiki/Iter0---ZRF)
-* [Iter1 - MVP](https://github.com/CourseMates/CourseMates/wiki/Iter1-MVP)
+* [Iter1](https://github.com/CourseMates/CourseMates/wiki/Iter1-MVP)
+* [Iter2](https://github.com/CourseMates/CourseMates/wiki/Iter2-TDD)
+* [Iter3](https://github.com/CourseMates/CourseMates/wiki/Iter3-Refactoring)
+* [Iter4](https://github.com/CourseMates/CourseMates/wiki/Iter4)
